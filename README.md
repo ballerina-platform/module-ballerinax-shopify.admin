@@ -1,174 +1,118 @@
-![Shopify Continuous Integration Workflow](https://github.com/ballerina-platform/module-ballerinax-shopify/workflows/Shopify%20Continuous%20Integration%20Workflow/badge.svg)
-# Ballerina Shopify Connector
-This module allows to access the Shopify admin REST API though Ballerina. Shopify is a popular e-commerce platform, which enables users to create online stores easily. The Shopify admin API provides various functionalities for handling Shopify stores.
+# Ballerina Shopify connector
 
-The following sections provide you details on how to use the Shopify connector.
+[![Build](https://github.com/ballerina-platform/module-ballerinax-shopify/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-shopify/actions/workflows/ci.yml)
+[![Trivy](https://github.com/ballerina-platform/module-ballerinax-shopify/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-shopify/actions/workflows/trivy-scan.yml)
+[![GraalVM Check](https://github.com/ballerina-platform/module-ballerinax-shopify/actions/workflows/build-with-bal-test-graalvm.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-shopify/actions/workflows/build-with-bal-test-graalvm.yml)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerinax-shopify.svg)](https://github.com/ballerina-platform/module-ballerinax-shopify/commits/master)
+[![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/shopify.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%shopify)
 
-- [Compatibility](#compatibility)
-- [Feature Overview](#feature-overview)
-- [Prerequisites](#Prerequisites)
-- [Samples](#samples)
+## Overview
 
-## Compatibility
+[//]: # (TODO: Add overview mentioning the purpose of the module, supported REST API versions, and other high-level details.)
 
-| Ballerina Shopify Connector Version | Shopify Admin API Version | Ballerina Version |
-|:-----------------------------------:|:-------------------------:|:-----------------:|
-| 0.9.0                               | 2020-04                   | Swan Lake Preview1|
+## Setup guide
 
-## Feature Overview
-- Shopify connector has three different clients to handle different operations.
-    - `shopify:CustomerClient`
-    - `shopify:ProductClient`
-    - `shopify:OrderClient`
-- The `shopify:Store` object is the base of all the above clients.
-- Basic (username and password based) and OAuth2 (access token based) authentication are supported.
+[//]: # (TODO: Add detailed steps to obtain credentials and configure the module.)
 
-## Prerequisites
-- Download and install the compatible [Ballerina](https://ballerinalang.org/downloads/) distribution.
-- Pull the Shopify module from Ballerina central.
-```shell
-ballerina pull ballerinax/shopify
-```
-- You must obtain the authentication from the [Shopify Admin API](https://shopify.dev/concepts/about-apis/authentication).
+## Quickstart
 
-## Samples
-### Shopify Customer Client
-The `shopify:CustomerClient` client object can be used to handle various customer-related operations including the following.
-- Create Customers
-- Retrieve Customer Details
-- Update Customer Details
-- Delete Customers
+[//]: # (TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets.)
 
-```ballerina
-import ballerina/io;
-import ballerinax/shopify;
+## Examples
 
-public function main() {
-    io:println("Shopify Customer");
-    string token = <Your Shopify Access Token>;
-    shopify:OAuth2Configuration oAuth2Configuration = {
-        accessToken: token
-    };
-    shopify:StoreConfiguration storeConfiguration = {
-        storeName: <Your Shopify Store Name>,
-        authConfiguration: oAuth2Configuration
-    };
-    // Create a Store object
-    shopify:Store store = new (storeConfiguration);
-    // Obtain the CustomerClient from the Store object
-    shopify:CustomerClient customerClient = store.getCustomerClient();
+The `Shopify` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-shopify/tree/main/examples/), covering the following use cases:
 
-    shopify:CustomerFilter filter = {
-        // Retrieve only specific fields of a Customer
-        fields: ["firstName", "lastName", "email", "id"]
-    };
-    // Get all the customers of the shop as a stream
-    var result = customerClient->getAll(filter);
-    if (result is shopify:Error) {
-        io:println(result);
-    } else {
-        var nextSet = result.next();
-        shopify:Customer[]|shopify:Error? customers = nextSet?.value;
-        if (customers is shopify:Error?) {
-            io:println(customers);
-        } else {
-            foreach shopify:Customer customer in customers {
-                io:println("Name: " + customer?.firstName.toString() + " " + customer?.lastName.toString());
-                io:println("ID: " + customer?.id.toString());
-            }
-        }
-    }
-```
+[//]: # (TODO: Add examples)
 
-### Shopify Product Client
-The `shopify:ProductClient` client object can be used to handle various product-related operations including the following.
-- Create Products
-- Retrieve Products Details
-- Update Products Details
-- Delete Products
+## Build from the source
 
-```ballerina
-import ballerina/io;
-import ballerinax/shopify;
+### Setting up the prerequisites
 
-public function main() {
-    string token = <Your Shopify Access Token>;
-    shopify:OAuth2Configuration oAuth2Configuration = {
-        accessToken: token
-    };
-    shopify:StoreConfiguration storeConfiguration = {
-        storeName: <Your Shopify Store Name>,
-        authConfiguration: oAuth2Configuration
-    };
-    // Create a Store object
-    shopify:Store store = new (storeConfiguration);
-    // Obtain the ProductClient from the Store object
-    shopify:ProductClient productClient = store.getProductClient();
+1. Download and install Java SE Development Kit (JDK) version 17. You can download it from either of the following sources:
 
-    // Get the product details using the product ID
-    shopify:Product|shopify:Error result = productClient->get(<Product ID>);
-}
-```
-### Shopify Order Client
-The `shopify:OrderClient` client object can be used to handle various order-related operations including the following.
-- Create Orders
-- Retrieve Order Details
-- Update Order Details
-- Cancel / Close / Reopen Orders
+    * [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)
+    * [OpenJDK](https://adoptium.net/)
 
-```ballerina
-import ballerina/io;
-import ballerinax/shopify;
+   > **Note:** After installation, remember to set the `JAVA_HOME` environment variable to the directory where JDK was installed.
 
-public function main() {}
-    string token = <Your Shopify Access Token>;
-    shopify:OAuth2Configuration oAuth2Configuration = {
-        accessToken: token
-    };
-    shopify:StoreConfiguration storeConfiguration = {
-        storeName: <Your Shopify Store Name>,
-        authConfiguration: oAuth2Configuration
-    };
-    // Create a Store object
-    shopify:Store store = new (storeConfiguration);
-    // Obtain the OrderClient from the Store object
-    shopify:OrderClient orderClient = store.getOrderClient();
-    // Obtain the CustomerClient from the Store object
-    shopify:CustomerClient customerClient = store.getCustomerClient();
+2. Download and install [Ballerina Swan Lake](https://ballerina.io/).
 
-    // Retrieve the Customer to create new Order
-    var customerResult = customerClient->get(<Customer ID>);
-    if (customerResult is shopify:Error) {
-        io:println(customerResult);
-    }
-    shopify:Customer customer = <shopify:Customer>customerResult;
+3. Download and install [Docker](https://www.docker.com/get-started).
 
-    // Add a line item for the order
-    shopify:LineItem lineItem = {
-        title: <Product Variant Title>,
-        variantId: <Product Variant ID>,
-        productId: <Product ID>
-    };
+   > **Note**: Ensure that the Docker daemon is running before executing any tests.
 
-    // Add the payment details of the Order
-    // The Shopify Bogus Gateway is used here
-    shopify:PaymentDetails paymentDetails = {
-        creditCardBin: "1",
-        avsResultCode: (),
-        cvvResultCode: (),
-        creditCardNumber: "•••• •••• •••• 1",
-        creditCardCompany: "Bogus"
-    };
+4. Export Github Personal access token with read package permissions as follows,
 
-    // Create a NewOrder record
-    shopify:NewOrder newOrder = {
-        lineItems: [lineItem],
-        customer: customer,
-        paymentDetails: paymentDetails
-    };
+    ```bash
+    export packageUser=<Username>
+    export packagePAT=<Personal access token>
+    ```
 
-    // Create Order
-    shopify:Order|shopify:Error orderCreationResult = orderClient->create(newOrder);
-    io:println(orderClient);
-}
-```
+### Build options
+
+Execute the commands below to build from the source.
+
+1. To build the package:
+
+   ```bash
+   ./gradlew clean build
+   ```
+
+2. To run the tests:
+
+   ```bash
+   ./gradlew clean test
+   ```
+
+3. To build the without the tests:
+
+   ```bash
+   ./gradlew clean build -x test
+   ```
+
+4. To run tests against different environments:
+
+   ```bash
+   ./gradlew clean test -Pgroups=<Comma separated groups/test cases>
+   ```
+
+5. To debug the package with a remote debugger:
+
+   ```bash
+   ./gradlew clean build -Pdebug=<port>
+   ```
+
+6. To debug with the Ballerina language:
+
+   ```bash
+   ./gradlew clean build -PbalJavaDebug=<port>
+   ```
+
+7. Publish the generated artifacts to the local Ballerina Central repository:
+
+    ```bash
+    ./gradlew clean build -PpublishToLocalCentral=true
+    ```
+
+8. Publish the generated artifacts to the Ballerina Central repository:
+
+   ```bash
+   ./gradlew clean build -PpublishToCentral=true
+   ```
+
+## Contribute to Ballerina
+
+As an open-source project, Ballerina welcomes contributions from the community.
+
+For more information, go to the [contribution guidelines](https://github.com/ballerina-platform/ballerina-lang/blob/master/CONTRIBUTING.md).
+
+## Code of conduct
+
+All the contributors are encouraged to read the [Ballerina Code of Conduct](https://ballerina.io/code-of-conduct).
+
+## Useful links
+
+* For more information go to the [`shopify` package](https://central.ballerina.io/ballerinax/shopify/latest).
+* For example demonstrations of the usage, go to [Ballerina By Examples](https://ballerina.io/learn/by-example/).
+* Chat live with us via our [Discord server](https://discord.gg/ballerinalang).
+* Post all technical questions on Stack Overflow with the [#ballerina](https://stackoverflow.com/questions/tagged/ballerina) tag.
