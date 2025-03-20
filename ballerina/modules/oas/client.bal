@@ -58,9 +58,6 @@ public isolated client class Client {
             if config.proxy is http:ProxyConfig {
                 httpClientConfig.proxy = check config.proxy.ensureType(http:ProxyConfig);
             }
-            if config.followRedirects is http:FollowRedirects {
-                httpClientConfig.followRedirects = config.followRedirects;
-            }
         }
         http:Client httpEp = check new (serviceUrl, httpClientConfig);
         self.clientEp = httpEp;
@@ -246,11 +243,12 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Cancel the current recurring charge for a shop / Cancel the current recurring charge for a shop 
-    remote isolated function cancelsARecurringApplicationCharge(string apiVersion, string recurringApplicationChargeId, string? xShopifyAccessToken = ()) returns string|error {
+    remote isolated function cancelsARecurringApplicationCharge(string apiVersion, string recurringApplicationChargeId, string payload, string? xShopifyAccessToken = ()) returns string|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/recurring_application_charges/${getEncodedUri(recurringApplicationChargeId)}.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
         http:Request request = new;
+        request.setPayload(payload, "text/plain");
         string response = check self.clientEp->delete(resourcePath, request, httpHeaders);
         return response;
     }
@@ -346,14 +344,14 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Create a new customer record / Create a customer with password and password_confirmation and skip sending the welcome email / Create a customer with send_email_invite / Create a customer with a metafield / Create a new customer record / Create a customer with password and password_confirmation and skip sending the welcome email / Create a customer with send_email_invite / Create a customer with a metafield 
-    remote isolated function createsACustomer(string apiVersion, ApiVersionCustomersJsonBody payload, string? xShopifyAccessToken = ()) returns CreateCustomer|error {
+    remote isolated function createsACustomer(string apiVersion, CreateCustomer payload, string? xShopifyAccessToken = ()) returns CustomerResponse|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/customers.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
-        CreateCustomer response = check self.clientEp->post(resourcePath, request, httpHeaders);
+        CustomerResponse response = check self.clientEp->post(resourcePath, request, httpHeaders);
         return response;
     }
     # Creates an account activation URL for a customer
@@ -361,7 +359,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Create an account activation URL for an invited or disabled customer / Create an account activation URL for an invited or disabled customer 
-    remote isolated function createsAnAccountActivationUrlForACustomer(string apiVersion, string customerId, record{} payload, string? xShopifyAccessToken = ()) returns AccountActivationUrl|error {
+    remote isolated function createsAnAccountActivationUrlForACustomer(string apiVersion, string customerId, CustomerInvite payload, string? xShopifyAccessToken = ()) returns AccountActivationUrl|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/customers/${getEncodedUri(customerId)}/account_activation_url.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -406,7 +404,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Retrieves a single customer 
-    remote isolated function updatesACustomer(string apiVersion, string customerId, CustomerscustomerIdJsonBody payload, string? xShopifyAccessToken = ()) returns CustomerResponse|error {
+    remote isolated function updatesACustomer(string apiVersion, string customerId, UpdateCustomer payload, string? xShopifyAccessToken = ()) returns CustomerResponse|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/customers/${getEncodedUri(customerId)}.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -2501,7 +2499,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Create a partially paid order with a new customer and addresses / Create a comprehensive order / Create an order with tax lines split across taxable line items / Create a simple order with only a product variant ID / Create a simple order without sending an order receipt or a fulfillment receipt / Create a simple order, sending an order confirmation and a shipping confirmation to the customer / Create a pending order with an existing customer / Create a simple order and fulfill it / Create a partially paid order with a new customer and addresses / Create a comprehensive order / Create an order with tax lines split across taxable line items / Create a simple order with only a product variant ID / Create a simple order without sending an order receipt or a fulfillment receipt / Create a simple order, sending an order confirmation and a shipping confirmation to the customer / Create a pending order with an existing customer / Create a simple order and fulfill it 
-    remote isolated function createAnOrder(string apiVersion, ApiVersionOrdersJsonBody payload, string? xShopifyAccessToken = ()) returns OrderResponse|error {
+    remote isolated function createAnOrder(string apiVersion, CreateOrder payload, string? xShopifyAccessToken = ()) returns OrderResponse|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/orders.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -2570,7 +2568,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Add note attributes to an order / Update the shipping address of an order / Update an order's tags / Add a note to order / Change an order's phone number / Add a metafield to an order / Change an order's email address / Remove the customer from an order / Change whether the buyer accepts marketing / Add note attributes to an order / Update the shipping address of an order / Update an order's tags / Add a note to order / Change an order's phone number / Add a metafield to an order / Change an order's email address / Remove the customer from an order / Change whether the buyer accepts marketing 
-    remote isolated function updatesAnOrder(string apiVersion, string orderId, OrdersorderIdJsonBody payload, string? xShopifyAccessToken = ()) returns UpdateOrderResponse|error {
+    remote isolated function updatesAnOrder(string apiVersion, string orderId, UpdateOrder payload, string? xShopifyAccessToken = ()) returns UpdateOrderResponse|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/orders/${getEncodedUri(orderId)}.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -2632,7 +2630,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Create an order risk showing a fraud risk for proxy detection / Create an order risk showing a fraud risk for proxy detection 
-    remote isolated function createsAnOrderRiskForAnOrder(string apiVersion, string orderId, OrderIdRisksJsonBody payload, string? xShopifyAccessToken = ()) returns CreateOrderRisk|error {
+    remote isolated function createsAnOrderRiskForAnOrder(string apiVersion, string orderId, CreateOrderRisk payload, string? xShopifyAccessToken = ()) returns CreateOrderRisk|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/orders/${getEncodedUri(orderId)}/risks.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -2659,14 +2657,14 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Update an existing order risk for an order / Update an existing order risk for an order 
-    remote isolated function updatesAnOrderRisk(string apiVersion, string orderId, string riskId, RisksriskIdJsonBody payload, string? xShopifyAccessToken = ()) returns UpdateOrderRisk|error {
+    remote isolated function updatesAnOrderRisk(string apiVersion, string orderId, string riskId, UpdateOrderRisk payload, string? xShopifyAccessToken = ()) returns OrderRiskObject|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/orders/${getEncodedUri(orderId)}/risks/${getEncodedUri(riskId)}.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
-        UpdateOrderRisk response = check self.clientEp->put(resourcePath, request, httpHeaders);
+        OrderRiskObject response = check self.clientEp->put(resourcePath, request, httpHeaders);
         return response;
     }
     # Deletes an order risk for an order
@@ -2705,14 +2703,14 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Create a refund for an order / Refund a specific amount of shipping / Create a refund for an order / Refund a specific amount of shipping 
-    remote isolated function createsARefund(string apiVersion, string orderId, OrderIdRefundsJsonBody payload, string? xShopifyAccessToken = ()) returns CreateRefund|error {
+    remote isolated function createsARefund(string apiVersion, string orderId, CreateRefund payload, string? xShopifyAccessToken = ()) returns RefundObject|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/orders/${getEncodedUri(orderId)}/refunds.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
-        CreateRefund response = check self.clientEp->post(resourcePath, request, httpHeaders);
+        RefundObject response = check self.clientEp->post(resourcePath, request, httpHeaders);
         return response;
     }
     # Calculates a refund
@@ -2768,14 +2766,14 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Capture the full amount for an authorized order, and associate the capture with an authorization by including its authorization code / Create a test transaction. / Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID / Capture the full amount for an authorized order, and associate the capture with an authorization by including its authorization code / Create a test transaction. / Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID 
-    remote isolated function createsATransactionForAnOrder(string apiVersion, string orderId, OrderIdTransactionsJsonBody payload, string? xShopifyAccessToken = ()) returns CreateTransaction|error {
+    remote isolated function createsATransactionForAnOrder(string apiVersion, string orderId, CreateTransaction payload, string? xShopifyAccessToken = ()) returns TransactionObject|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/orders/${getEncodedUri(orderId)}/transactions.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
-        CreateTransaction response = check self.clientEp->post(resourcePath, request, httpHeaders);
+        TransactionObject response = check self.clientEp->post(resourcePath, request, httpHeaders);
         return response;
     }
     # Retrieves a specific transaction
@@ -3088,7 +3086,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Create a new product with multiple product variants and multiple options / Create a new product with multiple product variants / Create a new product with the default variant and base64 encoded image / Create a product with a metafield / Create a new product with the default product variant / Create a new product with the default variant and a product image that will be downloaded by Shopify / Create a new unpublished product / Create a new product with multiple product variants and multiple options / Create a new product with multiple product variants / Create a new product with the default variant and base64 encoded image / Create a product with a metafield / Create a new product with the default product variant / Create a new product with the default variant and a product image that will be downloaded by Shopify / Create a new unpublished product 
-    remote isolated function createsANewProduct(string apiVersion, ApiVersionProductsJsonBody payload, string? xShopifyAccessToken = ()) returns CreateProductResponse|error {
+    remote isolated function createsANewProduct(string apiVersion, CreateProduct payload, string? xShopifyAccessToken = ()) returns CreateProductResponse|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/products.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -3118,14 +3116,14 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Add a metafield to an existing product / Update a product by adding a new product image / Update a product by reordering product image / Update a product's title / Update a product by clearing product images / Hide a published product by changing the published attribute to false / Update a product's SEO title and description / Update a product and one of its variants / Update a product by reordering the product variants / Show a hidden product by changing the published attribute to true / Update a product's tags / Add a metafield to an existing product / Update a product by adding a new product image / Update a product by reordering product image / Update a product's title / Update a product by clearing product images / Hide a published product by changing the published attribute to false / Update a product's SEO title and description / Update a product and one of its variants / Update a product by reordering the product variants / Show a hidden product by changing the published attribute to true / Update a product's tags 
-    remote isolated function updatesAProduct(string apiVersion, string productId, ProductsproductIdJsonBody payload, string? xShopifyAccessToken = ()) returns UpdateProduct|error {
+    remote isolated function updatesAProduct(string apiVersion, string productId, UpdateProduct payload, string? xShopifyAccessToken = ()) returns ProductObject|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/products/${getEncodedUri(productId)}.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
-        UpdateProduct response = check self.clientEp->put(resourcePath, request, httpHeaders);
+        ProductObject response = check self.clientEp->put(resourcePath, request, httpHeaders);
         return response;
     }
     # Deletes a product
@@ -3280,7 +3278,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Create a new product variant with an image / Create a new product variant with a metafield / Create a new product variant / Create a new product variant with an image / Create a new product variant with a metafield / Create a new product variant 
-    remote isolated function createANewProductVariant(string apiVersion, string productId, ProductIdVariantsJsonBody payload, string? xShopifyAccessToken = ()) returns CreateProductVariant|error {
+    remote isolated function createANewProductVariant(string apiVersion, string productId, CreateProductVariant payload, string? xShopifyAccessToken = ()) returns CreateProductVariant|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/products/${getEncodedUri(productId)}/variants.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -3322,7 +3320,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Add a metafield to an existing variant / Add an existing image to an existing variant / Update the title and price of an existing variant / Add a metafield to an existing variant / Add an existing image to an existing variant / Update the title and price of an existing variant 
-    remote isolated function modifyAnExistingProductVariant(string apiVersion, string variantId, VariantsvariantIdJsonBody payload, string? xShopifyAccessToken = ()) returns ModifyProductVariant|error {
+    remote isolated function modifyAnExistingProductVariant(string apiVersion, string variantId, UpdateProductVariant payload, string? xShopifyAccessToken = ()) returns ModifyProductVariant|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/variants/${getEncodedUri(variantId)}.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -3908,7 +3906,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Create a fulfillment for the fulfillment order line items specified / Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank / Create a fulfillment for the fulfillment order line items specified / Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank 
-    remote isolated function createsAFulfillmentForOneOrManyFulfillmentOrders(string apiVersion, ApiVersionFulfillmentsJsonBody payload, string? xShopifyAccessToken = ()) returns CreateFulfillmentOrder|error {
+    remote isolated function createsAFulfillmentForOneOrManyFulfillmentOrders(string apiVersion, CreateOrderFulfillment payload, string? xShopifyAccessToken = ()) returns CreateFulfillmentOrder|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/fulfillments.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -4746,7 +4744,7 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Subscribe to order creation webhooks / Subscribe to order creation webhooks 
-    remote isolated function createANewWebhook(string apiVersion, ApiVersionWebhooksJsonBody payload, string? xShopifyAccessToken = ()) returns SubscribeOrderCreation|error {
+    remote isolated function createANewWebhook(string apiVersion, CreateWebhook payload, string? xShopifyAccessToken = ()) returns SubscribeOrderCreation|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/webhooks.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
@@ -4776,14 +4774,14 @@ public isolated client class Client {
     # + apiVersion - The API version
     # + xShopifyAccessToken - The access token for the shop
     # + return - Update a webhook subscription so that it POSTs to a different address / Update a webhook subscription so that it POSTs to a different address 
-    remote isolated function modifyAnExistingWebhook(string apiVersion, string webhookId, WebhookswebhookIdJsonBody payload, string? xShopifyAccessToken = ()) returns UpdateWebhook|error {
+    remote isolated function modifyAnExistingWebhook(string apiVersion, string webhookId, UpdateWebhook payload, string? xShopifyAccessToken = ()) returns WebhookObject|error {
         string resourcePath = string `/admin/api/${getEncodedUri(apiVersion)}/webhooks/${getEncodedUri(webhookId)}.json`;
         map<any> headerValues = {"x-shopify-access-token": xShopifyAccessToken};
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
-        UpdateWebhook response = check self.clientEp->put(resourcePath, request, httpHeaders);
+        WebhookObject response = check self.clientEp->put(resourcePath, request, httpHeaders);
         return response;
     }
     # Remove an existing Webhook

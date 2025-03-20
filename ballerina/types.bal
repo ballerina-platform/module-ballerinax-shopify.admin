@@ -28,6 +28,8 @@ public type ConnectionConfig record {|
     ClientHttp1Settings http1Settings?;
     # Configurations related to HTTP/2 protocol
     http:ClientHttp2Settings http2Settings?;
+    # HTTP redirect related configurations
+    http:FollowRedirects? followRedirects = ();
     # The maximum time to wait (in seconds) for a response before closing the connection
     decimal timeout = 60;
     # The choice of setting `forwarded`/`x-forwarded` header
@@ -36,8 +38,6 @@ public type ConnectionConfig record {|
     http:PoolConfiguration poolConfig?;
     # HTTP caching related configurations
     http:CacheConfig cache?;
-    # HTTP redirect related configurations
-    http:FollowRedirects? followRedirects = ();
     # Specifies the way of handling compression (`accept-encoding`) header
     http:Compression compression = http:COMPRESSION_AUTO;
     # Configurations associated with the behaviour of the Circuit Breaker
@@ -52,15 +52,7 @@ public type ConnectionConfig record {|
     http:ProxyConfig proxy?;
     # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
     boolean validation = true;
-    # Configurations related to client authentication
-    http:ClientAuthConfig? auth = ();
-    # Version of the APIs
-    string apiVersion;
 |};
-
-public type ApiKeysConfig record {
-    string accessToken;
-};
 
 # Provides settings related to HTTP/1.x protocol.
 public type ClientHttp1Settings record {|
@@ -83,6 +75,316 @@ public type ProxyConfig record {|
     # Proxy server password
     @display {label: "", kind: "password"}
     string password = "";
+|};
+
+public type OkCreateProductImage record {|
+    *http:Ok;
+    CreateProductImage body;
+|};
+
+public type OkCloseOrderResponse record {|
+    *http:Ok;
+    CloseOrderResponse body;
+|};
+
+public type ForbiddenInlineResponse4032 record {|
+    *http:Forbidden;
+    InlineResponse4032 body;
+|};
+
+public type ForbiddenInlineResponse4031 record {|
+    *http:Forbidden;
+    InlineResponse4031 body;
+|};
+
+public type UnprocessableEntityInlineResponse422 record {|
+    *http:UnprocessableEntity;
+    InlineResponse422 body;
+|};
+
+public type OkRejectCancellationRequestResponse record {|
+    *http:Ok;
+    RejectCancellationRequestResponse body;
+|};
+
+public type AcceptedCheckoutResponse record {|
+    *http:Accepted;
+    CheckoutResponse body;
+|};
+
+public type OkReopenCloseOrder record {|
+    *http:Ok;
+    ReopenCloseOrder body;
+|};
+
+public type OkFulfillmentOrder record {|
+    *http:Ok;
+    FulfillmentOrder body;
+|};
+
+public type BadRequestInlineResponse400 record {|
+    *http:BadRequest;
+    InlineResponse400 body;
+|};
+
+public type OkRejectFulfillmentResponse record {|
+    *http:Ok;
+    RejectFulfillmentResponse body;
+|};
+
+public type UnprocessableEntityInlineResponse42211 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42211 body;
+|};
+
+public type UnprocessableEntityInlineResponse42210 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42210 body;
+|};
+
+public type UnprocessableEntityInlineResponse42215 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42215 body;
+|};
+
+public type UnprocessableEntityInlineResponse42214 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42214 body;
+|};
+
+public type UnprocessableEntityInlineResponse42213 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42213 body;
+|};
+
+public type UnprocessableEntityInlineResponse42212 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42212 body;
+|};
+
+public type OkTransitionFulfillmentOrder record {|
+    *http:Ok;
+    TransitionFulfillmentOrder body;
+|};
+
+public type AcceptedCompleteCheckoutResponse record {|
+    *http:Accepted;
+    CompleteCheckoutResponse body;
+|};
+
+public type UnprocessableEntityInlineResponse42218 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42218 body;
+|};
+
+public type UnprocessableEntityInlineResponse42217 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42217 body;
+|};
+
+public type OkCalculateRefund record {|
+    *http:Ok;
+    CalculateRefund body;
+|};
+
+public type UnprocessableEntityInlineResponse42216 record {|
+    *http:UnprocessableEntity;
+    InlineResponse42216 body;
+|};
+
+public type OkAcceptFulfillmentResponse record {|
+    *http:Ok;
+    AcceptFulfillmentResponse body;
+|};
+
+public type AcceptedModifyDraftOrder record {|
+    *http:Accepted;
+    ModifyDraftOrder body;
+|};
+
+public type NoContentString record {|
+    *http:NoContent;
+    string body;
+|};
+
+public type OkCancelFulfillmentOrder record {|
+    *http:Ok;
+    CancelFulfillmentOrder body;
+|};
+
+public type OkResourceFeedbackList record {|
+    *http:Ok;
+    ResourceFeedbackList body;
+|};
+
+public type AcceptedShippingRates record {|
+    *http:Accepted;
+    ShippingRates body;
+|};
+
+public type OkInlineResponse20062 record {|
+    *http:Ok;
+    InlineResponse20062 body;
+|};
+
+public type OkMoveFulfillmentOrderResponse record {|
+    *http:Ok;
+    MoveFulfillmentOrderResponse body;
+|};
+
+public type AcceptedCreateAuthorizationResponse record {|
+    *http:Accepted;
+    CreateAuthorizationResponse body;
+|};
+
+public type OkMarkCommentResponse record {|
+    *http:Ok;
+    MarkCommentResponse body;
+|};
+
+public type ConflictInlineResponse409 record {|
+    *http:Conflict;
+    InlineResponse409 body;
+|};
+
+public type NotFoundInlineResponse404 record {|
+    *http:NotFound;
+    InlineResponse404 body;
+|};
+
+public type OkRestoreRemoveComment record {|
+    *http:Ok;
+    RestoreRemoveComment body;
+|};
+
+public type OkInventoryLevel record {|
+    *http:Ok;
+    InventoryLevel body;
+|};
+
+public type OkStorefrontAccessToken record {|
+    *http:Ok;
+    StorefrontAccessToken body;
+|};
+
+public type OkSpamCommentResponse record {|
+    *http:Ok;
+    SpamCommentResponse body;
+|};
+
+public type OkOrderResponse record {|
+    *http:Ok;
+    OrderResponse body;
+|};
+
+public type OkAvailableInventory record {|
+    *http:Ok;
+    AvailableInventory body;
+|};
+
+public type SeeOtherString record {|
+    *http:SeeOther;
+    string body;
+|};
+
+public type UnprocessableEntityString record {|
+    *http:UnprocessableEntity;
+    string body;
+|};
+
+public type UnprocessableEntityInlineResponse4224 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4224 body;
+|};
+
+public type UnprocessableEntityInlineResponse4223 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4223 body;
+|};
+
+public type UnprocessableEntityInlineResponse4226 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4226 body;
+|};
+
+public type UnprocessableEntityInlineResponse4225 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4225 body;
+|};
+
+public type UnprocessableEntityInlineResponse4222 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4222 body;
+|};
+
+public type OkCancellationResponse record {|
+    *http:Ok;
+    CancellationResponse body;
+|};
+
+public type OkCancelFulfillment record {|
+    *http:Ok;
+    CancelFulfillment body;
+|};
+
+public type UnprocessableEntityInlineResponse4221 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4221 body;
+|};
+
+public type AcceptedCreateShopFeedback record {|
+    *http:Accepted;
+    CreateShopFeedback body;
+|};
+
+public type OkApproveCommentResponse record {|
+    *http:Ok;
+    ApproveCommentResponse body;
+|};
+
+public type ForbiddenInlineResponse403 record {|
+    *http:Forbidden;
+    InlineResponse403 body;
+|};
+
+public type AcceptedUpdateCheckoutResponse record {|
+    *http:Accepted;
+    UpdateCheckoutResponse body;
+|};
+
+public type UnprocessableEntityInlineResponse4228 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4228 body;
+|};
+
+public type OkOriginalFulfillmentOrder record {|
+    *http:Ok;
+    OriginalFulfillmentOrder body;
+|};
+
+public type UnprocessableEntityInlineResponse4227 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4227 body;
+|};
+
+public type UnprocessableEntityInlineResponse4229 record {|
+    *http:UnprocessableEntity;
+    InlineResponse4229 body;
+|};
+
+public type OkFulfillment record {|
+    *http:Ok;
+    Fulfillment body;
+|};
+
+public type OkAccountActivationUrl record {|
+    *http:Ok;
+    AccountActivationUrl body;
+|};
+
+public type OkDisputeFileUpload record {|
+    *http:Ok;
+    DisputeFileUpload body;
 |};
 
 public type AdminapiapiVersionmarketingEventsJsonMarketingEvent record {
@@ -123,6 +425,12 @@ public type ProductListingAppResponse record {
     ProductListingAppResponse_product_listing product_listing?;
 };
 
+# The variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies.
+public type PresentmentPrices record {
+    # A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies.
+    Presentment_price[] presentment_prices?;
+};
+
 public type CreateFulfillmentOrder record {
     CreateFulfillmentOrder_fulfillment fulfillment?;
 };
@@ -159,11 +467,6 @@ public type ArticleComment_comment record {
     string status?;
     string updated_at?;
     anydata? user_agent?;
-};
-
-public type AdminapiapiVersioncustomerscustomerIdJsonCustomer record {
-    AdminapiapiVersioncustomerscustomerIdJsonCustomerMetafields[] metafields?;
-    decimal id?;
 };
 
 public type ApiVersionApplicationChargesJsonBody record {
@@ -523,6 +826,10 @@ public type UpdateOrderResponse record {
     UpdateOrderResponse_order 'order?;
 };
 
+public type TransactionObject record {
+    TransactionObject_transaction 'transaction?;
+};
+
 public type ShopPoliciesList_policies record {
     string body?;
     string created_at?;
@@ -570,10 +877,6 @@ public type FulfillmentEventResponse_fulfillment_event record {
     string status?;
     string updated_at?;
     anydata? zip?;
-};
-
-public type AdminapiapiVersionordersJsonOrderFulfillments record {
-    decimal location_id?;
 };
 
 public type FulfillmentIdUpdateTrackingJsonBody record {
@@ -750,6 +1053,28 @@ public type UpdateBlogResponse record {
     UpdateBlogResponse_blog blog?;
 };
 
+# Products are easier to sell if customers can see pictures of them, which is why there are product images.
+public type ProductImage record {
+    # The date and time when the product image was created. The API returns this value in ISO 8601 formatting.
+    string created_at?;
+    # A unique numeric identifier for the product image.
+    int id?;
+    # The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
+    int position?;
+    # The id of the product associated with the image.
+    int product_id?;
+    # An array of variant ids associated with the image.
+    int[] variant_ids?;
+    # Specifies the location of the product image. This parameter supports URL filters that you can use to retrieve modified copies of the image. For example, add _small, to the filename to retrieve a scaled copy of the image at 100 x 100 px (for example, ipod-nano_small.png), or add _2048x2048 to retrieve a copy of the image constrained at 2048 x 2048 px resolution (for example, ipod-nano_2048x2048.png).
+    string src?;
+    # Width dimension of the image which is determined on upload.
+    int width?;
+    # Height dimension of the image which is determined on upload.
+    int height?;
+    # The date and time when the product image was last modified. The API returns this value in ISO 8601 format.
+    string updated_at?;
+};
+
 public type SubscriptionsList_webhooks record {
     string address?;
     string api_version?;
@@ -774,11 +1099,6 @@ public type AdminapiapiVersioncommentscommentIdJsonComment record {
 public type InventoryLevelsConnectJsonBody record {
     decimal inventory_item_id?;
     decimal location_id?;
-};
-
-public type AdminapiapiVersionproductsproductIdvariantsJsonVariant record {
-    string price?;
-    string option1?;
 };
 
 public type InlineResponse409_errors record {
@@ -905,19 +1225,6 @@ public type CreateCustomer_customer_email_marketing_consent record {
     string state?;
 };
 
-public type UpdateWebhook_webhook record {
-    string address?;
-    string api_version?;
-    string created_at?;
-    anydata[] fields?;
-    string format?;
-    decimal id?;
-    anydata[] metafield_namespaces?;
-    anydata[] private_metafield_namespaces?;
-    string topic?;
-    string updated_at?;
-};
-
 public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order_destination record {
     string address1?;
     string address2?;
@@ -995,14 +1302,26 @@ public type SinglePayout_payout_summary record {
     string retried_payouts_gross_amount?;
 };
 
-public type AdminapiapiVersionfulfillmentsJsonFulfillmentTrackingInfo record {
-    decimal number?;
-    string company?;
-    string url?;
-};
-
 public type RecurringApplicationChargeIdUsageChargesJsonBody record {
     AdminapiapiVersionrecurringApplicationChargesrecurringApplicationChargeIdusageChargesJsonUsageCharge usage_charge?;
+};
+
+# Order adjustment attached to the refund.
+public type OrderAdjustment record {
+    # The unique identifier for the order adjustment.
+    int id?;
+    # The unique identifier for the order that the order adjustment is associated with.
+    int order_id?;
+    # The unique identifier for the refund that the order adjustment is associated with.
+    int refund_id?;
+    # The value of the discrepancy between the calculated refund and the actual refund. If the kind property's value is shipping_refund, then amount returns the value of shipping charges refunded to the customer.
+    int|string amount?;
+    # The taxes that are added to amount, such as applicable shipping taxes added to a shipping refund.
+    string tax_amount?;
+    # The order adjustment type. Valid values are shipping_refund and refund_discrepancy.
+    string kind?;
+    # The reason for the order adjustment. To set this value, include discrepancy_reason when you create a refund.
+    string reason?;
 };
 
 public type CancelFulfillmentOrder_replacement_fulfillment_order_line_items record {
@@ -1036,6 +1355,11 @@ public type UpdateProduct_product_images record {
     string updated_at?;
     anydata[] variant_ids?;
     decimal width?;
+};
+
+public type ProductObject record {
+    # The Product resource lets you update and create products in a merchant's store.
+    Product product?;
 };
 
 public type SingleUser record {
@@ -1455,6 +1779,19 @@ public type SinglePriceRule record {
     SinglePriceRule_price_rule price_rule?;
 };
 
+public type CreateWebhook_webhook record {
+    string address?;
+    string api_version?;
+    string created_at?;
+    anydata[] fields?;
+    string format?;
+    decimal id?;
+    anydata[] metafield_namespaces?;
+    anydata[] private_metafield_namespaces?;
+    string topic?;
+    string updated_at?;
+};
+
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderDestination record {
     string zip?;
     string country?;
@@ -1506,10 +1843,6 @@ public type MoveFulfillmentOrderResponse_moved_fulfillment_order_destination rec
 
 public type MarketingEventsmarketingEventIdJsonBody record {
     AdminapiapiVersionmarketingEventsmarketingEventIdJsonMarketingEvent marketing_event?;
-};
-
-public type AdminapiapiVersionfulfillmentsJsonFulfillmentLineItemsByFulfillmentOrder record {
-    decimal fulfillment_order_id?;
 };
 
 public type AbandonedCheckouts_checkouts record {
@@ -1587,10 +1920,6 @@ public type ReopenCloseOrder_order_fulfillments record {
 public type ModifyProductVariant_variant_price record {
     string amount?;
     string currency_code?;
-};
-
-public type OrdersorderIdJsonBody record {
-    AdminapiapiVersionordersorderIdJsonOrder 'order?;
 };
 
 public type OrderResponse_order_shipping_address record {
@@ -1719,8 +2048,10 @@ public type FulfillmentServicesList record {
     SingleFulfillmentService_fulfillment_service[] fulfillment_services?;
 };
 
-public type RisksriskIdJsonBody record {
-    AdminapiapiVersionordersorderIdrisksriskIdJsonRisk risk?;
+# The webhook object.
+public type WebhookObject record {
+    # The webhook resource.
+    Webhook webhook?;
 };
 
 public type CreateCustomer_customer_sms_marketing_consent record {
@@ -1791,6 +2122,24 @@ public type CheckoutResponse_checkout_shipping_line record {
     string title?;
 };
 
+# The variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies.
+public type Presentment_price record {
+    # The price object
+    Price price?;
+    # The price object
+    Price compare_at_price?;
+};
+
+# The custom properties that a shop owner uses to define product variants. You can define three options for a product variant are option1, option2, option3. Default value is Default Title. The title field is a concatenation of the option1, option2, and option3 fields. Updating the option fields updates the title field.
+public type Option record {
+    # Option 1
+    string option1?;
+    # Option 2
+    string option2?;
+    # Option 3
+    string option3?;
+};
+
 public type RejectCancellationRequestResponse_fulfillment_order_destination record {
     string address1?;
     string address2?;
@@ -1808,10 +2157,6 @@ public type RejectCancellationRequestResponse_fulfillment_order_destination reco
 
 public type CountriesList record {
     CountriesList_countries[] countries?;
-};
-
-public type VariantsvariantIdJsonBody record {
-    AdminapiapiVersionvariantsvariantIdJsonVariant variant?;
 };
 
 public type UsageChargeResponse_usage_charge record {
@@ -1984,6 +2329,24 @@ public type OriginalFulfillmentOrder_original_fulfillment_order record {
     anydata[] supported_actions?;
 };
 
+# Refunded line item
+public type RefundLineItem record {
+    # The unique identifier of the line item in the refund.
+    int id?;
+    # The ID of the related line item in the order.
+    int line_item_id?;
+    # The quantity of the associated line item that was returned.
+    int quantity?;
+    # How this refund line item affects inventory levels.
+    string restock_type?;
+    # The unique identifier of the location where the items will be restocked. Required when restock_type has the value return or cancel.
+    int location_id?;
+    # The subtotal of the refund line item.
+    decimal subtotal?;
+    # The total tax on the refund line item.
+    decimal total_tax?;
+};
+
 public type UpdateCustomCollection record {
     UpdateCustomCollection_custom_collection custom_collection?;
 };
@@ -2009,10 +2372,6 @@ public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfi
 
 public type SingleScriptTag record {
     SingleScriptTag_script_tag script_tag?;
-};
-
-public type ApiVersionFulfillmentsJsonBody record {
-    AdminapiapiVersionfulfillmentsJsonFulfillment fulfillment?;
 };
 
 public type AdminapiapiVersiongiftCardsgiftCardIddisableJsonGiftCard record {
@@ -2199,10 +2558,6 @@ public type UsersList record {
     UsersList_users[] users?;
 };
 
-public type OrderIdTransactionsJsonBody record {
-    AdminapiapiVersionordersorderIdtransactionsJsonTransaction 'transaction?;
-};
-
 public type ApplicationChargeResult record {
     ApplicationChargeResult_application_charge application_charge?;
 };
@@ -2214,19 +2569,6 @@ public type AdminapiapiVersionreportsJsonReport record {
 
 public type RefundResponse record {
     ReopenCloseOrder_order_refunds refund?;
-};
-
-public type AdminapiapiVersionordersorderIdrisksJsonRisk record {
-    decimal score?;
-    boolean display?;
-    string recommendation?;
-    boolean cause_cancel?;
-    string 'source?;
-    string message?;
-};
-
-public type WebhookswebhookIdJsonBody record {
-    AdminapiapiVersionwebhookswebhookIdJsonWebhook webhook?;
 };
 
 public type SinglePaymentResponse_payment_checkout_payments record {
@@ -2400,6 +2742,24 @@ public type ShopConfigurations_shop record {
     string zip?;
 };
 
+# Schedule associated to the payment terms
+public type Refund record {
+    # The date and time (ISO 8601 format) when the refund was created.
+    string created_at?;
+    # The unique identifier for the refund.
+    int id?;
+    # An optional note attached to a refund.
+    string note?;
+    # A list of order adjustments attached to the refund. Order adjustments are generated to account for refunded shipping costs and differences between calculated and actual refund amounts.
+    OrderAdjustment[] order_adjustments?;
+    # The date and time (ISO 8601 format) when the refund was imported. This value can be set to a date in the past when importing from other systems. If no value is provided, then it will be auto-generated as the current time in Shopify. Public apps need to be granted permission by Shopify to import orders with the processed_at timestamp set to a value earlier the created_at timestamp. Private apps can't be granted permission by Shopify.
+    string processed_at?;
+    # A list of refunded line items.
+    RefundLineItem[] refund_line_items?;
+    # The unique identifier of the user who performed the refund.
+    int user_id?;
+};
+
 public type CancelFulfillmentOrder_fulfillment_order_line_items record {
     decimal fulfillable_quantity?;
     decimal fulfillment_order_id?;
@@ -2543,6 +2903,30 @@ public type SingleRedirect_redirect record {
     decimal id?;
     string path?;
     string target?;
+};
+
+# The webhook resource.
+public type Webhook record {
+    # Destination URI to which the webhook subscription should send the POST request when an event occurs.
+    string address?;
+    # The Admin API version that Shopify uses to serialize webhook events. This value is inherited from the app that created the webhook subscription.
+    string api_version?;
+    # Date and time when the webhook subscription was created. The API returns this value in ISO 8601 format.
+    string created_at?;
+    # An optional array of top-level resource fields that should be serialized and sent in the POST request. If absent, all fields will be sent.
+    string[] fields?;
+    # Format in which the webhook subscription should send the data. Valid values are JSON and XML. Defaults to JSON.
+    string format?;
+    # Unique numeric identifier for the webhook subscription.
+    int id?;
+    # Optional array of namespaces for any metafields that should be included with each webhook.
+    string[] metafield_namespaces?;
+    # Optional array of namespaces for any private metafields that should be included with each webhook.
+    string[] private_metafield_namespaces?;
+    # Event that triggers the webhook. Valid values are app/uninstalled, bulk_operations/finish, carts/create, carts/update, checkouts/create, checkouts/delete, checkouts/update, collection_listings/add, collection_listings/remove, collection_listings/update, collections/create, collections/delete, collections/update, customer_groups/create, customer_groups/delete, customer_groups/update, customer_payment_methods/create, customer_payment_methods/revoke, customer_payment_methods/update, customers/create, customers/delete, customers/disable, customers/enable, customers/update, customers_marketing_consent/update, disputes/create, disputes/update, domains/create, domains/destroy, domains/update, draft_orders/create, draft_orders/delete, draft_orders/update, fulfillment_events/create, fulfillment_events/delete, fulfillments/create, fulfillments/update, inventory_items/create, inventory_items/delete, inventory_items/update, inventory_levels/connect, inventory_levels/disconnect, inventory_levels/update, locales/create, locales/update, locations/create, locations/delete, locations/update, order_transactions/create, orders/cancelled, orders/create, orders/delete, orders/edited, orders/fulfilled, orders/paid, orders/partially_fulfilled, orders/updated, product_listings/add, product_listings/remove, product_listings/update, products/create, products/delete, products/update, profiles/create, profiles/delete, profiles/update, refunds/create, selling_plan_groups/create, selling_plan_groups/delete, selling_plan_groups/update, shop/update, subscription_billing_attempts/challenged, subscription_billing_attempts/failure, subscription_billing_attempts/success, subscription_contracts/create, subscription_contracts/update, tender_transactions/create, themes/create, themes/delete, themes/publish, themes/update
+    string topic?;
+    # Date and time when the webhook subscription was updated. The API returns this value in ISO 8601 format.
+    string updated_at?;
 };
 
 public type DiscountCodeResponse record {
@@ -3063,10 +3447,6 @@ public type GiftCard record {
     GiftCard_gift_card gift_card?;
 };
 
-public type InventoryItems record {
-    Inventory[] inventory_items?;
-};
-
 public type CappedAmountCharge_recurring_application_charge record {
     string activated_on?;
     decimal api_client_id?;
@@ -3378,12 +3758,6 @@ public type AdminapiapiVersionpagesJsonPage record {
     string title?;
 };
 
-public type AdminapiapiVersionvariantsvariantIdJsonVariant record {
-    string price?;
-    string option1?;
-    decimal id?;
-};
-
 public type InventoryListResponse record {
     InventoryListResponse_inventory_levels[] inventory_levels?;
 };
@@ -3412,13 +3786,6 @@ public type UpdatePageResponse record {
     UpdatePageResponse_page page?;
 };
 
-public type AdminapiapiVersionordersorderIdrefundsJsonRefundTransactions record {
-    decimal amount?;
-    string kind?;
-    decimal parent_id?;
-    string gateway?;
-};
-
 public type UpdateCountryTaxRate_country record {
     string code?;
     decimal id?;
@@ -3426,6 +3793,11 @@ public type UpdateCountryTaxRate_country record {
     UpdateCountryTaxRate_country_provinces[] provinces?;
     decimal tax?;
     string tax_name?;
+};
+
+public type CreateProduct record {
+    # The Product resource lets you update and create products in a merchant's store.
+    Product product?;
 };
 
 public type CollectsList record {
@@ -3560,10 +3932,6 @@ public type ResourceFeedbackList_resource_feedback record {
     string updated_at?;
 };
 
-public type ProductIdVariantsJsonBody record {
-    AdminapiapiVersionproductsproductIdvariantsJsonVariant variant?;
-};
-
 public type SinglePayout record {
     SinglePayout_payout payout?;
 };
@@ -3667,10 +4035,6 @@ public type CreateCustomer_customer record {
     string total_spent?;
     string updated_at?;
     boolean verified_email?;
-};
-
-public type ApiVersionCustomersJsonBody record {
-    AdminapiapiVersioncustomersJsonCustomer customer?;
 };
 
 public type AdminapiapiVersioncustomerscustomerIdJsonCustomerMetafields record {
@@ -3909,8 +4273,12 @@ public type Order record {
     ReopenCloseOrder_order 'order?;
 };
 
+public type UpdateCustomer record {
+    Customer customer?;
+};
+
 public type CreateTransaction record {
-    CreateTransaction_transaction 'transaction?;
+    TransactionObject_transaction 'transaction?;
 };
 
 public type SingleCustomCollection_custom_collection record {
@@ -3978,6 +4346,11 @@ public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationReq
     string message?;
 };
 
+# The Order fulfillment object to be created.
+public type CreateOrderFulfillment record {
+    Fulfillment fulfillment?;
+};
+
 public type CreateProductResponse record {
     CreateProductResponse_product product?;
 };
@@ -4009,13 +4382,6 @@ public type GiftCardsList_gift_cards record {
     anydata? user_id?;
 };
 
-public type AdminapiapiVersionfulfillmentsJsonFulfillment record {
-    AdminapiapiVersionfulfillmentsJsonFulfillmentLineItemsByFulfillmentOrder[] line_items_by_fulfillment_order?;
-    string message?;
-    AdminapiapiVersionfulfillmentsJsonFulfillmentTrackingInfo tracking_info?;
-    boolean notify_customer?;
-};
-
 public type CreateShopFeedback record {
     CreateShopFeedback_resource_feedback resource_feedback?;
 };
@@ -4028,12 +4394,9 @@ public type MarketingEvents record {
     MarketingEvent_marketing_event[] marketing_events?;
 };
 
-public type AdminapiapiVersionproductsJsonProduct record {
-    string body_html?;
-    string product_type?;
-    string vendor?;
-    boolean published?;
-    string title?;
+# The Order object to be updated.
+public type UpdateOrder record {
+    Order 'order?;
 };
 
 public type RejectFulfillmentResponse record {
@@ -4110,11 +4473,6 @@ public type TransitionFulfillmentOrder_fulfillment_order_line_items record {
 
 public type RecurringApplicationCharges record {
     RecurringApplicationCharges_recurring_application_charges[] recurring_application_charges?;
-};
-
-public type AdminapiapiVersionproductsproductIdJsonProduct record {
-    decimal id?;
-    string tags?;
 };
 
 public type SingleCommentResponse_comment record {
@@ -4302,16 +4660,6 @@ public type InlineResponse42216_errors_checkout_credit_card_brand record {
     record {} options?;
 };
 
-public type AdminapiapiVersionordersJsonOrderLineItems record {
-    decimal quantity?;
-    decimal? variant_id?;
-};
-
-public type AdminapiapiVersionwebhookswebhookIdJsonWebhook record {
-    string address?;
-    decimal id?;
-};
-
 public type FulfillmentOrderIdCancellationRequestJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestJsonCancellationRequest cancellation_request?;
 };
@@ -4412,6 +4760,42 @@ public type DeleteAssetResponse record {
     string message?;
 };
 
+# The Product resource lets you update and create products in a merchant's store.
+public type Product record {
+    # An unsigned 64-bit integer that's used as a unique identifier for the product. Each id is unique across the Shopify system. No two products will have the same id, even if they're from different shops.
+    int id?;
+    # The date and time (ISO 8601 format) when the product was created.
+    string created_at?;
+    # A unique human-friendly string for the product. Automatically generated from the product's title. Used by the Liquid templating language to refer to objects.
+    string 'handle?;
+    # A description of the product. Supports HTML formatting.
+    string body_html?;
+    # A list of product image objects, each one representing an image associated with the product.
+    ProductImage[] images?;
+    # The custom product properties. For example, Size, Color, and Material. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.
+    ProductOption[] options?;
+    # A categorization for the product used for filtering and searching products.
+    string product_type?;
+    # The date and time (ISO 8601 format) when the product was published. Can be set to null to unpublish the product from the Online Store channel.
+    string published_at?;
+    # Whether the product is published to the Point of Sale channel.
+    string published_scope?;
+    # The status of the product.
+    string status?;
+    # A string of comma-separated tags that are used for filtering and search. A product can have up to 250 tags. Each tag can have up to 255 characters.
+    string tags?;
+    # The suffix of the Liquid template used for the product page. If this property is specified, then the product page uses a template called "product.suffix.liquid", where "suffix" is the value of this property. If this property is "" or null, then the product page uses the default template "product.liquid". (default is null)
+    string template_suffix?;
+    # The name of the product.
+    string title?;
+    # The date and time (ISO 8601 format) when the product was last modified. A product's updated_at value can change for different reasons. For example, if an order is placed for a product that has inventory tracking set up, then the inventory adjustment is counted as an update.
+    string updated_at?;
+    # An array of product variants, each representing a different version of the product. The position property is read-only. The position of variants is indicated by the order in which they are listed.
+    ProductVariant[] variants?;
+    # The name of the product's vendor.
+    string vendor?;
+};
+
 public type TenderTransactions record {
     TenderTransactions_tender_transactions[] tender_transactions?;
 };
@@ -4433,11 +4817,6 @@ public type UsersList_users record {
     boolean tfa_enabled\??;
     string url?;
     string user_type?;
-};
-
-public type AdminapiapiVersionordersorderIdJsonOrder record {
-    decimal id?;
-    boolean buyer_accepts_marketing?;
 };
 
 public type SingleLocation record {
@@ -5061,6 +5440,20 @@ public type CompleteCheckoutResponse_checkout_line_items record {
     string vendor?;
 };
 
+# The custom product properties. For example, Size, Color, and Material. Each product can have up to 3 options and each option value can be up to 255 characters.
+public type ProductOption record {
+    # Product option ID
+    int id?;
+    # Product option name
+    string name?;
+    # Product option position
+    int position?;
+    # Product option product ID
+    int product_id?;
+    # Product option values
+    string[] values?;
+};
+
 public type InlineResponse42216_errors_checkout record {
     InlineResponse42216_errors_checkout_credit_card credit_card?;
     InlineResponse42216_errors_checkout_credit_card_brand[] payment_gateway?;
@@ -5161,10 +5554,6 @@ public type CreateCheckoutResponse_checkout_line_items record {
 
 public type MetafieldResponse record {
     Metafield metafield?;
-};
-
-public type ProductsproductIdJsonBody record {
-    AdminapiapiVersionproductsproductIdJsonProduct product?;
 };
 
 public type FulfillmentOrderIdFulfillmentRequestJsonBody record {
@@ -5293,6 +5682,10 @@ public type SingleUsageCharge_usage_charge record {
     decimal id?;
     string price?;
     decimal risk_level?;
+};
+
+public type CustomerInvite record {
+    CustomerInvite_customer_invite customer_invite;
 };
 
 public type ApplicationChargesList_application_charges record {
@@ -5490,6 +5883,19 @@ public type DiscountCodes record {
     SingleDiscountCode_discount_code[] discount_codes?;
 };
 
+public type CustomerInvite_customer_invite record {
+    # Email address of the recipient.
+    string to;
+    # Email address of the sender.
+    string 'from;
+    # Blind carbon copy recipients.
+    string[] bcc?;
+    # Subject of the invitation email.
+    string subject;
+    # Custom message included in the invitation email.
+    string custom_message;
+};
+
 public type ProvincesprovinceIdJsonBody record {
     AdminapiapiVersioncountriescountryIdprovincesprovinceIdJsonProvince province?;
 };
@@ -5507,16 +5913,17 @@ public type CreateOrderRisk_risk record {
     string 'source?;
 };
 
+public type UpdateProductVariant record {
+    # A variant can be added to a Product resource to represent one version of a product with several options. The Product resource will have a variant for every possible combination of its options. Each product can have a maximum of three options and a maximum of 100 variants.
+    ProductVariant variant?;
+};
+
 public type InlineResponse42215_errors record {
     InlineResponse42215_errors_shipping_address? shipping_address?;
 };
 
 public type SingleCustomerAddress record {
     AbandonedCheckouts_customer_default_address customer_address?;
-};
-
-public type ApiVersionProductsJsonBody record {
-    AdminapiapiVersionproductsJsonProduct product?;
 };
 
 public type CompleteCheckout_checkout record {
@@ -5639,15 +6046,6 @@ public type CountriesList_provinces record {
     anydata? tax_type?;
 };
 
-public type AdminapiapiVersionordersorderIdrisksriskIdJsonRisk record {
-    decimal score?;
-    string recommendation?;
-    boolean cause_cancel?;
-    decimal id?;
-    string 'source?;
-    string message?;
-};
-
 public type CancelFulfillment_fulfillment_line_items record {
     string admin_graphql_api_id?;
     anydata[] discount_allocations?;
@@ -5750,12 +6148,16 @@ public type UpdateCountryTaxRate_country_provinces record {
     string? tax_type?;
 };
 
-public type OrderIdRefundsJsonBody record {
-    AdminapiapiVersionordersorderIdrefundsJsonRefund refund?;
-};
-
 public type InlineResponse4225_errors record {
     string[] base?;
+};
+
+# The price object
+public type Price record {
+    # The variant's price or compare-at price in the presentment currency.
+    string amount?;
+    # The three-letter code (ISO 4217 format) for one of the shop's enabled presentment currencies.
+    string currency_code?;
 };
 
 public type OrdersList_orders record {
@@ -5934,10 +6336,6 @@ public type CreateAuthorizationResponse_payment record {
     string unique_token?;
 };
 
-public type OrderIdRisksJsonBody record {
-    AdminapiapiVersionordersorderIdrisksJsonRisk risk?;
-};
-
 public type AdminapiapiVersionpriceRulespriceRuleIddiscountCodesdiscountCodeIdJsonDiscountCode record {
     decimal usage_count?;
     string code?;
@@ -6095,10 +6493,6 @@ public type CreateProductResponse_product record {
     string vendor?;
 };
 
-public type ApiVersionWebhooksJsonBody record {
-    AdminapiapiVersionwebhooksJsonWebhook webhook?;
-};
-
 public type UpdateProduct_product_variants record {
     string admin_graphql_api_id?;
     string barcode?;
@@ -6214,7 +6608,7 @@ public type InlineResponse42210 record {
 };
 
 public type UpdateWebhook record {
-    UpdateWebhook_webhook webhook?;
+    CreateWebhook_webhook webhook?;
 };
 
 public type OwnerResourceMetafieldsJsonBody record {
@@ -6246,13 +6640,6 @@ public type SingleCollection_collection_image record {
 
 public type DraftOrdersdraftOrderIdJsonBody record {
     AdminapiapiVersiondraftOrdersdraftOrderIdJsonDraftOrder draft_order?;
-};
-
-public type AdminapiapiVersionordersorderIdtransactionsJsonTransaction record {
-    string amount?;
-    string kind?;
-    decimal parent_id?;
-    string currency?;
 };
 
 public type RejectCancellationRequestResponse_fulfillment_order_origin record {
@@ -6294,19 +6681,10 @@ public type DraftOrders_customer record {
     boolean verified_email?;
 };
 
-public type Inventory record {
-    int id;
-    string sku;
-    string created_at;
-    string updated_at;
-    boolean requires_shipping;
-    string cost;
-    string? country_code_of_origin?;
-    string? province_code_of_origin?;
-    string? harmonized_system_code?;
-    boolean tracked;
-    string[] country_harmonized_system_codes?;
-    string admin_graphql_api_id;
+# The Refund object.
+public type RefundObject record {
+    # Schedule associated to the payment terms
+    Refund refund?;
 };
 
 public type ProductsResponse record {
@@ -6554,10 +6932,6 @@ public type ArticlesarticleIdJsonBody record {
     AdminapiapiVersionblogsblogIdarticlesarticleIdJsonArticle article?;
 };
 
-public type ApiVersionOrdersJsonBody record {
-    AdminapiapiVersionordersJsonOrder 'order?;
-};
-
 public type AdminapiapiVersionmobilePlatformApplicationsmobilePlatformApplicationIdJsonMobilePlatformApplication record {
     string updated_at?;
     string created_at?;
@@ -6569,41 +6943,6 @@ public type AdminapiapiVersionmobilePlatformApplicationsmobilePlatformApplicatio
     boolean enabled_shared_webcredentials?;
     string application_id?;
     string platform?;
-};
-
-public type AdminapiapiVersionordersJsonOrder record {
-    AdminapiapiVersionordersJsonOrderFulfillments[] fulfillments?;
-    string fulfillment_status?;
-    AdminapiapiVersionordersJsonOrderLineItems[] line_items?;
-    string email?;
-};
-
-public type CreateTransaction_transaction record {
-    string admin_graphql_api_id?;
-    string amount?;
-    anydata? authorization?;
-    string created_at?;
-    string currency?;
-    anydata? currency_exchange_adjustment?;
-    anydata? device_id?;
-    anydata? error_code?;
-    string gateway?;
-    decimal id?;
-    string kind?;
-    anydata? location_id?;
-    string message?;
-    decimal order_id?;
-    decimal parent_id?;
-    string processed_at?;
-    record {} receipt?;
-    string source_name?;
-    string status?;
-    boolean test?;
-    anydata? user_id?;
-};
-
-public type AdminapiapiVersionordersorderIdrefundsJsonRefundShipping record {
-    decimal amount?;
 };
 
 public type CreateProductResponse_product_variants record {
@@ -6652,6 +6991,11 @@ public type Article_article record {
     string title?;
     string updated_at?;
     anydata? user_id?;
+};
+
+# The Order object to be created.
+public type CreateOrder record {
+    Order 'order?;
 };
 
 public type ProductListingAppResponse_product_listing_options record {
@@ -6749,12 +7093,6 @@ public type CollectionList record {
 
 public type OriginalFulfillmentOrder_submitted_fulfillment_order_request_options record {
     boolean notify_customer?;
-};
-
-public type AdminapiapiVersionwebhooksJsonWebhook record {
-    string address?;
-    string format?;
-    string topic?;
 };
 
 public type CollectionListingResponse_collection_listings record {
@@ -6937,6 +7275,62 @@ public type CreateAuthorizationResponse_payment_checkout_payments record {
     string unique_token?;
 };
 
+# A variant can be added to a Product resource to represent one version of a product with several options. The Product resource will have a variant for every possible combination of its options. Each product can have a maximum of three options and a maximum of 100 variants.
+public type ProductVariant record {
+    # The barcode, UPC, or ISBN number for the product.
+    string barcode?;
+    # The original price of the item before an adjustment or a sale.
+    string compare_at_price?;
+    # The date and time (ISO 8601 format) when the product variant was created.
+    string created_at?;
+    # The fulfillment service associated with the product variant. Valid values are manual or the handle of a fulfillment service.
+    string fulfillment_service?;
+    # The weight of the product variant in grams.
+    int grams?;
+    # The unique numeric identifier for the product variant.
+    int id?;
+    # The unique numeric identifier for a product's image. The image must be associated to the same product as the variant.
+    int image_id?;
+    # The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
+    int inventory_item_id?;
+    # The fulfillment service that tracks the number of items in stock for the product variant.
+    string inventory_management?;
+    # Whether customers are allowed to place an order for the product variant when it's out of stock.
+    string inventory_policy?;
+    # An aggregate of inventory across all locations. To adjust inventory at a specific location, use the InventoryLevel resource.
+    int inventory_quantity?;
+    # This property is deprecated. Use the InventoryLevel resource instead.
+    int old_inventory_quantity?;
+    # This property is deprecated. Use the InventoryLevel resource instead.
+    int inventory_quantity_adjustment?;
+    # The custom properties that a shop owner uses to define product variants. You can define three options for a product variant are option1, option2, option3. Default value is Default Title. The title field is a concatenation of the option1, option2, and option3 fields. Updating the option fields updates the title field.
+    Option option?;
+    # The variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies.
+    PresentmentPrices presentment_prices?;
+    # The order of the product variant in the list of product variants. The first position in the list is 1. The position of variants is indicated by the order in which they are listed.
+    int position?;
+    # The price of the product variant.
+    string price?;
+    # The unique numeric identifier for the product.
+    int product_id?;
+    # This property is deprecated. Use the `requires_shipping` property on the InventoryItem resource instead.
+    boolean requires_shipping?;
+    # A unique identifier for the product variant in the shop. Required in order to connect to a FulfillmentService.
+    string sku?;
+    # Whether a tax is charged when the product variant is sold.
+    boolean taxable?;
+    # This parameter applies only to the stores that have the Avalara AvaTax app installed. Specifies the Avalara tax code for the product variant.
+    string tax_code?;
+    # The title of the product variant. The title field is a concatenation of the option1, option2, and option3 fields. You can only update title indirectly using the option fields.
+    string title?;
+    # The date and time when the product variant was last modified. Gets returned in ISO 8601 formatting.
+    string updated_at?;
+    # The weight of the product variant in the unit system specified with weight_unit.
+    int weight?;
+    # The unit of measurement that applies to the product variant's weight. If you don't specify a value for weight_unit, then the shop's default unit of measurement is applied. Valid values are g, kg, oz, and lb.
+    string weight_unit?;
+};
+
 public type InlineResponse200179_report record {
     string category?;
     decimal id?;
@@ -6974,12 +7368,6 @@ public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfill
 
 public type SingleFulfillmentOrder record {
     SingleFulfillmentOrder_fulfillment_order fulfillment_order?;
-};
-
-public type AdminapiapiVersionordersorderIdrefundsJsonRefund record {
-    AdminapiapiVersionordersorderIdrefundsJsonRefundShipping shipping?;
-    string currency?;
-    AdminapiapiVersionordersorderIdrefundsJsonRefundTransactions[] transactions?;
 };
 
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestacceptJsonCancellationRequest record {
@@ -7080,6 +7468,30 @@ public type CreateDraftOrder_draft_order record {
     string total_price?;
     string total_tax?;
     string updated_at?;
+};
+
+# The order risk for an order.
+public type OrderRisk record {
+    # Whether this order risk is severe enough to force the cancellation of the order. If true, then this order risk is included in the Order canceled message that's shown on the details page of the canceled order.
+    boolean cause_cancel?;
+    # The ID of the checkout that the order risk belongs to.
+    int checkout_id?;
+    # Whether the order risk is displayed on the order details page in the Shopify admin. If false, then this order risk is ignored when Shopify determines your app's overall risk level for the order.
+    boolean display?;
+    # A unique numeric identifier for the order risk.
+    int id?;
+    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
+    string merchant_message?;
+    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
+    string message?;
+    # The ID of the order that the order risk belongs to.
+    int order_id?;
+    # The recommended action given to the merchant. Valid values are, `cancel` - There is a high level of risk that this order is fraudulent. The merchant should cancel the order. `investigate` - There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. `accept` - There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
+    "cancel"|"investigate"|"accept" recommendation?;
+    # A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent.
+    string score?;
+    # The source of the order risk.
+    string 'source?;
 };
 
 public type AccountCurrentBalance record {
@@ -7340,12 +7752,6 @@ public type ThemesList record {
     ThemesList_themes[] themes?;
 };
 
-public type AdminapiapiVersioncustomersJsonCustomer record {
-    anydata? last_name?;
-    anydata? first_name?;
-    anydata? email?;
-};
-
 public type InventoryItem_inventory_item record {
     string admin_graphql_api_id?;
     string cost?;
@@ -7364,6 +7770,12 @@ public type InventoryItem_inventory_item record {
 public type SinglePriceRule_price_rule_prerequisite_to_entitlement_quantity_ratio record {
     anydata? entitled_quantity?;
     anydata? prerequisite_quantity?;
+};
+
+# The order risk object for an order.
+public type OrderRiskObject record {
+    # The order risk for an order.
+    OrderRisk risk?;
 };
 
 public type CompleteCheckout_checkout_note_attributes record {
@@ -7456,10 +7868,6 @@ public type CompleteDraftOrder_draft_order record {
     string updated_at?;
 };
 
-public type CustomerscustomerIdJsonBody record {
-    AdminapiapiVersioncustomerscustomerIdJsonCustomer customer?;
-};
-
 public type CollectResponse_collect record {
     decimal collection_id?;
     anydata? created_at?;
@@ -7536,6 +7944,30 @@ public type SingleProvince_province record {
     string tax_name?;
     decimal tax_percentage?;
     string tax_type?;
+};
+
+public type TransactionObject_transaction record {
+    string admin_graphql_api_id?;
+    string amount?;
+    anydata? authorization?;
+    string created_at?;
+    string currency?;
+    anydata? currency_exchange_adjustment?;
+    anydata? device_id?;
+    anydata? error_code?;
+    string gateway?;
+    decimal id?;
+    string kind?;
+    anydata? location_id?;
+    string message?;
+    decimal order_id?;
+    decimal parent_id?;
+    string processed_at?;
+    record {} receipt?;
+    string source_name?;
+    string status?;
+    boolean test?;
+    anydata? user_id?;
 };
 
 public type DraftOrders record {
@@ -7957,6 +8389,10 @@ public type FulfillmentOrder_fulfillment_order_destination record {
 
 public type ApiVersionPriceRulesJsonBody record {
     AdminapiapiVersionpriceRulesJsonPriceRule price_rule?;
+};
+
+public type CreateWebhook record {
+    CreateWebhook_webhook webhook?;
 };
 
 public type ProductsResponse_products record {

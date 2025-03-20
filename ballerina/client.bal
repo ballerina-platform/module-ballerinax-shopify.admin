@@ -29,9 +29,9 @@ public isolated client class Client {
     # + config - The configurations to be used when initializing the `connector` 
     # + serviceUrl - URL of the target service 
     # + return - An error if connector initialization failed 
-    public isolated function init(ApiKeysConfig apiKeyConfig, ConnectionConfig config, string serviceUrl) returns error? {
-        self.accessToken = apiKeyConfig.accessToken;
-        self.apiVersion = config.apiVersion;
+    public isolated function init(string accessToken, string apiVersion, ConnectionConfig config, string serviceUrl) returns error? {
+        self.accessToken = accessToken;
+        self.apiVersion = apiVersion;
         oas:ConnectionConfig oasConnectionConfig = getOasConnectionConfig(config);
         self.generatedClient = check new (oasConnectionConfig, serviceUrl);
     }
@@ -205,7 +205,7 @@ public isolated client class Client {
     #
     # + payload - The payload to create a customer
     # + return - Create a new customer record / Create a customer with password and password_confirmation and skip sending the welcome email / Create a customer with send_email_invite / Create a customer with a metafield / Create a new customer record / Create a customer with password and password_confirmation and skip sending the welcome email / Create a customer with send_email_invite / Create a customer with a metafield 
-    remote isolated function createsACustomer(ApiVersionCustomersJsonBody payload) returns CreateCustomer|error {
+    remote isolated function createsACustomer(CreateCustomer payload) returns CustomerResponse|error {
         return check self.generatedClient->createsACustomer(self.apiVersion, payload, self.accessToken);
     }
 
@@ -214,7 +214,7 @@ public isolated client class Client {
     # + customerId - The ID of the customer
     # + payload - The payload to create an account activation URL for a customer
     # + return - Create an account activation URL for an invited or disabled customer / Create an account activation URL for an invited or disabled customer 
-    remote isolated function createsAnAccountActivationUrlForACustomer(string customerId, record {} payload) returns AccountActivationUrl|error {
+    remote isolated function createsAnAccountActivationUrlForACustomer(string customerId, CustomerInvite payload) returns AccountActivationUrl|error {
         return check self.generatedClient->createsAnAccountActivationUrlForACustomer(self.apiVersion, customerId, payload, self.accessToken);
     }
 
@@ -241,7 +241,7 @@ public isolated client class Client {
     # + customerId - The ID of the customer
     # + payload - The payload to update a customer
     # + return - Retrieves a single customer 
-    remote isolated function updatesACustomer(string customerId, CustomerscustomerIdJsonBody payload) returns CustomerResponse|error {
+    remote isolated function updatesACustomer(string customerId, UpdateCustomer payload) returns CustomerResponse|error {
         return check self.generatedClient->updatesACustomer(self.apiVersion, customerId, payload, self.accessToken);
     }
 
@@ -1537,7 +1537,7 @@ public isolated client class Client {
     #
     # + payload - The order data to create
     # + return - Create a partially paid order with a new customer and addresses / Create a comprehensive order
-    remote isolated function createAnOrder(ApiVersionOrdersJsonBody payload) returns OrderResponse|error {
+    remote isolated function createAnOrder(CreateOrder payload) returns OrderResponse|error {
         return check self.generatedClient->createAnOrder(self.apiVersion, payload, self.accessToken);
     }
 
@@ -1571,7 +1571,7 @@ public isolated client class Client {
     # Updates an order
     #
     # + return - Add note attributes to an order / Update the shipping address of an order / Update an order's tags / Add a note to order / Change an order's phone number / Add a metafield to an order / Change an order's email address / Remove the customer from an order / Change whether the buyer accepts marketing / Add note attributes to an order / Update the shipping address of an order / Update an order's tags / Add a note to order / Change an order's phone number / Add a metafield to an order / Change an order's email address / Remove the customer from an order / Change whether the buyer accepts marketing 
-    remote isolated function updatesAnOrder(string orderId, OrdersorderIdJsonBody payload) returns UpdateOrderResponse|error {
+    remote isolated function updatesAnOrder(string orderId, UpdateOrder payload) returns UpdateOrderResponse|error {
         return check self.generatedClient->updatesAnOrder(self.apiVersion, orderId, payload, self.accessToken);
     }
 
@@ -1606,7 +1606,7 @@ public isolated client class Client {
     # Creates an order risk for an order
     #
     # + return - Create an order risk showing a fraud risk for proxy detection / Create an order risk showing a fraud risk for proxy detection 
-    remote isolated function createsAnOrderRiskForAnOrder(string orderId, OrderIdRisksJsonBody payload) returns CreateOrderRisk|error {
+    remote isolated function createsAnOrderRiskForAnOrder(string orderId, CreateOrderRisk payload) returns CreateOrderRisk|error {
         return check self.generatedClient->createsAnOrderRiskForAnOrder(self.apiVersion, orderId, payload, self.accessToken);
     }
 
@@ -1620,7 +1620,7 @@ public isolated client class Client {
     # Updates an order risk
     #
     # + return - Update an existing order risk for an order / Update an existing order risk for an order 
-    remote isolated function updatesAnOrderRisk(string orderId, string riskId, RisksriskIdJsonBody payload) returns UpdateOrderRisk|error {
+    remote isolated function updatesAnOrderRisk(string orderId, string riskId, UpdateOrderRisk payload) returns OrderRiskObject|error {
         return check self.generatedClient->updatesAnOrderRisk(self.apiVersion, orderId, riskId, payload, self.accessToken);
     }
 
@@ -1644,7 +1644,7 @@ public isolated client class Client {
     # Creates a refund
     #
     # + return - Create a refund for an order / Refund a specific amount of shipping / Create a refund for an order / Refund a specific amount of shipping 
-    remote isolated function createsARefund(string orderId, OrderIdRefundsJsonBody payload) returns CreateRefund|error {
+    remote isolated function createsARefund(string orderId, CreateRefund payload) returns RefundObject|error {
         return check self.generatedClient->createsARefund(self.apiVersion, orderId, payload, self.accessToken);
     }
 
@@ -1677,7 +1677,7 @@ public isolated client class Client {
     # Creates a transaction for an order
     #
     # + return - Capture the full amount for an authorized order, and associate the capture with an authorization by including its authorization code / Create a test transaction. / Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID / Capture the full amount for an authorized order, and associate the capture with an authorization by including its authorization code / Create a test transaction. / Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID 
-    remote isolated function createsATransactionForAnOrder(string orderId, OrderIdTransactionsJsonBody payload) returns CreateTransaction|error {
+    remote isolated function createsATransactionForAnOrder(string orderId, CreateTransaction payload) returns CreateTransaction|error {
         return check self.generatedClient->createsATransactionForAnOrder(self.apiVersion, orderId, payload, self.accessToken);
     }
 
@@ -1863,7 +1863,7 @@ public isolated client class Client {
     # Creates a new product
     #
     # + return - Create a new product with multiple product variants and multiple options / Create a new product with multiple product variants / Create a new product with the default variant and base64 encoded image / Create a product with a metafield / Create a new product with the default product variant / Create a new product with the default variant and a product image that will be downloaded by Shopify / Create a new unpublished product.
-    remote isolated function createsANewProduct(ApiVersionProductsJsonBody payload) returns CreateProductResponse|error {
+    remote isolated function createsANewProduct(CreateProduct payload) returns CreateProductResponse|error {
         return check self.generatedClient->createsANewProduct(self.apiVersion, payload, self.accessToken);
     }
 
@@ -1878,7 +1878,7 @@ public isolated client class Client {
     # Updates a product
     #
     # + return - Add a metafield to an existing product / Update a product by adding a new product image / Update a product by reordering product image / Update a product's title / Update a product by clearing product images / Hide a published product by changing the published attribute to false / Update a product's SEO title and description / Update a product and one of its variants / Update a product by reordering the product variants / Show a hidden product by changing the published attribute to true / Update a product's tags / Add a metafield to an existing product / Update a product by adding a new product image / Update a product by reordering product image / Update a product's title / Update a product by clearing product images / Hide a published product by changing the published attribute to false / Update a product's SEO title and description / Update a product and one of its variants / Update a product by reordering the product variants / Show a hidden product by changing the published attribute to true / Update a product's tags 
-    remote isolated function updatesAProduct(string productId, ProductsproductIdJsonBody payload) returns UpdateProduct|error {
+    remote isolated function updatesAProduct(string productId, UpdateProduct payload) returns ProductObject|error {
         return check self.generatedClient->updatesAProduct(self.apiVersion, productId, payload, self.accessToken);
     }
 
@@ -1969,7 +1969,7 @@ public isolated client class Client {
     # Create a new Product Variant
     #
     # + return - Create a new product variant with an image / Create a new product variant with a metafield / Create a new product variant / Create a new product variant with an image / Create a new product variant with a metafield / Create a new product variant 
-    remote isolated function createANewProductVariant(string productId, ProductIdVariantsJsonBody payload) returns CreateProductVariant|error {
+    remote isolated function createANewProductVariant(string productId, CreateProductVariant payload) returns CreateProductVariant|error {
         return check self.generatedClient->createANewProductVariant(self.apiVersion, productId, payload, self.accessToken);
     }
 
@@ -1991,7 +1991,7 @@ public isolated client class Client {
     # Modify an existing Product Variant
     #
     # + return - Add a metafield to an existing variant / Add an existing image to an existing variant / Update the title and price of an existing variant / Add a metafield to an existing variant / Add an existing image to an existing variant / Update the title and price of an existing variant 
-    remote isolated function modifyAnExistingProductVariant(string variantId, VariantsvariantIdJsonBody payload) returns ModifyProductVariant|error {
+    remote isolated function modifyAnExistingProductVariant(string variantId, UpdateProductVariant payload) returns ModifyProductVariant|error {
         return check self.generatedClient->modifyAnExistingProductVariant(self.apiVersion, variantId, payload, self.accessToken);
     }
 
@@ -2303,7 +2303,7 @@ public isolated client class Client {
     # Creates a fulfillment for one or many fulfillment orders
     #
     # + return - Create a fulfillment for the fulfillment order line items specified / Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank / Create a fulfillment for the fulfillment order line items specified / Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank 
-    remote isolated function createsAFulfillmentForOneOrManyFulfillmentOrders(ApiVersionFulfillmentsJsonBody payload) returns CreateFulfillmentOrder|error {
+    remote isolated function createsAFulfillmentForOneOrManyFulfillmentOrders(CreateOrderFulfillment payload) returns CreateFulfillmentOrder|error {
         return check self.generatedClient->createsAFulfillmentForOneOrManyFulfillmentOrders(self.apiVersion, payload, self.accessToken);
     }
 
@@ -2750,7 +2750,7 @@ public isolated client class Client {
     # Create a new Webhook
     #
     # + return - Subscribe to order creation webhooks / Subscribe to order creation webhooks 
-    remote isolated function createANewWebhook(ApiVersionWebhooksJsonBody payload) returns SubscribeOrderCreation|error {
+    remote isolated function createANewWebhook(CreateWebhook payload) returns SubscribeOrderCreation|error {
         return check self.generatedClient->createANewWebhook(self.apiVersion, payload, self.accessToken);
     }
 
@@ -2765,7 +2765,7 @@ public isolated client class Client {
     # Modify an existing Webhook
     #
     # + return - Update a webhook subscription so that it POSTs to a different address / Update a webhook subscription so that it POSTs to a different address 
-    remote isolated function modifyAnExistingWebhook(string webhookId, WebhookswebhookIdJsonBody payload) returns UpdateWebhook|error {
+    remote isolated function modifyAnExistingWebhook(string webhookId, UpdateWebhook payload) returns WebhookObject|error {
         return check self.generatedClient->modifyAnExistingWebhook(self.apiVersion, webhookId, payload, self.accessToken);
     }
 
