@@ -24,14 +24,12 @@ configurable string shopifyLiveServer = "mock-access-token";
 
 string serviceUrl = isTestOnLiveServer ? shopifyLiveServer : "http://localhost:8080/shopify";
 Client shopify = check new (
-    {
-        accessToken
-    },
+    accessToken,
+    apiVersion,
     {
         followRedirects: {
             enabled: true
-        },
-        apiVersion
+        }
     },
     serviceUrl
 );
@@ -56,14 +54,14 @@ function testGetCustomerLists() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testCreateCustomer() returns error? {
-    ApiVersionCustomersJsonBody payload = {
+    CreateCustomer payload = {
         customer: {
             first_name: "Steve",
             last_name: "Lastnameson",
             email: "steve.lastnameson@example.com"
         }
     };
-    CreateCustomer result = check shopify->createsACustomer(payload);
+    CustomerResponse result = check shopify->createsACustomer(payload);
     test:assertNotEquals(result.customer, ());
 }
 
