@@ -7,6 +7,9 @@
 
 pluginManagement {
     plugins {
+        id "com.github.spotbugs-base" version "${spotbugsPluginVersion}"
+        id "com.github.johnrengelman.shadow" version "${shadowJarPluginVersion}"
+        id "de.undercouch.download" version "${downloadPluginVersion}"
         id "net.researchgate.release" version "${releasePluginVersion}"
         id "io.ballerina.plugin" version "${ballerinaGradlePluginVersion}"
     }
@@ -30,8 +33,10 @@ plugins {
 rootProject.name = 'module-ballerinax-shopify'
 
 include ':shopify-ballerina'
+// include ':shopify-examples'
 
 project(':shopify-ballerina').projectDir = file("ballerina")
+// project(':shopify-examples').projectDir = file("examples")
 
 gradleEnterprise {
     buildScan {
