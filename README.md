@@ -20,9 +20,9 @@
 
 ## Examples
 
-The `Shopify` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-shopify/tree/main/examples/), covering the following use cases:
+The `ballerinax/shopify` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
+1. [Create new order](https://github.com/ballerina-platform/module-ballerinax-shopify/tree/main/examples/create-orders) : This is a guide to use the Shopify connector to connect to a Shopify store, register a customer, and place an order.
 
 ## Build from the source
 
