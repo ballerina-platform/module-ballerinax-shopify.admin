@@ -4396,7 +4396,7 @@ public type MarketingEvents record {
 
 # The Order object to be updated.
 public type UpdateOrder record {
-    Order 'order?;
+    ReopenCloseOrder_order 'order?;
 };
 
 public type RejectFulfillmentResponse record {
@@ -6995,7 +6995,7 @@ public type Article_article record {
 
 # The Order object to be created.
 public type CreateOrder record {
-    Order 'order?;
+    ReopenCloseOrder_order 'order?;
 };
 
 public type ProductListingAppResponse_product_listing_options record {

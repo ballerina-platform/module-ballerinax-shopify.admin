@@ -1,6 +1,6 @@
-_Author_:  <!-- TODO: Add author name --> \
-_Created_: <!-- TODO: Add date --> \
-_Updated_: <!-- TODO: Add date --> \
+_Author_:  @Nuvindu \
+_Created_: 2025/03/21 \
+_Updated_: 2025/03/21 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
