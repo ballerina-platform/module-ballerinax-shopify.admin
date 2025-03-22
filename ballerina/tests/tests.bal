@@ -39,7 +39,7 @@ Client shopify = check new (
 }
 function testGetAccessScopes() returns error? {
     AccessScopes accessScopes = check shopify->getAListOfAccessScopes();
-    test:assertNotEquals(accessScopes.access_scopes, ());
+    test:assertNotEquals(accessScopes.accessScopes, ());
 }
 
 @test:Config {
@@ -78,7 +78,7 @@ function testGetEventLists() returns error? {
 }
 function testGiftCardList() returns error? {
     GiftCardsList giftCardList = check shopify->retrievesAListOfGiftCards();
-    test:assertNotEquals(giftCardList.gift_cards, ());
+    test:assertNotEquals(giftCardList.giftCards, ());
 }
 
 @test:Config {
@@ -112,7 +112,7 @@ function testGetACountOfProducts() returns error? {
 }
 function testGetListOfDraftOrders() returns error? {
     DraftOrders draftOrders = check shopify->retrievesAListOfDraftOrders();
-    test:assertNotEquals(draftOrders?.draft_orders, ());
+    test:assertNotEquals(draftOrders?.draftOrders, ());
 }
 
 @test:Config {
@@ -162,7 +162,7 @@ function testGetListOfAllShippingZones() returns error? {
 }
 function testGetListOfPriceRules() returns error? {
     PriceRules priceRules = check shopify->retrievesAListOfPriceRules();
-    test:assertNotEquals(priceRules.price_rules, ());
+    test:assertNotEquals(priceRules.priceRules, ());
 }
 
 @test:Config {
@@ -179,9 +179,9 @@ function testGetCountOfEvents() returns error? {
 }
 function testGetListOfAllOrders() returns error? {
     ApiVersionGiftCardsJsonBody payload = {
-        gift_card: {
-            initial_value: "100.0",
-            send_on: "2021-07-01",
+        giftCard: {
+            initialValue: "100.0",
+            sendOn: "2021-07-01",
             message: "Happy Birthday!"
         }
     };
@@ -210,7 +210,7 @@ function testGetListOfComments() returns error? {
 }
 function testGetListOfSmartCollections() returns error? {
     SmartCollectionList smartCollections = check shopify->retrievesAListOfSmartCollections();
-    test:assertNotEquals(smartCollections.smart_collections, ());
+    test:assertNotEquals(smartCollections.smartCollections, ());
 }
 
 @test:Config {

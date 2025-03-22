@@ -20,7 +20,7 @@ service /shopify on new http:Listener(8080) {
 
     resource function get admin/oauth/access_scopes\.json() returns AccessScopes {
         AccessScopes payload = {
-            access_scopes: [
+            accessScopes: [
                 {
                     'handle: "read_content"
                 }
@@ -109,7 +109,7 @@ service /shopify on new http:Listener(8080) {
 
     resource function get admin/api/'2025/gift_cards\.json() returns GiftCardsList {
         GiftCardsList giftCards = {
-            gift_cards: [
+            giftCards: [
                 {
                     id: 648138555697,
                     balance: "10.00",
@@ -173,7 +173,7 @@ service /shopify on new http:Listener(8080) {
 
     resource function get admin/api/'2025/draft_orders\.json() returns DraftOrders {
         DraftOrders orders = {
-            draft_orders: []
+            draftOrders: []
         };
         return orders;
     }
@@ -240,7 +240,7 @@ service /shopify on new http:Listener(8080) {
 
     resource function get admin/api/'2025/price_rules\.json() returns PriceRules {
         PriceRules priceRules = {
-            price_rules: [
+            priceRules: [
                 {
                     id: 123456789,
                     title: "10% off",
@@ -296,7 +296,7 @@ service /shopify on new http:Listener(8080) {
 
     resource function get admin/api/'2025/smart_collections\.json() returns SmartCollectionList {
         SmartCollectionList smartCollections = {
-            smart_collections: [
+            smartCollections: [
                 {
                     id: 123456789,
                     title: "Smart Collection",
