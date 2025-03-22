@@ -271,8 +271,9 @@ service /shopify on new http:Listener(8080) {
     }
 
     resource function post admin/api/'2025/gift_cards\.json(@http:Payload json payload) returns GiftCard|error {
-        GiftCard giftCard = check payload.cloneWithType();
-        return giftCard;
+        return {
+            gift_card: check payload.cloneWithType(GiftCard_gift_card)
+        };
     }
 
     resource function get admin/api/'2025/gift_cards/count\.json() returns EventsCount {
