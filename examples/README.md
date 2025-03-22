@@ -6,7 +6,7 @@ The `ballerinax/shopify` connector provides practical examples illustrating usag
 
 ## Prerequisites
 
-1. Generate HubSpot credentials to authenticate the connector as described in the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-shopify/blob/main/README.md#setup-guide).
+1. Generate Shopify credentials to authenticate the connector as described in the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-shopify/blob/main/README.md#setup-guide).
 
 2. For each example, create a `Config.toml` file the related configuration. Here's an example of how your `Config.toml` file should look:
 
