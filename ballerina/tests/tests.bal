@@ -20,9 +20,8 @@ import ballerina/test;
 configurable boolean isTestOnLiveServer = os:getEnv("IS_TEST_ON_LIVE_SERVER") == "true";
 configurable string apiVersion = "2025";
 configurable string accessToken = "mock-access-token";
-configurable string shopifyLiveServer = "mock-access-token";
+configurable string serviceUrl = "http://localhost:8080/shopify";
 
-string serviceUrl = isTestOnLiveServer ? shopifyLiveServer : "http://localhost:8080/shopify";
 Client shopify = check new (
     accessToken,
     apiVersion,
