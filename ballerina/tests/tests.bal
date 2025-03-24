@@ -18,21 +18,21 @@ import ballerina/os;
 import ballerina/test;
 
 configurable boolean isTestOnLiveServer = os:getEnv("IS_TEST_ON_LIVE_SERVER") == "true";
-configurable string apiVersion = "2025";
 configurable string accessToken = "mock-access-token";
 configurable string serviceUrl = "http://localhost:8080/shopify";
 configurable decimal draftOrderId = 12345.0;
 configurable string productId = "prodcut-id";
 
 Client shopify = check new (
-    accessToken,
-    apiVersion,
+    {
+        x\-shopify\-access\-token: accessToken
+    },
+    serviceUrl,
     {
         followRedirects: {
             enabled: true
         }
-    },
-    serviceUrl
+    }
 );
 
 @test:Config {
