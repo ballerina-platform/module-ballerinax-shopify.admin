@@ -8,11 +8,12 @@
 
 ## Overview
 
+
 [Shopify](https://www.shopify.com) is a leading e-commerce platform that enables users to create, manage, and grow their online stores, offering secure transactions, inventory management, and seamless integrations.
 
 The Ballerina Shopify connector allows developers to interact with the [Shopify Admin REST APIs](https://shopify.dev/docs/api/admin-rest). It provides an easy-to-use interface for managing products, orders, customers, and other essential e-commerce functionalities. The module supports Shopify API versions up to the `2025-01` release.
 
-## Setup Guide
+## Setup guide
 
 Follow these steps to generate an access token for Shopify Admin APIs using the Ballerina Shopify connector.
 
@@ -128,14 +129,14 @@ You can now utilize the operations available within the connector.
 
 ```ballerina
 public function main() returns error? {
-   ApiVersionCustomersJsonBody payload = {
+   shopify:CreateCustomer payload = {
       customer: {
          first_name: "Steve",
-         last_name: "Rogers",
-         email: "steve.rogers@example.com"
+         last_name: "Lastnameson",
+         email: "steve.lastnameson@example.com"
       }
    };
-   CreateCustomer result = check shopify->createsACustomer(payload);
+   shopify:CustomerResponse result = check shopify->createsACustomer(payload);
 }
 ```
 
