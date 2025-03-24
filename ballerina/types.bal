@@ -100,6 +100,10 @@ public type AdminapiapiVersionthemesthemeIdassetsJsonAsset record {
     string sourceKey?;
 };
 
+public type CreateDraftOrder record {
+    CreateDraftOrder_draft_order draft_order?;
+};
+
 public type CountryResponse_country record {
     string code?;
     decimal id?;
@@ -107,10 +111,6 @@ public type CountryResponse_country record {
     CountryResponse_country_provinces[] provinces?;
     decimal tax?;
     string tax_name?;
-};
-
-public type CreateDraftOrder record {
-    CreateDraftOrder_draft_order draft_order?;
 };
 
 # Represents the Queries record for the operation: retrievesADetailedListForInventoryItemsByIds
@@ -162,6 +162,19 @@ public type ApiVersionApplicationChargesJsonBody record {
     AdminapiapiVersionapplicationChargesJsonApplicationCharge applicationCharge?;
 };
 
+# Represents the Queries record for the operation: receiveAListOfAllCountries
+public type ReceiveAListOfAllCountriesQueries record {
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+};
+
+public type ReopenCloseOrder_order_price_set_2_presentment_money record {
+    string amount?;
+    string currency_code?;
+};
+
 public type SmartCollectionResponse_smart_collection record {
     string admin_graphql_api_id?;
     string body_html?;
@@ -177,19 +190,6 @@ public type SmartCollectionResponse_smart_collection record {
     anydata? template_suffix?;
     string title?;
     string updated_at?;
-};
-
-public type ReopenCloseOrder_order_price_set_2_presentment_money record {
-    string amount?;
-    string currency_code?;
-};
-
-# Represents the Queries record for the operation: receiveAListOfAllCountries
-public type ReceiveAListOfAllCountriesQueries record {
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
 };
 
 public type ProductsList_options record {
@@ -387,6 +387,10 @@ public type AdminapiapiVersionfulfillmentsfulfillmentIdupdateTrackingJsonFulfill
     boolean notifyCustomer?;
 };
 
+public type ModifyDraftOrder record {
+    ModifyDraftOrder_draft_order draft_order?;
+};
+
 public type CustomerAddress_customer_address record {
     string address1?;
     string address2?;
@@ -405,10 +409,6 @@ public type CustomerAddress_customer_address record {
     string province?;
     string province_code?;
     string zip?;
-};
-
-public type ModifyDraftOrder record {
-    ModifyDraftOrder_draft_order draft_order?;
 };
 
 public type UpdateGiftCard_gift_card record {
@@ -613,12 +613,6 @@ public type FulfillmentEventResponse_fulfillment_event record {
     anydata? zip?;
 };
 
-# Represents the Queries record for the operation: retrievesASpecificFulfillmentEvent
-public type RetrievesASpecificFulfillmentEventQueries record {
-    @http:Query {name: "event_id"}
-    string eventId?;
-};
-
 public type FulfillmentIdUpdateTrackingJsonBody record {
     AdminapiapiVersionfulfillmentsfulfillmentIdupdateTrackingJsonFulfillment fulfillment?;
 };
@@ -656,6 +650,18 @@ public type CollectionListingResponse record {
     CollectionListingResponse_collection_listings[] collectionListings?;
 };
 
+public type SingleArticle_article_image record {
+    string alt?;
+    string created_at?;
+    decimal height?;
+    string src?;
+    decimal width?;
+};
+
+public type ProductVariants record {
+    ProductVariants_variants[] variants?;
+};
+
 public type SingleCarrierService_carrier_service record {
     boolean active?;
     string admin_graphql_api_id?;
@@ -665,18 +671,6 @@ public type SingleCarrierService_carrier_service record {
     decimal id?;
     string name?;
     boolean service_discovery?;
-};
-
-public type ProductVariants record {
-    ProductVariants_variants[] variants?;
-};
-
-public type SingleArticle_article_image record {
-    string alt?;
-    string created_at?;
-    decimal height?;
-    string src?;
-    decimal width?;
 };
 
 public type ApiVersionMobilePlatformApplicationsJsonBody record {
@@ -1008,12 +1002,6 @@ public type RejectCancellationRequestResponse_fulfillment_order_line_items recor
     decimal? variant_id?;
 };
 
-public type CreateCustomer_customer_email_marketing_consent record {
-    anydata? consent_updated_at?;
-    string opt_in_level?;
-    string state?;
-};
-
 public type CancellationResponse_fulfillment_order_line_items record {
     decimal fulfillable_quantity?;
     decimal fulfillment_order_id?;
@@ -1023,6 +1011,12 @@ public type CancellationResponse_fulfillment_order_line_items record {
     decimal quantity?;
     decimal shop_id?;
     decimal? variant_id?;
+};
+
+public type CreateCustomer_customer_email_marketing_consent record {
+    anydata? consent_updated_at?;
+    string opt_in_level?;
+    string state?;
 };
 
 public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order_destination record {
@@ -1040,6 +1034,11 @@ public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order_destination r
     string zip?;
 };
 
+public type AdminapiapiVersionshopifyPaymentsdisputesdisputeIddisputeEvidencesJsonDisputeEvidence record {
+    @jsondata:Name {value: "submit_evidence"}
+    boolean submitEvidence?;
+};
+
 public type CreateRefund_refund record {
     string admin_graphql_api_id?;
     string created_at?;
@@ -1054,11 +1053,6 @@ public type CreateRefund_refund record {
     anydata? user_id?;
 };
 
-public type AdminapiapiVersionshopifyPaymentsdisputesdisputeIddisputeEvidencesJsonDisputeEvidence record {
-    @jsondata:Name {value: "submit_evidence"}
-    boolean submitEvidence?;
-};
-
 public type CreateCarrierService_carrier_service record {
     boolean active?;
     string admin_graphql_api_id?;
@@ -1068,41 +1062,6 @@ public type CreateCarrierService_carrier_service record {
     decimal id?;
     string name?;
     boolean service_discovery?;
-};
-
-# Represents the Queries record for the operation: retrievesACountOfCustomCollections
-public type RetrievesACountOfCustomCollectionsQueries record {
-    @http:Query {name: "updated_at_max"}
-    string updatedAtMax?;
-    @http:Query {name: "updated_at_min"}
-    string updatedAtMin?;
-    @http:Query {name: "product_id"}
-    string productId?;
-    @http:Query {name: "published_at_min"}
-    string publishedAtMin?;
-    @http:Query {name: "published_at_max"}
-    string publishedAtMax?;
-    @http:Query {name: "published_status"}
-    string publishedStatus?;
-    # Count custom collections with given title. 
-    string title?;
-};
-
-public type SinglePayout_payout_summary record {
-    string adjustments_fee_amount?;
-    string adjustments_gross_amount?;
-    string charges_fee_amount?;
-    string charges_gross_amount?;
-    string refunds_fee_amount?;
-    string refunds_gross_amount?;
-    string reserved_funds_fee_amount?;
-    string reserved_funds_gross_amount?;
-    string retried_payouts_fee_amount?;
-    string retried_payouts_gross_amount?;
-};
-
-public type ShopConfigurations record {
-    ShopConfigurations_shop shop?;
 };
 
 public type SpamCommentResponse record {
@@ -1128,6 +1087,46 @@ public type SpamCommentResponse record {
     string status?;
 };
 
+public type ShopConfigurations record {
+    ShopConfigurations_shop shop?;
+};
+
+public type SinglePayout_payout_summary record {
+    string adjustments_fee_amount?;
+    string adjustments_gross_amount?;
+    string charges_fee_amount?;
+    string charges_gross_amount?;
+    string refunds_fee_amount?;
+    string refunds_gross_amount?;
+    string reserved_funds_fee_amount?;
+    string reserved_funds_gross_amount?;
+    string retried_payouts_fee_amount?;
+    string retried_payouts_gross_amount?;
+};
+
+# Represents the Queries record for the operation: retrievesACountOfCustomCollections
+public type RetrievesACountOfCustomCollectionsQueries record {
+    @http:Query {name: "updated_at_max"}
+    string updatedAtMax?;
+    @http:Query {name: "updated_at_min"}
+    string updatedAtMin?;
+    @http:Query {name: "product_id"}
+    string productId?;
+    @http:Query {name: "published_at_min"}
+    string publishedAtMin?;
+    @http:Query {name: "published_at_max"}
+    string publishedAtMax?;
+    @http:Query {name: "published_status"}
+    string publishedStatus?;
+    # Count custom collections with given title. 
+    string title?;
+};
+
+public type RecurringApplicationChargeIdUsageChargesJsonBody record {
+    @jsondata:Name {value: "usage_charge"}
+    AdminapiapiVersionrecurringApplicationChargesrecurringApplicationChargeIdusageChargesJsonUsageCharge usageCharge?;
+};
+
 # Order adjustment attached to the refund.
 public type OrderAdjustment record {
     # The unique identifier for the order adjustment.
@@ -1144,11 +1143,6 @@ public type OrderAdjustment record {
     string kind?;
     # The reason for the order adjustment. To set this value, include discrepancy_reason when you create a refund.
     string reason?;
-};
-
-public type RecurringApplicationChargeIdUsageChargesJsonBody record {
-    @jsondata:Name {value: "usage_charge"}
-    AdminapiapiVersionrecurringApplicationChargesrecurringApplicationChargeIdusageChargesJsonUsageCharge usageCharge?;
 };
 
 public type CancelFulfillmentOrder_replacement_fulfillment_order_line_items record {
@@ -1200,12 +1194,12 @@ public type UpdateProduct_product_images record {
     decimal width?;
 };
 
-public type SingleUser record {
-    UsersList_users user?;
-};
-
 public type ProductObject record {
     Product product?;
+};
+
+public type SingleUser record {
+    UsersList_users user?;
 };
 
 public type CreateRefund_refund_refund_line_items record {
@@ -1306,6 +1300,14 @@ public type AdminapiapiVersionfulfillmentsfulfillmentIdupdateTrackingJsonFulfill
     string url?;
 };
 
+# Represents the Queries record for the operation: retrievesAListOfRecurringApplicationCharges
+public type RetrievesAListOfRecurringApplicationChargesQueries record {
+    # A comma-separated list of fields to include in the response. 
+    string fields?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+};
+
 # Represents the Queries record for the operation: returnAListOfAllDisputes
 public type ReturnAListOfAllDisputesQueries record {
     @http:Query {name: "last_id"}
@@ -1316,14 +1318,6 @@ public type ReturnAListOfAllDisputesQueries record {
     string initiatedAt?;
     # Return only disputes with the specified status. 
     string status?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfRecurringApplicationCharges
-public type RetrievesAListOfRecurringApplicationChargesQueries record {
-    # A comma-separated list of fields to include in the response. 
-    string fields?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
 };
 
 public type ShippingRates record {
@@ -1437,6 +1431,17 @@ public type UpdateCheckoutResponse_checkout record {
     string web_url?;
 };
 
+public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order_line_items record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
 public type DeleteThemeResponse record {
     string role?;
     @jsondata:Name {value: "updated_at"}
@@ -1451,17 +1456,6 @@ public type DeleteThemeResponse record {
     boolean processing?;
     decimal id?;
     boolean previewable?;
-};
-
-public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
 };
 
 public type CreateAuthorizationResponse_payment_checkout_credit_card record {
@@ -1596,18 +1590,6 @@ public type RetrievesASingleCollectionQueries record {
     string fields?;
 };
 
-public type SingleTheme_theme record {
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    string name?;
-    boolean previewable?;
-    boolean processing?;
-    string role?;
-    anydata? theme_store_id?;
-    string updated_at?;
-};
-
 public type SingleFulfillmentOrder_fulfillment_order_destination record {
     string address1?;
     string address2?;
@@ -1621,6 +1603,18 @@ public type SingleFulfillmentOrder_fulfillment_order_destination record {
     string phone?;
     string province?;
     string zip?;
+};
+
+public type SingleTheme_theme record {
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    string name?;
+    boolean previewable?;
+    boolean processing?;
+    string role?;
+    anydata? theme_store_id?;
+    string updated_at?;
 };
 
 public type AdminapiapiVersionmobilePlatformApplicationsJsonMobilePlatformApplication record {
@@ -1680,10 +1674,9 @@ public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfi
     string email?;
 };
 
-# Represents the Queries record for the operation: retrievesAListOfThemes
-public type RetrievesAListOfThemesQueries record {
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
+public type AdminapiapiVersionproductListingsproductListingIdJsonProductListing record {
+    @jsondata:Name {value: "product_id"}
+    decimal? productId?;
 };
 
 public type ReopenCloseOrder_order_total_price_set_presentment_money record {
@@ -1699,9 +1692,10 @@ public type RetrievesAListOfAllArticleTagsQueries record {
     string popular?;
 };
 
-public type AdminapiapiVersionproductListingsproductListingIdJsonProductListing record {
-    @jsondata:Name {value: "product_id"}
-    decimal? productId?;
+# Represents the Queries record for the operation: retrievesAListOfThemes
+public type RetrievesAListOfThemesQueries record {
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfUrlRedirects
@@ -1718,14 +1712,14 @@ public type RetrievesAListOfUrlRedirectsQueries record {
     string target?;
 };
 
+public type ImageAsset record {
+    ImageAsset_asset asset?;
+};
+
 # Represents the Queries record for the operation: retrievesASingleSmartCollection
 public type RetrievesASingleSmartCollectionQueries record {
     # Show only certain fields, specified by a comma-separated list of field names. 
     string fields?;
-};
-
-public type ImageAsset record {
-    ImageAsset_asset asset?;
 };
 
 # Represents the Queries record for the operation: retrieveProductListingsThatArePublishedToYourApp
@@ -1825,11 +1819,6 @@ public type MetafieldList record {
     Metafield[] metafields;
 };
 
-public type LocationsList record {
-    @jsondata:Name {value: "locations_for_move"}
-    LocationsList_locations_for_move[] locationsForMove?;
-};
-
 public type ReopenCloseOrder_order_fulfillments record {
     string admin_graphql_api_id?;
     string created_at?;
@@ -1848,6 +1837,11 @@ public type ReopenCloseOrder_order_fulfillments record {
     string tracking_url?;
     string[] tracking_urls?;
     string updated_at?;
+};
+
+public type LocationsList record {
+    @jsondata:Name {value: "locations_for_move"}
+    LocationsList_locations_for_move[] locationsForMove?;
 };
 
 # Represents the Queries record for the operation: returnAListOfAllPayouts
@@ -1899,12 +1893,6 @@ public type FulfillmentList record {
     FulfillmentList_fulfillments[] fulfillments?;
 };
 
-# Represents the Queries record for the operation: retrievesAListOfFulfillmentOrdersForASpecificOrder
-public type RetrievesAListOfFulfillmentOrdersForASpecificOrderQueries record {
-    @http:Query {name: "order_id"}
-    string orderId?;
-};
-
 public type ProductIdImagesJsonBody record {
     AdminapiapiVersionproductsproductIdimagesJsonImage image?;
 };
@@ -1952,6 +1940,11 @@ public type CompleteCheckout_checkout_shipping_line record {
     string title?;
 };
 
+public type FulfillmentEvents record {
+    @jsondata:Name {value: "fulfillment_events"}
+    FulfillmentEvents_fulfillment_events[] fulfillmentEvents?;
+};
+
 public type MoveFulfillmentOrderResponse_moved_fulfillment_order record {
     MoveFulfillmentOrderResponse_moved_fulfillment_order_assigned_location assigned_location?;
     decimal assigned_location_id?;
@@ -1965,11 +1958,6 @@ public type MoveFulfillmentOrderResponse_moved_fulfillment_order record {
     decimal shop_id?;
     string status?;
     string[] supported_actions?;
-};
-
-public type FulfillmentEvents record {
-    @jsondata:Name {value: "fulfillment_events"}
-    FulfillmentEvents_fulfillment_events[] fulfillmentEvents?;
 };
 
 public type CustomerDefaultAddress_customer_address record {
@@ -1992,9 +1980,8 @@ public type CustomerDefaultAddress_customer_address record {
     string zip?;
 };
 
-public type CancelFulfillmentOrder record {
-    CancelFulfillmentOrder_fulfillment_order fulfillment_order?;
-    CancelFulfillmentOrder_replacement_fulfillment_order replacement_fulfillment_order?;
+public type CreateCarrierService record {
+    CreateCarrierService_carrier_service carrier_service?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfFulfillmentOrdersAssignedToTheShopLocationsThatAreOwnedByTheApp
@@ -2005,8 +1992,9 @@ public type RetrievesAListOfFulfillmentOrdersAssignedToTheShopLocationsThatAreOw
     string locationIds?;
 };
 
-public type CreateCarrierService record {
-    CreateCarrierService_carrier_service carrier_service?;
+public type CancelFulfillmentOrder record {
+    CancelFulfillmentOrder_fulfillment_order fulfillment_order?;
+    CancelFulfillmentOrder_replacement_fulfillment_order replacement_fulfillment_order?;
 };
 
 public type ReopenCloseOrder_order_discount_codes record {
@@ -2111,6 +2099,21 @@ public type CheckoutResponse_checkout_shipping_line record {
     string title?;
 };
 
+public type RejectCancellationRequestResponse_fulfillment_order_destination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
 # The custom properties that a shop owner uses to define product variants. You can define three options for a product variant are option1, option2, option3. Default value is Default Title. The title field is a concatenation of the option1, option2, and option3 fields. Updating the option fields updates the title field.
 public type Option record {
     # Option 1
@@ -2127,21 +2130,6 @@ public type Presentment_price record {
     Price compare_at_price?;
 };
 
-public type RejectCancellationRequestResponse_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
 public type CountriesList record {
     CountriesList_countries[] countries?;
 };
@@ -2155,10 +2143,6 @@ public type UsageChargeResponse_usage_charge record {
     decimal id?;
     string price?;
     decimal risk_level?;
-};
-
-public type ApiVersionBlogsJsonBody record {
-    AdminapiapiVersionblogsJsonBlog blog?;
 };
 
 public type PriceRule_price_rule record {
@@ -2193,6 +2177,10 @@ public type PriceRule_price_rule record {
     string value_type?;
 };
 
+public type ApiVersionBlogsJsonBody record {
+    AdminapiapiVersionblogsJsonBlog blog?;
+};
+
 public type Article_article_image record {
     string? alt?;
     string created_at?;
@@ -2214,12 +2202,6 @@ public type SmartCollectionList_image record {
     decimal width?;
 };
 
-# Represents the Queries record for the operation: receiveASingleFulfillment
-public type ReceiveASingleFulfillmentQueries record {
-    # Comma-separated list of fields to include in the response. 
-    string fields?;
-};
-
 public type GiftCard_gift_card record {
     decimal api_client_id?;
     string balance?;
@@ -2238,6 +2220,12 @@ public type GiftCard_gift_card record {
     string? template_suffix?;
     string updated_at?;
     anydata? user_id?;
+};
+
+# Represents the Queries record for the operation: receiveASingleFulfillment
+public type ReceiveASingleFulfillmentQueries record {
+    # Comma-separated list of fields to include in the response. 
+    string fields?;
 };
 
 public type PriceBasedShippingRate record {
@@ -2264,22 +2252,18 @@ public type CancelFulfillmentOrder_fulfillment_order_destination record {
     string zip?;
 };
 
+public type ApiVersionCollectsJsonBody record {
+    AdminapiapiVersioncollectsJsonCollect collect?;
+};
+
 public type SmartCollectionList_rules record {
     string column?;
     string condition?;
     string relation?;
 };
 
-public type ApiVersionCollectsJsonBody record {
-    AdminapiapiVersioncollectsJsonCollect collect?;
-};
-
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestacceptJsonFulfillmentRequest record {
     string message?;
-};
-
-public type SingleEvent record {
-    SingleEvent_event event?;
 };
 
 public type InventoryLevelsSetJsonBody record {
@@ -2288,6 +2272,10 @@ public type InventoryLevelsSetJsonBody record {
     decimal available?;
     @jsondata:Name {value: "location_id"}
     decimal locationId?;
+};
+
+public type SingleEvent record {
+    SingleEvent_event event?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfInventoryLevels
@@ -2336,6 +2324,14 @@ public type FulfillmentOrder_fulfillment_order record {
     string[] supported_actions?;
 };
 
+# Represents the Queries record for the operation: receiveAListOfAllProductImages
+public type ReceiveAListOfAllProductImagesQueries record {
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # comma-separated list of fields to include in the response 
+    string fields?;
+};
+
 # Refunded line item
 public type RefundLineItem record {
     # The unique identifier of the line item in the refund.
@@ -2354,20 +2350,12 @@ public type RefundLineItem record {
     decimal total_tax?;
 };
 
-# Represents the Queries record for the operation: receiveAListOfAllProductImages
-public type ReceiveAListOfAllProductImagesQueries record {
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # comma-separated list of fields to include in the response 
-    string fields?;
+public type ScriptTagResponse record {
+    ScriptTagResponse_script_tag script_tag?;
 };
 
 public type UpdateCustomCollection record {
     UpdateCustomCollection_custom_collection custom_collection?;
-};
-
-public type ScriptTagResponse record {
-    ScriptTagResponse_script_tag script_tag?;
 };
 
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrder record {
@@ -2398,10 +2386,6 @@ public type SingleScriptTag record {
     SingleScriptTag_script_tag script_tag?;
 };
 
-public type AdminapiapiVersiongiftCardsgiftCardIddisableJsonGiftCard record {
-    decimal id?;
-};
-
 public type SingleFulfillmentOrder_fulfillment_order_line_items record {
     decimal fulfillable_quantity?;
     decimal fulfillment_order_id?;
@@ -2411,6 +2395,10 @@ public type SingleFulfillmentOrder_fulfillment_order_line_items record {
     decimal quantity?;
     decimal shop_id?;
     decimal? variant_id?;
+};
+
+public type AdminapiapiVersiongiftCardsgiftCardIddisableJsonGiftCard record {
+    decimal id?;
 };
 
 public type CarrierServiceList_carrier_services record {
@@ -2501,6 +2489,11 @@ public type SinglePaymentResponse_payment_checkout record {
     string web_url?;
 };
 
+public type CancellationRequestAcceptJsonBody record {
+    @jsondata:Name {value: "cancellation_request"}
+    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestacceptJsonCancellationRequest cancellationRequest?;
+};
+
 public type CalculateRefund_refund_transactions record {
     string amount?;
     string currency?;
@@ -2509,11 +2502,6 @@ public type CalculateRefund_refund_transactions record {
     string maximum_refundable?;
     decimal order_id?;
     decimal parent_id?;
-};
-
-public type CancellationRequestAcceptJsonBody record {
-    @jsondata:Name {value: "cancellation_request"}
-    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestacceptJsonCancellationRequest cancellationRequest?;
 };
 
 public type CompleteCheckout_checkout_billing_address record {
@@ -2547,12 +2535,6 @@ public type StorefrontAccessToken_storefront_access_token record {
     string title?;
 };
 
-# Represents the Queries record for the operation: retrievesAllApplicationCredits
-public type RetrievesAllApplicationCreditsQueries record {
-    # A comma-separated list of fields to include in the response. 
-    string fields?;
-};
-
 public type SingleArticle_article record {
     string admin_graphql_api_id?;
     string author?;
@@ -2571,19 +2553,25 @@ public type SingleArticle_article record {
     decimal user_id?;
 };
 
+# Represents the Queries record for the operation: retrievesAllApplicationCredits
+public type RetrievesAllApplicationCreditsQueries record {
+    # A comma-separated list of fields to include in the response. 
+    string fields?;
+};
+
 public type AdminapiapiVersionpriceRulespriceRuleIdJsonPriceRule record {
     decimal id?;
     string title?;
-};
-
-public type ApiVersionCommentsJsonBody record {
-    AdminapiapiVersioncommentsJsonComment comment?;
 };
 
 public type ProductListings_option_values record {
     string name?;
     decimal option_id?;
     string value?;
+};
+
+public type ApiVersionCommentsJsonBody record {
+    AdminapiapiVersioncommentsJsonComment comment?;
 };
 
 # Represents the Queries record for the operation: receiveACountOfAllDraftorders
@@ -2644,21 +2632,6 @@ public type ProductListingsproductListingIdJsonBody record {
     AdminapiapiVersionproductListingsproductListingIdJsonProductListing productListing?;
 };
 
-public type SingleDispute_dispute record {
-    string amount?;
-    string currency?;
-    string evidence_due_by?;
-    anydata? evidence_sent_on?;
-    anydata? finalized_on?;
-    decimal id?;
-    string initiated_at?;
-    string network_reason_code?;
-    decimal order_id?;
-    string reason?;
-    string status?;
-    string 'type?;
-};
-
 public type CreateCheckoutResponse_checkout record {
     anydata? applied_discount?;
     anydata? billing_address?;
@@ -2717,13 +2690,28 @@ public type CreateCheckoutResponse_checkout record {
     string web_url?;
 };
 
-public type DisableGiftCard record {
-    DisableGiftCard_gift_card gift_card?;
+public type SingleDispute_dispute record {
+    string amount?;
+    string currency?;
+    string evidence_due_by?;
+    anydata? evidence_sent_on?;
+    anydata? finalized_on?;
+    decimal id?;
+    string initiated_at?;
+    string network_reason_code?;
+    decimal order_id?;
+    string reason?;
+    string status?;
+    string 'type?;
 };
 
 public type CollectionListing_collection_listing_image record {
     string created_at?;
     string src?;
+};
+
+public type DisableGiftCard record {
+    DisableGiftCard_gift_card gift_card?;
 };
 
 public type AdminapiapiVersionmetafieldsJsonMetafield record {
@@ -2841,6 +2829,11 @@ public type Orders record {
     Order[]? orders?;
 };
 
+public type ReopenCloseOrder_order_price_set_2 record {
+    ReopenCloseOrder_order_price_set_2_presentment_money presentment_money?;
+    ReopenCloseOrder_order_price_set_2_presentment_money shop_money?;
+};
+
 public type MoveFulfillmentOrderResponse_moved_fulfillment_order_assigned_location record {
     string address1?;
     anydata? address2?;
@@ -2851,11 +2844,6 @@ public type MoveFulfillmentOrderResponse_moved_fulfillment_order_assigned_locati
     anydata? phone?;
     string province?;
     string zip?;
-};
-
-public type ReopenCloseOrder_order_price_set_2 record {
-    ReopenCloseOrder_order_price_set_2_presentment_money presentment_money?;
-    ReopenCloseOrder_order_price_set_2_presentment_money shop_money?;
 };
 
 public type SingleGiftCard_gift_card record {
@@ -3005,14 +2993,14 @@ public type DiscountCodeResponse record {
     DiscountCodeResponse_discount_code_creation discount_code_creation?;
 };
 
+public type CreateCustomer record {
+    CreateCustomer_customer customer?;
+};
+
 public type AdminapiapiVersioncarrierServicescarrierServiceIdJsonCarrierService record {
     string name?;
     boolean active?;
     decimal id?;
-};
-
-public type CreateCustomer record {
-    CreateCustomer_customer customer?;
 };
 
 public type AbandonedCheckouts_billing_address record {
@@ -3112,29 +3100,6 @@ public type CountriescountryIdJsonBody record {
     AdminapiapiVersioncountriescountryIdJsonCountry country?;
 };
 
-public type MarkCommentResponse record {
-    @jsondata:Name {value: "blog_id"}
-    decimal blogId?;
-    @jsondata:Name {value: "body_html"}
-    string bodyHtml?;
-    string author?;
-    string ip?;
-    @jsondata:Name {value: "created_at"}
-    string createdAt?;
-    string body?;
-    @jsondata:Name {value: "article_id"}
-    decimal articleId?;
-    @jsondata:Name {value: "updated_at"}
-    string updatedAt?;
-    decimal id?;
-    @jsondata:Name {value: "published_at"}
-    string publishedAt?;
-    string email?;
-    @jsondata:Name {value: "user_agent"}
-    string userAgent?;
-    string status?;
-};
-
 public type TransactionsList record {
     TransactionsList_transactions[] transactions?;
 };
@@ -3169,6 +3134,29 @@ public type ModifyDraftOrder_draft_order record {
     string updated_at?;
 };
 
+public type MarkCommentResponse record {
+    @jsondata:Name {value: "blog_id"}
+    decimal blogId?;
+    @jsondata:Name {value: "body_html"}
+    string bodyHtml?;
+    string author?;
+    string ip?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
+    string body?;
+    @jsondata:Name {value: "article_id"}
+    decimal articleId?;
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt?;
+    decimal id?;
+    @jsondata:Name {value: "published_at"}
+    string publishedAt?;
+    string email?;
+    @jsondata:Name {value: "user_agent"}
+    string userAgent?;
+    string status?;
+};
+
 public type FulfillmentOrdersList_fulfillment_orders record {
     RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
     decimal assigned_location_id?;
@@ -3182,10 +3170,6 @@ public type FulfillmentOrdersList_fulfillment_orders record {
     decimal shop_id?;
     string status?;
     string[] supported_actions?;
-};
-
-public type ShippingZonesList record {
-    DeliveryZone[] shipping_zones?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfCustomCollections
@@ -3214,6 +3198,10 @@ public type RetrievesAListOfCustomCollectionsQueries record {
     string title?;
     # Show only certain fields, specified by a comma-separated list of field names. 
     string fields?;
+};
+
+public type ShippingZonesList record {
+    DeliveryZone[] shipping_zones?;
 };
 
 public type DraftOrders_draft_orders record {
@@ -3459,10 +3447,6 @@ public type ApiVersionCarrierServicesJsonBody record {
     AdminapiapiVersioncarrierServicesJsonCarrierService carrierService?;
 };
 
-public type UpdateGiftCard record {
-    UpdateGiftCard_gift_card gift_card?;
-};
-
 public type ReopenCloseOrder_order_customer record {
     boolean accepts_marketing?;
     string accepts_marketing_updated_at?;
@@ -3488,6 +3472,10 @@ public type ReopenCloseOrder_order_customer record {
     string total_spent?;
     string updated_at?;
     boolean verified_email?;
+};
+
+public type UpdateGiftCard record {
+    UpdateGiftCard_gift_card gift_card?;
 };
 
 public type GiftCardSearch_gift_cards record {
@@ -3534,16 +3522,16 @@ public type ProductListings_variants record {
     string weight_unit?;
 };
 
+public type CustomerIdSendInviteJsonBody record {
+    @jsondata:Name {value: "customer_invite"}
+    record {} customerInvite?;
+};
+
 public type ReopenCloseOrder_order_tax_lines record {
     string price?;
     ReopenCloseOrder_order_price_set_1 price_set?;
     decimal rate?;
     string title?;
-};
-
-public type CustomerIdSendInviteJsonBody record {
-    @jsondata:Name {value: "customer_invite"}
-    record {} customerInvite?;
 };
 
 public type SmartCollectionList_smart_collections record {
@@ -3928,6 +3916,11 @@ public type ApplicationChargesList record {
     ApplicationChargesList_application_charges[] applicationCharges?;
 };
 
+public type ApiVersionScriptTagsJsonBody record {
+    @jsondata:Name {value: "script_tag"}
+    AdminapiapiVersionredirectsJsonRedirect scriptTag?;
+};
+
 public type SingleFulfillmentOrder_fulfillment_order record {
     RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
     decimal assigned_location_id?;
@@ -3941,11 +3934,6 @@ public type SingleFulfillmentOrder_fulfillment_order record {
     decimal shop_id?;
     string status?;
     string[] supported_actions?;
-};
-
-public type ApiVersionScriptTagsJsonBody record {
-    @jsondata:Name {value: "script_tag"}
-    AdminapiapiVersionredirectsJsonRedirect scriptTag?;
 };
 
 public type StorefrontAccessToken record {
@@ -4107,32 +4095,6 @@ public type RejectCancellationRequestResponse_fulfillment_order record {
     string[] supported_actions?;
 };
 
-# Represents the Queries record for the operation: retrievesASingleTheme
-public type RetrievesASingleThemeQueries record {
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
-};
-
-public type AdminapiapiVersionblogsJsonBlog record {
-    AdminapiapiVersionblogsJsonBlogMetafields[] metafields?;
-    string title?;
-};
-
-public type TransitionFulfillmentOrder_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
 # Represents the Queries record for the operation: retrievesAListOfPriceRules
 public type RetrievesAListOfPriceRulesQueries record {
     @http:Query {name: "created_at_min"}
@@ -4159,6 +4121,32 @@ public type RetrievesAListOfPriceRulesQueries record {
     string endsAtMax?;
 };
 
+public type TransitionFulfillmentOrder_fulfillment_order_destination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+# Represents the Queries record for the operation: retrievesASingleTheme
+public type RetrievesASingleThemeQueries record {
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+};
+
+public type AdminapiapiVersionblogsJsonBlog record {
+    AdminapiapiVersionblogsJsonBlogMetafields[] metafields?;
+    string title?;
+};
+
 public type ApiVersionStorefrontAccessTokensJsonBody record {
     @jsondata:Name {value: "storefront_access_token"}
     AdminapiapiVersionstorefrontAccessTokensJsonStorefrontAccessToken storefrontAccessToken?;
@@ -4166,11 +4154,6 @@ public type ApiVersionStorefrontAccessTokensJsonBody record {
 
 public type Article record {
     Article_article article?;
-};
-
-public type GiftCardsList record {
-    @jsondata:Name {value: "gift_cards"}
-    GiftCardsList_gift_cards[] giftCards?;
 };
 
 public type ResourceFeedbackList_resource_feedback record {
@@ -4184,12 +4167,26 @@ public type ResourceFeedbackList_resource_feedback record {
     string updated_at?;
 };
 
+public type GiftCardsList record {
+    @jsondata:Name {value: "gift_cards"}
+    GiftCardsList_gift_cards[] giftCards?;
+};
+
 public type SinglePaymentResponse_payment_next_action record {
     anydata? redirect_url?;
 };
 
 public type SinglePayout record {
     SinglePayout_payout payout?;
+};
+
+public type ReportResponse record {
+    ReportResponse_report report?;
+};
+
+public type ApiVersionMarketingEventsJsonBody record {
+    @jsondata:Name {value: "marketing_event"}
+    AdminapiapiVersionmarketingEventsJsonMarketingEvent marketingEvent?;
 };
 
 public type LocationList_locations record {
@@ -4210,15 +4207,6 @@ public type LocationList_locations record {
     string? province_code?;
     string updated_at?;
     string? zip?;
-};
-
-public type ApiVersionMarketingEventsJsonBody record {
-    @jsondata:Name {value: "marketing_event"}
-    AdminapiapiVersionmarketingEventsJsonMarketingEvent marketingEvent?;
-};
-
-public type ReportResponse record {
-    ReportResponse_report report?;
 };
 
 public type AdminapiapiVersioncarrierServicesJsonCarrierService record {
@@ -4429,6 +4417,10 @@ public type AdminapiapiVersionapplicationChargesJsonApplicationCharge record {
     string name?;
 };
 
+public type FulfillmentListForOrder record {
+    FulfillmentListForOrder_fulfillments[] fulfillments?;
+};
+
 # Represents the Queries record for the operation: retrievesAListOfDraftOrders
 public type RetrievesAListOfDraftOrdersQueries record {
     @http:Query {name: "updated_at_max"}
@@ -4444,10 +4436,6 @@ public type RetrievesAListOfDraftOrdersQueries record {
     @http:Query {name: "since_id"}
     string sinceId?;
     string status?;
-};
-
-public type FulfillmentListForOrder record {
-    FulfillmentListForOrder_fulfillments[] fulfillments?;
 };
 
 public type AcceptFulfillmentResponse_fulfillment_order_destination record {
@@ -4570,10 +4558,6 @@ public type FulfillmentOrderIdRescheduleJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfillmentOrder fulfillmentOrder?;
 };
 
-public type CreateThemeResponse record {
-    CreateThemeResponse_theme theme?;
-};
-
 public type SingleProductImage_image record {
     string admin_graphql_api_id?;
     anydata? alt?;
@@ -4586,6 +4570,10 @@ public type SingleProductImage_image record {
     string updated_at?;
     anydata[] variant_ids?;
     decimal width?;
+};
+
+public type CreateThemeResponse record {
+    CreateThemeResponse_theme theme?;
 };
 
 # Represents the Queries record for the operation: retrievesASingleCustomer
@@ -4615,10 +4603,6 @@ public type ScriptTagResponse_script_tag record {
     string updated_at?;
 };
 
-public type UrlList record {
-    UrlList_redirects[] redirects?;
-};
-
 public type CreateDiscountCode_discount_code record {
     string code?;
     string created_at?;
@@ -4628,8 +4612,16 @@ public type CreateDiscountCode_discount_code record {
     decimal usage_count?;
 };
 
+public type UrlList record {
+    UrlList_redirects[] redirects?;
+};
+
 public type Order record {
     ReopenCloseOrder_order 'order?;
+};
+
+public type CreateTransaction record {
+    TransactionObject_transaction 'transaction?;
 };
 
 # Represents the Queries record for the operation: retrieveAListOfProductsBelongingToACollection
@@ -4657,12 +4649,19 @@ public type UpdateCustomer record {
     Customer customer?;
 };
 
-public type CreateTransaction record {
-    TransactionObject_transaction 'transaction?;
-};
-
 public type CreatSmartCollection record {
     CreatSmartCollection_smart_collection smart_collection?;
+};
+
+public type FulfillmentOrdersList_line_items record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
 };
 
 public type UpdateOrderResponse_order_note_attributes record {
@@ -4682,17 +4681,6 @@ public type RetrievesAListOfGiftCardsQueries record {
     string status?;
 };
 
-public type FulfillmentOrdersList_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
 public type CurrenciesList_currencies record {
     string currency?;
     boolean enabled?;
@@ -4708,8 +4696,8 @@ public type CreateOrderFulfillment record {
     Fulfillment fulfillment?;
 };
 
-public type CustomerIdAddressesJsonBody record {
-    AdminapiapiVersioncustomerscustomerIdaddressesJsonAddress address?;
+public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestJsonCancellationRequest record {
+    string message?;
 };
 
 public type AdminapiapiVersionresourceFeedbackJsonResourceFeedback record {
@@ -4718,21 +4706,21 @@ public type AdminapiapiVersionresourceFeedbackJsonResourceFeedback record {
     string state?;
 };
 
-public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestJsonCancellationRequest record {
-    string message?;
+public type CustomerIdAddressesJsonBody record {
+    AdminapiapiVersioncustomerscustomerIdaddressesJsonAddress address?;
 };
 
 public type CreateProductResponse record {
     CreateProductResponse_product product?;
 };
 
+public type Customers record {
+    Customer[] customers?;
+};
+
 public type AdminapiapiVersionordersorderIdrefundscalculateJsonRefundShipping record {
     @jsondata:Name {value: "full_refund"}
     boolean fullRefund?;
-};
-
-public type Customers record {
-    Customer[] customers?;
 };
 
 public type GiftCardsList_gift_cards record {
@@ -4780,13 +4768,13 @@ public type UpdateProduct record {
     UpdateProduct_product product?;
 };
 
-public type AdminapiapiVersionpriceRulespriceRuleIdbatchJsonDiscountCodes record {
-    string code?;
-};
-
 public type AdminapiapiVersioncustomCollectionscustomCollectionIdJsonCustomCollection record {
     decimal id?;
     boolean published?;
+};
+
+public type AdminapiapiVersionpriceRulespriceRuleIdbatchJsonDiscountCodes record {
+    string code?;
 };
 
 public type ProductToCollectionResponse record {
@@ -4877,6 +4865,11 @@ public type SingleCommentResponse_comment record {
     string user_agent?;
 };
 
+public type AbandonedCheckouts_note_attributes record {
+    string name?;
+    string value?;
+};
+
 public type ImageAsset_asset record {
     string content_type?;
     string created_at?;
@@ -4885,11 +4878,6 @@ public type ImageAsset_asset record {
     decimal size?;
     decimal theme_id?;
     string updated_at?;
-};
-
-public type AbandonedCheckouts_note_attributes record {
-    string name?;
-    string value?;
 };
 
 public type CancelFulfillment_fulfillment_price_set record {
@@ -5060,15 +5048,15 @@ public type CreateDraftOrder_draft_order_line_items record {
     anydata? vendor?;
 };
 
-public type CarrierServicescarrierServiceIdJsonBody record {
-    @jsondata:Name {value: "carrier_service"}
-    AdminapiapiVersioncarrierServicescarrierServiceIdJsonCarrierService carrierService?;
-};
-
 public type UrlList_redirects record {
     decimal id?;
     string path?;
     string target?;
+};
+
+public type CarrierServicescarrierServiceIdJsonBody record {
+    @jsondata:Name {value: "carrier_service"}
+    AdminapiapiVersioncarrierServicescarrierServiceIdJsonCarrierService carrierService?;
 };
 
 public type FulfillmentOrderIdCancellationRequestJsonBody record {
@@ -5076,13 +5064,13 @@ public type FulfillmentOrderIdCancellationRequestJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestJsonCancellationRequest cancellationRequest?;
 };
 
-public type ArticleComments record {
-    ArticleComments_comments[] comments?;
-};
-
 public type ModifyProductVariant_variant_presentment_prices record {
     anydata? compare_at_price?;
     ModifyProductVariant_variant_price price?;
+};
+
+public type ArticleComments record {
+    ArticleComments_comments[] comments?;
 };
 
 public type TokenPaymentsJsonBody record {
@@ -5091,6 +5079,13 @@ public type TokenPaymentsJsonBody record {
 
 public type ReopenCloseOrder record {
     ReopenCloseOrder_order 'order?;
+};
+
+public type Customer_sms_marketing_consent record {
+    string state?;
+    string opt_in_level?;
+    string consent_updated_at?;
+    string consent_collected_from?;
 };
 
 public type ApplicationCredit record {
@@ -5109,13 +5104,6 @@ public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfi
     string name?;
     @jsondata:Name {value: "location_id"}
     decimal locationId?;
-};
-
-public type Customer_sms_marketing_consent record {
-    string state?;
-    string opt_in_level?;
-    string consent_updated_at?;
-    string consent_collected_from?;
 };
 
 public type CreateMarketingEvent_marketing_event record {
@@ -5298,6 +5286,10 @@ public type ApplicationCredits record {
     ApplicationCredits_application_credits[] applicationCredits?;
 };
 
+public type Fulfillment record {
+    Fulfillment_fulfillment fulfillment?;
+};
+
 # Represents the Queries record for the operation: retrievesAListOfRefundsForAnOrder
 public type RetrievesAListOfRefundsForAnOrderQueries record {
     # The maximum number of results to retrieve.(default: 50)(maximum: 250) 
@@ -5306,10 +5298,6 @@ public type RetrievesAListOfRefundsForAnOrderQueries record {
     string fields?;
     @http:Query {name: "in_shop_currency"}
     string inShopCurrency?;
-};
-
-public type Fulfillment record {
-    Fulfillment_fulfillment fulfillment?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfUsageCharges
@@ -5324,10 +5312,6 @@ public type RetrievesACountOfAllScriptTagsQueries record {
     string src?;
 };
 
-public type Refunds record {
-    ReopenCloseOrder_order_refunds[] refunds?;
-};
-
 # Represents the Queries record for the operation: retrievesAnApplicationCharge
 public type RetrievesAnApplicationChargeQueries record {
     # A comma-separated list of fields to include in the response.
@@ -5336,6 +5320,10 @@ public type RetrievesAnApplicationChargeQueries record {
 
 public type CalculateRefund record {
     CalculateRefund_refund refund?;
+};
+
+public type Refunds record {
+    ReopenCloseOrder_order_refunds[] refunds?;
 };
 
 public type FulfillmentOrderIdCancelJsonBody record {
@@ -5450,21 +5438,13 @@ public type ApplicationCredits_application_credits record {
     anydata? test?;
 };
 
-public type FulfillmentOrderIdOpenJsonBody record {
-    @jsondata:Name {value: "fulfillment_order"}
-    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfillmentOrder fulfillmentOrder?;
-};
-
 public type CreateFulfillmentEvent record {
     CreateFulfillmentEvent_fulfillment_event fulfillment_event?;
 };
 
-# Represents the Queries record for the operation: retrievesAListOfFulfillmentEventsForASpecificFulfillment
-public type RetrievesAListOfFulfillmentEventsForASpecificFulfillmentQueries record {
-    @http:Query {name: "order_id"}
-    string orderId?;
-    @http:Query {name: "fulfillment_id"}
-    string fulfillmentId?;
+public type FulfillmentOrderIdOpenJsonBody record {
+    @jsondata:Name {value: "fulfillment_order"}
+    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfillmentOrder fulfillmentOrder?;
 };
 
 public type ReopenCloseOrder_order_transactions record {
@@ -5542,14 +5522,14 @@ public type UpdateProvinceResponse_province record {
     string tax_type?;
 };
 
+public type CreateOrderRisk record {
+    CreateOrderRisk_risk risk?;
+};
+
 public type CreatSmartCollection_smart_collection_rules record {
     string column?;
     string condition?;
     string relation?;
-};
-
-public type CreateOrderRisk record {
-    CreateOrderRisk_risk risk?;
 };
 
 public type SingleDiscountCode_discount_code record {
@@ -5688,16 +5668,16 @@ public type AdminapiapiVersionthemesthemeIdJsonTheme record {
     decimal id?;
 };
 
-# Represents the Queries record for the operation: receiveAListOfAllShippingzones
-public type ReceiveAListOfAllShippingzonesQueries record {
-    # Show only specific fields by providing a comma-separated list of field names.
-    string fields?;
-};
-
 public type RedirectResponse_redirect record {
     decimal id?;
     string path?;
     string target?;
+};
+
+# Represents the Queries record for the operation: receiveAListOfAllShippingzones
+public type ReceiveAListOfAllShippingzonesQueries record {
+    # Show only specific fields by providing a comma-separated list of field names.
+    string fields?;
 };
 
 public type AdminapiapiVersionpriceRulesJsonPriceRule record {
@@ -5797,12 +5777,6 @@ public type RetrievesACountOfDiscountCodesForAShopQueries record {
 public type CancelFulfillment_fulfillment_total_discount_set_presentment_money record {
     string amount?;
     string currency_code?;
-};
-
-# Represents the Queries record for the operation: retrievesFulfillmentsAssociatedWithAFulfillmentOrder
-public type RetrievesFulfillmentsAssociatedWithAFulfillmentOrderQueries record {
-    @http:Query {name: "fulfillment_order_id"}
-    string fulfillmentOrderId?;
 };
 
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestrejectJsonFulfillmentRequest record {
@@ -5909,11 +5883,6 @@ public type CustomerDefaultAddress record {
     CustomerDefaultAddress_customer_address customer_address?;
 };
 
-public type InventoryItemsinventoryItemIdJsonBody record {
-    @jsondata:Name {value: "inventory_item"}
-    AdminapiapiVersioninventoryItemsinventoryItemIdJsonInventoryItem inventoryItem?;
-};
-
 public type DisputeFileUpload record {
     int id;
     int shop_id;
@@ -5928,9 +5897,19 @@ public type DisputeFileUpload record {
     string url;
 };
 
+public type InventoryItemsinventoryItemIdJsonBody record {
+    @jsondata:Name {value: "inventory_item"}
+    AdminapiapiVersioninventoryItemsinventoryItemIdJsonInventoryItem inventoryItem?;
+};
+
 public type CancelFulfillment_fulfillment_total_discount_set record {
     CancelFulfillment_fulfillment_total_discount_set_presentment_money presentment_money?;
     CancelFulfillment_fulfillment_total_discount_set_presentment_money shop_money?;
+};
+
+public type ReopenCloseOrder_order_subtotal_price_set_presentment_money record {
+    string amount?;
+    string currency_code?;
 };
 
 public type FulfillmentOrders_line_items record {
@@ -5942,11 +5921,6 @@ public type FulfillmentOrders_line_items record {
     decimal quantity?;
     decimal shop_id?;
     decimal? variant_id?;
-};
-
-public type ReopenCloseOrder_order_subtotal_price_set_presentment_money record {
-    string amount?;
-    string currency_code?;
 };
 
 public type CreateFulfillmentService_fulfillment_service record {
@@ -6019,17 +5993,17 @@ public type FulfillmentOrderIdFulfillmentRequestJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestJsonFulfillmentRequest fulfillmentRequest?;
 };
 
+public type CollectionListingscollectionListingIdJsonBody record {
+    @jsondata:Name {value: "collection_listing"}
+    AdminapiapiVersioncollectionListingscollectionListingIdJsonCollectionListing collectionListing?;
+};
+
 public type AdminapiapiVersionblogsJsonBlogMetafields record {
     @jsondata:Name {value: "value_type"}
     string valueType?;
     string namespace?;
     string value?;
     string 'key?;
-};
-
-public type CollectionListingscollectionListingIdJsonBody record {
-    @jsondata:Name {value: "collection_listing"}
-    AdminapiapiVersioncollectionListingscollectionListingIdJsonCollectionListing collectionListing?;
 };
 
 public type CalculateRefund_refund record {
@@ -6155,22 +6129,6 @@ public type CustomerInvite record {
     CustomerInvite_customer_invite customer_invite;
 };
 
-# Represents the Queries record for the operation: retrievesAListOfTenderTransactions
-public type RetrievesAListOfTenderTransactionsQueries record {
-    @http:Query {name: "processed_at_min"}
-    string processedAtMin?;
-    # The maximum number of results to retrieve.(default: 50)(maximum: 250) 
-    string 'limit?;
-    @http:Query {name: "processed_at"}
-    string processedAt?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    @http:Query {name: "processed_at_max"}
-    string processedAtMax?;
-    # Show tender transactions ordered by processed\_at in ascending or descending order. 
-    string 'order?;
-};
-
 public type ApplicationChargesList_application_charges record {
     decimal api_client_id?;
     string? charge_type?;
@@ -6185,6 +6143,22 @@ public type ApplicationChargesList_application_charges record {
     string status?;
     anydata? test?;
     string updated_at?;
+};
+
+# Represents the Queries record for the operation: retrievesAListOfTenderTransactions
+public type RetrievesAListOfTenderTransactionsQueries record {
+    @http:Query {name: "processed_at_min"}
+    string processedAtMin?;
+    # The maximum number of results to retrieve.(default: 50)(maximum: 250) 
+    string 'limit?;
+    @http:Query {name: "processed_at"}
+    string processedAt?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    @http:Query {name: "processed_at_max"}
+    string processedAtMax?;
+    # Show tender transactions ordered by processed\_at in ascending or descending order. 
+    string 'order?;
 };
 
 public type ReportsreportIdJsonBody record {
@@ -6222,6 +6196,10 @@ public type MobilePlatformApplicationsmobilePlatformApplicationIdJsonBody record
     AdminapiapiVersionmobilePlatformApplicationsmobilePlatformApplicationIdJsonMobilePlatformApplication mobilePlatformApplication?;
 };
 
+public type UpdatePriceRule record {
+    UpdatePriceRule_price_rule price_rule?;
+};
+
 public type ReopenCloseOrder_order_refunds record {
     string admin_graphql_api_id?;
     string created_at?;
@@ -6234,10 +6212,6 @@ public type ReopenCloseOrder_order_refunds record {
     boolean restock?;
     ReopenCloseOrder_order_transactions[] transactions?;
     decimal user_id?;
-};
-
-public type UpdatePriceRule record {
-    UpdatePriceRule_price_rule price_rule?;
 };
 
 public type RefundsCalculateJsonBody record {
@@ -6289,12 +6263,12 @@ public type PostalCodeResult_customer_address record {
     string zip?;
 };
 
-public type ArticleAuthors record {
-    string[] authors?;
-};
-
 public type TransactionResponse record {
     TransactionResponse_transaction 'transaction?;
+};
+
+public type ArticleAuthors record {
+    string[] authors?;
 };
 
 public type DiscountCodeResponse_discount_code_creation record {
@@ -6335,6 +6309,14 @@ public type ProductListings_product_listings record {
     string vendor?;
 };
 
+# Represents the Queries record for the operation: retrievesASpecificRefund
+public type RetrievesASpecificRefundQueries record {
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+    @http:Query {name: "in_shop_currency"}
+    string inShopCurrency?;
+};
+
 public type OriginalFulfillmentOrder_submitted_fulfillment_order_destination record {
     string address1?;
     string address2?;
@@ -6348,14 +6330,6 @@ public type OriginalFulfillmentOrder_submitted_fulfillment_order_destination rec
     string phone?;
     string province?;
     string zip?;
-};
-
-# Represents the Queries record for the operation: retrievesASpecificRefund
-public type RetrievesASpecificRefundQueries record {
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
-    @http:Query {name: "in_shop_currency"}
-    string inShopCurrency?;
 };
 
 public type SingleCharge_recurring_application_charge record {
@@ -6400,12 +6374,6 @@ public type ProvincesprovinceIdJsonBody record {
     AdminapiapiVersioncountriescountryIdprovincesprovinceIdJsonProvince province?;
 };
 
-# Represents the Queries record for the operation: receiveASingleProductImage
-public type ReceiveASingleProductImageQueries record {
-    # comma-separated list of fields to include in the response 
-    string fields?;
-};
-
 public type CreateOrderRisk_risk record {
     boolean cause_cancel?;
     decimal checkout_id?;
@@ -6419,12 +6387,32 @@ public type CreateOrderRisk_risk record {
     string 'source?;
 };
 
+# Represents the Queries record for the operation: receiveASingleProductImage
+public type ReceiveASingleProductImageQueries record {
+    # comma-separated list of fields to include in the response 
+    string fields?;
+};
+
 public type UpdateProductVariant record {
     ProductVariant variant?;
 };
 
 public type SingleCustomerAddress record {
     AbandonedCheckouts_customer_default_address customer_address?;
+};
+
+public type UpdateBlogResponse_blog record {
+    string admin_graphql_api_id?;
+    string commentable?;
+    string created_at?;
+    anydata? feedburner?;
+    anydata? feedburner_location?;
+    string 'handle?;
+    decimal id?;
+    string tags?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
 };
 
 public type CompleteCheckout_checkout record {
@@ -6483,20 +6471,6 @@ public type CompleteCheckout_checkout record {
     string updated_at?;
     anydata? user_id?;
     string web_url?;
-};
-
-public type UpdateBlogResponse_blog record {
-    string admin_graphql_api_id?;
-    string commentable?;
-    string created_at?;
-    anydata? feedburner?;
-    anydata? feedburner_location?;
-    string 'handle?;
-    decimal id?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
 };
 
 public type AdminapiapiVersionordersorderIdrefundscalculateJsonRefundRefundLineItems record {
@@ -6588,12 +6562,12 @@ public type ReopenCloseOrder_order_properties record {
     string value?;
 };
 
-public type CheckoutstokenJsonBody record {
-    AdminapiapiVersioncheckoutstokenJsonCheckout checkout?;
-};
-
 public type FulfillmentEventResponse record {
     FulfillmentEventResponse_fulfillment_event fulfillment_event?;
+};
+
+public type CheckoutstokenJsonBody record {
+    AdminapiapiVersioncheckoutstokenJsonCheckout checkout?;
 };
 
 public type ReopenCloseOrder_order_discount_applications record {
@@ -6646,16 +6620,8 @@ public type RetrievesASpecificCollectByItsIdQueries record {
     string fields?;
 };
 
-# Represents the Queries record for the operation: retrieveAListOfAllBlogs
-public type RetrieveAListOfAllBlogsQueries record {
-    # The maximum number of results to retrieve.(default: 50)(maximum: 250) 
-    string 'limit?;
-    # Filter by blog handle 
-    string 'handle?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # comma-separated list of fields to include in the response 
-    string fields?;
+public type UsageChargeResponse record {
+    UsageChargeResponse_usage_charge usage_charge?;
 };
 
 public type UpdateCountryTaxRate_country_provinces record {
@@ -6670,8 +6636,16 @@ public type UpdateCountryTaxRate_country_provinces record {
     string? tax_type?;
 };
 
-public type UsageChargeResponse record {
-    UsageChargeResponse_usage_charge usage_charge?;
+# Represents the Queries record for the operation: retrieveAListOfAllBlogs
+public type RetrieveAListOfAllBlogsQueries record {
+    # The maximum number of results to retrieve.(default: 50)(maximum: 250) 
+    string 'limit?;
+    # Filter by blog handle 
+    string 'handle?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # comma-separated list of fields to include in the response 
+    string fields?;
 };
 
 # The price object
@@ -6759,10 +6733,6 @@ public type DisputeIdDisputeEvidencesJsonBody record {
     AdminapiapiVersionshopifyPaymentsdisputesdisputeIddisputeEvidencesJsonDisputeEvidence disputeEvidence?;
 };
 
-public type CheckoutResponse record {
-    CheckoutResponse_checkout checkout?;
-};
-
 # Represents the Queries record for the operation: shopRetrieveAListOfMetafieldsFromTheResourceSEndpoint
 public type ShopRetrieveAListOfMetafieldsFromTheResourceSEndpointQueries record {
     @http:Query {name: "created_at_min"}
@@ -6791,14 +6761,18 @@ public type ShopRetrieveAListOfMetafieldsFromTheResourceSEndpointQueries record 
     string metafieldOwnerResource?;
 };
 
-public type DiscountCodesdiscountCodeIdJsonBody record {
-    @jsondata:Name {value: "discount_code"}
-    AdminapiapiVersionpriceRulespriceRuleIddiscountCodesdiscountCodeIdJsonDiscountCode discountCode?;
+public type CheckoutResponse record {
+    CheckoutResponse_checkout checkout?;
 };
 
 public type ProductListings record {
     @jsondata:Name {value: "product_listings"}
     ProductListings_product_listings[] productListings?;
+};
+
+public type DiscountCodesdiscountCodeIdJsonBody record {
+    @jsondata:Name {value: "discount_code"}
+    AdminapiapiVersionpriceRulespriceRuleIddiscountCodesdiscountCodeIdJsonDiscountCode discountCode?;
 };
 
 public type SingleTheme record {
@@ -6851,26 +6825,12 @@ public type RetrievesFulfillmentsAssociatedWithAnOrderQueries record {
     string sinceId?;
 };
 
-public type SingleDiscountCode record {
-    SingleDiscountCode_discount_code discount_code?;
-};
-
 public type SingleWebhook record {
     SubscriptionsList_webhooks webhook?;
 };
 
-public type Metafield record {
-    int id;
-    string namespace;
-    string 'key;
-    string value;
-    string? description?;
-    int owner_id;
-    string created_at;
-    string updated_at;
-    string owner_resource;
-    string 'type;
-    string admin_graphql_api_id;
+public type SingleDiscountCode record {
+    SingleDiscountCode_discount_code discount_code?;
 };
 
 public type FulfillmentList_fulfillments record {
@@ -6891,6 +6851,20 @@ public type FulfillmentList_fulfillments record {
     string tracking_url?;
     string[] tracking_urls?;
     string updated_at?;
+};
+
+public type Metafield record {
+    int id;
+    string namespace;
+    string 'key;
+    string value;
+    string? description?;
+    int owner_id;
+    string created_at;
+    string updated_at;
+    string owner_resource;
+    string 'type;
+    string admin_graphql_api_id;
 };
 
 public type OrderResponse_order_customer_default_address record {
@@ -6954,6 +6928,14 @@ public type ReportList record {
     SingleReportResponse_report[] reports?;
 };
 
+public type CreateCollection_custom_collection_image record {
+    string alt?;
+    string created_at?;
+    decimal height?;
+    string src?;
+    decimal width?;
+};
+
 public type SingleDraftOrder_draft_order_line_items record {
     string admin_graphql_api_id?;
     anydata? applied_discount?;
@@ -6974,14 +6956,6 @@ public type SingleDraftOrder_draft_order_line_items record {
     decimal? variant_id?;
     string? variant_title?;
     anydata? vendor?;
-};
-
-public type CreateCollection_custom_collection_image record {
-    string alt?;
-    string created_at?;
-    decimal height?;
-    string src?;
-    decimal width?;
 };
 
 public type SingleFulfillment record {
@@ -7040,13 +7014,13 @@ public type AvailableShippingRates_shipping_rates record {
     string title?;
 };
 
-public type AdminapiapiVersioncountriescountryIdJsonCountry record {
-    decimal tax?;
+public type AdminapiapiVersioncustomerscustomerIdaddressesaddressIdJsonAddress record {
+    string zip?;
     decimal id?;
 };
 
-public type AdminapiapiVersioncustomerscustomerIdaddressesaddressIdJsonAddress record {
-    string zip?;
+public type AdminapiapiVersioncountriescountryIdJsonCountry record {
+    decimal tax?;
     decimal id?;
 };
 
@@ -7088,20 +7062,6 @@ public type Blogs_blogs record {
     string updated_at?;
 };
 
-public type PagesListResponse_pages record {
-    string admin_graphql_api_id?;
-    string author?;
-    string? body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    string published_at?;
-    decimal shop_id?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
 public type UpdateProduct_product_variants record {
     string admin_graphql_api_id?;
     string barcode?;
@@ -7130,6 +7090,20 @@ public type UpdateProduct_product_variants record {
     string updated_at?;
     decimal weight?;
     string weight_unit?;
+};
+
+public type PagesListResponse_pages record {
+    string admin_graphql_api_id?;
+    string author?;
+    string? body_html?;
+    string created_at?;
+    string 'handle?;
+    decimal id?;
+    string published_at?;
+    decimal shop_id?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
 };
 
 public type ReopenCloseOrder_order_shipping_lines record {
@@ -7173,6 +7147,7 @@ public type ConnectionConfig record {|
     ClientHttp1Settings http1Settings?;
     # Configurations related to HTTP/2 protocol
     http:ClientHttp2Settings http2Settings?;
+    http:FollowRedirects followRedirects?;
     # The maximum time to wait (in seconds) for a response before closing the connection
     decimal timeout = 60;
     # The choice of setting `forwarded`/`x-forwarded` header
@@ -7198,7 +7173,6 @@ public type ConnectionConfig record {|
     # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
-    http:FollowRedirects followRedirects?;
 |};
 
 public type Customer_email_marketing_consent record {
@@ -7207,12 +7181,16 @@ public type Customer_email_marketing_consent record {
     string consent_updated_at?;
 };
 
+public type UpdateWebhook record {
+    CreateWebhook_webhook webhook?;
+};
+
 public type SingleCarrierService record {
     SingleCarrierService_carrier_service carrier_service?;
 };
 
-public type UpdateWebhook record {
-    CreateWebhook_webhook webhook?;
+public type OwnerResourceMetafieldsJsonBody record {
+    AdminapiapiVersionownerIdownerResourcemetafieldsJsonMetafield metafield?;
 };
 
 public type AcceptFulfillmentResponse_fulfillment_order_line_items record {
@@ -7224,10 +7202,6 @@ public type AcceptFulfillmentResponse_fulfillment_order_line_items record {
     decimal quantity?;
     decimal shop_id?;
     decimal? variant_id?;
-};
-
-public type OwnerResourceMetafieldsJsonBody record {
-    AdminapiapiVersionownerIdownerResourcemetafieldsJsonMetafield metafield?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfPages
@@ -7258,16 +7232,16 @@ public type RetrievesAListOfPagesQueries record {
     string fields?;
 };
 
-public type MarketingEvent record {
-    MarketingEvent_marketing_event marketing_event?;
-};
-
 public type SingleCollection_collection_image record {
     string alt?;
     string created_at?;
     decimal height?;
     string src?;
     decimal width?;
+};
+
+public type MarketingEvent record {
+    MarketingEvent_marketing_event marketing_event?;
 };
 
 public type DraftOrdersdraftOrderIdJsonBody record {
@@ -7372,23 +7346,18 @@ public type SingleOrderRisk_risk record {
     string 'source?;
 };
 
-public type CompleteCheckoutResponse record {
-    CompleteCheckoutResponse_checkout checkout?;
-};
-
 public type CollectionListingResponse_image record {
     string created_at?;
     string src?;
 };
 
+public type CompleteCheckoutResponse record {
+    CompleteCheckoutResponse_checkout checkout?;
+};
+
 public type AdminapiapiVersiondraftOrdersdraftOrderIdJsonDraftOrder record {
     string? note?;
     decimal id?;
-};
-
-public type ProductIdAppResponse record {
-    @jsondata:Name {value: "product_ids"}
-    decimal[] productIds?;
 };
 
 # Represents the Queries record for the operation: searchesForCustomersThatMatchASuppliedQuery
@@ -7401,6 +7370,11 @@ public type SearchesForCustomersThatMatchASuppliedQueryQueries record {
     string fields?;
     # Set the field and direction by which to order results.(default: last\_order\_date DESC) 
     string 'order?;
+};
+
+public type ProductIdAppResponse record {
+    @jsondata:Name {value: "product_ids"}
+    decimal[] productIds?;
 };
 
 public type TenderTransactions_payment_details record {
@@ -7445,17 +7419,17 @@ public type CreateShopFeedback_resource_feedback record {
     string updated_at?;
 };
 
-public type GiftCardIdDisableJsonBody record {
-    @jsondata:Name {value: "gift_card"}
-    AdminapiapiVersiongiftCardsgiftCardIddisableJsonGiftCard giftCard?;
+public type ModifyProductVariant record {
+    ModifyProductVariant_variant variant?;
 };
 
 public type UpdateCountryTaxRate record {
     UpdateCountryTaxRate_country country?;
 };
 
-public type ModifyProductVariant record {
-    ModifyProductVariant_variant variant?;
+public type GiftCardIdDisableJsonBody record {
+    @jsondata:Name {value: "gift_card"}
+    AdminapiapiVersiongiftCardsgiftCardIddisableJsonGiftCard giftCard?;
 };
 
 public type MobilePlatformApplicationResponse_mobile_platform_application record {
@@ -7684,11 +7658,6 @@ public type RetrievesASingleCustomCollectionQueries record {
     string fields?;
 };
 
-# The Order object to be created.
-public type CreateOrder record {
-    ReopenCloseOrder_order 'order?;
-};
-
 public type ProductListingAppResponse_product_listing_options record {
     decimal id?;
     string name?;
@@ -7697,11 +7666,9 @@ public type ProductListingAppResponse_product_listing_options record {
     string[] values?;
 };
 
-public type MoveFulfillmentOrderResponse record {
-    MoveFulfillmentOrderResponse_original_fulfillment_order original_fulfillment_order?;
-    @jsondata:Name {value: "remaining_fulfillment_order"}
-    anydata? remainingFulfillmentOrder?;
-    MoveFulfillmentOrderResponse_moved_fulfillment_order moved_fulfillment_order?;
+# The Order object to be created.
+public type CreateOrder record {
+    ReopenCloseOrder_order 'order?;
 };
 
 public type RecurringApplicationCharges_recurring_application_charges record {
@@ -7723,8 +7690,20 @@ public type RecurringApplicationCharges_recurring_application_charges record {
     string updated_at?;
 };
 
+public type MoveFulfillmentOrderResponse record {
+    MoveFulfillmentOrderResponse_original_fulfillment_order original_fulfillment_order?;
+    @jsondata:Name {value: "remaining_fulfillment_order"}
+    anydata? remainingFulfillmentOrder?;
+    MoveFulfillmentOrderResponse_moved_fulfillment_order moved_fulfillment_order?;
+};
+
 public type InventoryLevel record {
     InventoryLevel_inventory_level inventory_level?;
+};
+
+public type PriceRulespriceRuleIdJsonBody record {
+    @jsondata:Name {value: "price_rule"}
+    AdminapiapiVersionpriceRulespriceRuleIdJsonPriceRule priceRule?;
 };
 
 public type Disputes_disputes record {
@@ -7740,11 +7719,6 @@ public type Disputes_disputes record {
     string reason?;
     string status?;
     string 'type?;
-};
-
-public type PriceRulespriceRuleIdJsonBody record {
-    @jsondata:Name {value: "price_rule"}
-    AdminapiapiVersionpriceRulespriceRuleIdJsonPriceRule priceRule?;
 };
 
 public type CarrierServiceList record {
@@ -7816,13 +7790,13 @@ public type RetrievesAListOfCustomersQueries record {
     string sinceId?;
 };
 
-public type OriginalFulfillmentOrder_submitted_fulfillment_order_request_options record {
-    boolean notify_customer?;
-};
-
 public type CollectionList record {
     @jsondata:Name {value: "custom_collections"}
     CollectionList_custom_collections[] customCollections?;
+};
+
+public type OriginalFulfillmentOrder_submitted_fulfillment_order_request_options record {
+    boolean notify_customer?;
 };
 
 public type CollectionListingResponse_collection_listings record {
@@ -7845,6 +7819,12 @@ public type ApiVersionPagesJsonBody record {
     AdminapiapiVersionpagesJsonPage page?;
 };
 
+public type AdminapiapiVersionsmartCollectionsJsonSmartCollection record {
+    AdminapiapiVersionsmartCollectionsJsonSmartCollectionRules[] rules?;
+    boolean published?;
+    string title?;
+};
+
 # Represents the Queries record for the operation: retrievesAListOfProvincesForACountry
 public type RetrievesAListOfProvincesForACountryQueries record {
     @http:Query {name: "since_id"}
@@ -7853,35 +7833,21 @@ public type RetrievesAListOfProvincesForACountryQueries record {
     string fields?;
 };
 
-public type AdminapiapiVersionsmartCollectionsJsonSmartCollection record {
-    AdminapiapiVersionsmartCollectionsJsonSmartCollectionRules[] rules?;
-    boolean published?;
-    string title?;
-};
-
 public type InventoryItem record {
     InventoryItem_inventory_item inventory_item?;
-};
-
-public type UpdateDiscountCode record {
-    UpdateDiscountCode_discount_code discount_code?;
 };
 
 public type SingleProduct record {
     SingleProduct_product product?;
 };
 
+public type UpdateDiscountCode record {
+    UpdateDiscountCode_discount_code discount_code?;
+};
+
 public type SmartCollectionssmartCollectionIdJsonBody record {
     @jsondata:Name {value: "smart_collection"}
     AdminapiapiVersionsmartCollectionssmartCollectionIdJsonSmartCollection smartCollection?;
-};
-
-public type CreateProductResponse_product_options record {
-    decimal id?;
-    string name?;
-    decimal position?;
-    decimal? product_id?;
-    string[] values?;
 };
 
 public type AbandonedCheckouts_line_items record {
@@ -7913,6 +7879,14 @@ public type AbandonedCheckouts_line_items record {
     anydata? variant_price?;
     string? variant_title?;
     string vendor?;
+};
+
+public type CreateProductResponse_product_options record {
+    decimal id?;
+    string name?;
+    decimal position?;
+    decimal? product_id?;
+    string[] values?;
 };
 
 public type ApplicationChargeResponse_recurring_application_charge record {
@@ -8095,21 +8069,21 @@ public type SinglePaymentResponse_payment_checkout_credit_card record {
     string last_name?;
 };
 
+public type AdminapiapiVersionpriceRulespriceRuleIddiscountCodesJsonDiscountCode record {
+    string code?;
+};
+
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfillmentOrder record {
     @jsondata:Name {value: "new_location_id"}
     decimal newLocationId?;
-};
-
-public type UpdateSmartCollection record {
-    UpdateSmartCollection_smart_collection smart_collection?;
 };
 
 public type SingleFulfillmentOrder record {
     SingleFulfillmentOrder_fulfillment_order fulfillment_order?;
 };
 
-public type AdminapiapiVersionpriceRulespriceRuleIddiscountCodesJsonDiscountCode record {
-    string code?;
+public type UpdateSmartCollection record {
+    UpdateSmartCollection_smart_collection smart_collection?;
 };
 
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestacceptJsonCancellationRequest record {
@@ -8212,30 +8186,6 @@ public type CreateDraftOrder_draft_order record {
     string updated_at?;
 };
 
-# The order risk for an order.
-public type OrderRisk record {
-    # Whether this order risk is severe enough to force the cancellation of the order. If true, then this order risk is included in the Order canceled message that's shown on the details page of the canceled order.
-    boolean cause_cancel?;
-    # The ID of the checkout that the order risk belongs to.
-    int checkout_id?;
-    # Whether the order risk is displayed on the order details page in the Shopify admin. If false, then this order risk is ignored when Shopify determines your app's overall risk level for the order.
-    boolean display?;
-    # A unique numeric identifier for the order risk.
-    int id?;
-    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
-    string merchant_message?;
-    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
-    string message?;
-    # The ID of the order that the order risk belongs to.
-    int order_id?;
-    # The recommended action given to the merchant. Valid values are, `cancel` - There is a high level of risk that this order is fraudulent. The merchant should cancel the order. `investigate` - There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. `accept` - There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
-    "cancel"|"investigate"|"accept" recommendation?;
-    # A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent.
-    string score?;
-    # The source of the order risk.
-    string 'source?;
-};
-
 # Represents the Queries record for the operation: retrievesACountOfProducts
 public type RetrievesACountOfProductsQueries record {
     @http:Query {name: "collection_id"}
@@ -8258,6 +8208,30 @@ public type RetrievesACountOfProductsQueries record {
     string publishedAtMax?;
     @http:Query {name: "published_status"}
     string publishedStatus?;
+};
+
+# The order risk for an order.
+public type OrderRisk record {
+    # Whether this order risk is severe enough to force the cancellation of the order. If true, then this order risk is included in the Order canceled message that's shown on the details page of the canceled order.
+    boolean cause_cancel?;
+    # The ID of the checkout that the order risk belongs to.
+    int checkout_id?;
+    # Whether the order risk is displayed on the order details page in the Shopify admin. If false, then this order risk is ignored when Shopify determines your app's overall risk level for the order.
+    boolean display?;
+    # A unique numeric identifier for the order risk.
+    int id?;
+    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
+    string merchant_message?;
+    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
+    string message?;
+    # The ID of the order that the order risk belongs to.
+    int order_id?;
+    # The recommended action given to the merchant. Valid values are, `cancel` - There is a high level of risk that this order is fraudulent. The merchant should cancel the order. `investigate` - There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. `accept` - There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
+    "cancel"|"investigate"|"accept" recommendation?;
+    # A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent.
+    string score?;
+    # The source of the order risk.
+    string 'source?;
 };
 
 public type AccountCurrentBalance record {
@@ -8290,6 +8264,12 @@ public type SingleProductImage record {
     SingleProductImage_image image?;
 };
 
+public type AbandonedCheckouts_tax_lines record {
+    string price?;
+    decimal rate?;
+    string title?;
+};
+
 public type SingleLocation_location record {
     boolean active?;
     anydata? address1?;
@@ -8310,10 +8290,22 @@ public type SingleLocation_location record {
     anydata? zip?;
 };
 
-public type AbandonedCheckouts_tax_lines record {
-    string price?;
-    decimal rate?;
-    string title?;
+public type OrderResponse_order_billing_address record {
+    string address1?;
+    anydata? address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string first_name?;
+    string last_name?;
+    anydata? latitude?;
+    anydata? longitude?;
+    string name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfSmartCollections
@@ -8332,24 +8324,6 @@ public type RetrievesACountOfSmartCollectionsQueries record {
     string publishedStatus?;
     # Show smart collections with the specified title. 
     string title?;
-};
-
-public type OrderResponse_order_billing_address record {
-    string address1?;
-    anydata? address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string first_name?;
-    string last_name?;
-    anydata? latitude?;
-    anydata? longitude?;
-    string name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
 };
 
 public type ModifyProductImage_image record {
@@ -8408,16 +8382,16 @@ public type FulfillmentOrder_fulfillment_order_line_items record {
     decimal? variant_id?;
 };
 
-# Represents the Queries record for the operation: shopRetrieveASpecificMetafield
-public type ShopRetrieveASpecificMetafieldQueries record {
-    # comma-separated list of fields to include in the response 
-    string fields?;
-};
-
 public type DiscountCodeList_discount_codes record {
     string code?;
     record {} errors?;
     anydata? id?;
+};
+
+# Represents the Queries record for the operation: shopRetrieveASpecificMetafield
+public type ShopRetrieveASpecificMetafieldQueries record {
+    # comma-separated list of fields to include in the response 
+    string fields?;
 };
 
 public type ReopenCloseOrder_order_line_items record {
@@ -8487,6 +8461,14 @@ public type AssetsList_asset record {
     string value?;
 };
 
+public type ReportResponse_report record {
+    string category?;
+    decimal id?;
+    string name?;
+    string shopify_ql?;
+    string updated_at?;
+};
+
 public type CompleteCheckoutResponse_checkout record {
     anydata? applied_discount?;
     CompleteCheckout_checkout_billing_address? billing_address?;
@@ -8543,14 +8525,6 @@ public type CompleteCheckoutResponse_checkout record {
     string updated_at?;
     anydata? user_id?;
     string web_url?;
-};
-
-public type ReportResponse_report record {
-    string category?;
-    decimal id?;
-    string name?;
-    string shopify_ql?;
-    string updated_at?;
 };
 
 public type PriceRuleIdBatchJsonBody record {
@@ -8684,14 +8658,6 @@ public type CompleteDraftOrder_draft_order record {
     string updated_at?;
 };
 
-public type InvoiceResponse_draft_order_invoice record {
-    string[] bcc?;
-    string custom_message?;
-    string 'from?;
-    string subject?;
-    string to?;
-};
-
 public type CollectResponse_collect record {
     decimal collection_id?;
     anydata? created_at?;
@@ -8700,6 +8666,14 @@ public type CollectResponse_collect record {
     decimal? product_id?;
     string sort_value?;
     anydata? updated_at?;
+};
+
+public type InvoiceResponse_draft_order_invoice record {
+    string[] bcc?;
+    string custom_message?;
+    string 'from?;
+    string subject?;
+    string to?;
 };
 
 public type PagespageIdJsonBody record {
@@ -8758,18 +8732,6 @@ public type SingleBlog_blog record {
     string updated_at?;
 };
 
-public type SingleProvince_province record {
-    string code?;
-    decimal country_id?;
-    decimal id?;
-    string name?;
-    anydata? shipping_zone_id?;
-    decimal tax?;
-    string tax_name?;
-    decimal tax_percentage?;
-    string tax_type?;
-};
-
 public type TransactionObject_transaction record {
     string admin_graphql_api_id?;
     string amount?;
@@ -8794,6 +8756,18 @@ public type TransactionObject_transaction record {
     anydata? user_id?;
 };
 
+public type SingleProvince_province record {
+    string code?;
+    decimal country_id?;
+    decimal id?;
+    string name?;
+    anydata? shipping_zone_id?;
+    decimal tax?;
+    string tax_name?;
+    decimal tax_percentage?;
+    string tax_type?;
+};
+
 public type DraftOrders record {
     @jsondata:Name {value: "draft_orders"}
     DraftOrders_draft_orders[]? draftOrders?;
@@ -8813,12 +8787,6 @@ public type ApiVersionCustomCollectionsJsonBody record {
     AdminapiapiVersioncustomCollectionsJsonCustomCollection customCollection?;
 };
 
-public type CreateDraftOrder_draft_order_tax_lines record {
-    string price?;
-    decimal rate?;
-    string title?;
-};
-
 public type PriceRule record {
     PriceRule_price_rule price_rule?;
 };
@@ -8827,6 +8795,12 @@ public type ProductListingAppResponse_product_listing_option_values record {
     string name?;
     decimal option_id?;
     string value?;
+};
+
+public type CreateDraftOrder_draft_order_tax_lines record {
+    string price?;
+    decimal rate?;
+    string title?;
 };
 
 public type StorefrontAccessTokens_storefront_access_tokens record {
@@ -8868,8 +8842,17 @@ public type AdminapiapiVersioncollectionListingscollectionListingIdJsonCollectio
     decimal collectionId?;
 };
 
-public type CreateFulfillmentService record {
-    CreateFulfillmentService_fulfillment_service fulfillment_service?;
+public type SubscribeOrderCreation_webhook record {
+    string address?;
+    string api_version?;
+    string created_at?;
+    anydata[] fields?;
+    string format?;
+    decimal id?;
+    anydata[] metafield_namespaces?;
+    anydata[] private_metafield_namespaces?;
+    string topic?;
+    string updated_at?;
 };
 
 public type DraftOrders_line_items record {
@@ -8894,17 +8877,8 @@ public type DraftOrders_line_items record {
     anydata? vendor?;
 };
 
-public type SubscribeOrderCreation_webhook record {
-    string address?;
-    string api_version?;
-    string created_at?;
-    anydata[] fields?;
-    string format?;
-    decimal id?;
-    anydata[] metafield_namespaces?;
-    anydata[] private_metafield_namespaces?;
-    string topic?;
-    string updated_at?;
+public type CreateFulfillmentService record {
+    CreateFulfillmentService_fulfillment_service fulfillment_service?;
 };
 
 public type UpdateScriptTagResponse record {
@@ -8950,6 +8924,10 @@ public type ReopenCloseOrder_order_price_set record {
     ModifyProductVariant_variant_price shop_money?;
 };
 
+public type SingleOrderResponse record {
+    SingleOrderResponse_order 'order?;
+};
+
 public type CreateBlogResponse_blog record {
     string admin_graphql_api_id?;
     string commentable?;
@@ -8964,10 +8942,6 @@ public type CreateBlogResponse_blog record {
     string updated_at?;
 };
 
-public type SingleOrderResponse record {
-    SingleOrderResponse_order 'order?;
-};
-
 public type DeliveryZone record {
     int id?;
     string name?;
@@ -8976,12 +8950,6 @@ public type DeliveryZone record {
     string adminGraphqlApiId?;
     Country[] countries?;
     PriceBasedShippingRate[] priceBasedShippingRates?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfLocationsThatAFulfillmentOrderCanPotentiallyMoveTo
-public type RetrievesAListOfLocationsThatAFulfillmentOrderCanPotentiallyMoveToQueries record {
-    @http:Query {name: "fulfillment_order_id"}
-    string fulfillmentOrderId?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfEvents
@@ -9213,6 +9181,11 @@ public type UpdateProvinceResponse record {
     UpdateProvinceResponse_province province?;
 };
 
+public type FulfillmentServicesfulfillmentServiceIdJsonBody record {
+    @jsondata:Name {value: "fulfillment_service"}
+    AdminapiapiVersionfulfillmentServicesfulfillmentServiceIdJsonFulfillmentService fulfillmentService?;
+};
+
 public type UpdateCarrierService_carrier_service record {
     boolean active?;
     string admin_graphql_api_id?;
@@ -9240,11 +9213,6 @@ public type RetrievesAListOfEventsQueries record {
     string sinceId?;
     # Show only certain fields, specified by a comma-separated list of field names. 
     string fields?;
-};
-
-public type FulfillmentServicesfulfillmentServiceIdJsonBody record {
-    @jsondata:Name {value: "fulfillment_service"}
-    AdminapiapiVersionfulfillmentServicesfulfillmentServiceIdJsonFulfillmentService fulfillmentService?;
 };
 
 public type SingleDraftOrder record {
@@ -9296,21 +9264,6 @@ public type SingleOrderRisk record {
     SingleOrderRisk_risk risk?;
 };
 
-public type AdminapiapiVersioncheckoutstokenJsonCheckoutShippingAddress record {
-    string zip?;
-    @jsondata:Name {value: "country_code"}
-    string countryCode?;
-    string city?;
-    string phone?;
-    string address1?;
-    @jsondata:Name {value: "last_name"}
-    string lastName?;
-    @jsondata:Name {value: "province_code"}
-    string provinceCode?;
-    @jsondata:Name {value: "first_name"}
-    string firstName?;
-};
-
 # Represents the Queries record for the operation: retrievesAListOfAbandonedCheckouts
 public type RetrievesAListOfAbandonedCheckoutsQueries record {
     @http:Query {name: "created_at_min"}
@@ -9327,6 +9280,21 @@ public type RetrievesAListOfAbandonedCheckoutsQueries record {
     string sinceId?;
     # Show only checkouts with a given status.(default: open) 
     string status?;
+};
+
+public type AdminapiapiVersioncheckoutstokenJsonCheckoutShippingAddress record {
+    string zip?;
+    @jsondata:Name {value: "country_code"}
+    string countryCode?;
+    string city?;
+    string phone?;
+    string address1?;
+    @jsondata:Name {value: "last_name"}
+    string lastName?;
+    @jsondata:Name {value: "province_code"}
+    string provinceCode?;
+    @jsondata:Name {value: "first_name"}
+    string firstName?;
 };
 
 public type ApiVersionFulfillmentServicesJsonBody record {
@@ -9483,11 +9451,6 @@ public type FulfillmentEvents_fulfillment_events record {
     anydata? zip?;
 };
 
-public type AvailableShippingRates record {
-    @jsondata:Name {value: "shipping_rates"}
-    AvailableShippingRates_shipping_rates[] shippingRates?;
-};
-
 public type RestoreRemoveComment record {
     @jsondata:Name {value: "blog_id"}
     decimal blogId?;
@@ -9511,6 +9474,15 @@ public type RestoreRemoveComment record {
     string status?;
 };
 
+public type AvailableShippingRates record {
+    @jsondata:Name {value: "shipping_rates"}
+    AvailableShippingRates_shipping_rates[] shippingRates?;
+};
+
+public type SubscriptionsList record {
+    SubscriptionsList_webhooks[] webhooks?;
+};
+
 public type CancelFulfillment_fulfillment record {
     string admin_graphql_api_id?;
     string created_at?;
@@ -9529,10 +9501,6 @@ public type CancelFulfillment_fulfillment record {
     string tracking_url?;
     string[] tracking_urls?;
     string updated_at?;
-};
-
-public type SubscriptionsList record {
-    SubscriptionsList_webhooks[] webhooks?;
 };
 
 public type UpdatePageResponse_page record {
@@ -9592,12 +9560,12 @@ public type ApiVersionResourceFeedbackJsonBody record {
     AdminapiapiVersionresourceFeedbackJsonResourceFeedback resourceFeedback?;
 };
 
-public type EventsList record {
-    anydata[] events?;
-};
-
 public type UpdateCheckoutResponse record {
     UpdateCheckoutResponse_checkout checkout?;
+};
+
+public type EventsList record {
+    anydata[] events?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfTransactions
