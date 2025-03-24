@@ -21,6 +21,8 @@ configurable boolean isTestOnLiveServer = os:getEnv("IS_TEST_ON_LIVE_SERVER") ==
 configurable string apiVersion = "2025";
 configurable string accessToken = "mock-access-token";
 configurable string serviceUrl = "http://localhost:8080/shopify";
+configurable decimal draftOrderId = 12345.0;
+configurable string productId = "prodcut-id";
 
 Client shopify = check new (
     accessToken,
@@ -38,7 +40,12 @@ Client shopify = check new (
 }
 function testGetAccessScopes() returns error? {
     AccessScopes accessScopes = check shopify->getAListOfAccessScopes();
-    test:assertNotEquals(accessScopes.accessScopes, ());
+    AccessScopes_access_scopes[]? scopes = accessScopes.accessScopes;
+    if scopes !is () {
+        test:assertTrue(scopes.length() > 0);
+    } else {
+        test:assertFail("No access scopes were found.");
+    }
 }
 
 @test:Config {
@@ -46,7 +53,12 @@ function testGetAccessScopes() returns error? {
 }
 function testGetCustomerLists() returns error? {
     Customers customers = check shopify->retrievesAListOfCustomers();
-    test:assertNotEquals(customers.customers, ());
+    Customer[]? customerList = customers.customers;
+    if customerList !is () {
+        test:assertTrue(customerList.length() > 0);
+    } else {
+        test:assertFail("No customers were found.");
+    }
 }
 
 @test:Config {
@@ -55,13 +67,18 @@ function testGetCustomerLists() returns error? {
 function testCreateCustomer() returns error? {
     CreateCustomer payload = {
         customer: {
-            first_name: "Steve",
-            last_name: "Lastnameson",
-            email: "steve.lastnameson@example.com"
+            first_name: "Sung",
+            last_name: "Jin-woo",
+            email: "sung@solo.leveling.com"
         }
     };
     CustomerResponse result = check shopify->createsACustomer(payload);
-    test:assertNotEquals(result.customer, ());
+    Customer? customer = result.customer;
+    if customer !is () {
+        test:assertEquals(customer?.email, payload.customer?.email);
+    } else {
+        test:assertFail("No customer response is found.");
+    }
 }
 
 @test:Config {
@@ -69,7 +86,12 @@ function testCreateCustomer() returns error? {
 }
 function testGetEventLists() returns error? {
     EventsList events = check shopify->retrievesAListOfEvents();
-    test:assertNotEquals(events.events, ());
+    anydata[]? eventsResult = events.events;
+    if eventsResult !is () {
+        test:assertTrue(eventsResult.length() > 0);
+    } else {
+        test:assertFail("No events were found.");
+    }
 }
 
 @test:Config {
@@ -77,7 +99,12 @@ function testGetEventLists() returns error? {
 }
 function testGiftCardList() returns error? {
     GiftCardsList giftCardList = check shopify->retrievesAListOfGiftCards();
-    test:assertNotEquals(giftCardList.giftCards, ());
+    GiftCardsList_gift_cards[]? giftCards = giftCardList.giftCards;
+    if giftCards !is () {
+        test:assertTrue(giftCards.length() > 0);
+    } else {
+        test:assertFail("No gift cards were found.");
+    }
 }
 
 @test:Config {
@@ -85,7 +112,12 @@ function testGiftCardList() returns error? {
 }
 function testGetListOfLocations() returns error? {
     LocationList locationList = check shopify->retrievesAListOfLocations();
-    test:assertNotEquals(locationList.locations, ());
+    LocationList_locations[]? locations = locationList.locations;
+    if locations !is () {
+        test:assertTrue(locations.length() > 0);
+    } else {
+        test:assertFail("No locations were found.");
+    }
 }
 
 @test:Config {
@@ -111,16 +143,20 @@ function testGetACountOfProducts() returns error? {
 }
 function testGetListOfDraftOrders() returns error? {
     DraftOrders draftOrders = check shopify->retrievesAListOfDraftOrders();
-    test:assertNotEquals(draftOrders?.draftOrders, ());
+    DraftOrders_draft_orders[]? orders = draftOrders?.draftOrders;
+    if orders !is () {
+        test:assertTrue(orders.length() > 0);
+    } else {
+        test:assertFail("No orders were found.");
+    }
 }
 
 @test:Config {
     groups: ["live_tests", "mock_tests"]
 }
 function testGetDraftOrder() returns error? {
-    string draftOrderId = "1179937177905";
-    SingleDraftOrder draftOrder = check shopify->receiveASingleDraftorder(draftOrderId);
-    test:assertNotEquals(draftOrder.draft_order, ());
+    SingleDraftOrder draftOrder = check shopify->receiveASingleDraftorder(draftOrderId.toString());
+    test:assertEquals(draftOrder.draft_order?.id, draftOrderId);
 }
 
 @test:Config {
@@ -137,7 +173,12 @@ function testGetCountOfAllDraftOrders() returns error? {
 }
 function testGetCountriesList() returns error? {
     CountriesList countries = check shopify->receiveAListOfAllCountries();
-    test:assertNotEquals(countries.countries, ());
+    CountriesList_countries[]? countriesResult = countries.countries;
+    if countriesResult !is () {
+        test:assertTrue(countriesResult.length() > 0);
+    } else {
+        test:assertFail("No countries were found.");
+    }
 }
 
 @test:Config {
@@ -145,7 +186,7 @@ function testGetCountriesList() returns error? {
 }
 function testGetCountOfCountries() returns error? {
     EventsCount countryCount = check shopify->retrievesACountOfCountries();
-    test:assertNotEquals(countryCount.count, 0);
+    test:assertTrue(countryCount.count == <decimal>1);
 }
 
 @test:Config {
@@ -153,7 +194,12 @@ function testGetCountOfCountries() returns error? {
 }
 function testGetListOfAllShippingZones() returns error? {
     ShippingZonesList shippingZones = check shopify->receiveAListOfAllShippingzones();
-    test:assertNotEquals(shippingZones.shipping_zones, ());
+    DeliveryZone[]? shippingZonesResult = shippingZones.shipping_zones;
+    if shippingZonesResult !is () {
+        test:assertTrue(shippingZonesResult.length() > 0);
+    } else {
+        test:assertFail("No shipping zones were found.");
+    }
 }
 
 @test:Config {
@@ -161,7 +207,12 @@ function testGetListOfAllShippingZones() returns error? {
 }
 function testGetListOfPriceRules() returns error? {
     PriceRules priceRules = check shopify->retrievesAListOfPriceRules();
-    test:assertNotEquals(priceRules.priceRules, ());
+    SinglePriceRule_price_rule[]? priceRulesResult = priceRules.priceRules;
+    if priceRulesResult !is () {
+        test:assertTrue(priceRulesResult.length() > 0);
+    } else {
+        test:assertFail("No price rules were found.");
+    }
 }
 
 @test:Config {
@@ -185,7 +236,12 @@ function testGetListOfAllOrders() returns error? {
         }
     };
     GiftCard giftCard = check shopify->createsAGiftCard(payload);
-    test:assertNotEquals(giftCard.gift_card, ());
+    GiftCard_gift_card? giftCardResult = giftCard.gift_card;
+    if giftCardResult !is () {
+        test:assertEquals(giftCardResult?.initial_value, payload.giftCard?.initialValue);
+    } else {
+        test:assertFail("No gift cards were found.");
+    }
 }
 
 @test:Config {
@@ -193,7 +249,7 @@ function testGetListOfAllOrders() returns error? {
 }
 function testGetCountOfGiftCards() returns error? {
     EventsCount count = check shopify->retrievesACountOfGiftCards();
-    test:assertNotEquals(count, ());
+    test:assertTrue(count?.count > <decimal>0);
 }
 
 @test:Config {
@@ -201,7 +257,12 @@ function testGetCountOfGiftCards() returns error? {
 }
 function testGetListOfComments() returns error? {
     ArticleComments comments = check shopify->retrievesAListOfComments();
-    test:assertNotEquals(comments.comments, ());
+    ArticleComments_comments[]? commentsResult = comments.comments;
+    if commentsResult !is () {
+        test:assertTrue(commentsResult.length() > 0);
+    } else {
+        test:assertFail("No comments were found.");
+    }
 }
 
 @test:Config {
@@ -209,14 +270,18 @@ function testGetListOfComments() returns error? {
 }
 function testGetListOfSmartCollections() returns error? {
     SmartCollectionList smartCollections = check shopify->retrievesAListOfSmartCollections();
-    test:assertNotEquals(smartCollections.smartCollections, ());
+    SmartCollectionList_smart_collections[]? smartCollectionsResult = smartCollections.smartCollections;
+    if smartCollectionsResult !is () {
+        test:assertTrue(smartCollectionsResult.length() > 0);
+    } else {
+        test:assertFail("No smart collections were found.");
+    }
 }
 
 @test:Config {
     groups: ["live_tests", "mock_tests"]
 }
 function testGetCountOfAllProductImages() returns error? {
-    string productId = "prodcut-id";
     decimal count = 1.0;
     BlogsCount productImageCount = check shopify->receiveACountOfAllProductImages(productId);
     test:assertEquals(productImageCount.count, count);

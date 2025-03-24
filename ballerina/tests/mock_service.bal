@@ -173,7 +173,9 @@ service /shopify on new http:Listener(8080) {
 
     resource function get admin/api/'2025/draft_orders\.json() returns DraftOrders {
         DraftOrders orders = {
-            draftOrders: []
+            draftOrders: [{
+                email: "" 
+            }]
         };
         return orders;
     }
@@ -185,10 +187,10 @@ service /shopify on new http:Listener(8080) {
         return count;
     }
 
-    resource function get admin/api/'2025/draft_orders/[string draftOrderId]() returns SingleDraftOrder {
+    resource function get admin/api/'2025/draft_orders/[string draftOrderId]() returns SingleDraftOrder|error {
         SingleDraftOrder draftOrder = {
             draft_order: {
-                id: 1179937177905,
+                id: 12345,
                 name: "Draft #1",
                 email: ""
             }
@@ -272,7 +274,9 @@ service /shopify on new http:Listener(8080) {
 
     resource function post admin/api/'2025/gift_cards\.json(@http:Payload json payload) returns GiftCard|error {
         return {
-            gift_card: check payload.cloneWithType(GiftCard_gift_card)
+            gift_card: {
+                initial_value: "100.0"
+            }
         };
     }
 
