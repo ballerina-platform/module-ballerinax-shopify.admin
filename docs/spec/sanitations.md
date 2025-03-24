@@ -33,15 +33,6 @@ These changes are done in order to improve the overall usability, and as workaro
                         }
                     }
                 }
-            },
-            "422" : {
-                "content" : {
-                    "application/json" : {
-                        "schema" : {
-                            "$ref" : "#/components/schemas/InlineResponse4223"
-                        }
-                    }
-                }
             }
         }
     ```
@@ -90,6 +81,49 @@ These changes are done in order to improve the overall usability, and as workaro
             "operationId" : "retrievesAListOfCustomers"
         }
     ```
+
+4. Include access token in client initialization
+
+    Previously, the client was generated without requiring an access token as a parameter, even though it was mandatory for every API call. Therefore users had to manually provide it in each request.
+
+    After updating the spec to define the access token under the `securitySchemes` field and removing redundant header definitions from all APIs, the token is internally added as header value for each request. Now users only need to provide the access token during client initialization.
+
+    **Improvements**:
+
+    ```json
+    "securitySchemes": {
+        "developer_hapikey": {
+            "type": "apiKey",
+            "name": "x-shopify-access-token",
+            "in": "query"
+        }
+    },
+    ...
+    ...
+    ...
+    "paths" : {
+        "/admin/oauth/access_scopes.json" : {
+            "get" : {
+                ...
+                ...
+                "security" : [ 
+                    {
+                        "developer_hapikey" : []
+                    }
+                ],
+                "responses" : {
+                    ...
+                    ...
+                }
+            }
+        }
+    }
+    ```
+
+5. Bind the latest API version into each request
+
+    Each API request includes the API version as a path parameter. However, since the package is currently generated based on version `2025-01`, using other versions may result in unsupported methods.
+    To ensure compatibility, all API version placeholders in requests are now replaced with `2025-01`, guaranteeing that the client methods as expected with the intended API version.
 
 ## OpenAPI cli command
 
