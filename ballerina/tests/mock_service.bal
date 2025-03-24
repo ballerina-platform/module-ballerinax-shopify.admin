@@ -29,12 +29,11 @@ service /shopify on new http:Listener(8080) {
         return payload;
     }
 
-    resource function post admin/api/'2025/customers\.json(@http:Payload json payload) returns CreateCustomer|error {
-        CreateCustomer customer = check payload.cloneWithType();
-        return customer;
+    resource function post admin/api/'2025\-01/customers\.json(@http:Payload json payload) returns CustomerResponse|error {
+        return check payload.cloneWithType(CustomerResponse);
     }
 
-    resource function get admin/api/'2025/customers\.json() returns Customers {
+    resource function get admin/api/'2025\-01/customers\.json() returns Customers {
         Customers customers = {
             customers: [
                 {
@@ -90,7 +89,7 @@ service /shopify on new http:Listener(8080) {
         return customers;
     }
 
-    resource function get admin/api/'2025/events\.json() returns EventsList {
+    resource function get admin/api/'2025\-01/events\.json() returns EventsList {
         EventsList events = {
             events: [
                 {
@@ -107,7 +106,7 @@ service /shopify on new http:Listener(8080) {
         return events;
     }
 
-    resource function get admin/api/'2025/gift_cards\.json() returns GiftCardsList {
+    resource function get admin/api/'2025\-01/gift_cards\.json() returns GiftCardsList {
         GiftCardsList giftCards = {
             giftCards: [
                 {
@@ -133,7 +132,7 @@ service /shopify on new http:Listener(8080) {
         return giftCards;
     }
 
-    resource function get admin/api/'2025/locations\.json() returns LocationList {
+    resource function get admin/api/'2025\-01/locations\.json() returns LocationList {
         LocationList locations = {
             locations: [
                 {
@@ -157,21 +156,21 @@ service /shopify on new http:Listener(8080) {
         return locations;
     }
 
-    resource function get admin/api/'2025/locations/count\.json() returns StoreLocationCount {
+    resource function get admin/api/'2025\-01/locations/count\.json() returns StoreLocationCount {
         StoreLocationCount count = {
             count: 1.0
         };
         return count;
     }
 
-    resource function get admin/api/'2025/products/count\.json() returns ObjectCount {
+    resource function get admin/api/'2025\-01/products/count\.json() returns ObjectCount {
         ObjectCount count = {
             count: 1.0
         };
         return count;
     }
 
-    resource function get admin/api/'2025/draft_orders\.json() returns DraftOrders {
+    resource function get admin/api/'2025\-01/draft_orders\.json() returns DraftOrders {
         DraftOrders orders = {
             draftOrders: [{
                 email: "" 
@@ -180,14 +179,14 @@ service /shopify on new http:Listener(8080) {
         return orders;
     }
 
-    resource function get admin/api/'2025/draft_orders/count\.json() returns StoreLocationCount {
+    resource function get admin/api/'2025\-01/draft_orders/count\.json() returns StoreLocationCount {
         StoreLocationCount count = {
             count: 1.0
         };
         return count;
     }
 
-    resource function get admin/api/'2025/draft_orders/[string draftOrderId]() returns SingleDraftOrder|error {
+    resource function get admin/api/'2025\-01/draft_orders/[string draftOrderId]() returns SingleDraftOrder|error {
         SingleDraftOrder draftOrder = {
             draft_order: {
                 id: 12345,
@@ -198,7 +197,7 @@ service /shopify on new http:Listener(8080) {
         return draftOrder;
     }
 
-    resource function get admin/api/'2025/countries\.json() returns CountriesList {
+    resource function get admin/api/'2025\-01/countries\.json() returns CountriesList {
         CountriesList countries = {
             countries: [
                 {
@@ -214,14 +213,14 @@ service /shopify on new http:Listener(8080) {
         return countries;
     }
 
-    resource function get admin/api/'2025/countries/count\.json() returns EventsCount {
+    resource function get admin/api/'2025\-01/countries/count\.json() returns EventsCount {
         EventsCount count = {
             count: 1
         };
         return count;
     }
 
-    resource function get admin/api/'2025/shipping_zones\.json() returns ShippingZonesList {
+    resource function get admin/api/'2025\-01/shipping_zones\.json() returns ShippingZonesList {
         ShippingZonesList shippingZones = {
             shipping_zones: [{
                 id: 548275650865,
@@ -240,7 +239,7 @@ service /shopify on new http:Listener(8080) {
         return shippingZones;
     }
 
-    resource function get admin/api/'2025/price_rules\.json() returns PriceRules {
+    resource function get admin/api/'2025\-01/price_rules\.json() returns PriceRules {
         PriceRules priceRules = {
             priceRules: [
                 {
@@ -265,14 +264,14 @@ service /shopify on new http:Listener(8080) {
         return priceRules;
     }
 
-    resource function get admin/api/'2025/events/count\.json() returns EventsCount {
+    resource function get admin/api/'2025\-01/events/count\.json() returns EventsCount {
         EventsCount count = {
             count: 1.0
         };
         return count;
     }
 
-    resource function post admin/api/'2025/gift_cards\.json(@http:Payload json payload) returns GiftCard|error {
+    resource function post admin/api/'2025\-01/gift_cards\.json(@http:Payload json payload) returns GiftCard|error {
         return {
             gift_card: {
                 initial_value: "100.0"
@@ -280,14 +279,14 @@ service /shopify on new http:Listener(8080) {
         };
     }
 
-    resource function get admin/api/'2025/gift_cards/count\.json() returns EventsCount {
+    resource function get admin/api/'2025\-01/gift_cards/count\.json() returns EventsCount {
         EventsCount count = {
             count: 1.0
         };
         return count;
     }
 
-    resource function get admin/api/'2025/comments\.json() returns ArticleComments {
+    resource function get admin/api/'2025\-01/comments\.json() returns ArticleComments {
         ArticleComments comments = {
             comments: [
                 {
@@ -299,7 +298,7 @@ service /shopify on new http:Listener(8080) {
         return comments;
     }
 
-    resource function get admin/api/'2025/smart_collections\.json() returns SmartCollectionList {
+    resource function get admin/api/'2025\-01/smart_collections\.json() returns SmartCollectionList {
         SmartCollectionList smartCollections = {
             smartCollections: [
                 {
@@ -321,7 +320,7 @@ service /shopify on new http:Listener(8080) {
         return smartCollections;
     }
 
-    resource function get admin/api/'2025/products/[string productId]/images/count\.json() returns BlogsCount {
+    resource function get admin/api/'2025\-01/products/[string productId]/images/count\.json() returns BlogsCount {
         BlogsCount count = {
             count: 1.0
         };
