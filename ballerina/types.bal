@@ -7344,6 +7344,7 @@ public type ConnectionConfig record {|
     ClientHttp1Settings http1Settings?;
     # Configurations related to HTTP/2 protocol
     http:ClientHttp2Settings http2Settings?;
+    # Configurations for HTTP redirect related responses
     http:FollowRedirects followRedirects?;
     # The maximum time to wait (in seconds) for a response before closing the connection
     decimal timeout = 60;
@@ -8883,7 +8884,8 @@ public type ShippingRateResponse record {
 
 # Provides API key configurations needed when communicating with a remote HTTP endpoint.
 public type ApiKeysConfig record {|
-    string x\-shopify\-access\-token;
+    @jsondata:Name {value: "x-shopify-access-token"}
+    string accessToken;
 |};
 
 public type ThemesList record {

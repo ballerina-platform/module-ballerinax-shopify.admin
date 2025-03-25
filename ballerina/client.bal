@@ -75,7 +75,7 @@ public isolated client class Client {
     remote isolated function acceptsACancellationRequest(string fulfillmentOrderId, CancellationRequestAcceptJsonBody payload, map<string|string[]> headers = {}) returns CancellationResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/cancellation_request/accept.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -91,7 +91,7 @@ public isolated client class Client {
     remote isolated function acceptsAFulfillmentRequest(string fulfillmentOrderId, FulfillmentRequestAcceptJsonBody payload, map<string|string[]> headers = {}) returns AcceptFulfillmentResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/fulfillment_request/accept.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -106,7 +106,7 @@ public isolated client class Client {
     remote isolated function addsAProductToACustomCollection(ApiVersionCollectsJsonBody payload, map<string|string[]> headers = {}) returns ProductToCollectionResponse|error {
         string resourcePath = string `/admin/api/2025-01/collects.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -121,7 +121,7 @@ public isolated client class Client {
     remote isolated function adjustsTheInventoryLevelOfAnInventoryItemAtALocation(InventoryLevelsAdjustJsonBody payload, map<string|string[]> headers = {}) returns InventoryLevel|error {
         string resourcePath = string `/admin/api/2025-01/inventory_levels/adjust.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -137,7 +137,7 @@ public isolated client class Client {
     remote isolated function appliesAFulfillmentHoldOnAnOpenFulfillmentOrder(string fulfillmentOrderId, FulfillmentOrderIdHoldJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/hold.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -152,7 +152,7 @@ public isolated client class Client {
     remote isolated function approvesAComment(string commentId, record {} payload, map<string|string[]> headers = {}) returns ApproveCommentResponse|error {
         string resourcePath = string `/admin/api/2025-01/comments/${getEncodedUri(commentId)}/approve.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -167,7 +167,7 @@ public isolated client class Client {
     remote isolated function calculatesARefund(string orderId, RefundsCalculateJsonBody payload, map<string|string[]> headers = {}) returns CalculateRefund|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/refunds/calculate.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -183,7 +183,7 @@ public isolated client class Client {
     remote isolated function cancelAFulfillmentOrder(string fulfillmentOrderId, FulfillmentOrderIdCancelJsonBody payload, map<string|string[]> headers = {}) returns CancelFulfillmentOrder|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/cancel.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -198,7 +198,7 @@ public isolated client class Client {
     remote isolated function cancelAnOrder(string orderId, record {} payload, map<string|string[]> headers = {}) returns OrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/cancel.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -213,7 +213,7 @@ public isolated client class Client {
     remote isolated function cancelsAFulfillment(string fulfillmentId, record {} payload, map<string|string[]> headers = {}) returns CancelFulfillment|error {
         string resourcePath = string `/admin/api/2025-01/fulfillments/${getEncodedUri(fulfillmentId)}/cancel.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -229,7 +229,7 @@ public isolated client class Client {
     remote isolated function cancelsARecurringApplicationCharge(string recurringApplicationChargeId, string payload, map<string|string[]> headers = {}) returns string|error {
         string resourcePath = string `/admin/api/2025-01/recurring_application_charges/${getEncodedUri(recurringApplicationChargeId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -243,7 +243,7 @@ public isolated client class Client {
     remote isolated function closeAnOrder(string orderId, record {} payload, map<string|string[]> headers = {}) returns CloseOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/close.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -259,7 +259,7 @@ public isolated client class Client {
     remote isolated function completeADraftOrder(string draftOrderId, string payload, map<string|string[]> headers = {}) returns CompleteDraftOrder|error {
         string resourcePath = string `/admin/api/2025-01/draft_orders/${getEncodedUri(draftOrderId)}/complete.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -273,7 +273,7 @@ public isolated client class Client {
     remote isolated function completesACheckout(string token, record {} payload, map<string|string[]> headers = {}) returns CompleteCheckoutResponse|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/${getEncodedUri(token)}/complete.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -288,7 +288,7 @@ public isolated client class Client {
     remote isolated function connectsAnInventoryItemToALocation(InventoryLevelsConnectJsonBody payload, map<string|string[]> headers = {}) returns ConnectInventoryItem|error {
         string resourcePath = string `/admin/api/2025-01/inventory_levels/connect.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -303,7 +303,7 @@ public isolated client class Client {
     remote isolated function countsTheNumberOfPaymentsAttemptedOnACheckout(string token, map<string|string[]> headers = {}) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/${getEncodedUri(token)}/payments/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -316,7 +316,7 @@ public isolated client class Client {
     remote isolated function createACollectionListingToPublishACollectionToYourApp(string collectionListingId, CollectionListingscollectionListingIdJsonBody payload, map<string|string[]> headers = {}) returns CollectionListing|error {
         string resourcePath = string `/admin/api/2025-01/collection_listings/${getEncodedUri(collectionListingId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -330,7 +330,7 @@ public isolated client class Client {
     remote isolated function createAMetafield(string ownerId, string ownerResource, OwnerResourceMetafieldsJsonBody payload, map<string|string[]> headers = {}) returns error? {
         string resourcePath = string `/admin/api/2025-01/${getEncodedUri(ownerId)}/${getEncodedUri(ownerResource)}/metafields.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -345,7 +345,7 @@ public isolated client class Client {
     remote isolated function createAMobilePlatformApplication(ApiVersionMobilePlatformApplicationsJsonBody payload, map<string|string[]> headers = {}) returns MobilePlatformApplication|error {
         string resourcePath = string `/admin/api/2025-01/mobile_platform_applications.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -360,7 +360,7 @@ public isolated client class Client {
     remote isolated function createANewBlog(ApiVersionBlogsJsonBody payload, map<string|string[]> headers = {}) returns CreateBlogResponse|error {
         string resourcePath = string `/admin/api/2025-01/blogs.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -375,7 +375,7 @@ public isolated client class Client {
     remote isolated function createANewDraftorder(ApiVersionDraftOrdersJsonBody payload, map<string|string[]> headers = {}) returns CreateDraftOrder|error {
         string resourcePath = string `/admin/api/2025-01/draft_orders.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -390,7 +390,7 @@ public isolated client class Client {
     remote isolated function createANewFulfillmentservice(ApiVersionFulfillmentServicesJsonBody payload, map<string|string[]> headers = {}) returns CreateFulfillmentService|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_services.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -405,7 +405,7 @@ public isolated client class Client {
     remote isolated function createANewPage(ApiVersionPagesJsonBody payload, map<string|string[]> headers = {}) returns PageResponse|error {
         string resourcePath = string `/admin/api/2025-01/pages.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -420,7 +420,7 @@ public isolated client class Client {
     remote isolated function createANewProductImage(string productId, ProductIdImagesJsonBody payload, map<string|string[]> headers = {}) returns CreateProductImage|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/images.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -435,7 +435,7 @@ public isolated client class Client {
     remote isolated function createANewProductResourcefeedback(string productId, ProductIdResourceFeedbackJsonBody payload, map<string|string[]> headers = {}) returns ResourceFeedbackList|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/resource_feedback.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -450,7 +450,7 @@ public isolated client class Client {
     remote isolated function createANewProductVariant(string productId, CreateProductVariant payload, map<string|string[]> headers = {}) returns CreateProductVariant|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/variants.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -465,7 +465,7 @@ public isolated client class Client {
     remote isolated function createANewResourcefeedback(ApiVersionResourceFeedbackJsonBody payload, map<string|string[]> headers = {}) returns CreateShopFeedback|error {
         string resourcePath = string `/admin/api/2025-01/resource_feedback.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -480,7 +480,7 @@ public isolated client class Client {
     remote isolated function createANewWebhook(CreateWebhook payload, map<string|string[]> headers = {}) returns SubscribeOrderCreation|error {
         string resourcePath = string `/admin/api/2025-01/webhooks.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -495,7 +495,7 @@ public isolated client class Client {
     remote isolated function createAProductListingToPublishAProductToYourApp(string productListingId, ProductListingsproductListingIdJsonBody payload, map<string|string[]> headers = {}) returns ProductListingAppResponse|error {
         string resourcePath = string `/admin/api/2025-01/product_listings/${getEncodedUri(productListingId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -510,7 +510,7 @@ public isolated client class Client {
     remote isolated function createAnOrder(CreateOrder payload, map<string|string[]> headers = {}) returns OrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/orders.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -525,7 +525,7 @@ public isolated client class Client {
     remote isolated function createsACarrierService(ApiVersionCarrierServicesJsonBody payload, map<string|string[]> headers = {}) returns CreateCarrierService|error {
         string resourcePath = string `/admin/api/2025-01/carrier_services.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -540,7 +540,7 @@ public isolated client class Client {
     remote isolated function createsACheckout(ApiVersionCheckoutsJsonBody payload, map<string|string[]> headers = {}) returns CreateCheckoutResponse|error {
         string resourcePath = string `/admin/api/2025-01/checkouts.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -555,7 +555,7 @@ public isolated client class Client {
     remote isolated function createsACommentForAnArticle(ApiVersionCommentsJsonBody payload, map<string|string[]> headers = {}) returns ArticleComment|error {
         string resourcePath = string `/admin/api/2025-01/comments.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -570,7 +570,7 @@ public isolated client class Client {
     remote isolated function createsACountry(ApiVersionCountriesJsonBody payload, map<string|string[]> headers = {}) returns CreateCountry|error {
         string resourcePath = string `/admin/api/2025-01/countries.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -585,7 +585,7 @@ public isolated client class Client {
     remote isolated function createsACustomCollection(ApiVersionCustomCollectionsJsonBody payload, map<string|string[]> headers = {}) returns CreateCollection|error {
         string resourcePath = string `/admin/api/2025-01/custom_collections.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -600,7 +600,7 @@ public isolated client class Client {
     remote isolated function createsACustomer(CreateCustomer payload, map<string|string[]> headers = {}) returns CustomerResponse|error {
         string resourcePath = string `/admin/api/2025-01/customers.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -616,7 +616,7 @@ public isolated client class Client {
     remote isolated function createsADiscountCode(string priceRuleId, PriceRuleIdDiscountCodesJsonBody payload, map<string|string[]> headers = {}) returns CreateDiscountCode|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}/discount_codes.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -632,7 +632,7 @@ public isolated client class Client {
     remote isolated function createsADiscountCodeCreationJob(string priceRuleId, PriceRuleIdBatchJsonBody payload, map<string|string[]> headers = {}) returns DiscountCode|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}/batch.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -647,7 +647,7 @@ public isolated client class Client {
     remote isolated function createsAFulfillmentEvent(string orderId, string fulfillmentId, FulfillmentIdEventsJsonBody payload, map<string|string[]> headers = {}) returns CreateFulfillmentEvent|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/fulfillments/${getEncodedUri(fulfillmentId)}/events.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -662,7 +662,7 @@ public isolated client class Client {
     remote isolated function createsAFulfillmentForOneOrManyFulfillmentOrders(CreateOrderFulfillment payload, map<string|string[]> headers = {}) returns CreateFulfillmentOrder|error {
         string resourcePath = string `/admin/api/2025-01/fulfillments.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -677,7 +677,7 @@ public isolated client class Client {
     remote isolated function createsAGiftCard(ApiVersionGiftCardsJsonBody payload, map<string|string[]> headers = {}) returns GiftCard|error {
         string resourcePath = string `/admin/api/2025-01/gift_cards.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -692,7 +692,7 @@ public isolated client class Client {
     remote isolated function createsAMarketingEvent(ApiVersionMarketingEventsJsonBody payload, map<string|string[]> headers = {}) returns CreateMarketingEvent|error {
         string resourcePath = string `/admin/api/2025-01/marketing_events.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -707,7 +707,7 @@ public isolated client class Client {
     remote isolated function createsANewAddressForACustomer(string customerId, CustomerIdAddressesJsonBody payload, map<string|string[]> headers = {}) returns CustomerAddress|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/addresses.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -722,7 +722,7 @@ public isolated client class Client {
     remote isolated function createsANewPayment(string token, TokenPaymentsJsonBody payload, map<string|string[]> headers = {}) returns CreateAuthorizationResponse|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/${getEncodedUri(token)}/payments.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -737,7 +737,7 @@ public isolated client class Client {
     remote isolated function createsANewProduct(CreateProduct payload, map<string|string[]> headers = {}) returns CreateProductResponse|error {
         string resourcePath = string `/admin/api/2025-01/products.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -752,7 +752,7 @@ public isolated client class Client {
     remote isolated function createsANewReport(ApiVersionReportsJsonBody payload, map<string|string[]> headers = {}) returns ReportResponse|error {
         string resourcePath = string `/admin/api/2025-01/reports.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -767,7 +767,7 @@ public isolated client class Client {
     remote isolated function createsANewScriptTag(ApiVersionScriptTagsJsonBody payload, map<string|string[]> headers = {}) returns ScriptTagResponse|error {
         string resourcePath = string `/admin/api/2025-01/script_tags.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -782,7 +782,7 @@ public isolated client class Client {
     remote isolated function createsANewStorefrontaccesstoken(ApiVersionStorefrontAccessTokensJsonBody payload, map<string|string[]> headers = {}) returns StorefrontAccessToken|error {
         string resourcePath = string `/admin/api/2025-01/storefront_access_tokens.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -797,7 +797,7 @@ public isolated client class Client {
     remote isolated function createsAPriceRule(ApiVersionPriceRulesJsonBody payload, map<string|string[]> headers = {}) returns PriceRule|error {
         string resourcePath = string `/admin/api/2025-01/price_rules.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -812,7 +812,7 @@ public isolated client class Client {
     remote isolated function createsARecurringApplicationCharge(ApiVersionRecurringApplicationChargesJsonBody payload, map<string|string[]> headers = {}) returns ApplicationChargeResponse|error {
         string resourcePath = string `/admin/api/2025-01/recurring_application_charges.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -827,7 +827,7 @@ public isolated client class Client {
     remote isolated function createsARedirect(ApiVersionRedirectsJsonBody payload, map<string|string[]> headers = {}) returns RedirectResponse|error {
         string resourcePath = string `/admin/api/2025-01/redirects.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -842,7 +842,7 @@ public isolated client class Client {
     remote isolated function createsARefund(string orderId, CreateRefund payload, map<string|string[]> headers = {}) returns RefundObject|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/refunds.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -857,7 +857,7 @@ public isolated client class Client {
     remote isolated function createsASmartCollection(ApiVersionSmartCollectionsJsonBody payload, map<string|string[]> headers = {}) returns CreatSmartCollection|error {
         string resourcePath = string `/admin/api/2025-01/smart_collections.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -872,7 +872,7 @@ public isolated client class Client {
     remote isolated function createsATheme(ApiVersionThemesJsonBody payload, map<string|string[]> headers = {}) returns CreateThemeResponse|error {
         string resourcePath = string `/admin/api/2025-01/themes.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -887,7 +887,7 @@ public isolated client class Client {
     remote isolated function createsATransactionForAnOrder(string orderId, CreateTransaction payload, map<string|string[]> headers = {}) returns TransactionObject|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/transactions.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -903,7 +903,7 @@ public isolated client class Client {
     remote isolated function createsAUsageCharge(string recurringApplicationChargeId, RecurringApplicationChargeIdUsageChargesJsonBody payload, map<string|string[]> headers = {}) returns UsageChargeResponse|error {
         string resourcePath = string `/admin/api/2025-01/recurring_application_charges/${getEncodedUri(recurringApplicationChargeId)}/usage_charges.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -918,7 +918,7 @@ public isolated client class Client {
     remote isolated function createsAnAccountActivationUrlForACustomer(string customerId, CustomerInvite payload, map<string|string[]> headers = {}) returns AccountActivationUrl|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/account_activation_url.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -933,7 +933,7 @@ public isolated client class Client {
     remote isolated function createsAnApplicationCharge(ApiVersionApplicationChargesJsonBody payload, map<string|string[]> headers = {}) returns ApplicationCharge|error {
         string resourcePath = string `/admin/api/2025-01/application_charges.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -948,7 +948,7 @@ public isolated client class Client {
     remote isolated function createsAnArticleForABlog(string blogId, BlogIdArticlesJsonBody payload, map<string|string[]> headers = {}) returns Article|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}/articles.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -963,7 +963,7 @@ public isolated client class Client {
     remote isolated function createsAnOrderRiskForAnOrder(string orderId, CreateOrderRisk payload, map<string|string[]> headers = {}) returns CreateOrderRisk|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/risks.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -978,7 +978,7 @@ public isolated client class Client {
     remote isolated function createsMarketingEngagementsOnAMarketingEvent(string marketingEventId, MarketingEventIdEngagementsJsonBody payload, map<string|string[]> headers = {}) returns Engagements|error {
         string resourcePath = string `/admin/api/2025-01/marketing_events/${getEncodedUri(marketingEventId)}/engagements.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -993,7 +993,7 @@ public isolated client class Client {
     remote isolated function createsOrUpdatesAnAssetForATheme(string themeId, ThemeIdAssetsJsonBody payload, map<string|string[]> headers = {}) returns ImageAsset|error {
         string resourcePath = string `/admin/api/2025-01/themes/${getEncodedUri(themeId)}/assets.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1009,7 +1009,7 @@ public isolated client class Client {
     remote isolated function deleteACollectionListingToUnpublishACollectionFromYourApp(string collectionListingId, string payload, map<string|string[]> headers = {}) returns string|error {
         string resourcePath = string `/admin/api/2025-01/collection_listings/${getEncodedUri(collectionListingId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1022,7 +1022,7 @@ public isolated client class Client {
     remote isolated function deleteADisputeEvidenceFile(string disputeId, string disputeFileUploadId, map<string|string[]> headers = {}) returns error? {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/disputes/${getEncodedUri(disputeId)}/dispute_file_uploads/${getEncodedUri(disputeFileUploadId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->delete(resourcePath, headers = headers);
     }
@@ -1033,7 +1033,7 @@ public isolated client class Client {
     remote isolated function deleteAMobilePlatformApplication(string mobilePlatformApplicationId, string payload, map<string|string[]> headers = {}) returns error? {
         string resourcePath = string `/admin/api/2025-01/mobile_platform_applications/${getEncodedUri(mobilePlatformApplicationId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1047,7 +1047,7 @@ public isolated client class Client {
     remote isolated function deleteAProductListingToUnpublishAProductFromYourApp(string productListingId, string payload, map<string|string[]> headers = {}) returns string|error {
         string resourcePath = string `/admin/api/2025-01/product_listings/${getEncodedUri(productListingId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1061,7 +1061,7 @@ public isolated client class Client {
     remote isolated function deletesACarrierService(string carrierServiceId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/carrier_services/${getEncodedUri(carrierServiceId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1075,7 +1075,7 @@ public isolated client class Client {
     remote isolated function deletesACustomCollection(string customCollectionId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/custom_collections/${getEncodedUri(customCollectionId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1089,7 +1089,7 @@ public isolated client class Client {
     remote isolated function deletesACustomer(string customerId, string payload, map<string|string[]> headers = {}) returns CustomerResponse|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1104,7 +1104,7 @@ public isolated client class Client {
     remote isolated function deletesADiscountCode(string priceRuleId, string discountCodeId, string payload, map<string|string[]> headers = {}) returns string|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}/discount_codes/${getEncodedUri(discountCodeId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1118,7 +1118,7 @@ public isolated client class Client {
     remote isolated function deletesAFulfillmentEvent(string orderId, string fulfillmentId, string eventId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/fulfillments/${getEncodedUri(fulfillmentId)}/events/${getEncodedUri(eventId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1132,7 +1132,7 @@ public isolated client class Client {
     remote isolated function deletesAMarketingEvent(string marketingEventId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/marketing_events/${getEncodedUri(marketingEventId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1145,7 +1145,7 @@ public isolated client class Client {
     remote isolated function deletesAMetafieldByItsId(string ownerId, string ownerResource, string metafieldId, string payload, map<string|string[]> headers = {}) returns error? {
         string resourcePath = string `/admin/api/2025-01/${getEncodedUri(ownerId)}/${getEncodedUri(ownerResource)}/metafields/${getEncodedUri(metafieldId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1159,7 +1159,7 @@ public isolated client class Client {
     remote isolated function deletesAPage(string pageId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/pages/${getEncodedUri(pageId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1173,7 +1173,7 @@ public isolated client class Client {
     remote isolated function deletesAProduct(string productId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1187,7 +1187,7 @@ public isolated client class Client {
     remote isolated function deletesARedirect(string redirectId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/redirects/${getEncodedUri(redirectId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1201,7 +1201,7 @@ public isolated client class Client {
     remote isolated function deletesAReport(string reportId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/reports/${getEncodedUri(reportId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1215,7 +1215,7 @@ public isolated client class Client {
     remote isolated function deletesAScriptTag(string scriptTagId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/script_tags/${getEncodedUri(scriptTagId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1229,7 +1229,7 @@ public isolated client class Client {
     remote isolated function deletesAnArticle(string blogId, string articleId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}/articles/${getEncodedUri(articleId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1243,7 +1243,7 @@ public isolated client class Client {
     remote isolated function deletesAnAssetFromATheme(string themeId, string payload, map<string|string[]> headers = {}) returns DeleteAssetResponse|error {
         string resourcePath = string `/admin/api/2025-01/themes/${getEncodedUri(themeId)}/assets.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1257,7 +1257,7 @@ public isolated client class Client {
     remote isolated function deletesAnExistingStorefrontAccessToken(string storefrontAccessTokenId, string payload, map<string|string[]> headers = {}) returns string|error {
         string resourcePath = string `/admin/api/2025-01/storefront_access_tokens/${getEncodedUri(storefrontAccessTokenId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1271,7 +1271,7 @@ public isolated client class Client {
     remote isolated function deletesAnInventoryLevelFromALocation(string payload, map<string|string[]> headers = {}) returns string|error {
         string resourcePath = string `/admin/api/2025-01/inventory_levels.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1285,7 +1285,7 @@ public isolated client class Client {
     remote isolated function deletesAnOrder(string orderId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1299,7 +1299,7 @@ public isolated client class Client {
     remote isolated function deletesAnOrderRiskForAnOrder(string orderId, string riskId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/risks/${getEncodedUri(riskId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1313,7 +1313,7 @@ public isolated client class Client {
     remote isolated function disablesAGiftCard(string giftCardId, GiftCardIdDisableJsonBody payload, map<string|string[]> headers = {}) returns DisableGiftCard|error {
         string resourcePath = string `/admin/api/2025-01/gift_cards/${getEncodedUri(giftCardId)}/disable.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1328,7 +1328,7 @@ public isolated client class Client {
     remote isolated function getAListOfAccessScopes(map<string|string[]> headers = {}) returns AccessScopes|error {
         string resourcePath = string `/admin/oauth/access_scopes.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1340,7 +1340,7 @@ public isolated client class Client {
     remote isolated function getAMobilePlatformApplication(string mobilePlatformApplicationId, map<string|string[]> headers = {}) returns MobilePlatformApplicationResponse|error {
         string resourcePath = string `/admin/api/2025-01/mobile_platform_applications/${getEncodedUri(mobilePlatformApplicationId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1352,7 +1352,7 @@ public isolated client class Client {
     remote isolated function listAllOfTheMobilePlatformApplicationsAssociatedWithTheApp(map<string|string[]> headers = {}) returns MobilePlatformApplications|error {
         string resourcePath = string `/admin/api/2025-01/mobile_platform_applications.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1364,7 +1364,7 @@ public isolated client class Client {
     remote isolated function marksACommentAsNotSpam(string commentId, record {} payload, map<string|string[]> headers = {}) returns MarkCommentResponse|error {
         string resourcePath = string `/admin/api/2025-01/comments/${getEncodedUri(commentId)}/not_spam.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1379,7 +1379,7 @@ public isolated client class Client {
     remote isolated function marksACommentAsSpam(string commentId, record {} payload, map<string|string[]> headers = {}) returns SpamCommentResponse|error {
         string resourcePath = string `/admin/api/2025-01/comments/${getEncodedUri(commentId)}/spam.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1395,7 +1395,7 @@ public isolated client class Client {
     remote isolated function marksAFulfillmentOrderAsIncomplete(string fulfillmentOrderId, FulfillmentOrderIdCloseJsonBody payload, map<string|string[]> headers = {}) returns TransitionFulfillmentOrder|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/close.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1411,7 +1411,7 @@ public isolated client class Client {
     remote isolated function marksTheFulfillmentOrderAsOpen(string fulfillmentOrderId, FulfillmentOrderIdOpenJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/open.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1426,7 +1426,7 @@ public isolated client class Client {
     remote isolated function modifiesAnExistingCheckout(string token, CheckoutstokenJsonBody payload, map<string|string[]> headers = {}) returns ShippingRateResponse|UpdateCheckoutResponse|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/${getEncodedUri(token)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1441,7 +1441,7 @@ public isolated client class Client {
     remote isolated function modifyAnExistingBlog(string blogId, BlogsblogIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateBlogResponse|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1456,7 +1456,7 @@ public isolated client class Client {
     remote isolated function modifyAnExistingCarrierservice(string carrierServiceId, CarrierServicescarrierServiceIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateCarrierService|error {
         string resourcePath = string `/admin/api/2025-01/carrier_services/${getEncodedUri(carrierServiceId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1472,7 +1472,7 @@ public isolated client class Client {
     remote isolated function modifyAnExistingDraftorder(string draftOrderId, DraftOrdersdraftOrderIdJsonBody payload, map<string|string[]> headers = {}) returns ModifyDraftOrder|error {
         string resourcePath = string `/admin/api/2025-01/draft_orders/${getEncodedUri(draftOrderId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1487,7 +1487,7 @@ public isolated client class Client {
     remote isolated function modifyAnExistingFulfillmentservice(string fulfillmentServiceId, FulfillmentServicesfulfillmentServiceIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateFulfillmentService|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_services/${getEncodedUri(fulfillmentServiceId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1502,7 +1502,7 @@ public isolated client class Client {
     remote isolated function modifyAnExistingProductImage(string productId, string imageId, ImagesimageIdJsonBody payload, map<string|string[]> headers = {}) returns ModifyProductImage|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/images/${getEncodedUri(imageId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1517,7 +1517,7 @@ public isolated client class Client {
     remote isolated function modifyAnExistingProductVariant(string variantId, UpdateProductVariant payload, map<string|string[]> headers = {}) returns ModifyProductVariant|error {
         string resourcePath = string `/admin/api/2025-01/variants/${getEncodedUri(variantId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1532,7 +1532,7 @@ public isolated client class Client {
     remote isolated function modifyAnExistingTheme(string themeId, ThemesthemeIdJsonBody payload, map<string|string[]> headers = {}) returns PublishThemeResponse|error {
         string resourcePath = string `/admin/api/2025-01/themes/${getEncodedUri(themeId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1547,7 +1547,7 @@ public isolated client class Client {
     remote isolated function modifyAnExistingWebhook(string webhookId, UpdateWebhook payload, map<string|string[]> headers = {}) returns WebhookObject|error {
         string resourcePath = string `/admin/api/2025-01/webhooks/${getEncodedUri(webhookId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1563,7 +1563,7 @@ public isolated client class Client {
     remote isolated function movesAFulfillmentOrderToANewLocation(string fulfillmentOrderId, FulfillmentOrderIdMoveJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/move.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1578,7 +1578,7 @@ public isolated client class Client {
     remote isolated function performsBulkOperationsForMultipleCustomerAddresses(string customerId, string payload, map<string|string[]> headers = {}) returns json|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/addresses/set.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1592,7 +1592,7 @@ public isolated client class Client {
     remote isolated function reOpenAClosedOrder(string orderId, record {} payload, map<string|string[]> headers = {}) returns ReopenCloseOrder|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/open.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1607,7 +1607,7 @@ public isolated client class Client {
     remote isolated function receiveACountOfAllBlogs(map<string|string[]> headers = {}) returns BlogsCount|error {
         string resourcePath = string `/admin/api/2025-01/blogs/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1620,7 +1620,7 @@ public isolated client class Client {
     remote isolated function receiveACountOfAllDraftorders(map<string|string[]> headers = {}, *ReceiveACountOfAllDraftordersQueries queries) returns StoreLocationCount|error {
         string resourcePath = string `/admin/api/2025-01/draft_orders/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1633,7 +1633,7 @@ public isolated client class Client {
     remote isolated function receiveACountOfAllProductImages(string productId, map<string|string[]> headers = {}, *ReceiveACountOfAllProductImagesQueries queries) returns BlogsCount|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/images/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1645,7 +1645,7 @@ public isolated client class Client {
     remote isolated function receiveACountOfAllProductVariants(string productId, map<string|string[]> headers = {}) returns ArticlesCount|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/variants/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1658,7 +1658,7 @@ public isolated client class Client {
     remote isolated function receiveACountOfAllWebhooks(map<string|string[]> headers = {}, *ReceiveACountOfAllWebhooksQueries queries) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/webhooks/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1671,7 +1671,7 @@ public isolated client class Client {
     remote isolated function receiveAListOfAllCountries(map<string|string[]> headers = {}, *ReceiveAListOfAllCountriesQueries queries) returns CountriesList|error {
         string resourcePath = string `/admin/api/2025-01/countries.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1684,7 +1684,7 @@ public isolated client class Client {
     remote isolated function receiveAListOfAllFulfillmentservices(map<string|string[]> headers = {}, *ReceiveAListOfAllFulfillmentservicesQueries queries) returns FulfillmentServicesList|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_services.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1697,7 +1697,7 @@ public isolated client class Client {
     remote isolated function receiveAListOfAllProductImages(string productId, map<string|string[]> headers = {}, *ReceiveAListOfAllProductImagesQueries queries) returns ProductImages|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/images.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1709,7 +1709,7 @@ public isolated client class Client {
     remote isolated function receiveAListOfAllProductResourcefeedbacks(string productId, map<string|string[]> headers = {}) returns ResourceFeedbackList|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/resource_feedback.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1721,7 +1721,7 @@ public isolated client class Client {
     remote isolated function receiveAListOfAllResourcefeedbacks(map<string|string[]> headers = {}) returns ResourceFeedbackList|error {
         string resourcePath = string `/admin/api/2025-01/resource_feedback.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1733,7 +1733,7 @@ public isolated client class Client {
     remote isolated function receiveAListOfAllShippingzones(map<string|string[]> headers = {}, *ReceiveAListOfAllShippingzonesQueries queries) returns ShippingZonesList|error {
         string resourcePath = string `/admin/api/2025-01/shipping_zones.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1746,7 +1746,7 @@ public isolated client class Client {
     remote isolated function receiveASingleArticle(string blogId, string articleId, map<string|string[]> headers = {}, *ReceiveASingleArticleQueries queries) returns SingleArticle|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}/articles/${getEncodedUri(articleId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1759,7 +1759,7 @@ public isolated client class Client {
     remote isolated function receiveASingleBlog(string blogId, map<string|string[]> headers = {}, *ReceiveASingleBlogQueries queries) returns SingleBlog|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1773,7 +1773,7 @@ public isolated client class Client {
     remote isolated function receiveASingleDraftorder(string draftOrderId, map<string|string[]> headers = {}, *ReceiveASingleDraftorderQueries queries) returns SingleDraftOrder|error {
         string resourcePath = string `/admin/api/2025-01/draft_orders/${getEncodedUri(draftOrderId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1786,7 +1786,7 @@ public isolated client class Client {
     remote isolated function receiveASingleFulfillment(string orderId, string fulfillmentId, map<string|string[]> headers = {}, *ReceiveASingleFulfillmentQueries queries) returns SingleFulfillment|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/fulfillments/${getEncodedUri(fulfillmentId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1798,7 +1798,7 @@ public isolated client class Client {
     remote isolated function receiveASingleFulfillmentservice(string fulfillmentServiceId, map<string|string[]> headers = {}) returns SingleFulfillmentService|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_services/${getEncodedUri(fulfillmentServiceId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1811,7 +1811,7 @@ public isolated client class Client {
     remote isolated function receiveASingleProductImage(string productId, string imageId, map<string|string[]> headers = {}, *ReceiveASingleProductImageQueries queries) returns SingleProductImage|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/images/${getEncodedUri(imageId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1824,7 +1824,7 @@ public isolated client class Client {
     remote isolated function receiveASingleProductVariant(string variantId, map<string|string[]> headers = {}, *ReceiveASingleProductVariantQueries queries) returns ProductVariantResponse|error {
         string resourcePath = string `/admin/api/2025-01/variants/${getEncodedUri(variantId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1837,7 +1837,7 @@ public isolated client class Client {
     remote isolated function receiveASingleWebhook(string webhookId, map<string|string[]> headers = {}, *ReceiveASingleWebhookQueries queries) returns SingleWebhook|error {
         string resourcePath = string `/admin/api/2025-01/webhooks/${getEncodedUri(webhookId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -1850,7 +1850,7 @@ public isolated client class Client {
     remote isolated function rejectsACancellationRequest(string fulfillmentOrderId, CancellationRequestRejectJsonBody payload, map<string|string[]> headers = {}) returns RejectCancellationRequestResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/cancellation_request/reject.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1866,7 +1866,7 @@ public isolated client class Client {
     remote isolated function rejectsAFulfillmentRequest(string fulfillmentOrderId, FulfillmentRequestRejectJsonBody payload, map<string|string[]> headers = {}) returns RejectFulfillmentResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/fulfillment_request/reject.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1882,7 +1882,7 @@ public isolated client class Client {
     remote isolated function releasesTheFulfillmentHoldOnAFulfillmentOrder(string fulfillmentOrderId, FulfillmentOrderIdReleaseHoldJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/release_hold.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -1897,7 +1897,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingBlog(string blogId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1911,7 +1911,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingCountry(string countryId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/countries/${getEncodedUri(countryId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1926,7 +1926,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingDraftorder(string draftOrderId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/draft_orders/${getEncodedUri(draftOrderId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1940,7 +1940,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingFulfillmentservice(string fulfillmentServiceId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_services/${getEncodedUri(fulfillmentServiceId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1955,7 +1955,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingPriceRule(string priceRuleId, string payload, map<string|string[]> headers = {}) returns string|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1969,7 +1969,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingProductImage(string productId, string imageId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/images/${getEncodedUri(imageId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1983,7 +1983,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingProductVariant(string productId, string variantId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/variants/${getEncodedUri(variantId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -1997,7 +1997,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingTheme(string themeId, string payload, map<string|string[]> headers = {}) returns DeleteThemeResponse|error {
         string resourcePath = string `/admin/api/2025-01/themes/${getEncodedUri(themeId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -2011,7 +2011,7 @@ public isolated client class Client {
     remote isolated function removeAnExistingWebhook(string webhookId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/webhooks/${getEncodedUri(webhookId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -2025,7 +2025,7 @@ public isolated client class Client {
     remote isolated function removesAComment(string commentId, record {} payload, map<string|string[]> headers = {}) returns RemoveCommentResponse|error {
         string resourcePath = string `/admin/api/2025-01/comments/${getEncodedUri(commentId)}/remove.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -2040,7 +2040,7 @@ public isolated client class Client {
     remote isolated function removesAProductFromACollection(string collectId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/collects/${getEncodedUri(collectId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -2054,7 +2054,7 @@ public isolated client class Client {
     remote isolated function removesASmartCollection(string smartCollectionId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/smart_collections/${getEncodedUri(smartCollectionId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -2068,7 +2068,7 @@ public isolated client class Client {
     remote isolated function removesAnAddressFromACustomerSAddressList(string customerId, string addressId, string payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/addresses/${getEncodedUri(addressId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -2083,7 +2083,7 @@ public isolated client class Client {
     remote isolated function reschedulesTheFulfillAtTimeOfAScheduledFulfillmentOrder(string fulfillmentOrderId, FulfillmentOrderIdRescheduleJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/reschedule.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -2098,7 +2098,7 @@ public isolated client class Client {
     remote isolated function restoresAPreviouslyRemovedComment(string commentId, record {} payload, map<string|string[]> headers = {}) returns RestoreRemoveComment|error {
         string resourcePath = string `/admin/api/2025-01/comments/${getEncodedUri(commentId)}/restore.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -2112,7 +2112,7 @@ public isolated client class Client {
     remote isolated function retrieveACountOfAResourceSMetafields(string ownerId, string ownerResource, map<string|string[]> headers = {}) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/${getEncodedUri(ownerId)}/${getEncodedUri(ownerResource)}/metafields/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2124,7 +2124,7 @@ public isolated client class Client {
     remote isolated function retrieveACountOfProductsThatArePublishedToYourApp(map<string|string[]> headers = {}) returns BlogsCount|error {
         string resourcePath = string `/admin/api/2025-01/product_listings/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2137,7 +2137,7 @@ public isolated client class Client {
     remote isolated function retrieveAListOfAllBlogs(map<string|string[]> headers = {}, *RetrieveAListOfAllBlogsQueries queries) returns Blogs|error {
         string resourcePath = string `/admin/api/2025-01/blogs.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2150,7 +2150,7 @@ public isolated client class Client {
     remote isolated function retrieveAListOfMetafieldsFromTheResourceSEndpoint(string ownerId, string ownerResource, map<string|string[]> headers = {}, *RetrieveAListOfMetafieldsFromTheResourceSEndpointQueries queries) returns MetafieldList|error {
         string resourcePath = string `/admin/api/2025-01/${getEncodedUri(ownerId)}/${getEncodedUri(ownerResource)}/metafields.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2163,7 +2163,7 @@ public isolated client class Client {
     remote isolated function retrieveAListOfProductsBelongingToACollection(string collectionId, map<string|string[]> headers = {}, *RetrieveAListOfProductsBelongingToACollectionQueries queries) returns ProductsList|error {
         string resourcePath = string `/admin/api/2025-01/collections/${getEncodedUri(collectionId)}/products.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2176,7 +2176,7 @@ public isolated client class Client {
     remote isolated function retrieveASpecificCollectionListingThatIsPublishedToYourApp(string collectionListingId, map<string|string[]> headers = {}) returns CollectionListing|error {
         string resourcePath = string `/admin/api/2025-01/collection_listings/${getEncodedUri(collectionListingId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2189,7 +2189,7 @@ public isolated client class Client {
     remote isolated function retrieveASpecificMetafield(string ownerId, string ownerResource, string metafieldId, map<string|string[]> headers = {}, *RetrieveASpecificMetafieldQueries queries) returns MetafieldResponse|error {
         string resourcePath = string `/admin/api/2025-01/${getEncodedUri(ownerId)}/${getEncodedUri(ownerResource)}/metafields/${getEncodedUri(metafieldId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2201,7 +2201,7 @@ public isolated client class Client {
     remote isolated function retrieveASpecificProductListingThatIsPublishedToYourApp(string productListingId, map<string|string[]> headers = {}) returns ProductListingAppResponse|error {
         string resourcePath = string `/admin/api/2025-01/product_listings/${getEncodedUri(productListingId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2214,7 +2214,7 @@ public isolated client class Client {
     remote isolated function retrieveCollectionListingsThatArePublishedToYourApp(map<string|string[]> headers = {}, *RetrieveCollectionListingsThatArePublishedToYourAppQueries queries) returns CollectionListingResponse|error {
         string resourcePath = string `/admin/api/2025-01/collection_listings.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2228,7 +2228,7 @@ public isolated client class Client {
     remote isolated function retrieveProductIdsThatArePublishedToACollectionId(string collectionListingId, map<string|string[]> headers = {}, *RetrieveProductIdsThatArePublishedToACollectionIdQueries queries) returns ProductIds|error {
         string resourcePath = string `/admin/api/2025-01/collection_listings/${getEncodedUri(collectionListingId)}/product_ids.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2241,7 +2241,7 @@ public isolated client class Client {
     remote isolated function retrieveProductIdsThatArePublishedToYourApp(map<string|string[]> headers = {}, *RetrieveProductIdsThatArePublishedToYourAppQueries queries) returns ProductIdAppResponse|error {
         string resourcePath = string `/admin/api/2025-01/product_listings/product_ids.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2254,7 +2254,7 @@ public isolated client class Client {
     remote isolated function retrieveProductListingsThatArePublishedToYourApp(map<string|string[]> headers = {}, *RetrieveProductListingsThatArePublishedToYourAppQueries queries) returns ProductListings|error {
         string resourcePath = string `/admin/api/2025-01/product_listings.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2266,7 +2266,7 @@ public isolated client class Client {
     remote isolated function retrievesACheckout(string token, map<string|string[]> headers = {}) returns CompleteCheckout|CheckoutResponse|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/${getEncodedUri(token)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2279,7 +2279,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfAllArticlesFromABlog(string blogId, map<string|string[]> headers = {}, *RetrievesACountOfAllArticlesFromABlogQueries queries) returns ArticlesCount|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}/articles/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2291,7 +2291,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfAllMarketingEvents(map<string|string[]> headers = {}) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/marketing_events/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2303,7 +2303,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfAllPriceRules(map<string|string[]> headers = {}) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2316,7 +2316,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfAllScriptTags(map<string|string[]> headers = {}, *RetrievesACountOfAllScriptTagsQueries queries) returns BlogsCount|error {
         string resourcePath = string `/admin/api/2025-01/script_tags/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2328,7 +2328,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfAnOrderSTransactions(string orderId, map<string|string[]> headers = {}) returns EventsCount|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/transactions/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2341,7 +2341,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfCheckouts(map<string|string[]> headers = {}, *RetrievesACountOfCheckoutsQueries queries) returns CheckoutCount|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2353,7 +2353,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfCollects(map<string|string[]> headers = {}) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/collects/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2366,7 +2366,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfComments(map<string|string[]> headers = {}, *RetrievesACountOfCommentsQueries queries) returns BlogsCount|error {
         string resourcePath = string `/admin/api/2025-01/comments/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2378,7 +2378,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfCountries(map<string|string[]> headers = {}) returns CountriesCount|error {
         string resourcePath = string `/admin/api/2025-01/countries/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2391,7 +2391,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfCustomCollections(map<string|string[]> headers = {}, *RetrievesACountOfCustomCollectionsQueries queries) returns BlogsCount|error {
         string resourcePath = string `/admin/api/2025-01/custom_collections/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2402,7 +2402,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfCustomers(map<string|string[]> headers = {}) returns EventsCount|error {
         string resourcePath = string `/admin/api/2025-01/customers/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2414,7 +2414,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfDiscountCodesForAShop(map<string|string[]> headers = {}, *RetrievesACountOfDiscountCodesForAShopQueries queries) returns EventsCount|error {
         string resourcePath = string `/admin/api/2025-01/discount_codes/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2427,7 +2427,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfEvents(map<string|string[]> headers = {}, *RetrievesACountOfEventsQueries queries) returns EventsCount|error {
         string resourcePath = string `/admin/api/2025-01/events/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2440,7 +2440,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfFulfillmentsAssociatedWithASpecificOrder(string orderId, map<string|string[]> headers = {}, *RetrievesACountOfFulfillmentsAssociatedWithASpecificOrderQueries queries) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/fulfillments/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2453,7 +2453,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfGiftCards(map<string|string[]> headers = {}, *RetrievesACountOfGiftCardsQueries queries) returns EventsCount|error {
         string resourcePath = string `/admin/api/2025-01/gift_cards/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2465,7 +2465,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfLocations(map<string|string[]> headers = {}) returns StoreLocationCount|error {
         string resourcePath = string `/admin/api/2025-01/locations/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2478,7 +2478,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfProducts(map<string|string[]> headers = {}, *RetrievesACountOfProductsQueries queries) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/products/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2490,7 +2490,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfProvincesForACountry(string countryId, map<string|string[]> headers = {}) returns ProvincesCount|error {
         string resourcePath = string `/admin/api/2025-01/countries/${getEncodedUri(countryId)}/provinces/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2503,7 +2503,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfSmartCollections(map<string|string[]> headers = {}, *RetrievesACountOfSmartCollectionsQueries queries) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/smart_collections/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2516,7 +2516,7 @@ public isolated client class Client {
     remote isolated function retrievesACountOfUrlRedirects(map<string|string[]> headers = {}, *RetrievesACountOfUrlRedirectsQueries queries) returns EventsCount|error {
         string resourcePath = string `/admin/api/2025-01/redirects/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2528,7 +2528,7 @@ public isolated client class Client {
     remote isolated function retrievesADetailedListForInventoryItemsByIds(map<string|string[]> headers = {}, *RetrievesADetailedListForInventoryItemsByIdsQueries queries) returns error? {
         string resourcePath = string `/admin/api/2025-01/inventory_items.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2541,7 +2541,7 @@ public isolated client class Client {
     remote isolated function retrievesADiscountCodeCreationJob(string priceRuleId, string batchId, map<string|string[]> headers = {}) returns DiscountCodeResponse|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}/batch/${getEncodedUri(batchId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2554,7 +2554,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAbandonedCheckouts(map<string|string[]> headers = {}, *RetrievesAListOfAbandonedCheckoutsQueries queries) returns AbandonedCheckouts|error {
         string resourcePath = string `/admin/api/2025-01/checkouts.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2566,7 +2566,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAddressesForACustomer(string customerId, map<string|string[]> headers = {}) returns AddressList|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/addresses.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2578,7 +2578,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAllArticleAuthors(map<string|string[]> headers = {}) returns ArticleAuthors|error {
         string resourcePath = string `/admin/api/2025-01/articles/authors.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2591,7 +2591,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAllArticleTags(map<string|string[]> headers = {}, *RetrievesAListOfAllArticleTagsQueries queries) returns TagsList|error {
         string resourcePath = string `/admin/api/2025-01/articles/tags.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2604,7 +2604,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAllArticleTagsFromASpecificBlog(string blogId, map<string|string[]> headers = {}, *RetrievesAListOfAllArticleTagsFromASpecificBlogQueries queries) returns Articles|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}/articles/tags.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2617,7 +2617,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAllArticlesFromABlog(string blogId, map<string|string[]> headers = {}, *RetrievesAListOfAllArticlesFromABlogQueries queries) returns Articles|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}/articles.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2630,7 +2630,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAllMarketingEvents(map<string|string[]> headers = {}, *RetrievesAListOfAllMarketingEventsQueries queries) returns MarketingEvents|error {
         string resourcePath = string `/admin/api/2025-01/marketing_events.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2642,7 +2642,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAllOrderRisksForAnOrder(string orderId, map<string|string[]> headers = {}) returns OrderRisks|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/risks.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2655,7 +2655,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAllScriptTags(map<string|string[]> headers = {}, *RetrievesAListOfAllScriptTagsQueries queries) returns ScriptTagsList|error {
         string resourcePath = string `/admin/api/2025-01/script_tags.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2667,7 +2667,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAllUsers(map<string|string[]> headers = {}) returns UsersList|error {
         string resourcePath = string `/admin/api/2025-01/users.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2680,7 +2680,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfApplicationCharges(map<string|string[]> headers = {}, *RetrievesAListOfApplicationChargesQueries queries) returns ApplicationChargesList|error {
         string resourcePath = string `/admin/api/2025-01/application_charges.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2693,7 +2693,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfAssetsForATheme(string themeId, map<string|string[]> headers = {}, *RetrievesAListOfAssetsForAThemeQueries queries) returns AssetsList|error {
         string resourcePath = string `/admin/api/2025-01/themes/${getEncodedUri(themeId)}/assets.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2705,7 +2705,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfCarrierServices(map<string|string[]> headers = {}) returns CarrierServiceList|error {
         string resourcePath = string `/admin/api/2025-01/carrier_services.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2718,7 +2718,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfCollects(map<string|string[]> headers = {}, *RetrievesAListOfCollectsQueries queries) returns CollectsList|error {
         string resourcePath = string `/admin/api/2025-01/collects.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2731,7 +2731,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfComments(map<string|string[]> headers = {}, *RetrievesAListOfCommentsQueries queries) returns ArticleComments|error {
         string resourcePath = string `/admin/api/2025-01/comments.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2743,7 +2743,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfCurrenciesEnabledOnAShop(map<string|string[]> headers = {}) returns CurrenciesList|error {
         string resourcePath = string `/admin/api/2025-01/currencies.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2756,7 +2756,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfCustomCollections(map<string|string[]> headers = {}, *RetrievesAListOfCustomCollectionsQueries queries) returns CollectionList|error {
         string resourcePath = string `/admin/api/2025-01/custom_collections.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2769,7 +2769,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfCustomers(map<string|string[]> headers = {}, *RetrievesAListOfCustomersQueries queries) returns Customers|error {
         string resourcePath = string `/admin/api/2025-01/customers.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2782,7 +2782,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfDiscountCodes(string priceRuleId, map<string|string[]> headers = {}) returns DiscountCodes|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}/discount_codes.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2795,7 +2795,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfDiscountCodesForADiscountCodeCreationJob(string priceRuleId, string batchId, map<string|string[]> headers = {}) returns DiscountCodeList|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}/batch/${getEncodedUri(batchId)}/discount_codes.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2808,7 +2808,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfDraftOrders(map<string|string[]> headers = {}, *RetrievesAListOfDraftOrdersQueries queries) returns DraftOrders|error {
         string resourcePath = string `/admin/api/2025-01/draft_orders.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2821,7 +2821,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfEvents(map<string|string[]> headers = {}, *RetrievesAListOfEventsQueries queries) returns EventsList|error {
         string resourcePath = string `/admin/api/2025-01/events.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2833,7 +2833,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfFulfillmentEventsForASpecificFulfillment(string orderId, string fulfillmentId, map<string|string[]> headers = {}) returns FulfillmentEvents|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/fulfillments/${getEncodedUri(fulfillmentId)}/events.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2846,7 +2846,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfFulfillmentOrdersAssignedToTheShopLocationsThatAreOwnedByTheApp(map<string|string[]> headers = {}, *RetrievesAListOfFulfillmentOrdersAssignedToTheShopLocationsThatAreOwnedByTheAppQueries queries) returns FulfillmentOrders|error {
         string resourcePath = string `/admin/api/2025-01/assigned_fulfillment_orders.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2858,7 +2858,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfFulfillmentOrdersForASpecificOrder(string orderId, map<string|string[]> headers = {}) returns FulfillmentOrdersList|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/fulfillment_orders.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2871,7 +2871,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfGiftCards(map<string|string[]> headers = {}, *RetrievesAListOfGiftCardsQueries queries) returns GiftCardsList|error {
         string resourcePath = string `/admin/api/2025-01/gift_cards.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2884,7 +2884,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfInventoryLevels(map<string|string[]> headers = {}, *RetrievesAListOfInventoryLevelsQueries queries) returns InventoryLevels|error {
         string resourcePath = string `/admin/api/2025-01/inventory_levels.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2896,7 +2896,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfInventoryLevelsForALocation(string locationId, map<string|string[]> headers = {}) returns InventoryListResponse|error {
         string resourcePath = string `/admin/api/2025-01/locations/${getEncodedUri(locationId)}/inventory_levels.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2908,7 +2908,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfLocations(map<string|string[]> headers = {}) returns LocationList|error {
         string resourcePath = string `/admin/api/2025-01/locations.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2921,7 +2921,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfLocationsThatAFulfillmentOrderCanPotentiallyMoveTo(string fulfillmentOrderId, map<string|string[]> headers = {}) returns LocationsList|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/locations_for_move.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2934,7 +2934,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfOrders(map<string|string[]> headers = {}, *RetrievesAListOfOrdersQueries queries) returns OrdersList|error {
         string resourcePath = string `/admin/api/2025-01/orders.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2947,7 +2947,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfPages(map<string|string[]> headers = {}, *RetrievesAListOfPagesQueries queries) returns PagesListResponse|error {
         string resourcePath = string `/admin/api/2025-01/pages.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2959,7 +2959,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfPaymentsOnAParticularCheckout(string token, map<string|string[]> headers = {}) returns PaymentsResponse|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/${getEncodedUri(token)}/payments.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2972,7 +2972,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfPriceRules(map<string|string[]> headers = {}, *RetrievesAListOfPriceRulesQueries queries) returns PriceRules|error {
         string resourcePath = string `/admin/api/2025-01/price_rules.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2985,7 +2985,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfProductVariants(string productId, map<string|string[]> headers = {}, *RetrievesAListOfProductVariantsQueries queries) returns ProductVariants|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}/variants.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -2998,7 +2998,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfProducts(map<string|string[]> headers = {}, *RetrievesAListOfProductsQueries queries) returns ProductsResponse|error {
         string resourcePath = string `/admin/api/2025-01/products.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3011,7 +3011,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfProvincesForACountry(string countryId, map<string|string[]> headers = {}, *RetrievesAListOfProvincesForACountryQueries queries) returns ProvincesList|error {
         string resourcePath = string `/admin/api/2025-01/countries/${getEncodedUri(countryId)}/provinces.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3024,7 +3024,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfRecurringApplicationCharges(map<string|string[]> headers = {}, *RetrievesAListOfRecurringApplicationChargesQueries queries) returns RecurringApplicationCharges|error {
         string resourcePath = string `/admin/api/2025-01/recurring_application_charges.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3037,7 +3037,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfRefundsForAnOrder(string orderId, map<string|string[]> headers = {}, *RetrievesAListOfRefundsForAnOrderQueries queries) returns Refunds|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/refunds.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3050,7 +3050,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfReports(map<string|string[]> headers = {}, *RetrievesAListOfReportsQueries queries) returns ReportList|error {
         string resourcePath = string `/admin/api/2025-01/reports.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3062,7 +3062,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfShippingRates(string token, map<string|string[]> headers = {}) returns AvailableShippingRates|ShippingRates|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/${getEncodedUri(token)}/shipping_rates.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3075,7 +3075,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfSmartCollections(map<string|string[]> headers = {}, *RetrievesAListOfSmartCollectionsQueries queries) returns SmartCollectionList|error {
         string resourcePath = string `/admin/api/2025-01/smart_collections.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3087,7 +3087,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfStorefrontAccessTokensThatHaveBeenIssued(map<string|string[]> headers = {}) returns StorefrontAccessTokens|error {
         string resourcePath = string `/admin/api/2025-01/storefront_access_tokens.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3100,7 +3100,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfTenderTransactions(map<string|string[]> headers = {}, *RetrievesAListOfTenderTransactionsQueries queries) returns TenderTransactions|error {
         string resourcePath = string `/admin/api/2025-01/tender_transactions.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3112,7 +3112,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfTheShopSPolicies(map<string|string[]> headers = {}) returns ShopPoliciesList|error {
         string resourcePath = string `/admin/api/2025-01/policies.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3125,7 +3125,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfThemes(map<string|string[]> headers = {}, *RetrievesAListOfThemesQueries queries) returns ThemesList|error {
         string resourcePath = string `/admin/api/2025-01/themes.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3138,7 +3138,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfTransactions(string orderId, map<string|string[]> headers = {}, *RetrievesAListOfTransactionsQueries queries) returns TransactionsList|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/transactions.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3151,7 +3151,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfUrlRedirects(map<string|string[]> headers = {}, *RetrievesAListOfUrlRedirectsQueries queries) returns UrlList|error {
         string resourcePath = string `/admin/api/2025-01/redirects.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3165,7 +3165,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfUsageCharges(string recurringApplicationChargeId, map<string|string[]> headers = {}, *RetrievesAListOfUsageChargesQueries queries) returns UsageChargeList|error {
         string resourcePath = string `/admin/api/2025-01/recurring_application_charges/${getEncodedUri(recurringApplicationChargeId)}/usage_charges.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3178,7 +3178,7 @@ public isolated client class Client {
     remote isolated function retrievesAListOfWebhooks(map<string|string[]> headers = {}, *RetrievesAListOfWebhooksQueries queries) returns SubscriptionsList|error {
         string resourcePath = string `/admin/api/2025-01/webhooks.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3191,7 +3191,7 @@ public isolated client class Client {
     remote isolated function retrievesAPageCount(map<string|string[]> headers = {}, *RetrievesAPageCountQueries queries) returns ArticlesCount|error {
         string resourcePath = string `/admin/api/2025-01/pages/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3204,7 +3204,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleApplicationCredit(string aplicationCreditId, map<string|string[]> headers = {}, *RetrievesASingleApplicationCreditQueries queries) returns ApplicationCredit|error {
         string resourcePath = string `/admin/api/2025-01/application_credits/${getEncodedUri(aplicationCreditId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3216,7 +3216,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleCarrierService(string carrierServiceId, map<string|string[]> headers = {}) returns SingleCarrierService|error {
         string resourcePath = string `/admin/api/2025-01/carrier_services/${getEncodedUri(carrierServiceId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3230,7 +3230,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleCharge(string recurringApplicationChargeId, map<string|string[]> headers = {}, *RetrievesASingleChargeQueries queries) returns SingleCharge|error {
         string resourcePath = string `/admin/api/2025-01/recurring_application_charges/${getEncodedUri(recurringApplicationChargeId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3244,7 +3244,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleCharge1(string recurringApplicationChargeId, string usageChargeId, map<string|string[]> headers = {}, *RetrievesASingleCharge1Queries queries) returns SingleUsageCharge|error {
         string resourcePath = string `/admin/api/2025-01/recurring_application_charges/${getEncodedUri(recurringApplicationChargeId)}/usage_charges/${getEncodedUri(usageChargeId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3257,7 +3257,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleCollection(string collectionId, map<string|string[]> headers = {}, *RetrievesASingleCollectionQueries queries) returns SingleCollection|error {
         string resourcePath = string `/admin/api/2025-01/collections/${getEncodedUri(collectionId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3270,7 +3270,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleCommentByItsId(string commentId, map<string|string[]> headers = {}, *RetrievesASingleCommentByItsIdQueries queries) returns SingleCommentResponse|error {
         string resourcePath = string `/admin/api/2025-01/comments/${getEncodedUri(commentId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3283,7 +3283,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleCustomCollection(string customCollectionId, map<string|string[]> headers = {}, *RetrievesASingleCustomCollectionQueries queries) returns SingleCustomCollection|error {
         string resourcePath = string `/admin/api/2025-01/custom_collections/${getEncodedUri(customCollectionId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3296,7 +3296,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleCustomer(string customerId, map<string|string[]> headers = {}, *RetrievesASingleCustomerQueries queries) returns CustomerResponse|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3309,7 +3309,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleDiscountCode(string priceRuleId, string discountCodeId, map<string|string[]> headers = {}) returns SingleDiscountCode|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}/discount_codes/${getEncodedUri(discountCodeId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3322,7 +3322,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleEvent(string eventId, map<string|string[]> headers = {}, *RetrievesASingleEventQueries queries) returns SingleEvent|error {
         string resourcePath = string `/admin/api/2025-01/events/${getEncodedUri(eventId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3335,7 +3335,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleGiftCard(string giftCardId, map<string|string[]> headers = {}, *RetrievesASingleGiftCardQueries queries) returns SingleGiftCard|error {
         string resourcePath = string `/admin/api/2025-01/gift_cards/${getEncodedUri(giftCardId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3347,7 +3347,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleInventoryItemById(string inventoryItemId, map<string|string[]> headers = {}) returns InventoryItem|error {
         string resourcePath = string `/admin/api/2025-01/inventory_items/${getEncodedUri(inventoryItemId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3359,7 +3359,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleLocationByItsId(string locationId, map<string|string[]> headers = {}) returns SingleLocation|error {
         string resourcePath = string `/admin/api/2025-01/locations/${getEncodedUri(locationId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3371,7 +3371,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleMarketingEvent(string marketingEventId, map<string|string[]> headers = {}) returns MarketingEvent|error {
         string resourcePath = string `/admin/api/2025-01/marketing_events/${getEncodedUri(marketingEventId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3383,7 +3383,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleOrderRiskByItsId(string orderId, string riskId, map<string|string[]> headers = {}) returns SingleOrderRisk|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/risks/${getEncodedUri(riskId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3396,7 +3396,7 @@ public isolated client class Client {
     remote isolated function retrievesASinglePageByItsId(string pageId, map<string|string[]> headers = {}, *RetrievesASinglePageByItsIdQueries queries) returns SinglePageResponse|error {
         string resourcePath = string `/admin/api/2025-01/pages/${getEncodedUri(pageId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3408,7 +3408,7 @@ public isolated client class Client {
     remote isolated function retrievesASinglePayment(string token, string paymentId, map<string|string[]> headers = {}) returns SinglePaymentResponse|error {
         string resourcePath = string `/admin/api/2025-01/checkouts/${getEncodedUri(token)}/payments/${getEncodedUri(paymentId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3421,7 +3421,7 @@ public isolated client class Client {
     remote isolated function retrievesASinglePriceRule(string priceRuleId, map<string|string[]> headers = {}) returns SinglePriceRule|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3434,7 +3434,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleProduct(string productId, map<string|string[]> headers = {}, *RetrievesASingleProductQueries queries) returns SingleProduct|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3447,7 +3447,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleProvinceForACountry(string countryId, string provinceId, map<string|string[]> headers = {}, *RetrievesASingleProvinceForACountryQueries queries) returns SingleProvince|error {
         string resourcePath = string `/admin/api/2025-01/countries/${getEncodedUri(countryId)}/provinces/${getEncodedUri(provinceId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3460,7 +3460,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleRedirect(string redirectId, map<string|string[]> headers = {}, *RetrievesASingleRedirectQueries queries) returns SingleRedirect|error {
         string resourcePath = string `/admin/api/2025-01/redirects/${getEncodedUri(redirectId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3473,7 +3473,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleReport(string reportId, map<string|string[]> headers = {}, *RetrievesASingleReportQueries queries) returns SingleReportResponse|error {
         string resourcePath = string `/admin/api/2025-01/reports/${getEncodedUri(reportId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3486,7 +3486,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleScriptTag(string scriptTagId, map<string|string[]> headers = {}, *RetrievesASingleScriptTagQueries queries) returns SingleScriptTag|error {
         string resourcePath = string `/admin/api/2025-01/script_tags/${getEncodedUri(scriptTagId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3499,7 +3499,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleSmartCollection(string smartCollectionId, map<string|string[]> headers = {}, *RetrievesASingleSmartCollectionQueries queries) returns SmartCollectionResponse|error {
         string resourcePath = string `/admin/api/2025-01/smart_collections/${getEncodedUri(smartCollectionId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3512,7 +3512,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleTheme(string themeId, map<string|string[]> headers = {}, *RetrievesASingleThemeQueries queries) returns SingleTheme|error {
         string resourcePath = string `/admin/api/2025-01/themes/${getEncodedUri(themeId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3524,7 +3524,7 @@ public isolated client class Client {
     remote isolated function retrievesASingleUser(string userId, map<string|string[]> headers = {}) returns SingleUser|error {
         string resourcePath = string `/admin/api/2025-01/users/${getEncodedUri(userId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3537,7 +3537,7 @@ public isolated client class Client {
     remote isolated function retrievesASpecificCollectByItsId(string collectId, map<string|string[]> headers = {}, *RetrievesASpecificCollectByItsIdQueries queries) returns CollectResponse|error {
         string resourcePath = string `/admin/api/2025-01/collects/${getEncodedUri(collectId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3550,7 +3550,7 @@ public isolated client class Client {
     remote isolated function retrievesASpecificCounty(string countryId, map<string|string[]> headers = {}, *RetrievesASpecificCountyQueries queries) returns CountryResponse|error {
         string resourcePath = string `/admin/api/2025-01/countries/${getEncodedUri(countryId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3562,7 +3562,7 @@ public isolated client class Client {
     remote isolated function retrievesASpecificFulfillmentEvent(string orderId, string fulfillmentId, string eventId, map<string|string[]> headers = {}) returns FulfillmentEventResponse|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/fulfillments/${getEncodedUri(fulfillmentId)}/events/${getEncodedUri(eventId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3575,7 +3575,7 @@ public isolated client class Client {
     remote isolated function retrievesASpecificFulfillmentOrder(string fulfillmentOrderId, map<string|string[]> headers = {}) returns SingleFulfillmentOrder|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3587,7 +3587,7 @@ public isolated client class Client {
     remote isolated function retrievesASpecificOrder(string orderId, map<string|string[]> headers = {}) returns SingleOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3600,7 +3600,7 @@ public isolated client class Client {
     remote isolated function retrievesASpecificRefund(string orderId, string refundId, map<string|string[]> headers = {}, *RetrievesASpecificRefundQueries queries) returns RefundResponse|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/refunds/${getEncodedUri(refundId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3613,7 +3613,7 @@ public isolated client class Client {
     remote isolated function retrievesASpecificTransaction(string orderId, string transactionId, map<string|string[]> headers = {}, *RetrievesASpecificTransactionQueries queries) returns TransactionResponse|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/transactions/${getEncodedUri(transactionId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3626,7 +3626,7 @@ public isolated client class Client {
     remote isolated function retrievesAllApplicationCredits(map<string|string[]> headers = {}, *RetrievesAllApplicationCreditsQueries queries) returns ApplicationCredits|error {
         string resourcePath = string `/admin/api/2025-01/application_credits.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3637,7 +3637,7 @@ public isolated client class Client {
     remote isolated function retrievesAllOrdersBelongingToACustomer(string customerId, map<string|string[]> headers = {}) returns Orders|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/orders.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3650,7 +3650,7 @@ public isolated client class Client {
     remote isolated function retrievesAnApplicationCharge(string applicationChargeId, map<string|string[]> headers = {}, *RetrievesAnApplicationChargeQueries queries) returns ApplicationChargeResult|error {
         string resourcePath = string `/admin/api/2025-01/application_charges/${getEncodedUri(applicationChargeId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3663,7 +3663,7 @@ public isolated client class Client {
     remote isolated function retrievesAnOrderCount(map<string|string[]> headers = {}, *RetrievesAnOrderCountQueries queries) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/orders/count.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3675,7 +3675,7 @@ public isolated client class Client {
     remote isolated function retrievesDetailsForASingleCustomerAddress(string customerId, string addressId, map<string|string[]> headers = {}) returns SingleCustomerAddress|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/addresses/${getEncodedUri(addressId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3688,7 +3688,7 @@ public isolated client class Client {
     remote isolated function retrievesFulfillmentsAssociatedWithAFulfillmentOrder(string fulfillmentOrderId, map<string|string[]> headers = {}) returns FulfillmentList|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/fulfillments.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3701,7 +3701,7 @@ public isolated client class Client {
     remote isolated function retrievesFulfillmentsAssociatedWithAnOrder(string orderId, map<string|string[]> headers = {}, *RetrievesFulfillmentsAssociatedWithAnOrderQueries queries) returns FulfillmentListForOrder|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/fulfillments.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3713,7 +3713,7 @@ public isolated client class Client {
     remote isolated function retrievesTheCurrentlyLoggedInUser(map<string|string[]> headers = {}) returns SingleUser|error {
         string resourcePath = string `/admin/api/2025-01/users/current.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3724,7 +3724,7 @@ public isolated client class Client {
     remote isolated function retrievesTheLocationOfADiscountCode(map<string|string[]> headers = {}) returns http:Response|error {
         string resourcePath = string `/admin/api/2025-01/discount_codes/lookup.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3737,7 +3737,7 @@ public isolated client class Client {
     remote isolated function retrievesTheShopSConfiguration(map<string|string[]> headers = {}, *RetrievesTheShopSConfigurationQueries queries) returns ShopConfigurations|error {
         string resourcePath = string `/admin/api/2025-01/shop.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3750,7 +3750,7 @@ public isolated client class Client {
     remote isolated function returnAListOfAllBalanceTransactions(map<string|string[]> headers = {}, *ReturnAListOfAllBalanceTransactionsQueries queries) returns TransactionsListForPayout|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/balance/transactions.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3763,7 +3763,7 @@ public isolated client class Client {
     remote isolated function returnAListOfAllDisputes(map<string|string[]> headers = {}, *ReturnAListOfAllDisputesQueries queries) returns Disputes|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/disputes.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3776,7 +3776,7 @@ public isolated client class Client {
     remote isolated function returnAListOfAllPayouts(map<string|string[]> headers = {}, *ReturnAListOfAllPayoutsQueries queries) returns PayoutsList|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/payouts.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3788,7 +3788,7 @@ public isolated client class Client {
     remote isolated function returnASingleDispute(string disputeId, map<string|string[]> headers = {}) returns SingleDispute|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/disputes/${getEncodedUri(disputeId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3800,7 +3800,7 @@ public isolated client class Client {
     remote isolated function returnASinglePayout(string payoutId, map<string|string[]> headers = {}) returns SinglePayout|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/payouts/${getEncodedUri(payoutId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3812,7 +3812,7 @@ public isolated client class Client {
     remote isolated function returnTheCurrentBalance(map<string|string[]> headers = {}) returns AccountCurrentBalance|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/balance.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3824,7 +3824,7 @@ public isolated client class Client {
     remote isolated function returnsEvidenceAssociatedWithTheDispute(string disputeId, map<string|string[]> headers = {}) returns DisputeEvidenceResponse|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/disputes/${getEncodedUri(disputeId)}/dispute_evidences.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3836,7 +3836,7 @@ public isolated client class Client {
     remote isolated function returnsEvidenceAssociatedWithTheDisputeCopy(string disputeId, DisputeIdDisputeEvidencesJsonBody payload, map<string|string[]> headers = {}) returns DisputeEvidenceResponse|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/disputes/${getEncodedUri(disputeId)}/dispute_evidences.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -3852,7 +3852,7 @@ public isolated client class Client {
     remote isolated function searchesForCustomersThatMatchASuppliedQuery(map<string|string[]> headers = {}, *SearchesForCustomersThatMatchASuppliedQueryQueries queries) returns Customers|error {
         string resourcePath = string `/admin/api/2025-01/customers/search.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3865,7 +3865,7 @@ public isolated client class Client {
     remote isolated function searchesForGiftCards(map<string|string[]> headers = {}, *SearchesForGiftCardsQueries queries) returns GiftCardSearch|error {
         string resourcePath = string `/admin/api/2025-01/gift_cards/search.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -3878,7 +3878,7 @@ public isolated client class Client {
     remote isolated function sendAnInvoice(string draftOrderId, DraftOrderIdSendInvoiceJsonBody payload, map<string|string[]> headers = {}) returns InvoiceResponse|error {
         string resourcePath = string `/admin/api/2025-01/draft_orders/${getEncodedUri(draftOrderId)}/send_invoice.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -3894,7 +3894,7 @@ public isolated client class Client {
     remote isolated function sendsACancellationRequest(string fulfillmentOrderId, FulfillmentOrderIdCancellationRequestJsonBody payload, map<string|string[]> headers = {}) returns FulfillmentOrder|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/cancellation_request.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -3910,7 +3910,7 @@ public isolated client class Client {
     remote isolated function sendsAFulfillmentRequest(string fulfillmentOrderId, FulfillmentOrderIdFulfillmentRequestJsonBody payload, map<string|string[]> headers = {}) returns OriginalFulfillmentOrder|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/fulfillment_request.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -3925,7 +3925,7 @@ public isolated client class Client {
     remote isolated function sendsAnAccountInviteToACustomer(string customerId, CustomerIdSendInviteJsonBody payload, map<string|string[]> headers = {}) returns AccountInvite|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/send_invite.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -3940,7 +3940,7 @@ public isolated client class Client {
     remote isolated function setsDeadlineForFulfillmentOrders(FulfillmentOrdersSetFulfillmentOrdersDeadlineJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/set_fulfillment_orders_deadline.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -3955,7 +3955,7 @@ public isolated client class Client {
     remote isolated function setsTheDefaultAddressForACustomer(string customerId, string addressId, string payload, map<string|string[]> headers = {}) returns CustomerDefaultAddress|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/addresses/${getEncodedUri(addressId)}/default.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -3969,7 +3969,7 @@ public isolated client class Client {
     remote isolated function setsTheInventoryLevelForAnInventoryItemAtALocation(InventoryLevelsSetJsonBody payload, map<string|string[]> headers = {}) returns AvailableInventory|error {
         string resourcePath = string `/admin/api/2025-01/inventory_levels/set.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -3983,7 +3983,7 @@ public isolated client class Client {
     remote isolated function shopCreateAMetafield(ApiVersionMetafieldsJsonBody payload, map<string|string[]> headers = {}) returns error? {
         string resourcePath = string `/admin/api/2025-01/metafields.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -3997,7 +3997,7 @@ public isolated client class Client {
     remote isolated function shopDeletesAMetafieldByItsId(string metafieldId, string payload, map<string|string[]> headers = {}) returns error? {
         string resourcePath = string `/admin/api/2025-01/metafields/${getEncodedUri(metafieldId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -4010,7 +4010,7 @@ public isolated client class Client {
     remote isolated function shopRetrieveACountOfAResourceSMetafields(map<string|string[]> headers = {}) returns ObjectCount|error {
         string resourcePath = string `/admin/api/2025-01/metafields/count.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -4022,7 +4022,7 @@ public isolated client class Client {
     remote isolated function shopRetrieveAListOfMetafieldsFromTheResourceSEndpoint(map<string|string[]> headers = {}, *ShopRetrieveAListOfMetafieldsFromTheResourceSEndpointQueries queries) returns error? {
         string resourcePath = string `/admin/api/2025-01/metafields.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -4034,7 +4034,7 @@ public isolated client class Client {
     remote isolated function shopRetrieveASpecificMetafield(string metafieldId, map<string|string[]> headers = {}, *ShopRetrieveASpecificMetafieldQueries queries) returns MetafieldResponse|error {
         string resourcePath = string `/admin/api/2025-01/metafields/${getEncodedUri(metafieldId)}.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         return self.clientEp->get(resourcePath, headers);
     }
@@ -4046,7 +4046,7 @@ public isolated client class Client {
     remote isolated function shopUpdatesAMetafield(string metafieldId, string payload, map<string|string[]> headers = {}) returns Metafield|error {
         string resourcePath = string `/admin/api/2025-01/metafields/${getEncodedUri(metafieldId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -4060,7 +4060,7 @@ public isolated client class Client {
     remote isolated function updateAMobilePlatformApplication(string mobilePlatformApplicationId, MobilePlatformApplicationsmobilePlatformApplicationIdJsonBody payload, map<string|string[]> headers = {}) returns MobilePlatformApplicationResponse|error {
         string resourcePath = string `/admin/api/2025-01/mobile_platform_applications/${getEncodedUri(mobilePlatformApplicationId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4075,7 +4075,7 @@ public isolated client class Client {
     remote isolated function updatesACommentOfAnArticle(string commentId, CommentscommentIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateCommentResponse|error {
         string resourcePath = string `/admin/api/2025-01/comments/${getEncodedUri(commentId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4090,7 +4090,7 @@ public isolated client class Client {
     remote isolated function updatesACustomer(string customerId, UpdateCustomer payload, map<string|string[]> headers = {}) returns CustomerResponse|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4105,7 +4105,7 @@ public isolated client class Client {
     remote isolated function updatesAMarketingEvent(string marketingEventId, MarketingEventsmarketingEventIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateMarketingEvent|error {
         string resourcePath = string `/admin/api/2025-01/marketing_events/${getEncodedUri(marketingEventId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4119,7 +4119,7 @@ public isolated client class Client {
     remote isolated function updatesAMetafield(string ownerId, string ownerResource, string metafieldId, string payload, map<string|string[]> headers = {}) returns MetafieldResponse|error {
         string resourcePath = string `/admin/api/2025-01/${getEncodedUri(ownerId)}/${getEncodedUri(ownerResource)}/metafields/${getEncodedUri(metafieldId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -4133,7 +4133,7 @@ public isolated client class Client {
     remote isolated function updatesAPage(string pageId, PagespageIdJsonBody payload, map<string|string[]> headers = {}) returns UpdatePageResponse|error {
         string resourcePath = string `/admin/api/2025-01/pages/${getEncodedUri(pageId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4148,7 +4148,7 @@ public isolated client class Client {
     remote isolated function updatesAProduct(string productId, UpdateProduct payload, map<string|string[]> headers = {}) returns ProductObject|error {
         string resourcePath = string `/admin/api/2025-01/products/${getEncodedUri(productId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4163,7 +4163,7 @@ public isolated client class Client {
     remote isolated function updatesAReport(string reportId, ReportsreportIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateReportResponse|error {
         string resourcePath = string `/admin/api/2025-01/reports/${getEncodedUri(reportId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4178,7 +4178,7 @@ public isolated client class Client {
     remote isolated function updatesAScriptTag(string scriptTagId, ScriptTagsscriptTagIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateScriptTagResponse|error {
         string resourcePath = string `/admin/api/2025-01/script_tags/${getEncodedUri(scriptTagId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4193,7 +4193,7 @@ public isolated client class Client {
     remote isolated function updatesAnArticle(string blogId, string articleId, ArticlesarticleIdJsonBody payload, map<string|string[]> headers = {}) returns SingleArticle|error {
         string resourcePath = string `/admin/api/2025-01/blogs/${getEncodedUri(blogId)}/articles/${getEncodedUri(articleId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4209,7 +4209,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingAPriceRule(string priceRuleId, PriceRulespriceRuleIdJsonBody payload, map<string|string[]> headers = {}) returns UpdatePriceRule|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4224,7 +4224,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingCountry(string countryId, CountriescountryIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateCountryTaxRate|error {
         string resourcePath = string `/admin/api/2025-01/countries/${getEncodedUri(countryId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4239,7 +4239,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingCustomCollection(string customCollectionId, CustomCollectionscustomCollectionIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateCustomCollection|error {
         string resourcePath = string `/admin/api/2025-01/custom_collections/${getEncodedUri(customCollectionId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4254,7 +4254,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingCustomerAddress(string customerId, string addressId, AddressesaddressIdJsonBody payload, map<string|string[]> headers = {}) returns PostalCodeResult|error {
         string resourcePath = string `/admin/api/2025-01/customers/${getEncodedUri(customerId)}/addresses/${getEncodedUri(addressId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4270,7 +4270,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingDiscountCode(string priceRuleId, string discountCodeId, DiscountCodesdiscountCodeIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateDiscountCode|error {
         string resourcePath = string `/admin/api/2025-01/price_rules/${getEncodedUri(priceRuleId)}/discount_codes/${getEncodedUri(discountCodeId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4285,7 +4285,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingGiftCard(string giftCardId, GiftCardsgiftCardIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateGiftCard|error {
         string resourcePath = string `/admin/api/2025-01/gift_cards/${getEncodedUri(giftCardId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4300,7 +4300,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingInventoryItem(string inventoryItemId, InventoryItemsinventoryItemIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateInventoryItem|error {
         string resourcePath = string `/admin/api/2025-01/inventory_items/${getEncodedUri(inventoryItemId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4315,7 +4315,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingProvinceForACountry(string countryId, string provinceId, ProvincesprovinceIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateProvinceResponse|error {
         string resourcePath = string `/admin/api/2025-01/countries/${getEncodedUri(countryId)}/provinces/${getEncodedUri(provinceId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4330,7 +4330,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingRedirect(string redirectId, RedirectsredirectIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateRedirect|error {
         string resourcePath = string `/admin/api/2025-01/redirects/${getEncodedUri(redirectId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4345,7 +4345,7 @@ public isolated client class Client {
     remote isolated function updatesAnExistingSmartCollection(string smartCollectionId, SmartCollectionssmartCollectionIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateSmartCollection|error {
         string resourcePath = string `/admin/api/2025-01/smart_collections/${getEncodedUri(smartCollectionId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4360,7 +4360,7 @@ public isolated client class Client {
     remote isolated function updatesAnOrder(string orderId, UpdateOrder payload, map<string|string[]> headers = {}) returns UpdateOrderResponse|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4375,7 +4375,7 @@ public isolated client class Client {
     remote isolated function updatesAnOrderRisk(string orderId, string riskId, UpdateOrderRisk payload, map<string|string[]> headers = {}) returns OrderRiskObject|error {
         string resourcePath = string `/admin/api/2025-01/orders/${getEncodedUri(orderId)}/risks/${getEncodedUri(riskId)}.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4392,7 +4392,7 @@ public isolated client class Client {
     remote isolated function updatesTheCappedAmountOfARecurringApplicationCharge(string recurringApplicationChargeId, string payload, map<string|string[]> headers = {}, *UpdatesTheCappedAmountOfARecurringApplicationChargeQueries queries) returns CappedAmountCharge|error {
         string resourcePath = string `/admin/api/2025-01/recurring_application_charges/${getEncodedUri(recurringApplicationChargeId)}/customize.json`;
         map<anydata> queryParam = {...queries};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         request.setPayload(payload, "text/plain");
@@ -4406,7 +4406,7 @@ public isolated client class Client {
     remote isolated function updatesTheOrderingTypeOfProductsInASmartCollection(string smartCollectionId, record {} payload, map<string|string[]> headers = {}) returns record {}|error {
         string resourcePath = string `/admin/api/2025-01/smart_collections/${getEncodedUri(smartCollectionId)}/order.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4421,7 +4421,7 @@ public isolated client class Client {
     remote isolated function updatesTheTrackingInformationForAFulfillment(string fulfillmentId, FulfillmentIdUpdateTrackingJsonBody payload, map<string|string[]> headers = {}) returns Fulfillment|error {
         string resourcePath = string `/admin/api/2025-01/fulfillments/${getEncodedUri(fulfillmentId)}/update_tracking.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
@@ -4436,7 +4436,7 @@ public isolated client class Client {
     remote isolated function uploadAFileToADispute(string disputeId, DisputeIdDisputeFileUploadsJsonBody payload, map<string|string[]> headers = {}) returns DisputeFileUpload|error {
         string resourcePath = string `/admin/api/2025-01/shopify_payments/disputes/${getEncodedUri(disputeId)}/dispute_file_uploads.json`;
         map<anydata> queryParam = {};
-        queryParam["x-shopify-access-token"] = self.apiKeyConfig.x\-shopify\-access\-token;
+        queryParam["x-shopify-access-token"] = self.apiKeyConfig.accessToken;
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
         http:Request request = new;
         json jsonBody = payload.toJson();
