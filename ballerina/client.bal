@@ -69,10 +69,9 @@ public isolated client class Client {
 
     # Accepts a cancellation request
     #
-    # + fulfillmentOrderId - parameter description  
-    # + payload - parameter description  
-    # + headers - Headers to be sent with the request
-    # + return - Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order / Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order
+    # + fulfillmentOrderId - The ID of the fulfillment order
+    # + headers - Headers to be sent with the request 
+    # + return - Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order / Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order 
     remote isolated function acceptsACancellationRequest(string fulfillmentOrderId, CancellationRequestAcceptJsonBody payload, map<string|string[]> headers = {}) returns CancellationResponse|error {
         string resourcePath = string `/admin/api/2025-01/fulfillment_orders/${getEncodedUri(fulfillmentOrderId)}/cancellation_request/accept.json`;
         map<anydata> queryParam = {};
@@ -86,6 +85,7 @@ public isolated client class Client {
 
     # Accepts a fulfillment request
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order / Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order 
     remote isolated function acceptsAFulfillmentRequest(string fulfillmentOrderId, FulfillmentRequestAcceptJsonBody payload, map<string|string[]> headers = {}) returns AcceptFulfillmentResponse|error {
@@ -131,6 +131,7 @@ public isolated client class Client {
 
     # Applies a fulfillment hold on an open fulfillment order
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Move a fulfillment order to a new location / Move a fulfillment order to a new location 
     remote isolated function appliesAFulfillmentHoldOnAnOpenFulfillmentOrder(string fulfillmentOrderId, FulfillmentOrderIdHoldJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
@@ -176,6 +177,7 @@ public isolated client class Client {
 
     # Cancel a fulfillment order
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Cancel a fulfillment order / Cancel a fulfillment order 
     remote isolated function cancelAFulfillmentOrder(string fulfillmentOrderId, FulfillmentOrderIdCancelJsonBody payload, map<string|string[]> headers = {}) returns CancelFulfillmentOrder|error {
@@ -1379,6 +1381,7 @@ public isolated client class Client {
 
     # Marks a fulfillment order as incomplete
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Transition a fulfillment order from in progress to incomplete / Transition a fulfillment order from in progress to incomplete 
     remote isolated function marksAFulfillmentOrderAsIncomplete(string fulfillmentOrderId, FulfillmentOrderIdCloseJsonBody payload, map<string|string[]> headers = {}) returns TransitionFulfillmentOrder|error {
@@ -1394,6 +1397,7 @@ public isolated client class Client {
 
     # Marks the fulfillment order as open
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Move a fulfillment order to a new location / Move a fulfillment order to a new location 
     remote isolated function marksTheFulfillmentOrderAsOpen(string fulfillmentOrderId, FulfillmentOrderIdOpenJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
@@ -1544,6 +1548,7 @@ public isolated client class Client {
 
     # Moves a fulfillment order to a new location
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Move a fulfillment order to a new location / Move a fulfillment order to a new location 
     remote isolated function movesAFulfillmentOrderToANewLocation(string fulfillmentOrderId, FulfillmentOrderIdMoveJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
@@ -1829,6 +1834,7 @@ public isolated client class Client {
 
     # Rejects a cancellation request
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order / Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order 
     remote isolated function rejectsACancellationRequest(string fulfillmentOrderId, CancellationRequestRejectJsonBody payload, map<string|string[]> headers = {}) returns RejectCancellationRequestResponse|error {
@@ -1844,6 +1850,7 @@ public isolated client class Client {
 
     # Rejects a fulfillment request
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order / Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order 
     remote isolated function rejectsAFulfillmentRequest(string fulfillmentOrderId, FulfillmentRequestRejectJsonBody payload, map<string|string[]> headers = {}) returns RejectFulfillmentResponse|error {
@@ -1859,6 +1866,7 @@ public isolated client class Client {
 
     # Releases the fulfillment hold on a fulfillment order
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Move a fulfillment order to a new location / Move a fulfillment order to a new location 
     remote isolated function releasesTheFulfillmentHoldOnAFulfillmentOrder(string fulfillmentOrderId, FulfillmentOrderIdReleaseHoldJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
@@ -2057,6 +2065,7 @@ public isolated client class Client {
 
     # Reschedules the fulfill_at time of a scheduled fulfillment order
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Move a fulfillment order to a new location / Move a fulfillment order to a new location 
     remote isolated function reschedulesTheFulfillAtTimeOfAScheduledFulfillmentOrder(string fulfillmentOrderId, FulfillmentOrderIdRescheduleJsonBody payload, map<string|string[]> headers = {}) returns MoveFulfillmentOrderResponse|error {
@@ -2889,6 +2898,7 @@ public isolated client class Client {
 
     # Retrieves a list of locations that a fulfillment order can potentially move to.
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Retrieve a list of locations that a fulfillment order can potentially move to. / Retrieve a list of locations that a fulfillment order can potentially move to. 
     remote isolated function retrievesAListOfLocationsThatAFulfillmentOrderCanPotentiallyMoveTo(string fulfillmentOrderId, map<string|string[]> headers = {}) returns LocationsList|error {
@@ -3538,6 +3548,7 @@ public isolated client class Client {
 
     # Retrieves a specific fulfillment order
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Get a single fulfillment order by its ID / Get a single fulfillment order by its ID 
     remote isolated function retrievesASpecificFulfillmentOrder(string fulfillmentOrderId, map<string|string[]> headers = {}) returns SingleFulfillmentOrder|error {
@@ -3650,6 +3661,7 @@ public isolated client class Client {
 
     # Retrieves fulfillments associated with a fulfillment order
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Retrieve a list of all fulfillments for a fulfillment order / Retrieve a list of all fulfillments for a fulfillment order 
     remote isolated function retrievesFulfillmentsAssociatedWithAFulfillmentOrder(string fulfillmentOrderId, map<string|string[]> headers = {}) returns FulfillmentList|error {
@@ -3854,6 +3866,7 @@ public isolated client class Client {
 
     # Sends a cancellation request
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order / Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order 
     remote isolated function sendsACancellationRequest(string fulfillmentOrderId, FulfillmentOrderIdCancellationRequestJsonBody payload, map<string|string[]> headers = {}) returns FulfillmentOrder|error {
@@ -3869,6 +3882,7 @@ public isolated client class Client {
 
     # Sends a fulfillment request
     #
+    # + fulfillmentOrderId - The ID of the fulfillment order
     # + headers - Headers to be sent with the request 
     # + return - Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items / Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank / Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items / Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank 
     remote isolated function sendsAFulfillmentRequest(string fulfillmentOrderId, FulfillmentOrderIdFulfillmentRequestJsonBody payload, map<string|string[]> headers = {}) returns OriginalFulfillmentOrder|error {
