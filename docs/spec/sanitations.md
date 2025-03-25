@@ -44,7 +44,7 @@ These changes are done in order to improve the overall usability, and as workaro
     ```json
         "requestBody" : {
             "content": {
-                "application/json": {}
+                "application/json": {},
                 "schema": {}
             }
         }
