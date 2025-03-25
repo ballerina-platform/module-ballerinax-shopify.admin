@@ -25,7 +25,7 @@ configurable string productId = "prodcut-id";
 
 Client shopify = check new (
     {
-        x\-shopify\-access\-token: accessToken
+        accessToken
     },
     serviceUrl,
     {
