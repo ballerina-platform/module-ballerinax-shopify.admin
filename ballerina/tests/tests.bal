@@ -40,7 +40,7 @@ Client shopify = check new (
 }
 function testGetAccessScopes() returns error? {
     AccessScopes accessScopes = check shopify->getAListOfAccessScopes();
-    AccessScopes_access_scopes[]? scopes = accessScopes.accessScopes;
+    AccessScopesAccessScopes[]? scopes = accessScopes.accessScopes;
     if scopes !is () {
         test:assertTrue(scopes.length() > 0);
     } else {
@@ -99,7 +99,7 @@ function testGetEventLists() returns error? {
 }
 function testGiftCardList() returns error? {
     GiftCardsList giftCardList = check shopify->retrievesAListOfGiftCards();
-    GiftCardsList_gift_cards[]? giftCards = giftCardList.giftCards;
+    GiftCardsListGiftCards[]? giftCards = giftCardList.giftCards;
     if giftCards !is () {
         test:assertTrue(giftCards.length() > 0);
     } else {
@@ -112,7 +112,7 @@ function testGiftCardList() returns error? {
 }
 function testGetListOfLocations() returns error? {
     LocationList locationList = check shopify->retrievesAListOfLocations();
-    LocationList_locations[]? locations = locationList.locations;
+    LocationListLocations[]? locations = locationList.locations;
     if locations !is () {
         test:assertTrue(locations.length() > 0);
     } else {
@@ -143,7 +143,7 @@ function testGetACountOfProducts() returns error? {
 }
 function testGetListOfDraftOrders() returns error? {
     DraftOrders draftOrders = check shopify->retrievesAListOfDraftOrders();
-    DraftOrders_draft_orders[]? orders = draftOrders?.draftOrders;
+    DraftOrdersDraftOrders[]? orders = draftOrders?.draftOrders;
     if orders !is () {
         test:assertTrue(orders.length() > 0);
     } else {
@@ -173,7 +173,7 @@ function testGetCountOfAllDraftOrders() returns error? {
 }
 function testGetCountriesList() returns error? {
     CountriesList countries = check shopify->receiveAListOfAllCountries();
-    CountriesList_countries[]? countriesResult = countries.countries;
+    CountriesListCountries[]? countriesResult = countries.countries;
     if countriesResult !is () {
         test:assertTrue(countriesResult.length() > 0);
     } else {
@@ -194,7 +194,7 @@ function testGetCountOfCountries() returns error? {
 }
 function testGetListOfAllShippingZones() returns error? {
     ShippingZonesList shippingZones = check shopify->receiveAListOfAllShippingzones();
-    DeliveryZone[]? shippingZonesResult = shippingZones.shipping_zones;
+    DeliveryZone[]? shippingZonesResult = shippingZones.shippingZones;
     if shippingZonesResult !is () {
         test:assertTrue(shippingZonesResult.length() > 0);
     } else {
@@ -207,7 +207,7 @@ function testGetListOfAllShippingZones() returns error? {
 }
 function testGetListOfPriceRules() returns error? {
     PriceRules priceRules = check shopify->retrievesAListOfPriceRules();
-    SinglePriceRule_price_rule[]? priceRulesResult = priceRules.priceRules;
+    SinglePriceRulePriceRule[]? priceRulesResult = priceRules.priceRules;
     if priceRulesResult !is () {
         test:assertTrue(priceRulesResult.length() > 0);
     } else {
@@ -236,7 +236,7 @@ function testGetListOfAllOrders() returns error? {
         }
     };
     GiftCard giftCard = check shopify->createsAGiftCard(payload);
-    GiftCard_gift_card? giftCardResult = giftCard.gift_card;
+    GiftCardGiftCard? giftCardResult = giftCard.gift_card;
     if giftCardResult !is () {
         test:assertEquals(giftCardResult?.initial_value, payload.giftCard?.initialValue);
     } else {
@@ -257,7 +257,7 @@ function testGetCountOfGiftCards() returns error? {
 }
 function testGetListOfComments() returns error? {
     ArticleComments comments = check shopify->retrievesAListOfComments();
-    ArticleComments_comments[]? commentsResult = comments.comments;
+    ArticleCommentsComments[]? commentsResult = comments.comments;
     if commentsResult !is () {
         test:assertTrue(commentsResult.length() > 0);
     } else {
@@ -270,7 +270,7 @@ function testGetListOfComments() returns error? {
 }
 function testGetListOfSmartCollections() returns error? {
     SmartCollectionList smartCollections = check shopify->retrievesAListOfSmartCollections();
-    SmartCollectionList_smart_collections[]? smartCollectionsResult = smartCollections.smartCollections;
+    SmartCollectionListSmartCollections[]? smartCollectionsResult = smartCollections.smartCollections;
     if smartCollectionsResult !is () {
         test:assertTrue(smartCollectionsResult.length() > 0);
     } else {
