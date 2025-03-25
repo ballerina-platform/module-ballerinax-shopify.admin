@@ -45,7 +45,7 @@ public type RetrievesASingleGiftCardQueries record {
 };
 
 public type AbandonedCheckouts record {
-    AbandonedCheckouts_checkouts[] checkouts?;
+    AbandonedCheckoutsCheckouts[] checkouts?;
 };
 
 public type FulfillmentRequestRejectJsonBody record {
@@ -53,7 +53,17 @@ public type FulfillmentRequestRejectJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestrejectJsonFulfillmentRequest fulfillmentRequest?;
 };
 
-public type FulfillmentOrders_destination record {
+public type ImageAssetAsset record {
+    string content_type?;
+    string created_at?;
+    string 'key?;
+    string? public_url?;
+    decimal size?;
+    decimal theme_id?;
+    string updated_at?;
+};
+
+public type TransitionFulfillmentOrderFulfillmentOrderDestination record {
     string address1?;
     string address2?;
     string city?;
@@ -69,17 +79,17 @@ public type FulfillmentOrders_destination record {
 };
 
 public type ProductListingAppResponse record {
-    ProductListingAppResponse_product_listing product_listing?;
+    ProductListingAppResponseProductListing product_listing?;
 };
 
 # The variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies.
 public type PresentmentPrices record {
-    # A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies.
-    Presentment_price[] presentment_prices?;
+    @jsondata:Name {value: "presentment_prices"}
+    PresentmentPrice[] presentmentPrices?;
 };
 
 public type CreateFulfillmentOrder record {
-    CreateFulfillmentOrder_fulfillment fulfillment?;
+    CreateFulfillmentOrderFulfillment fulfillment?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfFulfillmentsAssociatedWithASpecificOrder
@@ -100,17 +110,14 @@ public type AdminapiapiVersionthemesthemeIdassetsJsonAsset record {
     string sourceKey?;
 };
 
-public type CreateDraftOrder record {
-    CreateDraftOrder_draft_order draft_order?;
+public type LocationsListLocationsForMove record {
+    LocationsListLocation location?;
+    string message?;
+    boolean movable?;
 };
 
-public type CountryResponse_country record {
-    string code?;
-    decimal id?;
-    string name?;
-    CountryResponse_country_provinces[] provinces?;
-    decimal tax?;
-    string tax_name?;
+public type CreateDraftOrder record {
+    CreateDraftOrderDraftOrder draft_order?;
 };
 
 # Represents the Queries record for the operation: retrievesADetailedListForInventoryItemsByIds
@@ -121,20 +128,22 @@ public type RetrievesADetailedListForInventoryItemsByIdsQueries record {
     string ids?;
 };
 
-public type ArticleComment_comment record {
-    decimal article_id?;
-    string author?;
-    decimal blog_id?;
-    string body?;
-    string body_html?;
-    string created_at?;
-    string email?;
-    decimal id?;
-    string ip?;
-    anydata? published_at?;
-    string status?;
-    string updated_at?;
-    anydata? user_agent?;
+public type OrderResponseOrderShippingAddress record {
+    string address1?;
+    anydata? address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string first_name?;
+    string last_name?;
+    anydata? latitude?;
+    anydata? longitude?;
+    string name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
 };
 
 # Represents the Queries record for the operation: searchesForGiftCards
@@ -157,6 +166,18 @@ public type SearchesForGiftCardsQueries record {
     string 'order?;
 };
 
+public type PublishThemeResponseTheme record {
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    string name?;
+    boolean previewable?;
+    boolean processing?;
+    string role?;
+    anydata? theme_store_id?;
+    string updated_at?;
+};
+
 public type ApiVersionApplicationChargesJsonBody record {
     @jsondata:Name {value: "application_charge"}
     AdminapiapiVersionapplicationChargesJsonApplicationCharge applicationCharge?;
@@ -170,78 +191,62 @@ public type ReceiveAListOfAllCountriesQueries record {
     string fields?;
 };
 
-public type ReopenCloseOrder_order_price_set_2_presentment_money record {
-    string amount?;
-    string currency_code?;
-};
-
-public type SmartCollectionResponse_smart_collection record {
-    string admin_graphql_api_id?;
-    string body_html?;
-    boolean disjunctive?;
-    string 'handle?;
-    decimal id?;
-    SmartCollectionList_image image?;
-    decimal products_count?;
-    string published_at?;
-    string published_scope?;
-    SmartCollectionList_rules[] rules?;
-    string sort_order?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
-public type ProductsList_options record {
-    decimal id?;
-    string name?;
-    decimal position?;
-    decimal? product_id?;
-};
-
 public type ApiVersionRecurringApplicationChargesJsonBody record {
     @jsondata:Name {value: "recurring_application_charge"}
     AdminapiapiVersionapplicationChargesJsonApplicationCharge recurringApplicationCharge?;
 };
 
 public type DisputeEvidenceFiles record {
-    int? cancellation_policy_file_id?;
-    int customer_communication_file_id?;
-    int customer_signature_file_id?;
-    int? refund_policy_file_id?;
-    int? service_documentation_file_id?;
-    int shipping_documentation_file_id?;
-    int uncategorized_file_id?;
+    @jsondata:Name {value: "customer_communication_file_id"}
+    int customerCommunicationFileId?;
+    @jsondata:Name {value: "refund_policy_file_id"}
+    int? refundPolicyFileId?;
+    @jsondata:Name {value: "cancellation_policy_file_id"}
+    int? cancellationPolicyFileId?;
+    @jsondata:Name {value: "shipping_documentation_file_id"}
+    int shippingDocumentationFileId?;
+    @jsondata:Name {value: "customer_signature_file_id"}
+    int customerSignatureFileId?;
+    @jsondata:Name {value: "uncategorized_file_id"}
+    int uncategorizedFileId?;
+    @jsondata:Name {value: "service_documentation_file_id"}
+    int? serviceDocumentationFileId?;
 };
 
-public type ReopenCloseOrder_order_client_details record {
-    anydata? accept_language?;
-    anydata? browser_height?;
-    string browser_ip?;
-    anydata? browser_width?;
-    anydata? session_hash?;
-    anydata? user_agent?;
+public type ProductListingsOptions record {
+    decimal id?;
+    string name?;
+    decimal position?;
+    decimal? product_id?;
+    string[] values?;
 };
 
-public type Engagements_engagements record {
-    string? ad_spend?;
-    decimal clicks_count?;
-    anydata? comments_count?;
-    anydata? complaints_count?;
-    anydata? currency_code?;
-    anydata? fails_count?;
-    decimal? favorites_count?;
-    anydata? fetched_at?;
-    anydata? impressions_count?;
-    boolean is_cumulative?;
-    string occurred_on?;
-    anydata? sends_count?;
-    anydata? shares_count?;
-    anydata? unique_clicks_count?;
-    anydata? unique_views_count?;
-    anydata? unsubscribes_count?;
-    anydata? utc_offset?;
-    decimal views_count?;
+public type ApplicationChargeResultApplicationCharge record {
+    decimal api_client_id?;
+    anydata? charge_type?;
+    string created_at?;
+    string currency?;
+    string decorated_return_url?;
+    decimal id?;
+    string name?;
+    string price?;
+    string return_url?;
+    string status?;
+    anydata? test?;
+    string updated_at?;
+};
+
+public type MobilePlatformApplicationsMobilePlatformApplications record {
+    anydata? app_clip_application_id?;
+    string application_id?;
+    string created_at?;
+    boolean enabled_app_clips?;
+    boolean enabled_shared_webcredentials?;
+    boolean enabled_universal_or_app_links?;
+    decimal id?;
+    string platform?;
+    anydata[] sha256_cert_fingerprints?;
+    string updated_at?;
 };
 
 public type ApiVersionReportsJsonBody record {
@@ -253,29 +258,36 @@ public type ApiVersionSmartCollectionsJsonBody record {
     AdminapiapiVersionsmartCollectionsJsonSmartCollection smartCollection?;
 };
 
-public type ReopenCloseOrder_order_payment_details record {
-    anydata? avs_result_code?;
-    anydata? credit_card_bin?;
-    string credit_card_company?;
-    string credit_card_number?;
-    anydata? cvv_result_code?;
+public type AccessScopesAccessScopes record {
+    string 'handle?;
 };
 
-public type UpdateRedirect_redirect record {
+public type FulfillmentOrdersListFulfillmentOrders record {
+    FulfillmentOrdersAssignedLocation assigned_location?;
+    decimal assigned_location_id?;
+    FulfillmentOrdersListDestination destination?;
+    string fulfillment_service_handle?;
     decimal id?;
-    string path?;
-    string target?;
-};
-
-public type CreateProductResponse_product_presentment_prices record {
-    anydata? compare_at_price?;
-    CancelFulfillment_fulfillment_total_discount_set_presentment_money price?;
+    FulfillmentOrdersListLineItems[] line_items?;
+    anydata[] merchant_requests?;
+    decimal order_id?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
 };
 
 # Represents the Queries record for the operation: retrievesASingleProvinceForACountry
 public type RetrievesASingleProvinceForACountryQueries record {
     # Show only certain fields, specified by a comma-separated list of field names. 
     string fields?;
+};
+
+public type OriginalFulfillmentOrderSubmittedFulfillmentOrderOutgoingRequests record {
+    string kind?;
+    string message?;
+    OriginalFulfillmentOrderSubmittedFulfillmentOrderRequestOptions request_options?;
+    string sent_at?;
 };
 
 # Represents the Queries record for the operation: retrievesASingleProduct
@@ -285,81 +297,7 @@ public type RetrievesASingleProductQueries record {
 };
 
 public type CurrenciesList record {
-    CurrenciesList_currencies[] currencies?;
-};
-
-public type ReopenCloseOrder_order record {
-    string admin_graphql_api_id?;
-    anydata? app_id?;
-    AbandonedCheckouts_billing_address? billing_address?;
-    string browser_ip?;
-    boolean buyer_accepts_marketing?;
-    anydata? cancel_reason?;
-    anydata? cancelled_at?;
-    string cart_token?;
-    decimal checkout_id?;
-    string checkout_token?;
-    ReopenCloseOrder_order_client_details client_details?;
-    anydata? closed_at?;
-    boolean confirmed?;
-    string contact_email?;
-    string created_at?;
-    string currency?;
-    ReopenCloseOrder_order_customer customer?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    ReopenCloseOrder_order_discount_applications[] discount_applications?;
-    ReopenCloseOrder_order_discount_codes[] discount_codes?;
-    string email?;
-    string financial_status?;
-    anydata? fulfillment_status?;
-    ReopenCloseOrder_order_fulfillments[] fulfillments?;
-    string gateway?;
-    decimal id?;
-    string landing_site?;
-    string landing_site_ref?;
-    ReopenCloseOrder_order_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    anydata? note?;
-    AbandonedCheckouts_note_attributes[] note_attributes?;
-    decimal number?;
-    decimal order_number?;
-    string order_status_url?;
-    ReopenCloseOrder_order_payment_details payment_details?;
-    string[] payment_gateway_names?;
-    string phone?;
-    string presentment_currency?;
-    string processed_at?;
-    string processing_method?;
-    string reference?;
-    string referring_site?;
-    ReopenCloseOrder_order_refunds[] refunds?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    ReopenCloseOrder_order_shipping_lines[] shipping_lines?;
-    string source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    string subtotal_price?;
-    ReopenCloseOrder_order_subtotal_price_set subtotal_price_set?;
-    string tags?;
-    ReopenCloseOrder_order_tax_lines_1[] tax_lines?;
-    boolean taxes_included?;
-    boolean test?;
-    string token?;
-    string total_discounts?;
-    CancelFulfillment_fulfillment_price_set total_discounts_set?;
-    string total_line_items_price?;
-    ReopenCloseOrder_order_subtotal_price_set total_line_items_price_set?;
-    string total_price?;
-    ReopenCloseOrder_order_total_price_set total_price_set?;
-    string total_price_usd?;
-    CancelFulfillment_fulfillment_total_discount_set total_shipping_price_set?;
-    string total_tax?;
-    ReopenCloseOrder_order_price_set_2 total_tax_set?;
-    decimal total_weight?;
-    string updated_at?;
-    anydata? user_id?;
+    CurrenciesListCurrencies[] currencies?;
 };
 
 public type DisputeIdDisputeFileUploadsJsonBody record {
@@ -368,11 +306,11 @@ public type DisputeIdDisputeFileUploadsJsonBody record {
 };
 
 public type LocationList record {
-    LocationList_locations[] locations?;
+    LocationListLocations[] locations?;
 };
 
 public type SingleUsageCharge record {
-    SingleUsageCharge_usage_charge usage_charge?;
+    SingleUsageChargeUsageCharge usage_charge?;
 };
 
 public type DraftOrderIdSendInvoiceJsonBody record {
@@ -387,89 +325,86 @@ public type AdminapiapiVersionfulfillmentsfulfillmentIdupdateTrackingJsonFulfill
     boolean notifyCustomer?;
 };
 
+public type MoveFulfillmentOrderResponseMovedFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
 public type ModifyDraftOrder record {
-    ModifyDraftOrder_draft_order draft_order?;
-};
-
-public type CustomerAddress_customer_address record {
-    string address1?;
-    string address2?;
-    string city?;
-    string company?;
-    string country?;
-    string country_code?;
-    string country_name?;
-    decimal customer_id?;
-    boolean default?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
-};
-
-public type UpdateGiftCard_gift_card record {
-    anydata? api_client_id?;
-    string balance?;
-    string created_at?;
-    string currency?;
-    anydata? customer_id?;
-    anydata? disabled_at?;
-    string? expires_on?;
-    decimal id?;
-    string initial_value?;
-    string last_characters?;
-    anydata? line_item_id?;
-    string? note?;
-    anydata? order_id?;
-    anydata? template_suffix?;
-    string updated_at?;
-    anydata? user_id?;
+    ModifyDraftOrderDraftOrder draft_order?;
 };
 
 public type DiscountCode record {
-    DiscountCode_discount_code_creation discount_code_creation?;
+    DiscountCodeDiscountCodeCreation discount_code_creation?;
+};
+
+public type InventoryLevelsInventoryLevels record {
+    string admin_graphql_api_id?;
+    decimal available?;
+    decimal inventory_item_id?;
+    decimal location_id?;
+    string updated_at?;
+};
+
+public type SmartCollectionResponseSmartCollection record {
+    string admin_graphql_api_id?;
+    string body_html?;
+    boolean disjunctive?;
+    string 'handle?;
+    decimal id?;
+    UpdateCustomCollectionCustomCollectionImage image?;
+    decimal products_count?;
+    string published_at?;
+    string published_scope?;
+    SmartCollectionResponseSmartCollectionRules[] rules?;
+    string sort_order?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
 };
 
 public type CollectResponse record {
-    CollectResponse_collect collect?;
+    CollectResponseCollect collect?;
 };
 
-public type TransactionsListForPayout_transactions record {
-    string amount?;
+public type SingleDraftOrderDraftOrder record {
+    string admin_graphql_api_id?;
+    CompleteDraftOrderDraftOrderAppliedDiscount? applied_discount?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
+    anydata? completed_at?;
+    string created_at?;
     string currency?;
-    string fee?;
+    AbandonedCheckoutsCustomer customer?;
+    string email?;
     decimal id?;
-    string net?;
-    decimal payout_id?;
-    string payout_status?;
-    string processed_at?;
-    decimal? source_id?;
-    decimal? source_order_id?;
-    decimal? source_order_transaction_id?;
-    string? source_type?;
-    boolean test?;
-    string 'type?;
+    anydata? invoice_sent_at?;
+    string invoice_url?;
+    ModifyDraftOrderDraftOrderLineItems[] line_items?;
+    string name?;
+    string? note?;
+    anydata[] note_attributes?;
+    anydata? order_id?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    ModifyDraftOrderDraftOrderShippingLine? shipping_line?;
+    string status?;
+    string subtotal_price?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_lines?;
+    boolean taxes_included?;
+    string total_price?;
+    string total_tax?;
+    string updated_at?;
 };
 
 public type ProductImages record {
-    SingleProductImage_image[] images?;
-};
-
-public type ReopenCloseOrder_order_refund_line_items record {
-    decimal id?;
-    ReopenCloseOrder_order_line_item line_item?;
-    decimal line_item_id?;
-    decimal location_id?;
-    decimal quantity?;
-    string restock_type?;
-    decimal subtotal?;
-    ReopenCloseOrder_order_price_set subtotal_set?;
-    decimal total_tax?;
-    ReopenCloseOrder_order_price_set_1 total_tax_set?;
+    ProductImagesImages[] images?;
 };
 
 # Provides settings related to HTTP/1.x protocol.
@@ -490,109 +425,517 @@ public type RetrievesACountOfUrlRedirectsQueries record {
     string target?;
 };
 
-public type ReopenCloseOrder_order_line_item record {
+public type CreateRefundRefundTransactions record {
     string admin_graphql_api_id?;
-    anydata[] discount_allocations?;
-    decimal fulfillable_quantity?;
+    string amount?;
+    anydata? authorization?;
+    string created_at?;
+    string currency?;
+    anydata? device_id?;
+    anydata? error_code?;
+    string gateway?;
+    decimal id?;
+    string kind?;
+    anydata? location_id?;
+    string message?;
+    decimal order_id?;
+    decimal parent_id?;
+    string processed_at?;
+    record {} receipt?;
+    string source_name?;
+    string status?;
+    boolean test?;
+    anydata? user_id?;
+};
+
+public type SingleDispute record {
+    SingleDisputeDispute dispute?;
+};
+
+public type StorefrontAccessTokensStorefrontAccessTokens record {
+    string access_scope?;
+    string access_token?;
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    string title?;
+};
+
+public type ModifyDraftOrderDraftOrderShippingLine record {
+    boolean custom?;
+    string 'handle?;
+    string price?;
+    string title?;
+};
+
+public type ProductsResponseImages record {
+    string admin_graphql_api_id?;
+    anydata? alt?;
+    string created_at?;
+    decimal height?;
+    decimal id?;
+    decimal position?;
+    decimal? product_id?;
+    string src?;
+    string updated_at?;
+    anydata[] variant_ids?;
+    decimal width?;
+};
+
+public type UpdateOrderResponse record {
+    UpdateOrderResponseOrder 'order?;
+};
+
+public type TransactionObject record {
+    TransactionObjectTransaction 'transaction?;
+};
+
+public type SingleArticleArticleImage record {
+    string alt?;
+    string created_at?;
+    decimal height?;
+    string src?;
+    decimal width?;
+};
+
+public type FulfillmentOrders record {
+    @jsondata:Name {value: "fulfillment_orders"}
+    FulfillmentOrdersFulfillmentOrders[] fulfillmentOrders?;
+};
+
+public type ShopConfigurationsShop record {
+    string address1?;
+    string address2?;
+    boolean checkout_api_supported?;
+    string city?;
+    string cookie_consent_level?;
+    string country?;
+    string country_code?;
+    string country_name?;
+    boolean county_taxes?;
+    string created_at?;
+    string currency?;
+    string customer_email?;
+    string domain?;
+    boolean eligible_for_card_reader_giveaway?;
+    boolean eligible_for_payments?;
+    string email?;
+    string[] enabled_presentment_currencies?;
+    boolean finances?;
+    boolean force_ssl?;
+    anydata? google_apps_domain?;
+    anydata? google_apps_login_enabled?;
+    boolean has_discounts?;
+    boolean has_gift_cards?;
+    boolean has_storefront?;
+    string iana_timezone?;
+    decimal id?;
+    decimal latitude?;
+    decimal longitude?;
+    string money_format?;
+    string money_in_emails_format?;
+    string money_with_currency_format?;
+    string money_with_currency_in_emails_format?;
+    boolean multi_location_enabled?;
+    string myshopify_domain?;
+    string name?;
+    boolean password_enabled?;
+    string phone?;
+    string plan_display_name?;
+    string plan_name?;
+    boolean pre_launch_enabled?;
+    string primary_locale?;
+    decimal primary_location_id?;
+    string province?;
+    string province_code?;
+    boolean requires_extra_payments_agreement?;
+    boolean setup_required?;
+    string shop_owner?;
+    anydata? 'source?;
+    anydata? tax_shipping?;
+    anydata? taxes_included?;
+    string timezone?;
+    string updated_at?;
+    string weight_unit?;
+    string zip?;
+};
+
+public type SingleCustomCollectionCustomCollection record {
+    string admin_graphql_api_id?;
+    string? body_html?;
+    string 'handle?;
+    decimal id?;
+    UpdateCustomCollectionCustomCollectionImage image?;
+    decimal products_count?;
+    string published_at?;
+    string published_scope?;
+    string sort_order?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+public type FulfillmentIdUpdateTrackingJsonBody record {
+    AdminapiapiVersionfulfillmentsfulfillmentIdupdateTrackingJsonFulfillment fulfillment?;
+};
+
+public type InventoryItemInventoryItem record {
+    string admin_graphql_api_id?;
+    string cost?;
+    anydata? country_code_of_origin?;
+    anydata[] country_harmonized_system_codes?;
+    string created_at?;
+    anydata? harmonized_system_code?;
+    decimal id?;
+    anydata? province_code_of_origin?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean tracked?;
+    string updated_at?;
+};
+
+public type ReopenCloseOrderOrderRefundLineItems record {
+    decimal id?;
+    ReopenCloseOrderOrderLineItem line_item?;
+    decimal line_item_id?;
+    decimal location_id?;
+    decimal quantity?;
+    string restock_type?;
+    decimal subtotal?;
+    ReopenCloseOrderOrderPriceSet subtotal_set?;
+    decimal total_tax?;
+    ReopenCloseOrderOrderPriceSet1 total_tax_set?;
+};
+
+public type CollectionListingResponse record {
+    @jsondata:Name {value: "collection_listings"}
+    CollectionListingResponseCollectionListings[] collectionListings?;
+};
+
+public type ModifyProductVariantVariant record {
+    string admin_graphql_api_id?;
+    string barcode?;
+    anydata? compare_at_price?;
+    string created_at?;
     string fulfillment_service?;
-    anydata? fulfillment_status?;
-    boolean gift_card?;
     decimal grams?;
     decimal id?;
+    decimal image_id?;
+    decimal inventory_item_id?;
+    string inventory_management?;
+    string inventory_policy?;
+    decimal inventory_quantity?;
+    decimal old_inventory_quantity?;
+    string option1?;
+    anydata? option2?;
+    anydata? option3?;
+    decimal position?;
+    ProductVariantsPresentmentPrices[] presentment_prices?;
+    string price?;
+    decimal? product_id?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean taxable?;
+    string title?;
+    string updated_at?;
+    decimal weight?;
+    string weight_unit?;
+};
+
+public type ReopenCloseOrderOrderTotalDiscountsSetPresentmentMoney record {
+    string amount?;
+    string currency_code?;
+};
+
+public type PayoutsListSummary record {
+    string adjustments_fee_amount?;
+    string adjustments_gross_amount?;
+    string charges_fee_amount?;
+    string charges_gross_amount?;
+    string refunds_fee_amount?;
+    string refunds_gross_amount?;
+    string reserved_funds_fee_amount?;
+    string reserved_funds_gross_amount?;
+    string retried_payouts_fee_amount?;
+    string retried_payouts_gross_amount?;
+};
+
+public type DraftOrdersLineItems record {
+    string admin_graphql_api_id?;
+    anydata? applied_discount?;
+    boolean custom?;
+    string fulfillment_service?;
+    boolean gift_card?;
+    decimal grams?;
     string name?;
     string price?;
-    ReopenCloseOrder_order_price_set price_set?;
-    boolean product_exists?;
     decimal? product_id?;
     anydata[] properties?;
     decimal quantity?;
     boolean requires_shipping?;
     string? sku?;
-    ReopenCloseOrder_order_tax_lines[] tax_lines?;
+    anydata[] tax_lines?;
     boolean taxable?;
     string title?;
-    string total_discount?;
-    CancelFulfillment_fulfillment_total_discount_set total_discount_set?;
     decimal? variant_id?;
-    string variant_inventory_management?;
     string? variant_title?;
     anydata? vendor?;
 };
 
-public type SingleDispute record {
-    SingleDispute_dispute dispute?;
+public type ProductVariants record {
+    ProductVariantsVariants[] variants?;
 };
 
-public type SinglePriceRule_price_rule record {
-    string admin_graphql_api_id?;
-    anydata? allocation_limit?;
-    string allocation_method?;
-    string created_at?;
-    string customer_selection?;
-    string? ends_at?;
-    anydata[] entitled_collection_ids?;
-    anydata[] entitled_country_ids?;
-    anydata[] entitled_product_ids?;
-    anydata[] entitled_variant_ids?;
+public type FulfillmentOrdersLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
     decimal id?;
-    boolean once_per_customer?;
-    anydata[] prerequisite_collection_ids?;
-    anydata[] prerequisite_customer_ids?;
-    anydata[] prerequisite_product_ids?;
-    anydata? prerequisite_quantity_range?;
-    anydata[] prerequisite_saved_search_ids?;
-    anydata? prerequisite_shipping_price_range?;
-    anydata? prerequisite_subtotal_range?;
-    SinglePriceRule_price_rule_prerequisite_to_entitlement_quantity_ratio prerequisite_to_entitlement_quantity_ratio?;
-    anydata[] prerequisite_variant_ids?;
-    string starts_at?;
-    string target_selection?;
-    string target_type?;
-    string title?;
-    string updated_at?;
-    anydata? usage_limit?;
-    string value?;
-    string value_type?;
-};
-
-public type UpdateOrderResponse record {
-    UpdateOrderResponse_order 'order?;
-};
-
-public type TransactionObject record {
-    TransactionObject_transaction 'transaction?;
-};
-
-public type ShopPoliciesList_policies record {
-    string body?;
-    string created_at?;
-    string 'handle?;
-    string title?;
-    string updated_at?;
-    string url?;
-};
-
-public type FulfillmentOrders record {
-    @jsondata:Name {value: "fulfillment_orders"}
-    FulfillmentOrders_fulfillment_orders[] fulfillmentOrders?;
-};
-
-public type CancelFulfillmentOrder_replacement_fulfillment_order record {
-    RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
-    decimal assigned_location_id?;
-    CancelFulfillmentOrder_replacement_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    CancelFulfillmentOrder_replacement_fulfillment_order_line_items[] line_items?;
-    anydata[] merchant_requests?;
-    decimal order_id?;
-    string request_status?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
     decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
+    decimal? variant_id?;
 };
 
-public type FulfillmentEventResponse_fulfillment_event record {
+public type ApiVersionMobilePlatformApplicationsJsonBody record {
+    @jsondata:Name {value: "mobile_platform_application"}
+    AdminapiapiVersionmobilePlatformApplicationsJsonMobilePlatformApplication mobilePlatformApplication?;
+};
+
+public type CreateDraftOrderDraftOrder record {
+    string admin_graphql_api_id?;
+    record {}? applied_discount?;
+    record {}? billing_address?;
+    anydata? completed_at?;
+    string created_at?;
+    string currency?;
+    record {}? customer?;
+    string? email?;
+    decimal id?;
+    anydata? invoice_sent_at?;
+    string invoice_url?;
+    CreateDraftOrderDraftOrderLineItems[] line_items?;
+    string name?;
+    anydata? note?;
+    anydata[] note_attributes?;
+    anydata? order_id?;
+    record {}? shipping_address?;
+    anydata? shipping_line?;
+    string status?;
+    string subtotal_price?;
+    string tags?;
+    boolean tax_exempt?;
+    CreateDraftOrderDraftOrderTaxLines[] tax_lines?;
+    boolean taxes_included?;
+    string total_price?;
+    string total_tax?;
+    string updated_at?;
+};
+
+public type SingleCharge record {
+    SingleChargeRecurringApplicationCharge recurring_application_charge?;
+};
+
+public type AdminapiapiVersionrecurringApplicationChargesrecurringApplicationChargeIdusageChargesJsonUsageCharge record {
+    string description?;
+};
+
+public type AdminapiapiVersioncountriescountryIdprovincesprovinceIdJsonProvince record {
+    decimal tax?;
+    decimal id?;
+};
+
+public type CloseOrderResponse record {
+    CloseOrderResponseOrder 'order?;
+};
+
+public type UpdateCountryTaxRateCountry record {
+    string code?;
+    decimal id?;
+    string name?;
+    UpdateCountryTaxRateCountryProvinces[] provinces?;
+    decimal tax?;
+    string tax_name?;
+};
+
+public type AvailableInventoryInventoryLevel record {
+    string admin_graphql_api_id?;
+    decimal available?;
+    decimal inventory_item_id?;
+    decimal location_id?;
+    string updated_at?;
+};
+
+public type InventoryListResponseInventoryLevels record {
+    string admin_graphql_api_id?;
+    decimal available?;
+    decimal inventory_item_id?;
+    decimal location_id?;
+    string updated_at?;
+};
+
+public type CustomerResponse record {
+    Customer customer?;
+};
+
+public type ApiVersionMetafieldsJsonBody record {
+    AdminapiapiVersionmetafieldsJsonMetafield metafield?;
+};
+
+public type ReopenCloseOrderOrder record {
+    string admin_graphql_api_id?;
+    anydata? app_id?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
+    string browser_ip?;
+    boolean buyer_accepts_marketing?;
+    anydata? cancel_reason?;
+    anydata? cancelled_at?;
+    string cart_token?;
+    decimal checkout_id?;
+    string checkout_token?;
+    ReopenCloseOrderOrderClientDetails client_details?;
+    anydata? closed_at?;
+    boolean confirmed?;
+    string contact_email?;
+    string created_at?;
+    string currency?;
+    ReopenCloseOrderOrderCustomer customer?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    ReopenCloseOrderOrderDiscountApplications[] discount_applications?;
+    ReopenCloseOrderOrderDiscountCodes[] discount_codes?;
+    string email?;
+    string financial_status?;
+    anydata? fulfillment_status?;
+    ReopenCloseOrderOrderFulfillments[] fulfillments?;
+    string gateway?;
+    decimal id?;
+    string landing_site?;
+    string landing_site_ref?;
+    ReopenCloseOrderOrderLineItems[] line_items?;
+    anydata? location_id?;
+    string name?;
+    anydata? note?;
+    ReopenCloseOrderOrderNoteAttributes[] note_attributes?;
+    decimal number?;
+    decimal order_number?;
+    string order_status_url?;
+    ReopenCloseOrderOrderPaymentDetails payment_details?;
+    string[] payment_gateway_names?;
+    string phone?;
+    string presentment_currency?;
+    string processed_at?;
+    string processing_method?;
+    string reference?;
+    string referring_site?;
+    ReopenCloseOrderOrderRefunds[] refunds?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    ReopenCloseOrderOrderShippingLines[] shipping_lines?;
+    string source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    string subtotal_price?;
+    ReopenCloseOrderOrderSubtotalPriceSet subtotal_price_set?;
+    string tags?;
+    ReopenCloseOrderOrderTaxLines1[] tax_lines?;
+    boolean taxes_included?;
+    boolean test?;
+    string token?;
+    string total_discounts?;
+    ReopenCloseOrderOrderTotalDiscountsSet total_discounts_set?;
+    string total_line_items_price?;
+    ReopenCloseOrderOrderSubtotalPriceSet total_line_items_price_set?;
+    string total_price?;
+    ReopenCloseOrderOrderTotalPriceSet total_price_set?;
+    string total_price_usd?;
+    ReopenCloseOrderOrderTotalDiscountSet total_shipping_price_set?;
+    string total_tax?;
+    ReopenCloseOrderOrderPriceSet2 total_tax_set?;
+    decimal total_weight?;
+    string updated_at?;
+    anydata? user_id?;
+};
+
+# Products are easier to sell if customers can see pictures of them, which is why there are product images.
+public type ProductImage record {
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt?;
+    # Specifies the location of the product image. This parameter supports URL filters that you can use to retrieve modified copies of the image. For example, add _small, to the filename to retrieve a scaled copy of the image at 100 x 100 px (for example, ipod-nano_small.png), or add _2048x2048 to retrieve a copy of the image constrained at 2048 x 2048 px resolution (for example, ipod-nano_2048x2048.png).
+    string src?;
+    @jsondata:Name {value: "product_id"}
+    int productId?;
+    # Width dimension of the image which is determined on upload.
+    int width?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
+    @jsondata:Name {value: "variant_ids"}
+    int[] variantIds?;
+    # A unique numeric identifier for the product image.
+    int id?;
+    # The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
+    int position?;
+    # Height dimension of the image which is determined on upload.
+    int height?;
+};
+
+public type CreateProductImageImage record {
+    string admin_graphql_api_id?;
+    anydata? alt?;
+    string created_at?;
+    decimal height?;
+    decimal id?;
+    decimal position?;
+    decimal? product_id?;
+    string src?;
+    string updated_at?;
+    anydata[] variant_ids?;
+    decimal width?;
+};
+
+public type UpdateBlogResponse record {
+    UpdateBlogResponseBlog blog?;
+};
+
+public type AdminapiapiVersioncommentscommentIdJsonComment record {
+    string author?;
+    decimal id?;
+    string body?;
+    @jsondata:Name {value: "published_at"}
+    string publishedAt?;
+    string email?;
+};
+
+public type InventoryLevelsConnectJsonBody record {
+    @jsondata:Name {value: "inventory_item_id"}
+    decimal inventoryItemId?;
+    @jsondata:Name {value: "location_id"}
+    decimal locationId?;
+};
+
+public type UpdateCustomCollectionCustomCollection record {
+    string admin_graphql_api_id?;
+    string body_html?;
+    string 'handle?;
+    decimal id?;
+    UpdateCustomCollectionCustomCollectionImage image?;
+    string? published_at?;
+    string published_scope?;
+    string sort_order?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+public type PayoutsListPayouts record {
+    string amount?;
+    string currency?;
+    string date?;
+    decimal id?;
+    string status?;
+    PayoutsListSummary summary?;
+};
+
+public type FulfillmentEventResponseFulfillmentEvent record {
     anydata? address1?;
     string admin_graphql_api_id?;
     anydata? city?;
@@ -611,229 +954,6 @@ public type FulfillmentEventResponse_fulfillment_event record {
     string status?;
     string updated_at?;
     anydata? zip?;
-};
-
-public type FulfillmentIdUpdateTrackingJsonBody record {
-    AdminapiapiVersionfulfillmentsfulfillmentIdupdateTrackingJsonFulfillment fulfillment?;
-};
-
-public type OrderRisks_risks record {
-    boolean cause_cancel?;
-    decimal? checkout_id?;
-    boolean display?;
-    decimal id?;
-    string merchant_message?;
-    string message?;
-    decimal order_id?;
-    string recommendation?;
-    string score?;
-    string 'source?;
-};
-
-public type TransitionFulfillmentOrder_fulfillment_order record {
-    RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
-    decimal assigned_location_id?;
-    TransitionFulfillmentOrder_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    TransitionFulfillmentOrder_fulfillment_order_line_items[] line_items?;
-    anydata[] merchant_requests?;
-    decimal order_id?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
-};
-
-public type CollectionListingResponse record {
-    @jsondata:Name {value: "collection_listings"}
-    CollectionListingResponse_collection_listings[] collectionListings?;
-};
-
-public type SingleArticle_article_image record {
-    string alt?;
-    string created_at?;
-    decimal height?;
-    string src?;
-    decimal width?;
-};
-
-public type ProductVariants record {
-    ProductVariants_variants[] variants?;
-};
-
-public type SingleCarrierService_carrier_service record {
-    boolean active?;
-    string admin_graphql_api_id?;
-    string callback_url?;
-    string carrier_service_type?;
-    string format?;
-    decimal id?;
-    string name?;
-    boolean service_discovery?;
-};
-
-public type ApiVersionMobilePlatformApplicationsJsonBody record {
-    @jsondata:Name {value: "mobile_platform_application"}
-    AdminapiapiVersionmobilePlatformApplicationsJsonMobilePlatformApplication mobilePlatformApplication?;
-};
-
-public type SingleCharge record {
-    SingleCharge_recurring_application_charge recurring_application_charge?;
-};
-
-public type ReopenCloseOrder_order_receipt record {
-    string authorization?;
-    boolean testcase?;
-};
-
-public type AdminapiapiVersionrecurringApplicationChargesrecurringApplicationChargeIdusageChargesJsonUsageCharge record {
-    string description?;
-};
-
-public type CheckoutResponse_checkout record {
-    anydata? applied_discount?;
-    CompleteCheckout_checkout_billing_address? billing_address?;
-    anydata? completed_at?;
-    string created_at?;
-    record {}? credit_card?;
-    string currency?;
-    decimal customer_id?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    anydata? discount_code?;
-    string email?;
-    anydata[] gift_cards?;
-    anydata? legal_notice_url?;
-    CompleteCheckout_checkout_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    string? note?;
-    CompleteCheckout_checkout_note_attributes note_attributes?;
-    anydata? 'order?;
-    anydata? order_id?;
-    anydata? order_status_url?;
-    string payment_due?;
-    string payment_url?;
-    anydata[] payments?;
-    anydata? phone?;
-    string presentment_currency?;
-    anydata? privacy_policy_url?;
-    anydata? refund_policy_url?;
-    boolean requires_shipping?;
-    anydata? reservation_time?;
-    decimal reservation_time_left?;
-    CompleteCheckout_checkout_billing_address? shipping_address?;
-    CheckoutResponse_checkout_shipping_line? shipping_line?;
-    anydata? shipping_policy_url?;
-    CheckoutResponse_checkout_shipping_rate shipping_rate?;
-    anydata? shopify_payments_account_id?;
-    anydata? source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    anydata? subscription_policy_url?;
-    string subtotal_price?;
-    boolean tax_exempt?;
-    SinglePaymentResponse_payment_checkout_tax_lines[] tax_lines?;
-    anydata[] tax_manipulations?;
-    boolean taxes_included?;
-    anydata? terms_of_sale_url?;
-    anydata? terms_of_service_url?;
-    string token?;
-    string total_line_items_price?;
-    string total_price?;
-    string total_tax?;
-    string total_tip_received?;
-    string updated_at?;
-    anydata? user_id?;
-    string web_url?;
-};
-
-public type AdminapiapiVersioncountriescountryIdprovincesprovinceIdJsonProvince record {
-    decimal tax?;
-    decimal id?;
-};
-
-public type CloseOrderResponse record {
-    CloseOrderResponse_order 'order?;
-};
-
-public type CustomerResponse record {
-    Customer customer?;
-};
-
-public type MoveFulfillmentOrderResponse_original_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
-public type ApiVersionMetafieldsJsonBody record {
-    AdminapiapiVersionmetafieldsJsonMetafield metafield?;
-};
-
-# Products are easier to sell if customers can see pictures of them, which is why there are product images.
-public type ProductImage record {
-    # The date and time when the product image was created. The API returns this value in ISO 8601 formatting.
-    string created_at?;
-    # A unique numeric identifier for the product image.
-    int id?;
-    # The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
-    int position?;
-    # The id of the product associated with the image.
-    int product_id?;
-    # An array of variant ids associated with the image.
-    int[] variant_ids?;
-    # Specifies the location of the product image. This parameter supports URL filters that you can use to retrieve modified copies of the image. For example, add _small, to the filename to retrieve a scaled copy of the image at 100 x 100 px (for example, ipod-nano_small.png), or add _2048x2048 to retrieve a copy of the image constrained at 2048 x 2048 px resolution (for example, ipod-nano_2048x2048.png).
-    string src?;
-    # Width dimension of the image which is determined on upload.
-    int width?;
-    # Height dimension of the image which is determined on upload.
-    int height?;
-    # The date and time when the product image was last modified. The API returns this value in ISO 8601 format.
-    string updated_at?;
-};
-
-public type UpdateBlogResponse record {
-    UpdateBlogResponse_blog blog?;
-};
-
-public type SubscriptionsList_webhooks record {
-    string address?;
-    string api_version?;
-    string created_at?;
-    anydata[] fields?;
-    string format?;
-    decimal id?;
-    anydata[] metafield_namespaces?;
-    anydata[] private_metafield_namespaces?;
-    string topic?;
-    string updated_at?;
-};
-
-public type AdminapiapiVersioncommentscommentIdJsonComment record {
-    string author?;
-    decimal id?;
-    string body?;
-    @jsondata:Name {value: "published_at"}
-    string publishedAt?;
-    string email?;
-};
-
-public type InventoryLevelsConnectJsonBody record {
-    @jsondata:Name {value: "inventory_item_id"}
-    decimal inventoryItemId?;
-    @jsondata:Name {value: "location_id"}
-    decimal locationId?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfOrders
@@ -891,6 +1011,45 @@ public type RetrievesAListOfWebhooksQueries record {
     string sinceId?;
 };
 
+public type UpdateRedirectRedirect record {
+    decimal id?;
+    string path?;
+    string target?;
+};
+
+public type SingleOrderRiskRisk record {
+    boolean cause_cancel?;
+    anydata? checkout_id?;
+    boolean display?;
+    decimal id?;
+    string merchant_message?;
+    string message?;
+    decimal order_id?;
+    string recommendation?;
+    string score?;
+    string 'source?;
+};
+
+public type CreateFulfillmentOrderFulfillment record {
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    CreateFulfillmentOrderFulfillmentLineItems[] line_items?;
+    decimal location_id?;
+    string name?;
+    decimal order_id?;
+    record {} receipt?;
+    string 'service?;
+    anydata? shipment_status?;
+    string status?;
+    string tracking_company?;
+    string tracking_number?;
+    string[] tracking_numbers?;
+    string tracking_url?;
+    string[] tracking_urls?;
+    string updated_at?;
+};
+
 public type ApproveCommentResponse record {
     @jsondata:Name {value: "blog_id"}
     decimal blogId?;
@@ -914,124 +1073,125 @@ public type ApproveCommentResponse record {
     string status?;
 };
 
-public type ProductToCollectionResponse_collect record {
-    decimal collection_id?;
-    string created_at?;
-    decimal id?;
-    decimal position?;
-    decimal? product_id?;
-    string sort_value?;
-    string updated_at?;
-};
-
-public type SingleDraftOrder_draft_order record {
-    string admin_graphql_api_id?;
-    SingleDraftOrder_draft_order_applied_discount? applied_discount?;
-    AbandonedCheckouts_billing_address? billing_address?;
+public type CompleteCheckoutResponseCheckout record {
+    anydata? applied_discount?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? billing_address?;
     anydata? completed_at?;
     string created_at?;
+    anydata? credit_card?;
     string currency?;
-    AbandonedCheckouts_customer customer?;
+    decimal customer_id?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    anydata? discount_code?;
     string email?;
-    decimal id?;
-    anydata? invoice_sent_at?;
-    string invoice_url?;
-    SingleDraftOrder_draft_order_line_items[] line_items?;
+    anydata[] gift_cards?;
+    anydata? legal_notice_url?;
+    CompleteCheckoutResponseCheckoutLineItems[] line_items?;
+    anydata? location_id?;
     string name?;
     string? note?;
-    anydata[] note_attributes?;
+    SinglePaymentResponsePaymentCheckoutNoteAttributes note_attributes?;
+    anydata? 'order?;
     anydata? order_id?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    SingleDraftOrder_draft_order_shipping_line? shipping_line?;
-    string status?;
+    anydata? order_status_url?;
+    string payment_due?;
+    string payment_url?;
+    anydata[] payments?;
+    anydata? phone?;
+    string presentment_currency?;
+    anydata? privacy_policy_url?;
+    anydata? refund_policy_url?;
+    boolean requires_shipping?;
+    anydata? reservation_time?;
+    decimal reservation_time_left?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? shipping_address?;
+    anydata? shipping_line?;
+    anydata? shipping_policy_url?;
+    anydata? shipping_rate?;
+    anydata? shopify_payments_account_id?;
+    anydata? source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    anydata? subscription_policy_url?;
     string subtotal_price?;
-    string tags?;
     boolean tax_exempt?;
     anydata[] tax_lines?;
+    anydata[] tax_manipulations?;
     boolean taxes_included?;
+    anydata? terms_of_sale_url?;
+    anydata? terms_of_service_url?;
+    string token?;
+    string total_line_items_price?;
     string total_price?;
     string total_tax?;
+    string total_tip_received?;
     string updated_at?;
+    anydata? user_id?;
+    string web_url?;
 };
 
-public type Fulfillment_fulfillment record {
-    string admin_graphql_api_id?;
-    string created_at?;
+public type UpdateFulfillmentServiceFulfillmentService record {
+    string callback_url?;
+    anydata? email?;
+    boolean fulfillment_orders_opt_in?;
+    string 'handle?;
     decimal id?;
-    Fulfillment_fulfillment_line_items[] line_items?;
+    boolean include_pending_stock?;
+    boolean inventory_management?;
     decimal location_id?;
     string name?;
-    decimal order_id?;
-    record {} receipt?;
-    string 'service?;
-    anydata? shipment_status?;
-    string status?;
-    string tracking_company?;
-    string tracking_number?;
-    string[] tracking_numbers?;
-    string tracking_url?;
-    string[] tracking_urls?;
-    string updated_at?;
+    anydata? provider_id?;
+    string service_name?;
+    boolean tracking_support?;
 };
 
-public type CollectionListing_collection_listing record {
-    string body_html?;
-    decimal collection_id?;
-    anydata? default_product_image?;
-    string 'handle?;
-    CollectionListing_collection_listing_image image?;
-    string published_at?;
-    string sort_order?;
-    string title?;
-    string updated_at?;
+public type OriginalFulfillmentOrderUnsubmittedFulfillmentOrder record {
+    decimal assigned_location_id?;
+    OriginalFulfillmentOrderUnsubmittedFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    OriginalFulfillmentOrderUnsubmittedFulfillmentOrderLineItems[] line_items?;
+    decimal order_id?;
+    FulfillmentOrdersAssignedLocation origin?;
+    anydata[] outgoing_requests?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
 };
 
 public type ResourceFeedbackList record {
     @jsondata:Name {value: "resource_feedback"}
-    ResourceFeedbackList_resource_feedback[] resourceFeedback?;
+    ResourceFeedbackListResourceFeedback[] resourceFeedback?;
 };
 
-public type RejectCancellationRequestResponse_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
+public type ReopenCloseOrderOrderTaxLines1 record {
+    string price?;
+    ReopenCloseOrderOrderPriceSet2 price_set?;
+    decimal rate?;
+    string title?;
+};
+
+public type CreateFulfillmentServiceFulfillmentService record {
+    string callback_url?;
+    anydata? email?;
+    boolean fulfillment_orders_opt_in?;
+    string 'handle?;
     decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
+    boolean include_pending_stock?;
+    boolean inventory_management?;
+    decimal location_id?;
+    string name?;
+    anydata? provider_id?;
+    string service_name?;
+    boolean tracking_support?;
 };
 
-public type CancellationResponse_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
+public type CompleteCheckoutCheckoutOrder record {
     decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type CreateCustomer_customer_email_marketing_consent record {
-    anydata? consent_updated_at?;
-    string opt_in_level?;
-    string state?;
-};
-
-public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
+    string name?;
+    string status_url?;
 };
 
 public type AdminapiapiVersionshopifyPaymentsdisputesdisputeIddisputeEvidencesJsonDisputeEvidence record {
@@ -1039,29 +1199,19 @@ public type AdminapiapiVersionshopifyPaymentsdisputesdisputeIddisputeEvidencesJs
     boolean submitEvidence?;
 };
 
-public type CreateRefund_refund record {
-    string admin_graphql_api_id?;
-    string created_at?;
+public type OriginalFulfillmentOrderSubmittedFulfillmentOrder record {
+    decimal assigned_location_id?;
+    OriginalFulfillmentOrderSubmittedFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
     decimal id?;
-    string? note?;
-    anydata[] order_adjustments?;
+    OriginalFulfillmentOrderSubmittedFulfillmentOrderLineItems[] line_items?;
     decimal order_id?;
-    string processed_at?;
-    CreateRefund_refund_refund_line_items[] refund_line_items?;
-    boolean restock?;
-    CreateRefund_refund_transactions[] transactions?;
-    anydata? user_id?;
-};
-
-public type CreateCarrierService_carrier_service record {
-    boolean active?;
-    string admin_graphql_api_id?;
-    string callback_url?;
-    string carrier_service_type?;
-    string format?;
-    decimal id?;
-    string name?;
-    boolean service_discovery?;
+    FulfillmentOrdersAssignedLocation origin?;
+    OriginalFulfillmentOrderSubmittedFulfillmentOrderOutgoingRequests[] outgoing_requests?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
 };
 
 public type SpamCommentResponse record {
@@ -1088,20 +1238,7 @@ public type SpamCommentResponse record {
 };
 
 public type ShopConfigurations record {
-    ShopConfigurations_shop shop?;
-};
-
-public type SinglePayout_payout_summary record {
-    string adjustments_fee_amount?;
-    string adjustments_gross_amount?;
-    string charges_fee_amount?;
-    string charges_gross_amount?;
-    string refunds_fee_amount?;
-    string refunds_gross_amount?;
-    string reserved_funds_fee_amount?;
-    string reserved_funds_gross_amount?;
-    string retried_payouts_fee_amount?;
-    string retried_payouts_gross_amount?;
+    ShopConfigurationsShop shop?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfCustomCollections
@@ -1122,6 +1259,30 @@ public type RetrievesACountOfCustomCollectionsQueries record {
     string title?;
 };
 
+public type CappedAmountChargeRecurringApplicationCharge record {
+    string activated_on?;
+    decimal api_client_id?;
+    decimal balance_remaining?;
+    decimal balance_used?;
+    anydata? billing_on?;
+    anydata? cancelled_on?;
+    string capped_amount?;
+    string created_at?;
+    string currency?;
+    string decorated_return_url?;
+    decimal id?;
+    string name?;
+    string price?;
+    string return_url?;
+    decimal risk_level?;
+    string status?;
+    anydata? test?;
+    decimal trial_days?;
+    string trial_ends_on?;
+    string update_capped_amount_url?;
+    string updated_at?;
+};
+
 public type RecurringApplicationChargeIdUsageChargesJsonBody record {
     @jsondata:Name {value: "usage_charge"}
     AdminapiapiVersionrecurringApplicationChargesrecurringApplicationChargeIdusageChargesJsonUsageCharge usageCharge?;
@@ -1129,31 +1290,36 @@ public type RecurringApplicationChargeIdUsageChargesJsonBody record {
 
 # Order adjustment attached to the refund.
 public type OrderAdjustment record {
-    # The unique identifier for the order adjustment.
-    int id?;
-    # The unique identifier for the order that the order adjustment is associated with.
-    int order_id?;
-    # The unique identifier for the refund that the order adjustment is associated with.
-    int refund_id?;
-    # The value of the discrepancy between the calculated refund and the actual refund. If the kind property's value is shipping_refund, then amount returns the value of shipping charges refunded to the customer.
-    int|string amount?;
-    # The taxes that are added to amount, such as applicable shipping taxes added to a shipping refund.
-    string tax_amount?;
-    # The order adjustment type. Valid values are shipping_refund and refund_discrepancy.
-    string kind?;
+    @jsondata:Name {value: "tax_amount"}
+    string taxAmount?;
     # The reason for the order adjustment. To set this value, include discrepancy_reason when you create a refund.
     string reason?;
+    # The value of the discrepancy between the calculated refund and the actual refund. If the kind property's value is shipping_refund, then amount returns the value of shipping charges refunded to the customer.
+    int|string amount?;
+    # The order adjustment type. Valid values are shipping_refund and refund_discrepancy.
+    string kind?;
+    # The unique identifier for the order adjustment.
+    int id?;
+    @jsondata:Name {value: "order_id"}
+    int orderId?;
+    @jsondata:Name {value: "refund_id"}
+    int refundId?;
 };
 
-public type CancelFulfillmentOrder_replacement_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
+public type SinglePaymentResponsePaymentCheckoutBillingAddress record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string first_name?;
     decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
 };
 
 public type BlogIdArticlesJsonBody record {
@@ -1177,21 +1343,7 @@ public type RetrievesACountOfCheckoutsQueries record {
 };
 
 public type CompleteDraftOrder record {
-    CompleteDraftOrder_draft_order draft_order?;
-};
-
-public type UpdateProduct_product_images record {
-    string admin_graphql_api_id?;
-    anydata? alt?;
-    string created_at?;
-    decimal height?;
-    decimal id?;
-    decimal position?;
-    decimal? product_id?;
-    string src?;
-    string updated_at?;
-    anydata[] variant_ids?;
-    decimal width?;
+    CompleteDraftOrderDraftOrder draft_order?;
 };
 
 public type ProductObject record {
@@ -1199,94 +1351,63 @@ public type ProductObject record {
 };
 
 public type SingleUser record {
-    UsersList_users user?;
+    SingleUserUser user?;
 };
 
-public type CreateRefund_refund_refund_line_items record {
+public type SinglePriceRulePriceRule record {
+    string admin_graphql_api_id?;
+    anydata? allocation_limit?;
+    string allocation_method?;
+    string created_at?;
+    string customer_selection?;
+    string? ends_at?;
+    anydata[] entitled_collection_ids?;
+    anydata[] entitled_country_ids?;
+    anydata[] entitled_product_ids?;
+    anydata[] entitled_variant_ids?;
     decimal id?;
-    CreateRefund_refund_line_item line_item?;
-    decimal line_item_id?;
-    decimal location_id?;
-    decimal quantity?;
-    string restock_type?;
-    decimal subtotal?;
-    ReopenCloseOrder_order_price_set subtotal_set?;
-    decimal total_tax?;
-    ReopenCloseOrder_order_price_set_1 total_tax_set?;
+    boolean once_per_customer?;
+    anydata[] prerequisite_collection_ids?;
+    anydata[] prerequisite_customer_ids?;
+    anydata[] prerequisite_product_ids?;
+    anydata? prerequisite_quantity_range?;
+    anydata[] prerequisite_saved_search_ids?;
+    anydata? prerequisite_shipping_price_range?;
+    anydata? prerequisite_subtotal_range?;
+    UpdatePriceRulePriceRulePrerequisiteToEntitlementQuantityRatio prerequisite_to_entitlement_quantity_ratio?;
+    anydata[] prerequisite_variant_ids?;
+    string starts_at?;
+    string target_selection?;
+    string target_type?;
+    string title?;
+    string updated_at?;
+    anydata? usage_limit?;
+    string value?;
+    string value_type?;
 };
 
 public type FulfillmentOrdersList record {
     @jsondata:Name {value: "fulfillment_orders"}
-    FulfillmentOrdersList_fulfillment_orders[] fulfillmentOrders?;
+    FulfillmentOrdersListFulfillmentOrders[] fulfillmentOrders?;
 };
 
-public type RejectFulfillmentResponse_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
+public type CheckoutResponseCheckoutShippingLine record {
+    string 'handle?;
+    string price?;
+    string title?;
+};
+
+public type CreateOrderRiskRisk record {
+    boolean cause_cancel?;
+    decimal checkout_id?;
+    boolean display?;
     decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type CreateAuthorizationResponse_payment_checkout record {
-    anydata? applied_discount?;
-    CompleteCheckout_checkout_billing_address? billing_address?;
-    anydata? completed_at?;
-    string created_at?;
-    CreateAuthorizationResponse_payment_checkout_credit_card credit_card?;
-    string currency?;
-    decimal customer_id?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    anydata? discount_code?;
-    string email?;
-    anydata[] gift_cards?;
-    anydata? legal_notice_url?;
-    CompleteCheckout_checkout_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    string? note?;
-    CompleteCheckout_checkout_note_attributes note_attributes?;
-    anydata? 'order?;
-    anydata? order_id?;
-    anydata? order_status_url?;
-    string payment_due?;
-    string payment_url?;
-    CreateAuthorizationResponse_payment_checkout_payments[] payments?;
-    anydata? phone?;
-    string presentment_currency?;
-    anydata? privacy_policy_url?;
-    anydata? refund_policy_url?;
-    boolean requires_shipping?;
-    anydata? reservation_time?;
-    decimal reservation_time_left?;
-    CompleteCheckout_checkout_billing_address? shipping_address?;
-    CompleteCheckout_checkout_shipping_line? shipping_line?;
-    anydata? shipping_policy_url?;
-    CompleteCheckout_checkout_shipping_rate shipping_rate?;
-    anydata? shopify_payments_account_id?;
-    anydata? source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    anydata? subscription_policy_url?;
-    string subtotal_price?;
-    boolean tax_exempt?;
-    anydata[] tax_lines?;
-    anydata[] tax_manipulations?;
-    boolean taxes_included?;
-    anydata? terms_of_sale_url?;
-    anydata? terms_of_service_url?;
-    string token?;
-    string total_line_items_price?;
-    string total_price?;
-    string total_tax?;
-    string total_tip_received?;
-    string updated_at?;
-    anydata? user_id?;
-    string web_url?;
+    string merchant_message?;
+    string message?;
+    decimal order_id?;
+    string recommendation?;
+    string score?;
+    string 'source?;
 };
 
 public type AdminapiapiVersioncustomCollectionsJsonCustomCollectionImage record {
@@ -1298,6 +1419,18 @@ public type AdminapiapiVersionfulfillmentsfulfillmentIdupdateTrackingJsonFulfill
     string number?;
     string company?;
     string url?;
+};
+
+public type ThemesListThemes record {
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    string name?;
+    boolean previewable?;
+    boolean processing?;
+    string role?;
+    decimal? theme_store_id?;
+    string updated_at?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfRecurringApplicationCharges
@@ -1325,37 +1458,7 @@ public type ShippingRates record {
     anydata[] shippingRates?;
 };
 
-public type UpdateFulfillmentService_fulfillment_service record {
-    string callback_url?;
-    anydata? email?;
-    boolean fulfillment_orders_opt_in?;
-    string 'handle?;
-    decimal id?;
-    boolean include_pending_stock?;
-    boolean inventory_management?;
-    decimal location_id?;
-    string name?;
-    anydata? provider_id?;
-    string service_name?;
-    boolean tracking_support?;
-};
-
-public type UpdateInventoryItem_inventory_item record {
-    string admin_graphql_api_id?;
-    string cost?;
-    anydata? country_code_of_origin?;
-    anydata[] country_harmonized_system_codes?;
-    string created_at?;
-    anydata? harmonized_system_code?;
-    decimal id?;
-    anydata? province_code_of_origin?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean tracked?;
-    string updated_at?;
-};
-
-public type CreateProductImage_image record {
+public type UpdateProductProductImages record {
     string admin_graphql_api_id?;
     anydata? alt?;
     string created_at?;
@@ -1369,69 +1472,7 @@ public type CreateProductImage_image record {
     decimal width?;
 };
 
-public type MobilePlatformApplicationResponse record {
-    MobilePlatformApplicationResponse_mobile_platform_application mobile_platform_application?;
-};
-
-public type UpdateCheckoutResponse_checkout record {
-    anydata? applied_discount?;
-    CompleteCheckout_checkout_billing_address? billing_address?;
-    anydata? completed_at?;
-    string created_at?;
-    anydata? credit_card?;
-    string currency?;
-    decimal customer_id?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    anydata? discount_code?;
-    string email?;
-    anydata[] gift_cards?;
-    anydata? legal_notice_url?;
-    CompleteCheckout_checkout_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    string? note?;
-    CompleteCheckout_checkout_note_attributes note_attributes?;
-    anydata? 'order?;
-    anydata? order_id?;
-    anydata? order_status_url?;
-    string payment_due?;
-    string payment_url?;
-    anydata[] payments?;
-    anydata? phone?;
-    string presentment_currency?;
-    anydata? privacy_policy_url?;
-    anydata? refund_policy_url?;
-    boolean requires_shipping?;
-    anydata? reservation_time?;
-    decimal reservation_time_left?;
-    UpdateCheckoutResponse_checkout_shipping_address? shipping_address?;
-    anydata? shipping_line?;
-    anydata? shipping_policy_url?;
-    anydata? shipping_rate?;
-    anydata? shopify_payments_account_id?;
-    anydata? source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    anydata? subscription_policy_url?;
-    string subtotal_price?;
-    boolean tax_exempt?;
-    anydata[] tax_lines?;
-    anydata[] tax_manipulations?;
-    boolean taxes_included?;
-    anydata? terms_of_sale_url?;
-    anydata? terms_of_service_url?;
-    string token?;
-    string total_line_items_price?;
-    string total_price?;
-    string total_tax?;
-    string total_tip_received?;
-    string updated_at?;
-    anydata? user_id?;
-    string web_url?;
-};
-
-public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order_line_items record {
+public type AcceptFulfillmentResponseFulfillmentOrderLineItems record {
     decimal fulfillable_quantity?;
     decimal fulfillment_order_id?;
     decimal id?;
@@ -1440,6 +1481,10 @@ public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order_line_items re
     decimal quantity?;
     decimal shop_id?;
     decimal? variant_id?;
+};
+
+public type MobilePlatformApplicationResponse record {
+    MobilePlatformApplicationResponseMobilePlatformApplication mobile_platform_application?;
 };
 
 public type DeleteThemeResponse record {
@@ -1458,53 +1503,16 @@ public type DeleteThemeResponse record {
     boolean previewable?;
 };
 
-public type CreateAuthorizationResponse_payment_checkout_credit_card record {
-    string brand?;
-    decimal customer_id?;
-    decimal expiry_month?;
-    decimal expiry_year?;
-    string first_digits?;
-    string first_name?;
-    string last_digits?;
-    string last_name?;
-};
-
 public type AdminapiapiVersionordersorderIdrefundscalculateJsonRefund record {
     @jsondata:Name {value: "refund_line_items"}
     AdminapiapiVersionordersorderIdrefundscalculateJsonRefundRefundLineItems[] refundLineItems?;
     AdminapiapiVersionordersorderIdrefundscalculateJsonRefundShipping shipping?;
 };
 
-public type MobilePlatformApplications record {
-    @jsondata:Name {value: "mobile_platform_applications"}
-    MobilePlatformApplications_mobile_platform_applications[] mobilePlatformApplications?;
-};
-
-public type UsageChargeList_usage_charges record {
-    decimal balance_remaining?;
-    decimal balance_used?;
-    anydata? billing_on?;
-    string created_at?;
-    string currency?;
-    string description?;
-    decimal id?;
-    string price?;
-    decimal risk_level?;
-};
-
-public type FulfillmentIdEventsJsonBody record {
-    AdminapiapiVersionordersorderIdfulfillmentsfulfillmentIdeventsJsonEvent event?;
-};
-
-public type CancelFulfillment_fulfillment_price_set_presentment_money record {
-    string amount?;
-    string currency_code?;
-};
-
-public type UpdateOrderResponse_order record {
+public type UpdateOrderResponseOrder record {
     string admin_graphql_api_id?;
     anydata? app_id?;
-    AbandonedCheckouts_billing_address? billing_address?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
     string browser_ip?;
     boolean buyer_accepts_marketing?;
     anydata? cancel_reason?;
@@ -1512,34 +1520,34 @@ public type UpdateOrderResponse_order record {
     string cart_token?;
     decimal checkout_id?;
     string checkout_token?;
-    ReopenCloseOrder_order_client_details client_details?;
+    ReopenCloseOrderOrderClientDetails client_details?;
     anydata? closed_at?;
     boolean confirmed?;
     string contact_email?;
     string created_at?;
     string currency?;
-    ReopenCloseOrder_order_customer customer?;
+    ReopenCloseOrderOrderCustomer customer?;
     anydata? customer_locale?;
     anydata? device_id?;
-    ReopenCloseOrder_order_discount_applications[] discount_applications?;
-    ReopenCloseOrder_order_discount_codes[] discount_codes?;
+    ReopenCloseOrderOrderDiscountApplications[] discount_applications?;
+    ReopenCloseOrderOrderDiscountCodes[] discount_codes?;
     string email?;
     string financial_status?;
     anydata? fulfillment_status?;
-    ReopenCloseOrder_order_fulfillments[] fulfillments?;
+    ReopenCloseOrderOrderFulfillments[] fulfillments?;
     string gateway?;
     decimal id?;
     string landing_site?;
     string landing_site_ref?;
-    ReopenCloseOrder_order_line_items[] line_items?;
+    ReopenCloseOrderOrderLineItems[] line_items?;
     anydata? location_id?;
     string name?;
     string? note?;
-    UpdateOrderResponse_order_note_attributes[] note_attributes?;
+    UpdateOrderResponseOrderNoteAttributes[] note_attributes?;
     decimal number?;
     decimal order_number?;
     string order_status_url?;
-    ReopenCloseOrder_order_payment_details payment_details?;
+    ReopenCloseOrderOrderPaymentDetails payment_details?;
     string[] payment_gateway_names?;
     string phone?;
     string presentment_currency?;
@@ -1547,32 +1555,119 @@ public type UpdateOrderResponse_order record {
     string processing_method?;
     string reference?;
     string referring_site?;
-    ReopenCloseOrder_order_refunds[] refunds?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    ReopenCloseOrder_order_shipping_lines[] shipping_lines?;
+    ReopenCloseOrderOrderRefunds[] refunds?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    ReopenCloseOrderOrderShippingLines[] shipping_lines?;
     string source_identifier?;
     string source_name?;
     anydata? source_url?;
     string subtotal_price?;
-    ReopenCloseOrder_order_subtotal_price_set subtotal_price_set?;
+    ReopenCloseOrderOrderSubtotalPriceSet subtotal_price_set?;
     string tags?;
-    ReopenCloseOrder_order_tax_lines_1[] tax_lines?;
+    ReopenCloseOrderOrderTaxLines1[] tax_lines?;
     boolean taxes_included?;
     boolean test?;
     string token?;
     string total_discounts?;
-    CancelFulfillment_fulfillment_price_set total_discounts_set?;
+    ReopenCloseOrderOrderTotalDiscountsSet total_discounts_set?;
     string total_line_items_price?;
-    ReopenCloseOrder_order_subtotal_price_set total_line_items_price_set?;
+    ReopenCloseOrderOrderSubtotalPriceSet total_line_items_price_set?;
     string total_price?;
-    ReopenCloseOrder_order_total_price_set total_price_set?;
+    ReopenCloseOrderOrderTotalPriceSet total_price_set?;
     string total_price_usd?;
-    CancelFulfillment_fulfillment_total_discount_set total_shipping_price_set?;
+    ReopenCloseOrderOrderTotalDiscountSet total_shipping_price_set?;
     string total_tax?;
-    ReopenCloseOrder_order_price_set_2 total_tax_set?;
+    ReopenCloseOrderOrderPriceSet2 total_tax_set?;
     decimal total_weight?;
     string updated_at?;
     anydata? user_id?;
+};
+
+public type MobilePlatformApplications record {
+    @jsondata:Name {value: "mobile_platform_applications"}
+    MobilePlatformApplicationsMobilePlatformApplications[] mobilePlatformApplications?;
+};
+
+public type FulfillmentIdEventsJsonBody record {
+    AdminapiapiVersionordersorderIdfulfillmentsfulfillmentIdeventsJsonEvent event?;
+};
+
+public type SinglePaymentResponsePaymentCheckout record {
+    anydata? applied_discount?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? billing_address?;
+    anydata? completed_at?;
+    string created_at?;
+    SinglePaymentResponsePaymentCheckoutCreditCard credit_card?;
+    string currency?;
+    decimal customer_id?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    anydata? discount_code?;
+    string email?;
+    anydata[] gift_cards?;
+    anydata? legal_notice_url?;
+    SinglePaymentResponsePaymentCheckoutLineItems[] line_items?;
+    anydata? location_id?;
+    string name?;
+    string? note?;
+    SinglePaymentResponsePaymentCheckoutNoteAttributes note_attributes?;
+    anydata? 'order?;
+    anydata? order_id?;
+    anydata? order_status_url?;
+    string payment_due?;
+    string payment_url?;
+    SinglePaymentResponsePaymentCheckoutPayments[] payments?;
+    anydata? phone?;
+    string presentment_currency?;
+    anydata? privacy_policy_url?;
+    anydata? refund_policy_url?;
+    boolean requires_shipping?;
+    anydata? reservation_time?;
+    decimal reservation_time_left?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? shipping_address?;
+    SinglePaymentResponsePaymentCheckoutShippingLine? shipping_line?;
+    anydata? shipping_policy_url?;
+    SinglePaymentResponsePaymentCheckoutShippingRate shipping_rate?;
+    anydata? shopify_payments_account_id?;
+    anydata? source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    anydata? subscription_policy_url?;
+    string subtotal_price?;
+    boolean tax_exempt?;
+    SinglePaymentResponsePaymentCheckoutTaxLines[] tax_lines?;
+    anydata[] tax_manipulations?;
+    boolean taxes_included?;
+    anydata? terms_of_sale_url?;
+    anydata? terms_of_service_url?;
+    string token?;
+    string total_line_items_price?;
+    string total_price?;
+    string total_tax?;
+    string total_tip_received?;
+    string updated_at?;
+    anydata? user_id?;
+    string web_url?;
+};
+
+public type SingleLocationLocation record {
+    boolean active?;
+    anydata? address1?;
+    anydata? address2?;
+    string admin_graphql_api_id?;
+    anydata? city?;
+    string country?;
+    string country_code?;
+    string country_name?;
+    string created_at?;
+    decimal id?;
+    boolean legacy?;
+    string name?;
+    anydata? phone?;
+    anydata? province?;
+    anydata? province_code?;
+    string updated_at?;
+    anydata? zip?;
 };
 
 public type AdminapiapiVersionproductsproductIdresourceFeedbackJsonResourceFeedback record {
@@ -1590,31 +1685,23 @@ public type RetrievesASingleCollectionQueries record {
     string fields?;
 };
 
-public type SingleFulfillmentOrder_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
-public type SingleTheme_theme record {
-    string admin_graphql_api_id?;
+public type GiftCardSearchGiftCards record {
+    anydata? api_client_id?;
+    string balance?;
     string created_at?;
+    string currency?;
+    anydata? customer_id?;
+    anydata? disabled_at?;
+    anydata? expires_on?;
     decimal id?;
-    string name?;
-    boolean previewable?;
-    boolean processing?;
-    string role?;
-    anydata? theme_store_id?;
+    string initial_value?;
+    string last_characters?;
+    anydata? line_item_id?;
+    anydata? note?;
+    anydata? order_id?;
+    anydata? template_suffix?;
     string updated_at?;
+    anydata? user_id?;
 };
 
 public type AdminapiapiVersionmobilePlatformApplicationsJsonMobilePlatformApplication record {
@@ -1641,998 +1728,25 @@ public type AdminapiapiVersioncheckoutstokenpaymentsJsonPaymentRequestDetails re
 };
 
 public type SinglePriceRule record {
-    SinglePriceRule_price_rule price_rule?;
+    SinglePriceRulePriceRule price_rule?;
 };
 
-public type CreateWebhook_webhook record {
-    string address?;
-    string api_version?;
-    string created_at?;
-    anydata[] fields?;
-    string format?;
-    decimal id?;
-    anydata[] metafield_namespaces?;
-    anydata[] private_metafield_namespaces?;
-    string topic?;
-    string updated_at?;
-};
-
-public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderDestination record {
-    string zip?;
-    string country?;
-    string province?;
-    string address2?;
-    string city?;
-    string phone?;
-    string address1?;
-    @jsondata:Name {value: "last_name"}
-    string lastName?;
-    anydata? company?;
-    decimal id?;
-    @jsondata:Name {value: "first_name"}
-    string firstName?;
-    string email?;
-};
-
-public type AdminapiapiVersionproductListingsproductListingIdJsonProductListing record {
-    @jsondata:Name {value: "product_id"}
-    decimal? productId?;
-};
-
-public type ReopenCloseOrder_order_total_price_set_presentment_money record {
-    string amount?;
-    string currency_code?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfAllArticleTags
-public type RetrievesAListOfAllArticleTagsQueries record {
-    # The maximum number of tags to retrieve. 
-    string 'limit?;
-    # A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag. 
-    string popular?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfThemes
-public type RetrievesAListOfThemesQueries record {
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfUrlRedirects
-public type RetrievesAListOfUrlRedirectsQueries record {
-    # Show redirects with a given path. 
-    string path?;
-    # The maximum number of results to show.(default: 50)(maximum: 250) 
-    string 'limit?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
-    # Show redirects with a given target. 
-    string target?;
-};
-
-public type ImageAsset record {
-    ImageAsset_asset asset?;
-};
-
-# Represents the Queries record for the operation: retrievesASingleSmartCollection
-public type RetrievesASingleSmartCollectionQueries record {
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
-};
-
-# Represents the Queries record for the operation: retrieveProductListingsThatArePublishedToYourApp
-public type RetrieveProductListingsThatArePublishedToYourAppQueries record {
-    @http:Query {name: "collection_id"}
-    string collectionId?;
-    @http:Query {name: "product_ids"}
-    string productIds?;
-    @http:Query {name: "updated_at_min"}
-    string updatedAtMin?;
-    # Amount of results(default: 50)(maximum: 1000) 
-    string 'limit?;
-    # Filter by product handle 
-    string 'handle?;
-    # Page to show(default: 1) 
-    string page?;
-};
-
-public type AdminapiapiVersionreportsreportIdJsonReport record {
-    string name?;
-    decimal id?;
-    @jsondata:Name {value: "shopify_ql"}
-    string shopifyQl?;
-};
-
-public type MoveFulfillmentOrderResponse_moved_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
-# Represents the Queries record for the operation: retrievesASingleCharge1
-public type RetrievesASingleCharge1Queries record {
-    # A comma-separated list of fields to include in the response. 
-    string fields?;
-};
-
-public type MarketingEventsmarketingEventIdJsonBody record {
-    @jsondata:Name {value: "marketing_event"}
-    AdminapiapiVersionmarketingEventsmarketingEventIdJsonMarketingEvent marketingEvent?;
-};
-
-public type AbandonedCheckouts_checkouts record {
-    string abandoned_checkout_url?;
-    AbandonedCheckouts_billing_address? billing_address?;
-    boolean buyer_accepts_marketing?;
-    string cart_token?;
-    anydata? closed_at?;
-    string? completed_at?;
-    string created_at?;
-    string currency?;
-    AbandonedCheckouts_customer customer?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    anydata[] discount_codes?;
-    string email?;
-    string? gateway?;
-    decimal id?;
-    anydata? landing_site?;
-    AbandonedCheckouts_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    anydata? note?;
-    AbandonedCheckouts_note_attributes[] note_attributes?;
-    anydata? phone?;
-    string presentment_currency?;
-    anydata? referring_site?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    AbandonedCheckouts_shipping_lines[] shipping_lines?;
-    anydata? 'source?;
-    anydata? source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    string subtotal_price?;
-    AbandonedCheckouts_tax_lines[] tax_lines?;
-    boolean taxes_included?;
-    string token?;
-    string total_discounts?;
-    string total_line_items_price?;
-    string total_price?;
-    string total_tax?;
-    decimal total_weight?;
-    string updated_at?;
-    anydata? user_id?;
-};
-
-public type MetafieldList record {
-    Metafield[] metafields;
-};
-
-public type ReopenCloseOrder_order_fulfillments record {
+public type UpdateInventoryItemInventoryItem record {
     string admin_graphql_api_id?;
+    string cost?;
+    anydata? country_code_of_origin?;
+    anydata[] country_harmonized_system_codes?;
     string created_at?;
+    anydata? harmonized_system_code?;
     decimal id?;
-    ReopenCloseOrder_order_line_items[] line_items?;
-    decimal location_id?;
-    string name?;
-    decimal order_id?;
-    ReopenCloseOrder_order_receipt receipt?;
-    string 'service?;
-    anydata? shipment_status?;
-    string status?;
-    string tracking_company?;
-    string tracking_number?;
-    string[] tracking_numbers?;
-    string tracking_url?;
-    string[] tracking_urls?;
-    string updated_at?;
-};
-
-public type LocationsList record {
-    @jsondata:Name {value: "locations_for_move"}
-    LocationsList_locations_for_move[] locationsForMove?;
-};
-
-# Represents the Queries record for the operation: returnAListOfAllPayouts
-public type ReturnAListOfAllPayoutsQueries record {
-    # Filter response to payouts on the specified date. 
-    string date?;
-    @http:Query {name: "date_min"}
-    string dateMin?;
-    @http:Query {name: "date_max"}
-    string dateMax?;
-    @http:Query {name: "last_id"}
-    string lastId?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # Filter response to payouts with the specified status 
-    string status?;
-};
-
-# Represents the Queries record for the operation: retrievesASingleCharge
-public type RetrievesASingleChargeQueries record {
-    # A comma-separated list of fields to include in the response. 
-    string fields?;
-};
-
-public type ModifyProductVariant_variant_price record {
-    string amount?;
-    string currency_code?;
-};
-
-public type OrderResponse_order_shipping_address record {
-    string address1?;
-    anydata? address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string first_name?;
-    string last_name?;
-    anydata? latitude?;
-    anydata? longitude?;
-    string name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
-};
-
-public type FulfillmentList record {
-    FulfillmentList_fulfillments[] fulfillments?;
-};
-
-public type ProductIdImagesJsonBody record {
-    AdminapiapiVersionproductsproductIdimagesJsonImage image?;
-};
-
-public type AdminapiapiVersionfulfillmentServicesfulfillmentServiceIdJsonFulfillmentService record {
-    string name?;
-    decimal id?;
-};
-
-public type CreateRefund record {
-    CreateRefund_refund refund?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfProductVariants
-public type RetrievesAListOfProductVariantsQueries record {
-    # Return up to this many results per page(default: 50)(maximum: 250) 
-    string 'limit?;
-    @http:Query {name: "presentment_currencies"}
-    string presentmentCurrencies?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # A comma-separated list of fields to include in the response 
-    string fields?;
-};
-
-public type CreatSmartCollection_smart_collection record {
-    string admin_graphql_api_id?;
-    anydata? body_html?;
-    boolean disjunctive?;
-    string 'handle?;
-    decimal id?;
-    CreatSmartCollection_smart_collection_image image?;
-    string? published_at?;
-    string published_scope?;
-    CreatSmartCollection_smart_collection_rules[] rules?;
-    string sort_order?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
-public type CompleteCheckout_checkout_shipping_line record {
-    string 'handle?;
-    string price?;
-    string title?;
-};
-
-public type FulfillmentEvents record {
-    @jsondata:Name {value: "fulfillment_events"}
-    FulfillmentEvents_fulfillment_events[] fulfillmentEvents?;
-};
-
-public type MoveFulfillmentOrderResponse_moved_fulfillment_order record {
-    MoveFulfillmentOrderResponse_moved_fulfillment_order_assigned_location assigned_location?;
-    decimal assigned_location_id?;
-    MoveFulfillmentOrderResponse_moved_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    MoveFulfillmentOrderResponse_moved_fulfillment_order_line_items[] line_items?;
-    anydata[] merchant_requests?;
-    decimal order_id?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
-};
-
-public type CustomerDefaultAddress_customer_address record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string country_name?;
-    decimal customer_id?;
-    boolean default?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
-};
-
-public type CreateCarrierService record {
-    CreateCarrierService_carrier_service carrier_service?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfFulfillmentOrdersAssignedToTheShopLocationsThatAreOwnedByTheApp
-public type RetrievesAListOfFulfillmentOrdersAssignedToTheShopLocationsThatAreOwnedByTheAppQueries record {
-    @http:Query {name: "assignment_status"}
-    string assignmentStatus?;
-    @http:Query {name: "location_ids"}
-    string locationIds?;
-};
-
-public type CancelFulfillmentOrder record {
-    CancelFulfillmentOrder_fulfillment_order fulfillment_order?;
-    CancelFulfillmentOrder_replacement_fulfillment_order replacement_fulfillment_order?;
-};
-
-public type ReopenCloseOrder_order_discount_codes record {
-    string amount?;
-    string code?;
-    string 'type?;
-};
-
-public type MoveFulfillmentOrderResponse_original_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type FulfillmentServicesList record {
-    @jsondata:Name {value: "fulfillment_services"}
-    SingleFulfillmentService_fulfillment_service[] fulfillmentServices?;
-};
-
-# The webhook object.
-public type WebhookObject record {
-    Webhook webhook?;
-};
-
-public type CreateCustomer_customer_sms_marketing_consent record {
-    string consent_collected_from?;
-    anydata? consent_updated_at?;
-    string opt_in_level?;
-    string state?;
-};
-
-public type CollectionListing record {
-    CollectionListing_collection_listing collection_listing?;
-};
-
-public type AdminapiapiVersioncustomerscustomerIdaddressesJsonAddress record {
-    string zip?;
-    string country?;
-    string address2?;
-    string city?;
-    string address1?;
-    @jsondata:Name {value: "last_name"}
-    string lastName?;
-    @jsondata:Name {value: "province_code"}
-    string provinceCode?;
-    @jsondata:Name {value: "country_code"}
-    string countryCode?;
-    string province?;
-    string phone?;
-    @jsondata:Name {value: "country_name"}
-    string countryName?;
-    string name?;
-    string company?;
-    @jsondata:Name {value: "first_name"}
-    string firstName?;
-};
-
-public type Articles_articles record {
-    string admin_graphql_api_id?;
-    string author?;
-    decimal blog_id?;
-    string? body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    anydata? published_at?;
-    anydata? summary_html?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-    anydata? user_id?;
-};
-
-public type BlogsCount record {
-    decimal count?;
-};
-
-public type AccountCurrentBalance_balance record {
-    string amount?;
-    string currency?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfCollects
-public type RetrievesAListOfCollectsQueries record {
-    # The maximum number of results to show.(default: 50)(maximum: 250) 
-    string 'limit?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
-};
-
-public type CheckoutResponse_checkout_shipping_line record {
-    string 'handle?;
-    string price?;
-    string title?;
-};
-
-public type RejectCancellationRequestResponse_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
-# The custom properties that a shop owner uses to define product variants. You can define three options for a product variant are option1, option2, option3. Default value is Default Title. The title field is a concatenation of the option1, option2, and option3 fields. Updating the option fields updates the title field.
-public type Option record {
-    # Option 1
-    string option1?;
-    # Option 2
-    string option2?;
-    # Option 3
-    string option3?;
-};
-
-# The variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies.
-public type Presentment_price record {
-    Price price?;
-    Price compare_at_price?;
-};
-
-public type CountriesList record {
-    CountriesList_countries[] countries?;
-};
-
-public type UsageChargeResponse_usage_charge record {
-    decimal balance_remaining?;
-    decimal balance_used?;
-    string created_at?;
-    string currency?;
-    string description?;
-    decimal id?;
-    string price?;
-    decimal risk_level?;
-};
-
-public type PriceRule_price_rule record {
-    string admin_graphql_api_id?;
-    decimal? allocation_limit?;
-    string allocation_method?;
-    string created_at?;
-    string customer_selection?;
-    anydata? ends_at?;
-    decimal[] entitled_collection_ids?;
-    anydata[] entitled_country_ids?;
-    anydata[] entitled_product_ids?;
-    anydata[] entitled_variant_ids?;
-    decimal id?;
-    boolean once_per_customer?;
-    anydata[] prerequisite_collection_ids?;
-    anydata[] prerequisite_customer_ids?;
-    anydata[] prerequisite_product_ids?;
-    anydata? prerequisite_quantity_range?;
-    anydata[] prerequisite_saved_search_ids?;
-    anydata? prerequisite_shipping_price_range?;
-    record {}? prerequisite_subtotal_range?;
-    PriceRule_price_rule_prerequisite_to_entitlement_quantity_ratio prerequisite_to_entitlement_quantity_ratio?;
-    anydata[] prerequisite_variant_ids?;
-    string starts_at?;
-    string target_selection?;
-    string target_type?;
-    string title?;
-    string updated_at?;
-    decimal? usage_limit?;
-    string value?;
-    string value_type?;
-};
-
-public type ApiVersionBlogsJsonBody record {
-    AdminapiapiVersionblogsJsonBlog blog?;
-};
-
-public type Article_article_image record {
-    string? alt?;
-    string created_at?;
-    decimal height?;
-    string src?;
-    decimal width?;
-};
-
-public type AdminapiapiVersionpagespageIdJsonPage record {
-    decimal id?;
-    boolean published?;
-};
-
-public type SmartCollectionList_image record {
-    string alt?;
-    string created_at?;
-    decimal height?;
-    string src?;
-    decimal width?;
-};
-
-public type GiftCard_gift_card record {
-    decimal api_client_id?;
-    string balance?;
-    string code?;
-    string created_at?;
-    string currency?;
-    anydata? customer_id?;
-    anydata? disabled_at?;
-    anydata? expires_on?;
-    decimal id?;
-    string initial_value?;
-    string last_characters?;
-    anydata? line_item_id?;
-    string? note?;
-    anydata? order_id?;
-    string? template_suffix?;
-    string updated_at?;
-    anydata? user_id?;
-};
-
-# Represents the Queries record for the operation: receiveASingleFulfillment
-public type ReceiveASingleFulfillmentQueries record {
-    # Comma-separated list of fields to include in the response. 
-    string fields?;
-};
-
-public type PriceBasedShippingRate record {
-    int id?;
-    string name?;
-    decimal price?;
-    int shippingZoneId?;
-    decimal? minOrderSubtotal?;
-    decimal? maxOrderSubtotal?;
-};
-
-public type CancelFulfillmentOrder_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
-public type ApiVersionCollectsJsonBody record {
-    AdminapiapiVersioncollectsJsonCollect collect?;
-};
-
-public type SmartCollectionList_rules record {
-    string column?;
-    string condition?;
-    string relation?;
-};
-
-public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestacceptJsonFulfillmentRequest record {
-    string message?;
-};
-
-public type InventoryLevelsSetJsonBody record {
-    @jsondata:Name {value: "inventory_item_id"}
-    decimal inventoryItemId?;
-    decimal available?;
-    @jsondata:Name {value: "location_id"}
-    decimal locationId?;
-};
-
-public type SingleEvent record {
-    SingleEvent_event event?;
-};
-
-# Represents the Queries record for the operation: retrievesAListOfInventoryLevels
-public type RetrievesAListOfInventoryLevelsQueries record {
-    @http:Query {name: "updated_at_min"}
-    string updatedAtMin?;
-    @http:Query {name: "inventory_item_ids"}
-    string inventoryItemIds?;
-    @http:Query {name: "location_ids"}
-    string locationIds?;
-    # The maximum number of results to show.(default: 50)(maximum: 250) 
-    string 'limit?;
-};
-
-public type CountryResponse record {
-    CountryResponse_country country?;
-};
-
-public type OriginalFulfillmentOrder_original_fulfillment_order record {
-    decimal assigned_location_id?;
-    OriginalFulfillmentOrder_original_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    OriginalFulfillmentOrder_original_fulfillment_order_line_items[] line_items?;
-    decimal order_id?;
-    RejectCancellationRequestResponse_fulfillment_order_origin origin?;
-    anydata[] outgoing_requests?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    anydata[] supported_actions?;
-};
-
-public type FulfillmentOrder_fulfillment_order record {
-    decimal assigned_location_id?;
-    FulfillmentOrder_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    FulfillmentOrder_fulfillment_order_line_items[] line_items?;
-    decimal order_id?;
-    RejectCancellationRequestResponse_fulfillment_order_origin origin?;
-    anydata[] outgoing_requests?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
-};
-
-# Represents the Queries record for the operation: receiveAListOfAllProductImages
-public type ReceiveAListOfAllProductImagesQueries record {
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # comma-separated list of fields to include in the response 
-    string fields?;
-};
-
-# Refunded line item
-public type RefundLineItem record {
-    # The unique identifier of the line item in the refund.
-    int id?;
-    # The ID of the related line item in the order.
-    int line_item_id?;
-    # The quantity of the associated line item that was returned.
-    int quantity?;
-    # How this refund line item affects inventory levels.
-    string restock_type?;
-    # The unique identifier of the location where the items will be restocked. Required when restock_type has the value return or cancel.
-    int location_id?;
-    # The subtotal of the refund line item.
-    decimal subtotal?;
-    # The total tax on the refund line item.
-    decimal total_tax?;
-};
-
-public type ScriptTagResponse record {
-    ScriptTagResponse_script_tag script_tag?;
-};
-
-public type UpdateCustomCollection record {
-    UpdateCustomCollection_custom_collection custom_collection?;
-};
-
-public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrder record {
-    @jsondata:Name {value: "request_status"}
-    string requestStatus?;
-    @jsondata:Name {value: "fulfillment_service_handle"}
-    string fulfillmentServiceHandle?;
-    @jsondata:Name {value: "shop_id"}
-    decimal shopId?;
-    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderDestination destination?;
-    @jsondata:Name {value: "assigned_location_id"}
-    decimal assignedLocationId?;
-    decimal id?;
-    @jsondata:Name {value: "line_items"}
-    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderLineItems[] lineItems?;
-    @jsondata:Name {value: "order_id"}
-    decimal orderId?;
-    @jsondata:Name {value: "supported_actions"}
-    string[] supportedActions?;
-    @jsondata:Name {value: "assigned_location"}
-    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderAssignedLocation assignedLocation?;
-    @jsondata:Name {value: "merchant_requests"}
-    anydata[] merchantRequests?;
-    string status?;
-};
-
-public type SingleScriptTag record {
-    SingleScriptTag_script_tag script_tag?;
-};
-
-public type SingleFulfillmentOrder_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type AdminapiapiVersiongiftCardsgiftCardIddisableJsonGiftCard record {
-    decimal id?;
-};
-
-public type CarrierServiceList_carrier_services record {
-    boolean active?;
-    string admin_graphql_api_id?;
-    string callback_url?;
-    string carrier_service_type?;
-    string format?;
-    decimal id?;
-    string name?;
-    boolean service_discovery?;
-};
-
-public type PageResponse_page record {
-    string admin_graphql_api_id?;
-    string author?;
-    string body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    string? published_at?;
-    decimal shop_id?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
-public type AdminapiapiVersioncommentsJsonComment record {
-    @jsondata:Name {value: "article_id"}
-    decimal articleId?;
-};
-
-public type SinglePaymentResponse_payment_checkout record {
-    anydata? applied_discount?;
-    CompleteCheckout_checkout_billing_address? billing_address?;
-    anydata? completed_at?;
-    string created_at?;
-    SinglePaymentResponse_payment_checkout_credit_card credit_card?;
-    string currency?;
-    decimal customer_id?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    anydata? discount_code?;
-    string email?;
-    anydata[] gift_cards?;
-    anydata? legal_notice_url?;
-    CompleteCheckout_checkout_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    string? note?;
-    CompleteCheckout_checkout_note_attributes note_attributes?;
-    anydata? 'order?;
-    anydata? order_id?;
-    anydata? order_status_url?;
-    string payment_due?;
-    string payment_url?;
-    SinglePaymentResponse_payment_checkout_payments[] payments?;
-    anydata? phone?;
-    string presentment_currency?;
-    anydata? privacy_policy_url?;
-    anydata? refund_policy_url?;
+    anydata? province_code_of_origin?;
     boolean requires_shipping?;
-    anydata? reservation_time?;
-    decimal reservation_time_left?;
-    CompleteCheckout_checkout_billing_address? shipping_address?;
-    CompleteCheckout_checkout_shipping_line? shipping_line?;
-    anydata? shipping_policy_url?;
-    CompleteCheckout_checkout_shipping_rate shipping_rate?;
-    anydata? shopify_payments_account_id?;
-    anydata? source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    anydata? subscription_policy_url?;
-    string subtotal_price?;
-    boolean tax_exempt?;
-    SinglePaymentResponse_payment_checkout_tax_lines[] tax_lines?;
-    anydata[] tax_manipulations?;
-    boolean taxes_included?;
-    anydata? terms_of_sale_url?;
-    anydata? terms_of_service_url?;
-    string token?;
-    string total_line_items_price?;
-    string total_price?;
-    string total_tax?;
-    string total_tip_received?;
+    string? sku?;
+    boolean tracked?;
     string updated_at?;
-    anydata? user_id?;
-    string web_url?;
 };
 
-public type CancellationRequestAcceptJsonBody record {
-    @jsondata:Name {value: "cancellation_request"}
-    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestacceptJsonCancellationRequest cancellationRequest?;
-};
-
-public type CalculateRefund_refund_transactions record {
-    string amount?;
-    string currency?;
-    string gateway?;
-    string kind?;
-    string maximum_refundable?;
-    decimal order_id?;
-    decimal parent_id?;
-};
-
-public type CompleteCheckout_checkout_billing_address record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
-};
-
-# Represents the Queries record for the operation: receiveASingleArticle
-public type ReceiveASingleArticleQueries record {
-    # Show only certain fields, specifed by a comma-separated list of field names. 
-    string fields?;
-};
-
-public type StorefrontAccessToken_storefront_access_token record {
-    string access_scope?;
-    string access_token?;
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    string title?;
-};
-
-public type SingleArticle_article record {
-    string admin_graphql_api_id?;
-    string author?;
-    decimal blog_id?;
-    string body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    SingleArticle_article_image image?;
-    string published_at?;
-    anydata? summary_html?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-    decimal user_id?;
-};
-
-# Represents the Queries record for the operation: retrievesAllApplicationCredits
-public type RetrievesAllApplicationCreditsQueries record {
-    # A comma-separated list of fields to include in the response. 
-    string fields?;
-};
-
-public type AdminapiapiVersionpriceRulespriceRuleIdJsonPriceRule record {
-    decimal id?;
-    string title?;
-};
-
-public type ProductListings_option_values record {
-    string name?;
-    decimal option_id?;
-    string value?;
-};
-
-public type ApiVersionCommentsJsonBody record {
-    AdminapiapiVersioncommentsJsonComment comment?;
-};
-
-# Represents the Queries record for the operation: receiveACountOfAllDraftorders
-public type ReceiveACountOfAllDraftordersQueries record {
-    @http:Query {name: "updated_at_max"}
-    string updatedAtMax?;
-    @http:Query {name: "updated_at_min"}
-    string updatedAtMin?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
-    # Count draft orders that have a given status.(default: open) 
-    string status?;
-};
-
-public type UsersList record {
-    UsersList_users[] users?;
-};
-
-public type ApplicationChargeResult record {
-    ApplicationChargeResult_application_charge application_charge?;
-};
-
-public type AdminapiapiVersionreportsJsonReport record {
-    string name?;
-    @jsondata:Name {value: "shopify_ql"}
-    string shopifyQl?;
-};
-
-public type RefundResponse record {
-    ReopenCloseOrder_order_refunds refund?;
-};
-
-public type SinglePaymentResponse_payment_checkout_payments record {
-    anydata? credit_card?;
-    boolean fraudulent?;
-    decimal id?;
-    anydata? payment_processing_error_message?;
-    SinglePaymentResponse_payment_checkout_transaction 'transaction?;
-    string unique_token?;
-};
-
-public type CheckoutCount record {
-    decimal count?;
-};
-
-public type CreateAuthorizationResponse record {
-    CreateAuthorizationResponse_payment payment?;
-};
-
-# Represents the Queries record for the operation: retrieveASpecificMetafield
-public type RetrieveASpecificMetafieldQueries record {
-    # comma-separated list of fields to include in the response 
-    string fields?;
-};
-
-public type ProductListingsproductListingIdJsonBody record {
-    @jsondata:Name {value: "product_listing"}
-    AdminapiapiVersionproductListingsproductListingIdJsonProductListing productListing?;
-};
-
-public type CreateCheckoutResponse_checkout record {
+public type CreateCheckoutResponseCheckout record {
     anydata? applied_discount?;
     anydata? billing_address?;
     anydata? completed_at?;
@@ -2646,7 +1760,7 @@ public type CreateCheckoutResponse_checkout record {
     string? email?;
     anydata[] gift_cards?;
     anydata? legal_notice_url?;
-    CreateCheckoutResponse_checkout_line_items[] line_items?;
+    CreateCheckoutResponseCheckoutLineItems[] line_items?;
     anydata? location_id?;
     string name?;
     string? note?;
@@ -2690,186 +1804,23 @@ public type CreateCheckoutResponse_checkout record {
     string web_url?;
 };
 
-public type SingleDispute_dispute record {
-    string amount?;
+public type ApplicationChargesListApplicationCharges record {
+    decimal api_client_id?;
+    string? charge_type?;
+    string created_at?;
     string currency?;
-    string evidence_due_by?;
-    anydata? evidence_sent_on?;
-    anydata? finalized_on?;
+    string decorated_return_url?;
+    anydata? external_id?;
     decimal id?;
-    string initiated_at?;
-    string network_reason_code?;
-    decimal order_id?;
-    string reason?;
+    string name?;
+    string price?;
+    string return_url?;
     string status?;
-    string 'type?;
-};
-
-public type CollectionListing_collection_listing_image record {
-    string created_at?;
-    string src?;
-};
-
-public type DisableGiftCard record {
-    DisableGiftCard_gift_card gift_card?;
-};
-
-public type AdminapiapiVersionmetafieldsJsonMetafield record {
-    string namespace?;
-    string 'type?;
-    string value?;
-    string 'key?;
-};
-
-public type ShopConfigurations_shop record {
-    string address1?;
-    string address2?;
-    boolean checkout_api_supported?;
-    string city?;
-    string cookie_consent_level?;
-    string country?;
-    string country_code?;
-    string country_name?;
-    boolean county_taxes?;
-    string created_at?;
-    string currency?;
-    string customer_email?;
-    string domain?;
-    boolean eligible_for_card_reader_giveaway?;
-    boolean eligible_for_payments?;
-    string email?;
-    string[] enabled_presentment_currencies?;
-    boolean finances?;
-    boolean force_ssl?;
-    anydata? google_apps_domain?;
-    anydata? google_apps_login_enabled?;
-    boolean has_discounts?;
-    boolean has_gift_cards?;
-    boolean has_storefront?;
-    string iana_timezone?;
-    decimal id?;
-    decimal latitude?;
-    decimal longitude?;
-    string money_format?;
-    string money_in_emails_format?;
-    string money_with_currency_format?;
-    string money_with_currency_in_emails_format?;
-    boolean multi_location_enabled?;
-    string myshopify_domain?;
-    string name?;
-    boolean password_enabled?;
-    string phone?;
-    string plan_display_name?;
-    string plan_name?;
-    boolean pre_launch_enabled?;
-    string primary_locale?;
-    decimal primary_location_id?;
-    string province?;
-    string province_code?;
-    boolean requires_extra_payments_agreement?;
-    boolean setup_required?;
-    string shop_owner?;
-    anydata? 'source?;
-    anydata? tax_shipping?;
-    anydata? taxes_included?;
-    string timezone?;
+    anydata? test?;
     string updated_at?;
-    string weight_unit?;
-    string zip?;
 };
 
-# Schedule associated to the payment terms
-public type Refund record {
-    # The date and time (ISO 8601 format) when the refund was created.
-    string created_at?;
-    # The unique identifier for the refund.
-    int id?;
-    # An optional note attached to a refund.
-    string note?;
-    # A list of order adjustments attached to the refund. Order adjustments are generated to account for refunded shipping costs and differences between calculated and actual refund amounts.
-    OrderAdjustment[] order_adjustments?;
-    # The date and time (ISO 8601 format) when the refund was imported. This value can be set to a date in the past when importing from other systems. If no value is provided, then it will be auto-generated as the current time in Shopify. Public apps need to be granted permission by Shopify to import orders with the processed_at timestamp set to a value earlier the created_at timestamp. Private apps can't be granted permission by Shopify.
-    string processed_at?;
-    # A list of refunded line items.
-    RefundLineItem[] refund_line_items?;
-    # The unique identifier of the user who performed the refund.
-    int user_id?;
-};
-
-public type CancelFulfillmentOrder_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type ArticlesCount record {
-    decimal count?;
-};
-
-public type ProductIdResourceFeedbackJsonBody record {
-    @jsondata:Name {value: "resource_feedback"}
-    AdminapiapiVersionproductsproductIdresourceFeedbackJsonResourceFeedback resourceFeedback?;
-};
-
-public type ReopenCloseOrder_order_price_set_1 record {
-    ReopenCloseOrder_order_price_set_1_presentment_money presentment_money?;
-    ReopenCloseOrder_order_price_set_1_presentment_money shop_money?;
-};
-
-public type PayoutsList record {
-    SinglePayout_payout[] payouts?;
-};
-
-public type Orders record {
-    Order[]? orders?;
-};
-
-public type ReopenCloseOrder_order_price_set_2 record {
-    ReopenCloseOrder_order_price_set_2_presentment_money presentment_money?;
-    ReopenCloseOrder_order_price_set_2_presentment_money shop_money?;
-};
-
-public type MoveFulfillmentOrderResponse_moved_fulfillment_order_assigned_location record {
-    string address1?;
-    anydata? address2?;
-    string city?;
-    string country_code?;
-    decimal location_id?;
-    string name?;
-    anydata? phone?;
-    string province?;
-    string zip?;
-};
-
-public type SingleGiftCard_gift_card record {
-    anydata? api_client_id?;
-    string balance?;
-    string created_at?;
-    string currency?;
-    anydata? customer_id?;
-    anydata? disabled_at?;
-    anydata? expires_on?;
-    decimal id?;
-    string initial_value?;
-    string last_characters?;
-    anydata? line_item_id?;
-    anydata? note?;
-    anydata? order_id?;
-    anydata? template_suffix?;
-    string updated_at?;
-    anydata? user_id?;
-};
-
-public type PostalCodeResult record {
-    PostalCodeResult_customer_address customer_address?;
-};
-
-public type FulfillmentOrdersList_destination record {
+public type SingleFulfillmentOrderFulfillmentOrderDestination record {
     string address1?;
     string address2?;
     string city?;
@@ -2884,12 +1835,1210 @@ public type FulfillmentOrdersList_destination record {
     string zip?;
 };
 
+public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderDestination record {
+    string zip?;
+    string country?;
+    string province?;
+    string address2?;
+    string city?;
+    string phone?;
+    string address1?;
+    @jsondata:Name {value: "last_name"}
+    string lastName?;
+    anydata? company?;
+    decimal id?;
+    @jsondata:Name {value: "first_name"}
+    string firstName?;
+    string email?;
+};
+
+public type AdminapiapiVersionproductListingsproductListingIdJsonProductListing record {
+    @jsondata:Name {value: "product_id"}
+    decimal? productId?;
+};
+
+# Represents the Queries record for the operation: retrievesAListOfAllArticleTags
+public type RetrievesAListOfAllArticleTagsQueries record {
+    # The maximum number of tags to retrieve. 
+    string 'limit?;
+    # A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag. 
+    string popular?;
+};
+
+public type MobilePlatformApplicationResponseMobilePlatformApplication record {
+    anydata? app_clip_application_id?;
+    string application_id?;
+    string created_at?;
+    boolean enabled_app_clips?;
+    boolean enabled_shared_webcredentials?;
+    boolean enabled_universal_or_app_links?;
+    decimal id?;
+    string platform?;
+    anydata[] sha256_cert_fingerprints?;
+    string updated_at?;
+};
+
+# Represents the Queries record for the operation: retrievesAListOfThemes
+public type RetrievesAListOfThemesQueries record {
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+};
+
+# Represents the Queries record for the operation: retrievesAListOfUrlRedirects
+public type RetrievesAListOfUrlRedirectsQueries record {
+    # Show redirects with a given path. 
+    string path?;
+    # The maximum number of results to show.(default: 50)(maximum: 250) 
+    string 'limit?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+    # Show redirects with a given target. 
+    string target?;
+};
+
+public type ImageAsset record {
+    ImageAssetAsset asset?;
+};
+
+# Represents the Queries record for the operation: retrievesASingleSmartCollection
+public type RetrievesASingleSmartCollectionQueries record {
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+};
+
+public type ReopenCloseOrderOrderTotalDiscountSetPresentmentMoney record {
+    string amount?;
+    string currency_code?;
+};
+
+# Represents the Queries record for the operation: retrieveProductListingsThatArePublishedToYourApp
+public type RetrieveProductListingsThatArePublishedToYourAppQueries record {
+    @http:Query {name: "collection_id"}
+    string collectionId?;
+    @http:Query {name: "product_ids"}
+    string productIds?;
+    @http:Query {name: "updated_at_min"}
+    string updatedAtMin?;
+    # Amount of results(default: 50)(maximum: 1000) 
+    string 'limit?;
+    # Filter by product handle 
+    string 'handle?;
+    # Page to show(default: 1) 
+    string page?;
+};
+
+public type CancelFulfillmentOrderReplacementFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
+public type AdminapiapiVersionreportsreportIdJsonReport record {
+    string name?;
+    decimal id?;
+    @jsondata:Name {value: "shopify_ql"}
+    string shopifyQl?;
+};
+
+public type ProductListingsOptionValues record {
+    string name?;
+    decimal option_id?;
+    string value?;
+};
+
+# Represents the Queries record for the operation: retrievesASingleCharge1
+public type RetrievesASingleCharge1Queries record {
+    # A comma-separated list of fields to include in the response. 
+    string fields?;
+};
+
+public type MarketingEventsmarketingEventIdJsonBody record {
+    @jsondata:Name {value: "marketing_event"}
+    AdminapiapiVersionmarketingEventsmarketingEventIdJsonMarketingEvent marketingEvent?;
+};
+
+public type SinglePaymentResponsePaymentCheckoutNoteAttributes record {
+    string colour?;
+    string custom\ engraving?;
+};
+
+public type MetafieldList record {
+    Metafield[] metafields;
+};
+
+public type LocationsList record {
+    @jsondata:Name {value: "locations_for_move"}
+    LocationsListLocationsForMove[] locationsForMove?;
+};
+
+# Represents the Queries record for the operation: returnAListOfAllPayouts
+public type ReturnAListOfAllPayoutsQueries record {
+    # Filter response to payouts on the specified date. 
+    string date?;
+    @http:Query {name: "date_min"}
+    string dateMin?;
+    @http:Query {name: "date_max"}
+    string dateMax?;
+    @http:Query {name: "last_id"}
+    string lastId?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # Filter response to payouts with the specified status 
+    string status?;
+};
+
+# Represents the Queries record for the operation: retrievesASingleCharge
+public type RetrievesASingleChargeQueries record {
+    # A comma-separated list of fields to include in the response. 
+    string fields?;
+};
+
+public type CompleteCheckoutCheckout record {
+    anydata? applied_discount?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? billing_address?;
+    string completed_at?;
+    string created_at?;
+    anydata? credit_card?;
+    string currency?;
+    decimal customer_id?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    anydata? discount_code?;
+    string email?;
+    anydata[] gift_cards?;
+    anydata? legal_notice_url?;
+    SinglePaymentResponsePaymentCheckoutLineItems[] line_items?;
+    anydata? location_id?;
+    string name?;
+    string? note?;
+    SinglePaymentResponsePaymentCheckoutNoteAttributes note_attributes?;
+    CompleteCheckoutCheckoutOrder 'order?;
+    decimal order_id?;
+    string order_status_url?;
+    string payment_due?;
+    string payment_url?;
+    anydata[] payments?;
+    anydata? phone?;
+    string presentment_currency?;
+    anydata? privacy_policy_url?;
+    anydata? refund_policy_url?;
+    boolean requires_shipping?;
+    anydata? reservation_time?;
+    decimal reservation_time_left?;
+    CompleteCheckoutCheckoutShippingAddress shipping_address?;
+    SinglePaymentResponsePaymentCheckoutShippingLine? shipping_line?;
+    anydata? shipping_policy_url?;
+    SinglePaymentResponsePaymentCheckoutShippingRate shipping_rate?;
+    anydata? shopify_payments_account_id?;
+    anydata? source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    anydata? subscription_policy_url?;
+    string subtotal_price?;
+    boolean tax_exempt?;
+    anydata[] tax_lines?;
+    anydata[] tax_manipulations?;
+    boolean taxes_included?;
+    anydata? terms_of_sale_url?;
+    anydata? terms_of_service_url?;
+    string token?;
+    string total_line_items_price?;
+    string total_price?;
+    string total_tax?;
+    string total_tip_received?;
+    string updated_at?;
+    anydata? user_id?;
+    string web_url?;
+};
+
+public type FulfillmentList record {
+    FulfillmentListFulfillments[] fulfillments?;
+};
+
+public type ProductIdImagesJsonBody record {
+    AdminapiapiVersionproductsproductIdimagesJsonImage image?;
+};
+
+public type AdminapiapiVersionfulfillmentServicesfulfillmentServiceIdJsonFulfillmentService record {
+    string name?;
+    decimal id?;
+};
+
+public type CreateRefund record {
+    CreateRefundRefund refund?;
+};
+
+public type CancelFulfillmentFulfillmentLineItems record {
+    string admin_graphql_api_id?;
+    anydata[] discount_allocations?;
+    decimal fulfillable_quantity?;
+    string fulfillment_service?;
+    anydata? fulfillment_status?;
+    boolean gift_card?;
+    decimal grams?;
+    decimal id?;
+    string name?;
+    string price?;
+    ReopenCloseOrderOrderTotalDiscountsSet price_set?;
+    boolean product_exists?;
+    decimal? product_id?;
+    anydata[] properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    anydata[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    string total_discount?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discount_set?;
+    decimal? variant_id?;
+    anydata? variant_inventory_management?;
+    string? variant_title?;
+    anydata? vendor?;
+};
+
+public type ReopenCloseOrderOrderLineItem record {
+    string admin_graphql_api_id?;
+    anydata[] discount_allocations?;
+    decimal fulfillable_quantity?;
+    string fulfillment_service?;
+    anydata? fulfillment_status?;
+    boolean gift_card?;
+    decimal grams?;
+    decimal id?;
+    string name?;
+    string price?;
+    ReopenCloseOrderOrderPriceSet price_set?;
+    boolean product_exists?;
+    decimal? product_id?;
+    anydata[] properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    ReopenCloseOrderOrderTaxLines[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    string total_discount?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discount_set?;
+    decimal? variant_id?;
+    string variant_inventory_management?;
+    string? variant_title?;
+    anydata? vendor?;
+};
+
+# Represents the Queries record for the operation: retrievesAListOfProductVariants
+public type RetrievesAListOfProductVariantsQueries record {
+    # Return up to this many results per page(default: 50)(maximum: 250) 
+    string 'limit?;
+    @http:Query {name: "presentment_currencies"}
+    string presentmentCurrencies?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # A comma-separated list of fields to include in the response 
+    string fields?;
+};
+
+public type CreatSmartCollectionSmartCollectionImage record {
+    string alt?;
+    string created_at?;
+    decimal height?;
+    string src?;
+    decimal width?;
+};
+
+public type FulfillmentEvents record {
+    @jsondata:Name {value: "fulfillment_events"}
+    FulfillmentEventsFulfillmentEvents[] fulfillmentEvents?;
+};
+
+public type CreateCarrierService record {
+    CreateCarrierServiceCarrierService carrier_service?;
+};
+
+# Represents the Queries record for the operation: retrievesAListOfFulfillmentOrdersAssignedToTheShopLocationsThatAreOwnedByTheApp
+public type RetrievesAListOfFulfillmentOrdersAssignedToTheShopLocationsThatAreOwnedByTheAppQueries record {
+    @http:Query {name: "assignment_status"}
+    string assignmentStatus?;
+    @http:Query {name: "location_ids"}
+    string locationIds?;
+};
+
+public type CancelFulfillmentOrder record {
+    CancelFulfillmentOrderFulfillmentOrder fulfillment_order?;
+    CancelFulfillmentOrderReplacementFulfillmentOrder replacement_fulfillment_order?;
+};
+
+public type RedirectResponseRedirect record {
+    decimal id?;
+    string path?;
+    string target?;
+};
+
+public type RejectFulfillmentResponseFulfillmentOrder record {
+    decimal assigned_location_id?;
+    RejectFulfillmentResponseFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    RejectFulfillmentResponseFulfillmentOrderLineItems[] line_items?;
+    decimal order_id?;
+    FulfillmentOrdersAssignedLocation origin?;
+    anydata[] outgoing_requests?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
+};
+
+public type ArticleCommentComment record {
+    decimal article_id?;
+    string author?;
+    decimal blog_id?;
+    string body?;
+    string body_html?;
+    string created_at?;
+    string email?;
+    decimal id?;
+    string ip?;
+    anydata? published_at?;
+    string status?;
+    string updated_at?;
+    anydata? user_agent?;
+};
+
+public type FulfillmentServicesList record {
+    @jsondata:Name {value: "fulfillment_services"}
+    SingleFulfillmentServiceFulfillmentService[] fulfillmentServices?;
+};
+
+public type CompleteCheckoutResponseCheckoutLineItems record {
+    anydata[] applied_discounts?;
+    anydata? compare_at_price?;
+    string fulfillment_service?;
+    boolean gift_card?;
+    decimal grams?;
+    decimal id?;
+    string image_url?;
+    decimal 'key?;
+    string line_price?;
+    string price?;
+    decimal? product_id?;
+    record {} properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean taxable?;
+    string title?;
+    decimal? variant_id?;
+    string? variant_title?;
+    string vendor?;
+};
+
+public type TransactionResponseTransaction record {
+    string admin_graphql_api_id?;
+    string amount?;
+    string authorization?;
+    string created_at?;
+    string currency?;
+    anydata? currency_exchange_adjustment?;
+    anydata? device_id?;
+    anydata? error_code?;
+    string gateway?;
+    decimal id?;
+    string kind?;
+    anydata? location_id?;
+    anydata? message?;
+    decimal order_id?;
+    anydata? parent_id?;
+    ReopenCloseOrderOrderPaymentDetails payment_details?;
+    string processed_at?;
+    ReopenCloseOrderOrderReceipt receipt?;
+    string source_name?;
+    string status?;
+    boolean test?;
+    anydata? user_id?;
+};
+
+public type CountryResponseCountry record {
+    string code?;
+    decimal id?;
+    string name?;
+    CountryResponseCountryProvinces[] provinces?;
+    decimal tax?;
+    string tax_name?;
+};
+
+# The webhook object.
+public type WebhookObject record {
+    Webhook webhook?;
+};
+
+public type CollectionListing record {
+    CollectionListingCollectionListing collection_listing?;
+};
+
+public type FulfillmentOrdersDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+public type AdminapiapiVersioncustomerscustomerIdaddressesJsonAddress record {
+    string zip?;
+    string country?;
+    string address2?;
+    string city?;
+    string address1?;
+    @jsondata:Name {value: "last_name"}
+    string lastName?;
+    @jsondata:Name {value: "province_code"}
+    string provinceCode?;
+    @jsondata:Name {value: "country_code"}
+    string countryCode?;
+    string province?;
+    string phone?;
+    @jsondata:Name {value: "country_name"}
+    string countryName?;
+    string name?;
+    string company?;
+    @jsondata:Name {value: "first_name"}
+    string firstName?;
+};
+
+public type BlogsCount record {
+    decimal count?;
+};
+
+public type CreatSmartCollectionSmartCollection record {
+    string admin_graphql_api_id?;
+    anydata? body_html?;
+    boolean disjunctive?;
+    string 'handle?;
+    decimal id?;
+    CreatSmartCollectionSmartCollectionImage image?;
+    string? published_at?;
+    string published_scope?;
+    CreatSmartCollectionSmartCollectionRules[] rules?;
+    string sort_order?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+public type SingleBlogBlog record {
+    string admin_graphql_api_id?;
+    string commentable?;
+    string created_at?;
+    anydata? feedburner?;
+    anydata? feedburner_location?;
+    string 'handle?;
+    decimal id?;
+    string tags?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+# Represents the Queries record for the operation: retrievesAListOfCollects
+public type RetrievesAListOfCollectsQueries record {
+    # The maximum number of results to show.(default: 50)(maximum: 250) 
+    string 'limit?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+};
+
+public type CreatSmartCollectionSmartCollectionRules record {
+    string column?;
+    string condition?;
+    string relation?;
+};
+
+# The custom properties that a shop owner uses to define product variants. You can define three options for a product variant are option1, option2, option3. Default value is Default Title. The title field is a concatenation of the option1, option2, and option3 fields. Updating the option fields updates the title field.
+public type Option record {
+    # Option 3
+    string option3?;
+    # Option 1
+    string option1?;
+    # Option 2
+    string option2?;
+};
+
+public type CountriesList record {
+    CountriesListCountries[] countries?;
+};
+
+public type FulfillmentOrderFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
+public type ApiVersionBlogsJsonBody record {
+    AdminapiapiVersionblogsJsonBlog blog?;
+};
+
+public type ArticlesArticles record {
+    string admin_graphql_api_id?;
+    string author?;
+    decimal blog_id?;
+    string? body_html?;
+    string created_at?;
+    string 'handle?;
+    decimal id?;
+    anydata? published_at?;
+    anydata? summary_html?;
+    string tags?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+    anydata? user_id?;
+};
+
+public type AdminapiapiVersionpagespageIdJsonPage record {
+    decimal id?;
+    boolean published?;
+};
+
+# Represents the Queries record for the operation: receiveASingleFulfillment
+public type ReceiveASingleFulfillmentQueries record {
+    # Comma-separated list of fields to include in the response. 
+    string fields?;
+};
+
+public type PriceBasedShippingRate record {
+    int shippingZoneId?;
+    decimal price?;
+    decimal? minOrderSubtotal?;
+    string name?;
+    int id?;
+    decimal? maxOrderSubtotal?;
+};
+
+public type CreateProductResponseProductOptions record {
+    decimal id?;
+    string name?;
+    decimal position?;
+    decimal? product_id?;
+    string[] values?;
+};
+
+public type OriginalFulfillmentOrderSubmittedFulfillmentOrderRequestOptions record {
+    boolean notify_customer?;
+};
+
+public type ApiVersionCollectsJsonBody record {
+    AdminapiapiVersioncollectsJsonCollect collect?;
+};
+
+public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestacceptJsonFulfillmentRequest record {
+    string message?;
+};
+
+public type InventoryLevelsSetJsonBody record {
+    @jsondata:Name {value: "inventory_item_id"}
+    decimal inventoryItemId?;
+    decimal available?;
+    @jsondata:Name {value: "location_id"}
+    decimal locationId?;
+};
+
+public type SingleEvent record {
+    SingleEventEvent event?;
+};
+
+# Represents the Queries record for the operation: retrievesAListOfInventoryLevels
+public type RetrievesAListOfInventoryLevelsQueries record {
+    @http:Query {name: "updated_at_min"}
+    string updatedAtMin?;
+    @http:Query {name: "inventory_item_ids"}
+    string inventoryItemIds?;
+    @http:Query {name: "location_ids"}
+    string locationIds?;
+    # The maximum number of results to show.(default: 50)(maximum: 250) 
+    string 'limit?;
+};
+
+public type CountryResponse record {
+    CountryResponseCountry country?;
+};
+
+public type DiscountCodeListDiscountCodes record {
+    string code?;
+    record {} errors?;
+    anydata? id?;
+};
+
+# Represents the Queries record for the operation: receiveAListOfAllProductImages
+public type ReceiveAListOfAllProductImagesQueries record {
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # comma-separated list of fields to include in the response 
+    string fields?;
+};
+
+# Refunded line item
+public type RefundLineItem record {
+    @jsondata:Name {value: "line_item_id"}
+    int lineItemId?;
+    # The quantity of the associated line item that was returned.
+    int quantity?;
+    # The subtotal of the refund line item.
+    decimal subtotal?;
+    # The unique identifier of the line item in the refund.
+    int id?;
+    @jsondata:Name {value: "total_tax"}
+    decimal totalTax?;
+    @jsondata:Name {value: "location_id"}
+    int locationId?;
+    @jsondata:Name {value: "restock_type"}
+    string restockType?;
+};
+
+public type CustomerEmailMarketingConsent record {
+    string state?;
+    string opt_in_level?;
+    string consent_updated_at?;
+};
+
+public type ScriptTagResponse record {
+    ScriptTagResponseScriptTag script_tag?;
+};
+
+public type UpdateCustomCollection record {
+    UpdateCustomCollectionCustomCollection custom_collection?;
+};
+
+public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrder record {
+    @jsondata:Name {value: "request_status"}
+    string requestStatus?;
+    @jsondata:Name {value: "fulfillment_service_handle"}
+    string fulfillmentServiceHandle?;
+    @jsondata:Name {value: "shop_id"}
+    decimal shopId?;
+    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderDestination destination?;
+    @jsondata:Name {value: "assigned_location_id"}
+    decimal assignedLocationId?;
+    decimal id?;
+    @jsondata:Name {value: "line_items"}
+    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderLineItems[] lineItems?;
+    @jsondata:Name {value: "order_id"}
+    decimal orderId?;
+    @jsondata:Name {value: "supported_actions"}
+    string[] supportedActions?;
+    @jsondata:Name {value: "assigned_location"}
+    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderAssignedLocation assignedLocation?;
+    @jsondata:Name {value: "merchant_requests"}
+    anydata[] merchantRequests?;
+    string status?;
+};
+
+public type ReopenCloseOrderOrderTotalDiscountSet record {
+    ReopenCloseOrderOrderTotalDiscountSetPresentmentMoney presentment_money?;
+    ReopenCloseOrderOrderTotalDiscountSetPresentmentMoney shop_money?;
+};
+
+public type SingleScriptTag record {
+    SingleScriptTagScriptTag script_tag?;
+};
+
+public type AdminapiapiVersiongiftCardsgiftCardIddisableJsonGiftCard record {
+    decimal id?;
+};
+
+public type ReopenCloseOrderOrderTotalPriceSet record {
+    ReopenCloseOrderOrderTotalPriceSetPresentmentMoney presentment_money?;
+    ReopenCloseOrderOrderTotalPriceSetPresentmentMoney shop_money?;
+};
+
+public type ReopenCloseOrderOrderPriceSet record {
+    ReopenCloseOrderOrderPriceSetPresentmentMoney presentment_money?;
+    ReopenCloseOrderOrderPriceSetPresentmentMoney shop_money?;
+};
+
+public type AdminapiapiVersioncommentsJsonComment record {
+    @jsondata:Name {value: "article_id"}
+    decimal articleId?;
+};
+
+public type CancellationRequestAcceptJsonBody record {
+    @jsondata:Name {value: "cancellation_request"}
+    AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestacceptJsonCancellationRequest cancellationRequest?;
+};
+
+public type ProductListingAppResponseProductListingOptions record {
+    decimal id?;
+    string name?;
+    decimal position?;
+    decimal? product_id?;
+    string[] values?;
+};
+
+# Represents the Queries record for the operation: receiveASingleArticle
+public type ReceiveASingleArticleQueries record {
+    # Show only certain fields, specifed by a comma-separated list of field names. 
+    string fields?;
+};
+
+# Represents the Queries record for the operation: retrievesAllApplicationCredits
+public type RetrievesAllApplicationCreditsQueries record {
+    # A comma-separated list of fields to include in the response. 
+    string fields?;
+};
+
+public type AdminapiapiVersionpriceRulespriceRuleIdJsonPriceRule record {
+    decimal id?;
+    string title?;
+};
+
+public type PaymentsResponseCheckout record {
+    anydata? applied_discount?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? billing_address?;
+    anydata? completed_at?;
+    string created_at?;
+    SinglePaymentResponsePaymentCheckoutCreditCard credit_card?;
+    string currency?;
+    decimal customer_id?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    anydata? discount_code?;
+    string email?;
+    anydata[] gift_cards?;
+    anydata? legal_notice_url?;
+    SinglePaymentResponsePaymentCheckoutLineItems[] line_items?;
+    anydata? location_id?;
+    string name?;
+    string? note?;
+    SinglePaymentResponsePaymentCheckoutNoteAttributes note_attributes?;
+    anydata? 'order?;
+    anydata? order_id?;
+    anydata? order_status_url?;
+    string payment_due?;
+    string payment_url?;
+    PaymentsResponseCheckoutPayments[] payments?;
+    anydata? phone?;
+    string presentment_currency?;
+    anydata? privacy_policy_url?;
+    anydata? refund_policy_url?;
+    boolean requires_shipping?;
+    anydata? reservation_time?;
+    decimal reservation_time_left?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? shipping_address?;
+    SinglePaymentResponsePaymentCheckoutShippingLine? shipping_line?;
+    anydata? shipping_policy_url?;
+    SinglePaymentResponsePaymentCheckoutShippingRate shipping_rate?;
+    anydata? shopify_payments_account_id?;
+    anydata? source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    anydata? subscription_policy_url?;
+    string subtotal_price?;
+    boolean tax_exempt?;
+    SinglePaymentResponsePaymentCheckoutTaxLines[] tax_lines?;
+    anydata[] tax_manipulations?;
+    boolean taxes_included?;
+    anydata? terms_of_sale_url?;
+    anydata? terms_of_service_url?;
+    string token?;
+    string total_line_items_price?;
+    string total_price?;
+    string total_tax?;
+    string total_tip_received?;
+    string updated_at?;
+    anydata? user_id?;
+    string web_url?;
+};
+
+public type ApiVersionCommentsJsonBody record {
+    AdminapiapiVersioncommentsJsonComment comment?;
+};
+
+# Represents the Queries record for the operation: receiveACountOfAllDraftorders
+public type ReceiveACountOfAllDraftordersQueries record {
+    @http:Query {name: "updated_at_max"}
+    string updatedAtMax?;
+    @http:Query {name: "updated_at_min"}
+    string updatedAtMin?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+    # Count draft orders that have a given status.(default: open) 
+    string status?;
+};
+
+public type UsersList record {
+    SingleUserUser[] users?;
+};
+
+public type ApplicationChargeResult record {
+    ApplicationChargeResultApplicationCharge application_charge?;
+};
+
+public type UpdateCheckoutResponseCheckoutShippingAddress record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
+};
+
+public type AdminapiapiVersionreportsJsonReport record {
+    string name?;
+    @jsondata:Name {value: "shopify_ql"}
+    string shopifyQl?;
+};
+
+public type RefundResponse record {
+    ReopenCloseOrderOrderRefunds refund?;
+};
+
+public type ReopenCloseOrderOrderRefunds record {
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    string? note?;
+    anydata[] order_adjustments?;
+    decimal order_id?;
+    string processed_at?;
+    ReopenCloseOrderOrderRefundLineItems[] refund_line_items?;
+    boolean restock?;
+    ReopenCloseOrderOrderTransactions[] transactions?;
+    decimal user_id?;
+};
+
+public type CreateCustomerCustomerEmailMarketingConsent record {
+    anydata? consent_updated_at?;
+    string opt_in_level?;
+    string state?;
+};
+
+public type ReportResponseReport record {
+    string category?;
+    decimal id?;
+    string name?;
+    string shopify_ql?;
+    string updated_at?;
+};
+
+public type CheckoutCount record {
+    decimal count?;
+};
+
+public type CreateAuthorizationResponse record {
+    CreateAuthorizationResponsePayment payment?;
+};
+
+# Represents the Queries record for the operation: retrieveASpecificMetafield
+public type RetrieveASpecificMetafieldQueries record {
+    # comma-separated list of fields to include in the response 
+    string fields?;
+};
+
+public type ProductListingsproductListingIdJsonBody record {
+    @jsondata:Name {value: "product_listing"}
+    AdminapiapiVersionproductListingsproductListingIdJsonProductListing productListing?;
+};
+
+public type UsageChargeResponseUsageCharge record {
+    decimal balance_remaining?;
+    decimal balance_used?;
+    string created_at?;
+    string currency?;
+    string description?;
+    decimal id?;
+    string price?;
+    decimal risk_level?;
+};
+
+public type UpdateSmartCollectionSmartCollection record {
+    string admin_graphql_api_id?;
+    string body_html?;
+    boolean disjunctive?;
+    string 'handle?;
+    decimal id?;
+    UpdateCustomCollectionCustomCollectionImage image?;
+    string? published_at?;
+    string published_scope?;
+    SmartCollectionResponseSmartCollectionRules[] rules?;
+    string sort_order?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+public type CustomerDefaultAddressCustomerAddress record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string country_name?;
+    decimal customer_id?;
+    boolean default?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
+};
+
+public type DisableGiftCard record {
+    DisableGiftCardGiftCard gift_card?;
+};
+
+public type AdminapiapiVersionmetafieldsJsonMetafield record {
+    string namespace?;
+    string 'type?;
+    string value?;
+    string 'key?;
+};
+
+public type AssetsListAsset record {
+    string attachment?;
+    string content_type?;
+    string created_at?;
+    string 'key?;
+    string? public_url?;
+    decimal size?;
+    decimal theme_id?;
+    string updated_at?;
+    string value?;
+};
+
+# Schedule associated to the payment terms
+public type Refund record {
+    # An optional note attached to a refund.
+    string note?;
+    @jsondata:Name {value: "refund_line_items"}
+    RefundLineItem[] refundLineItems?;
+    @jsondata:Name {value: "user_id"}
+    int userId?;
+    @jsondata:Name {value: "order_adjustments"}
+    OrderAdjustment[] orderAdjustments?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
+    @jsondata:Name {value: "processed_at"}
+    string processedAt?;
+    # The unique identifier for the refund.
+    int id?;
+};
+
+public type ArticlesCount record {
+    decimal count?;
+};
+
+public type ProductIdResourceFeedbackJsonBody record {
+    @jsondata:Name {value: "resource_feedback"}
+    AdminapiapiVersionproductsproductIdresourceFeedbackJsonResourceFeedback resourceFeedback?;
+};
+
+public type PayoutsList record {
+    PayoutsListPayouts[] payouts?;
+};
+
+public type Orders record {
+    Order[]? orders?;
+};
+
+public type SinglePaymentResponsePaymentCheckoutTransaction record {
+    string amount?;
+    anydata? amount_in?;
+    anydata? amount_out?;
+    anydata? amount_rounding?;
+    anydata? authorization?;
+    string created_at?;
+    string currency?;
+    anydata? device_id?;
+    anydata? error_code?;
+    string gateway?;
+    decimal id?;
+    string kind?;
+    anydata? location_id?;
+    anydata? message?;
+    anydata? parent_id?;
+    record {} receipt?;
+    string status?;
+    boolean test?;
+    anydata? transaction_group_id?;
+    anydata? user_id?;
+};
+
+public type ReopenCloseOrderOrderLineItems record {
+    string admin_graphql_api_id?;
+    anydata[] discount_allocations?;
+    decimal fulfillable_quantity?;
+    string fulfillment_service?;
+    anydata? fulfillment_status?;
+    boolean gift_card?;
+    decimal grams?;
+    decimal id?;
+    string name?;
+    string price?;
+    ReopenCloseOrderOrderPriceSet price_set?;
+    boolean product_exists?;
+    decimal? product_id?;
+    ReopenCloseOrderOrderProperties[] properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    ReopenCloseOrderOrderTaxLines[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    string total_discount?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discount_set?;
+    decimal? variant_id?;
+    string variant_inventory_management?;
+    string? variant_title?;
+    anydata? vendor?;
+};
+
+public type OriginalFulfillmentOrderOriginalFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
+public type PostalCodeResult record {
+    PostalCodeResultCustomerAddress customer_address?;
+};
+
+public type OrderResponseOrder record {
+    string admin_graphql_api_id?;
+    decimal app_id?;
+    OrderResponseOrderBillingAddress? billing_address?;
+    anydata? browser_ip?;
+    boolean buyer_accepts_marketing?;
+    anydata? cancel_reason?;
+    anydata? cancelled_at?;
+    anydata? cart_token?;
+    anydata? checkout_id?;
+    anydata? checkout_token?;
+    anydata? closed_at?;
+    boolean confirmed?;
+    string? contact_email?;
+    string created_at?;
+    string currency?;
+    OrderResponseOrderCustomer customer?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    anydata[] discount_applications?;
+    anydata[] discount_codes?;
+    string email?;
+    string financial_status?;
+    string? fulfillment_status?;
+    anydata[] fulfillments?;
+    string gateway?;
+    decimal id?;
+    anydata? landing_site?;
+    anydata? landing_site_ref?;
+    OrderResponseOrderLineItems[] line_items?;
+    anydata? location_id?;
+    string name?;
+    anydata? note?;
+    anydata[] note_attributes?;
+    decimal number?;
+    decimal order_number?;
+    string order_status_url?;
+    string[] payment_gateway_names?;
+    anydata? phone?;
+    string presentment_currency?;
+    string processed_at?;
+    string processing_method?;
+    anydata? reference?;
+    anydata? referring_site?;
+    anydata[] refunds?;
+    OrderResponseOrderShippingAddress? shipping_address?;
+    anydata[] shipping_lines?;
+    anydata? source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    string subtotal_price?;
+    ReopenCloseOrderOrderPriceSet subtotal_price_set?;
+    string tags?;
+    anydata[] tax_lines?;
+    boolean taxes_included?;
+    boolean test?;
+    string token?;
+    string total_discounts?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discounts_set?;
+    string total_line_items_price?;
+    ReopenCloseOrderOrderPriceSet total_line_items_price_set?;
+    string total_price?;
+    ReopenCloseOrderOrderPriceSet total_price_set?;
+    string total_price_usd?;
+    ReopenCloseOrderOrderTotalDiscountSet total_shipping_price_set?;
+    string total_tax?;
+    ReopenCloseOrderOrderTotalDiscountSet total_tax_set?;
+    decimal total_weight?;
+    string updated_at?;
+    anydata? user_id?;
+};
+
 public type PageResponse record {
-    PageResponse_page page?;
+    PageResponsePage page?;
+};
+
+public type LocationsListLocation record {
+    decimal id?;
+    string name?;
+};
+
+public type CarrierServiceListCarrierServices record {
+    boolean active?;
+    string admin_graphql_api_id?;
+    string callback_url?;
+    string carrier_service_type?;
+    string format?;
+    decimal id?;
+    string name?;
+    boolean service_discovery?;
 };
 
 public type InvoiceResponse record {
-    InvoiceResponse_draft_order_invoice draft_order_invoice?;
+    InvoiceResponseDraftOrderInvoice draft_order_invoice?;
+};
+
+public type SmartCollectionResponseSmartCollectionRules record {
+    string column?;
+    string condition?;
+    string relation?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfReports
@@ -2913,19 +3062,24 @@ public type ApiVersionGiftCardsJsonBody record {
     AdminapiapiVersiongiftCardsJsonGiftCard giftCard?;
 };
 
-public type CancellationResponse_fulfillment_order record {
-    decimal assigned_location_id?;
-    CancellationResponse_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
+public type UpdateProductProduct record {
+    string admin_graphql_api_id?;
+    string body_html?;
+    string created_at?;
+    string 'handle?;
     decimal id?;
-    CancellationResponse_fulfillment_order_line_items[] line_items?;
-    decimal order_id?;
-    RejectCancellationRequestResponse_fulfillment_order_origin origin?;
-    anydata[] outgoing_requests?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
+    UpdateProductProductImage? image?;
+    UpdateProductProductImages[] images?;
+    ProductListingsOptions[] options?;
+    string product_type?;
+    string? published_at?;
+    string published_scope?;
+    string tags?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+    SingleProductProductVariants[] variants?;
+    string vendor?;
 };
 
 # Represents the Queries record for the operation: retrievesASinglePageByItsId
@@ -2934,67 +3088,46 @@ public type RetrievesASinglePageByItsIdQueries record {
     string fields?;
 };
 
-public type ProductListingAppResponse_product_listing_variants record {
-    boolean available?;
-    string barcode?;
-    anydata? compare_at_price?;
-    string created_at?;
-    string formatted_price?;
-    string fulfillment_service?;
-    decimal grams?;
-    decimal id?;
-    anydata? image_id?;
-    string inventory_management?;
-    string inventory_policy?;
-    decimal inventory_quantity?;
-    ProductListingAppResponse_product_listing_option_values[] option_values?;
-    decimal position?;
+public type AvailableShippingRatesShippingRates record {
+    AvailableShippingRatesCheckout checkout?;
+    anydata? delivery_range?;
+    string 'handle?;
+    string id?;
+    boolean phone_required?;
     string price?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
     string title?;
-    string updated_at?;
-    decimal weight?;
-    string weight_unit?;
-};
-
-public type SingleRedirect_redirect record {
-    decimal id?;
-    string path?;
-    string target?;
 };
 
 # The webhook resource.
 public type Webhook record {
     # Destination URI to which the webhook subscription should send the POST request when an event occurs.
     string address?;
-    # The Admin API version that Shopify uses to serialize webhook events. This value is inherited from the app that created the webhook subscription.
-    string api_version?;
-    # Date and time when the webhook subscription was created. The API returns this value in ISO 8601 format.
-    string created_at?;
-    # An optional array of top-level resource fields that should be serialized and sent in the POST request. If absent, all fields will be sent.
-    string[] fields?;
+    @jsondata:Name {value: "metafield_namespaces"}
+    string[] metafieldNamespaces?;
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt?;
     # Format in which the webhook subscription should send the data. Valid values are JSON and XML. Defaults to JSON.
     string format?;
-    # Unique numeric identifier for the webhook subscription.
-    int id?;
-    # Optional array of namespaces for any metafields that should be included with each webhook.
-    string[] metafield_namespaces?;
-    # Optional array of namespaces for any private metafields that should be included with each webhook.
-    string[] private_metafield_namespaces?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
     # Event that triggers the webhook. Valid values are app/uninstalled, bulk_operations/finish, carts/create, carts/update, checkouts/create, checkouts/delete, checkouts/update, collection_listings/add, collection_listings/remove, collection_listings/update, collections/create, collections/delete, collections/update, customer_groups/create, customer_groups/delete, customer_groups/update, customer_payment_methods/create, customer_payment_methods/revoke, customer_payment_methods/update, customers/create, customers/delete, customers/disable, customers/enable, customers/update, customers_marketing_consent/update, disputes/create, disputes/update, domains/create, domains/destroy, domains/update, draft_orders/create, draft_orders/delete, draft_orders/update, fulfillment_events/create, fulfillment_events/delete, fulfillments/create, fulfillments/update, inventory_items/create, inventory_items/delete, inventory_items/update, inventory_levels/connect, inventory_levels/disconnect, inventory_levels/update, locales/create, locales/update, locations/create, locations/delete, locations/update, order_transactions/create, orders/cancelled, orders/create, orders/delete, orders/edited, orders/fulfilled, orders/paid, orders/partially_fulfilled, orders/updated, product_listings/add, product_listings/remove, product_listings/update, products/create, products/delete, products/update, profiles/create, profiles/delete, profiles/update, refunds/create, selling_plan_groups/create, selling_plan_groups/delete, selling_plan_groups/update, shop/update, subscription_billing_attempts/challenged, subscription_billing_attempts/failure, subscription_billing_attempts/success, subscription_contracts/create, subscription_contracts/update, tender_transactions/create, themes/create, themes/delete, themes/publish, themes/update
     string topic?;
-    # Date and time when the webhook subscription was updated. The API returns this value in ISO 8601 format.
-    string updated_at?;
+    # Unique numeric identifier for the webhook subscription.
+    int id?;
+    @jsondata:Name {value: "api_version"}
+    string apiVersion?;
+    # An optional array of top-level resource fields that should be serialized and sent in the POST request. If absent, all fields will be sent.
+    string[] fields?;
+    @jsondata:Name {value: "private_metafield_namespaces"}
+    string[] privateMetafieldNamespaces?;
 };
 
 public type DiscountCodeResponse record {
-    DiscountCodeResponse_discount_code_creation discount_code_creation?;
+    DiscountCodeResponseDiscountCodeCreation discount_code_creation?;
 };
 
 public type CreateCustomer record {
-    CreateCustomer_customer customer?;
+    CreateCustomerCustomer customer?;
 };
 
 public type AdminapiapiVersioncarrierServicescarrierServiceIdJsonCarrierService record {
@@ -3003,7 +3136,115 @@ public type AdminapiapiVersioncarrierServicescarrierServiceIdJsonCarrierService 
     decimal id?;
 };
 
-public type AbandonedCheckouts_billing_address record {
+public type InventoryLevelInventoryLevel record {
+    string admin_graphql_api_id?;
+    decimal available?;
+    decimal inventory_item_id?;
+    decimal location_id?;
+    string updated_at?;
+};
+
+public type UpdateCommentResponseComment record {
+    decimal article_id?;
+    string author?;
+    decimal blog_id?;
+    string body?;
+    string body_html?;
+    string created_at?;
+    string email?;
+    decimal id?;
+    string ip?;
+    string published_at?;
+    string status?;
+    string updated_at?;
+    string user_agent?;
+};
+
+public type ResourceFeedbackListResourceFeedback record {
+    string created_at?;
+    string feedback_generated_at?;
+    string[] messages?;
+    decimal resource_id?;
+    string resource_type?;
+    anydata? resource_updated_at?;
+    string state?;
+    string updated_at?;
+};
+
+public type RedirectsredirectIdJsonBody record {
+    AdminapiapiVersionredirectsredirectIdJsonRedirect redirect?;
+};
+
+# Represents the Queries record for the operation: retrievesASpecificCounty
+public type RetrievesASpecificCountyQueries record {
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+};
+
+public type FulfillmentOrderFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+public type OrderResponseOrderLineItems record {
+    string admin_graphql_api_id?;
+    anydata[] discount_allocations?;
+    decimal fulfillable_quantity?;
+    string fulfillment_service?;
+    anydata? fulfillment_status?;
+    boolean gift_card?;
+    decimal grams?;
+    decimal id?;
+    string name?;
+    string price?;
+    ReopenCloseOrderOrderPriceSet price_set?;
+    boolean product_exists?;
+    decimal? product_id?;
+    anydata[] properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    anydata[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    string total_discount?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discount_set?;
+    decimal? variant_id?;
+    string variant_inventory_management?;
+    string? variant_title?;
+    string vendor?;
+};
+
+public type ApiVersionCountriesJsonBody record {
+    AdminapiapiVersioncountriesJsonCountry country?;
+};
+
+public type CountriescountryIdJsonBody record {
+    AdminapiapiVersioncountriescountryIdJsonCountry country?;
+};
+
+public type OriginalFulfillmentOrderUnsubmittedFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
+public type ReopenCloseOrderOrderBillingAddress record {
     string address1?;
     string address2?;
     string city?;
@@ -3021,117 +3262,31 @@ public type AbandonedCheckouts_billing_address record {
     string zip?;
 };
 
-public type MobilePlatformApplications_mobile_platform_applications record {
-    anydata? app_clip_application_id?;
-    string application_id?;
-    string created_at?;
-    boolean enabled_app_clips?;
-    boolean enabled_shared_webcredentials?;
-    boolean enabled_universal_or_app_links?;
-    decimal id?;
-    string platform?;
-    anydata[] sha256_cert_fingerprints?;
-    string updated_at?;
-};
-
-public type RedirectsredirectIdJsonBody record {
-    AdminapiapiVersionredirectsredirectIdJsonRedirect redirect?;
-};
-
-public type ApplicationCharge_application_charge record {
-    decimal api_client_id?;
-    anydata? charge_type?;
-    string confirmation_url?;
-    string created_at?;
-    string currency?;
-    string decorated_return_url?;
-    decimal id?;
-    string name?;
-    string price?;
-    string return_url?;
-    string status?;
-    boolean? test?;
-    string updated_at?;
-};
-
-public type UpdatePriceRule_price_rule record {
-    string admin_graphql_api_id?;
-    anydata? allocation_limit?;
-    string allocation_method?;
-    string created_at?;
-    string customer_selection?;
-    string? ends_at?;
-    anydata[] entitled_collection_ids?;
-    anydata[] entitled_country_ids?;
-    anydata[] entitled_product_ids?;
-    anydata[] entitled_variant_ids?;
-    decimal id?;
-    boolean once_per_customer?;
-    anydata[] prerequisite_collection_ids?;
-    anydata[] prerequisite_customer_ids?;
-    anydata[] prerequisite_product_ids?;
-    anydata? prerequisite_quantity_range?;
-    anydata[] prerequisite_saved_search_ids?;
-    anydata? prerequisite_shipping_price_range?;
-    anydata? prerequisite_subtotal_range?;
-    SinglePriceRule_price_rule_prerequisite_to_entitlement_quantity_ratio prerequisite_to_entitlement_quantity_ratio?;
-    anydata[] prerequisite_variant_ids?;
-    string starts_at?;
-    string target_selection?;
-    string target_type?;
-    string title?;
-    string updated_at?;
-    anydata? usage_limit?;
-    string value?;
-    string value_type?;
-};
-
-# Represents the Queries record for the operation: retrievesASpecificCounty
-public type RetrievesASpecificCountyQueries record {
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
-};
-
-public type ApiVersionCountriesJsonBody record {
-    AdminapiapiVersioncountriesJsonCountry country?;
-};
-
-public type CountriescountryIdJsonBody record {
-    AdminapiapiVersioncountriescountryIdJsonCountry country?;
+public type SinglePaymentResponsePaymentNextAction record {
+    anydata? redirect_url?;
 };
 
 public type TransactionsList record {
-    TransactionsList_transactions[] transactions?;
+    TransactionsListTransactions[] transactions?;
 };
 
-public type ModifyDraftOrder_draft_order record {
-    string admin_graphql_api_id?;
-    ModifyDraftOrder_draft_order_applied_discount? applied_discount?;
-    AbandonedCheckouts_billing_address? billing_address?;
-    anydata? completed_at?;
+public type SingleGiftCardGiftCard record {
+    anydata? api_client_id?;
+    string balance?;
     string created_at?;
     string currency?;
-    AbandonedCheckouts_customer customer?;
-    string email?;
+    anydata? customer_id?;
+    anydata? disabled_at?;
+    anydata? expires_on?;
     decimal id?;
-    anydata? invoice_sent_at?;
-    string invoice_url?;
-    SingleDraftOrder_draft_order_line_items[] line_items?;
-    string name?;
-    string? note?;
-    anydata[] note_attributes?;
+    string initial_value?;
+    string last_characters?;
+    anydata? line_item_id?;
+    anydata? note?;
     anydata? order_id?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    SingleDraftOrder_draft_order_shipping_line? shipping_line?;
-    string status?;
-    string subtotal_price?;
-    string tags?;
-    boolean tax_exempt?;
-    anydata[] tax_lines?;
-    boolean taxes_included?;
-    string total_price?;
-    string total_tax?;
+    anydata? template_suffix?;
     string updated_at?;
+    anydata? user_id?;
 };
 
 public type MarkCommentResponse record {
@@ -3157,19 +3312,9 @@ public type MarkCommentResponse record {
     string status?;
 };
 
-public type FulfillmentOrdersList_fulfillment_orders record {
-    RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
-    decimal assigned_location_id?;
-    FulfillmentOrdersList_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    FulfillmentOrdersList_line_items[] line_items?;
-    anydata[] merchant_requests?;
-    decimal order_id?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
+public type TenderTransactionsPaymentDetails record {
+    string credit_card_company?;
+    string credit_card_number?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfCustomCollections
@@ -3200,77 +3345,62 @@ public type RetrievesAListOfCustomCollectionsQueries record {
     string fields?;
 };
 
-public type ShippingZonesList record {
-    DeliveryZone[] shipping_zones?;
-};
-
-public type DraftOrders_draft_orders record {
-    string admin_graphql_api_id?;
-    record {}? applied_discount?;
-    AbandonedCheckouts_billing_address? billing_address?;
-    string? completed_at?;
-    string created_at?;
-    string currency?;
-    DraftOrders_customer? customer?;
-    string email?;
+public type ReopenCloseOrderOrderCustomerDefaultAddress record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string country_name?;
+    decimal customer_id?;
+    boolean default?;
+    anydata? first_name?;
     decimal id?;
-    string? invoice_sent_at?;
-    string invoice_url?;
-    DraftOrders_line_items[] line_items?;
+    anydata? last_name?;
     string name?;
-    string? note?;
-    anydata[] note_attributes?;
-    decimal? order_id?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    record {}? shipping_line?;
-    string status?;
-    string subtotal_price?;
-    string tags?;
-    boolean tax_exempt?;
-    anydata[] tax_lines?;
-    boolean taxes_included?;
-    string total_price?;
-    string total_tax?;
-    string updated_at?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
 };
 
-public type SingleScriptTag_script_tag record {
-    string created_at?;
-    string display_scope?;
-    string event?;
+public type ShippingZonesList record {
+    @jsondata:Name {value: "shipping_zones"}
+    DeliveryZone[] shippingZones?;
+};
+
+public type CreateCustomerCustomerSmsMarketingConsent record {
+    string consent_collected_from?;
+    anydata? consent_updated_at?;
+    string opt_in_level?;
+    string state?;
+};
+
+public type SingleCarrierServiceCarrierService record {
+    boolean active?;
+    string admin_graphql_api_id?;
+    string callback_url?;
+    string carrier_service_type?;
+    string format?;
     decimal id?;
-    string src?;
-    string updated_at?;
+    string name?;
+    boolean service_discovery?;
 };
 
 public type ApiVersionThemesJsonBody record {
     AdminapiapiVersionredirectsJsonRedirect theme?;
 };
 
-public type CreateFulfillmentOrder_fulfillment record {
-    string admin_graphql_api_id?;
-    string created_at?;
+public type FulfillmentOrdersListLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
     decimal id?;
-    CreateFulfillmentOrder_fulfillment_line_items[] line_items?;
-    decimal location_id?;
-    string name?;
-    decimal order_id?;
-    record {} receipt?;
-    string 'service?;
-    anydata? shipment_status?;
-    string status?;
-    string tracking_company?;
-    string tracking_number?;
-    string[] tracking_numbers?;
-    string tracking_url?;
-    string[] tracking_urls?;
-    string updated_at?;
-};
-
-public type CalculateRefund_refund_shipping record {
-    string amount?;
-    string maximum_refundable?;
-    string tax?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfAssetsForATheme
@@ -3288,29 +3418,15 @@ public type AdminapiapiVersionredirectsJsonRedirect record {
     string body?;
 };
 
-public type UpdateMarketingEvent_marketing_event record {
-    string admin_graphql_api_id?;
-    anydata? breadcrumb_id?;
-    string budget?;
-    string budget_type?;
-    string currency?;
-    anydata? description?;
-    string ended_at?;
-    string event_type?;
+public type CancellationResponseFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
     decimal id?;
-    anydata? manage_url?;
-    anydata[] marketed_resources?;
-    anydata? marketing_activity_id?;
-    string marketing_channel?;
-    boolean paid?;
-    anydata? preview_url?;
-    string referring_domain?;
-    string remote_id?;
-    string scheduled_to_end_at?;
-    string started_at?;
-    string utm_campaign?;
-    string utm_medium?;
-    string utm_source?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
 };
 
 public type StoreLocationCount record {
@@ -3330,12 +3446,6 @@ public type AdminapiapiVersioninventoryItemsinventoryItemIdJsonInventoryItem rec
     decimal id?;
 };
 
-public type CompleteCheckout_checkout_shipping_rate record {
-    string id?;
-    string price?;
-    string title?;
-};
-
 public type AdminapiapiVersionblogsblogIdarticlesJsonArticle record {
     @jsondata:Name {value: "body_html"}
     string bodyHtml?;
@@ -3345,21 +3455,33 @@ public type AdminapiapiVersionblogsblogIdarticlesJsonArticle record {
     string tags?;
 };
 
-public type CompleteCheckout_checkout_order record {
+public type PaymentsResponseCheckoutTransaction record {
+    string amount?;
+    anydata? amount_in?;
+    anydata? amount_out?;
+    anydata? amount_rounding?;
+    string authorization?;
+    string created_at?;
+    string currency?;
+    anydata? error_code?;
+    string gateway?;
     decimal id?;
-    string name?;
-    string status_url?;
+    string kind?;
+    anydata? message?;
+    anydata? parent_id?;
+    string status?;
+    boolean test?;
 };
 
-public type SingleProduct_product record {
+public type ProductsListProducts record {
     string admin_graphql_api_id?;
-    string body_html?;
+    string? body_html?;
     string created_at?;
     string 'handle?;
     decimal id?;
-    SingleProduct_product_image image?;
-    SingleProduct_product_image[] images?;
-    UpdateProduct_product_options[] options?;
+    ProductsResponseImages image?;
+    ProductsResponseImages[] images?;
+    ProductsListOptions[] options?;
     string product_type?;
     string published_at?;
     string published_scope?;
@@ -3367,12 +3489,34 @@ public type SingleProduct_product record {
     anydata? template_suffix?;
     string title?;
     string updated_at?;
-    UpdateProduct_product_variants[] variants?;
+    string vendor?;
+};
+
+public type SinglePaymentResponsePaymentCheckoutLineItems record {
+    anydata[] applied_discounts?;
+    anydata? compare_at_price?;
+    string fulfillment_service?;
+    boolean gift_card?;
+    decimal grams?;
+    string id?;
+    string image_url?;
+    string 'key?;
+    string line_price?;
+    string price?;
+    decimal? product_id?;
+    record {} properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean taxable?;
+    string title?;
+    decimal? variant_id?;
+    string? variant_title?;
     string vendor?;
 };
 
 public type ShopPoliciesList record {
-    ShopPoliciesList_policies[] policies?;
+    ShopPoliciesListPolicies[] policies?;
 };
 
 public type CountriesCount record {
@@ -3380,7 +3524,25 @@ public type CountriesCount record {
 };
 
 public type ProductVariantResponse record {
-    ProductVariantResponse_variant variant?;
+    ProductVariantResponseVariant variant?;
+};
+
+public type SingleUsageChargeUsageCharge record {
+    decimal balance_remaining?;
+    decimal balance_used?;
+    anydata? billing_on?;
+    string created_at?;
+    string currency?;
+    string description?;
+    decimal id?;
+    string price?;
+    decimal risk_level?;
+};
+
+public type UrlListRedirects record {
+    decimal id?;
+    string path?;
+    string target?;
 };
 
 # Represents the Queries record for the operation: retrievesASpecificTransaction
@@ -3433,6 +3595,14 @@ public type RetrievesAListOfProductsQueries record {
     string fields?;
 };
 
+public type ArticleArticleImage record {
+    string? alt?;
+    string created_at?;
+    decimal height?;
+    string src?;
+    decimal width?;
+};
+
 public type InventoryLevelsAdjustJsonBody record {
     @jsondata:Name {value: "inventory_item_id"}
     decimal inventoryItemId?;
@@ -3447,79 +3617,52 @@ public type ApiVersionCarrierServicesJsonBody record {
     AdminapiapiVersioncarrierServicesJsonCarrierService carrierService?;
 };
 
-public type ReopenCloseOrder_order_customer record {
-    boolean accepts_marketing?;
-    string accepts_marketing_updated_at?;
+public type UpdateGiftCard record {
+    UpdateGiftCardGiftCard gift_card?;
+};
+
+public type RecurringApplicationChargesRecurringApplicationCharges record {
+    anydata? activated_on?;
+    decimal api_client_id?;
+    string billing_on?;
+    anydata? cancelled_on?;
+    string created_at?;
+    string currency?;
+    string decorated_return_url?;
+    decimal id?;
+    string name?;
+    string price?;
+    string return_url?;
+    string status?;
+    anydata? test?;
+    decimal trial_days?;
+    anydata? trial_ends_on?;
+    string updated_at?;
+};
+
+public type UpdatePriceRulePriceRulePrerequisiteToEntitlementQuantityRatio record {
+    anydata? entitled_quantity?;
+    anydata? prerequisite_quantity?;
+};
+
+public type FulfillmentListFulfillments record {
     string admin_graphql_api_id?;
     string created_at?;
-    string currency?;
-    AbandonedCheckouts_customer_default_address default_address?;
-    string email?;
-    string first_name?;
     decimal id?;
-    string last_name?;
-    decimal last_order_id?;
-    string last_order_name?;
-    anydata? marketing_opt_in_level?;
-    anydata? multipass_identifier?;
-    anydata? note?;
-    decimal orders_count?;
-    anydata? phone?;
-    string state?;
-    string tags?;
-    boolean tax_exempt?;
-    anydata[] tax_exemptions?;
-    string total_spent?;
+    FulfillmentListLineItems[] line_items?;
+    decimal location_id?;
+    string name?;
+    decimal order_id?;
+    record {} receipt?;
+    string 'service?;
+    anydata? shipment_status?;
+    string status?;
+    string tracking_company?;
+    string tracking_number?;
+    string[] tracking_numbers?;
+    string tracking_url?;
+    string[] tracking_urls?;
     string updated_at?;
-    boolean verified_email?;
-};
-
-public type UpdateGiftCard record {
-    UpdateGiftCard_gift_card gift_card?;
-};
-
-public type GiftCardSearch_gift_cards record {
-    anydata? api_client_id?;
-    string balance?;
-    string created_at?;
-    string currency?;
-    anydata? customer_id?;
-    anydata? disabled_at?;
-    anydata? expires_on?;
-    decimal id?;
-    string initial_value?;
-    string last_characters?;
-    anydata? line_item_id?;
-    anydata? note?;
-    anydata? order_id?;
-    anydata? template_suffix?;
-    string updated_at?;
-    anydata? user_id?;
-};
-
-public type ProductListings_variants record {
-    boolean available?;
-    string barcode?;
-    anydata? compare_at_price?;
-    string created_at?;
-    string formatted_price?;
-    string fulfillment_service?;
-    decimal grams?;
-    decimal id?;
-    decimal? image_id?;
-    string inventory_management?;
-    string inventory_policy?;
-    decimal inventory_quantity?;
-    ProductListings_option_values[] option_values?;
-    decimal position?;
-    string price?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
-    string title?;
-    string updated_at?;
-    decimal weight?;
-    string weight_unit?;
 };
 
 public type CustomerIdSendInviteJsonBody record {
@@ -3527,34 +3670,17 @@ public type CustomerIdSendInviteJsonBody record {
     record {} customerInvite?;
 };
 
-public type ReopenCloseOrder_order_tax_lines record {
-    string price?;
-    ReopenCloseOrder_order_price_set_1 price_set?;
-    decimal rate?;
-    string title?;
-};
-
-public type SmartCollectionList_smart_collections record {
+public type CreateCollectionCustomCollection record {
     string admin_graphql_api_id?;
-    string? body_html?;
-    boolean disjunctive?;
+    anydata? body_html?;
     string 'handle?;
     decimal id?;
-    SmartCollectionList_image image?;
-    string published_at?;
+    CreateCollectionCustomCollectionImage image?;
+    string? published_at?;
     string published_scope?;
-    SmartCollectionList_rules[] rules?;
     string sort_order?;
     anydata? template_suffix?;
     string title?;
-    string updated_at?;
-};
-
-public type ConnectInventoryItem_inventory_level record {
-    string admin_graphql_api_id?;
-    decimal available?;
-    decimal inventory_item_id?;
-    decimal location_id?;
     string updated_at?;
 };
 
@@ -3594,61 +3720,17 @@ public type ImagesimageIdJsonBody record {
     AdminapiapiVersionproductsproductIdimagesimageIdJsonImage image?;
 };
 
-public type AbandonedCheckouts_customer_default_address record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string country_name?;
-    decimal customer_id?;
-    boolean default?;
-    anydata? first_name?;
-    decimal id?;
-    anydata? last_name?;
-    string name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
-};
-
 public type DiscountCodeList record {
     @jsondata:Name {value: "discount_codes"}
-    DiscountCodeList_discount_codes[] discountCodes?;
+    DiscountCodeListDiscountCodes[] discountCodes?;
 };
 
 public type SmartCollectionResponse record {
-    SmartCollectionResponse_smart_collection smart_collection?;
+    SmartCollectionResponseSmartCollection smart_collection?;
 };
 
 public type GiftCard record {
-    GiftCard_gift_card gift_card?;
-};
-
-public type CappedAmountCharge_recurring_application_charge record {
-    string activated_on?;
-    decimal api_client_id?;
-    decimal balance_remaining?;
-    decimal balance_used?;
-    anydata? billing_on?;
-    anydata? cancelled_on?;
-    string capped_amount?;
-    string created_at?;
-    string currency?;
-    string decorated_return_url?;
-    decimal id?;
-    string name?;
-    string price?;
-    string return_url?;
-    decimal risk_level?;
-    string status?;
-    anydata? test?;
-    decimal trial_days?;
-    string trial_ends_on?;
-    string update_capped_amount_url?;
-    string updated_at?;
+    GiftCardGiftCard gift_card?;
 };
 
 public type ScriptTagsscriptTagIdJsonBody record {
@@ -3656,17 +3738,50 @@ public type ScriptTagsscriptTagIdJsonBody record {
     AdminapiapiVersionscriptTagsscriptTagIdJsonScriptTag scriptTag?;
 };
 
-public type UpdateScriptTagResponse_script_tag record {
+public type CreateThemeResponseTheme record {
+    string admin_graphql_api_id?;
     string created_at?;
-    string display_scope?;
-    string event?;
     decimal id?;
-    string src?;
+    string name?;
+    boolean previewable?;
+    boolean processing?;
+    string role?;
+    anydata? theme_store_id?;
     string updated_at?;
 };
 
+public type CreateCustomerCustomer record {
+    boolean accepts_marketing?;
+    string accepts_marketing_updated_at?;
+    CreateCustomerCustomerAddresses[] addresses?;
+    string admin_graphql_api_id?;
+    string created_at?;
+    string currency?;
+    CreateCustomerCustomerAddresses default_address?;
+    string email?;
+    CreateCustomerCustomerEmailMarketingConsent email_marketing_consent?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    anydata? last_order_id?;
+    anydata? last_order_name?;
+    anydata? marketing_opt_in_level?;
+    anydata? multipass_identifier?;
+    anydata? note?;
+    decimal orders_count?;
+    string phone?;
+    CreateCustomerCustomerSmsMarketingConsent sms_marketing_consent?;
+    string state?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_exemptions?;
+    string total_spent?;
+    string updated_at?;
+    boolean verified_email?;
+};
+
 public type AvailableInventory record {
-    AvailableInventory_inventory_level inventory_level?;
+    AvailableInventoryInventoryLevel inventory_level?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfAllScriptTags
@@ -3689,21 +3804,6 @@ public type RetrievesAListOfAllScriptTagsQueries record {
     string fields?;
 };
 
-public type MoveFulfillmentOrderResponse_original_fulfillment_order record {
-    RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
-    decimal assigned_location_id?;
-    MoveFulfillmentOrderResponse_original_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    MoveFulfillmentOrderResponse_original_fulfillment_order_line_items[] line_items?;
-    anydata[] merchant_requests?;
-    decimal order_id?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    anydata[] supported_actions?;
-};
-
 public type AdminapiapiVersionownerIdownerResourcemetafieldsJsonMetafield record {
     string namespace?;
     string 'type?;
@@ -3711,184 +3811,33 @@ public type AdminapiapiVersionownerIdownerResourcemetafieldsJsonMetafield record
     string 'key?;
 };
 
-public type SingleFulfillmentService_fulfillment_service record {
-    string callback_url?;
-    anydata? email?;
-    boolean fulfillment_orders_opt_in?;
-    string 'handle?;
-    decimal id?;
-    boolean include_pending_stock?;
-    boolean inventory_management?;
-    decimal location_id?;
-    string name?;
-    anydata? provider_id?;
-    string service_name?;
-    boolean tracking_support?;
-};
-
 public type AdminapiapiVersionsmartCollectionssmartCollectionIdJsonSmartCollection record {
     AdminapiapiVersionsmartCollectionssmartCollectionIdJsonSmartCollectionImage image?;
     decimal id?;
 };
 
-public type SingleOrderResponse_order record {
-    string admin_graphql_api_id?;
-    anydata? app_id?;
-    AbandonedCheckouts_billing_address? billing_address?;
-    string browser_ip?;
-    boolean buyer_accepts_marketing?;
-    anydata? cancel_reason?;
-    anydata? cancelled_at?;
-    string cart_token?;
-    decimal checkout_id?;
-    string checkout_token?;
-    ReopenCloseOrder_order_client_details client_details?;
-    anydata? closed_at?;
-    boolean confirmed?;
-    string contact_email?;
+public type ProductToCollectionResponseCollect record {
+    decimal collection_id?;
     string created_at?;
-    string currency?;
-    ReopenCloseOrder_order_customer customer?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    ReopenCloseOrder_order_discount_applications[] discount_applications?;
-    ReopenCloseOrder_order_discount_codes[] discount_codes?;
-    string email?;
-    string financial_status?;
-    anydata? fulfillment_status?;
-    ReopenCloseOrder_order_fulfillments[] fulfillments?;
-    string gateway?;
     decimal id?;
-    string landing_site?;
-    string landing_site_ref?;
-    ReopenCloseOrder_order_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    anydata? note?;
-    AbandonedCheckouts_note_attributes[] note_attributes?;
-    decimal number?;
-    decimal order_number?;
-    string order_status_url?;
-    ReopenCloseOrder_order_payment_details payment_details?;
-    string[] payment_gateway_names?;
-    string phone?;
-    string presentment_currency?;
-    string processed_at?;
-    string processing_method?;
-    string reference?;
-    string referring_site?;
-    ReopenCloseOrder_order_refunds[] refunds?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    ReopenCloseOrder_order_shipping_lines[] shipping_lines?;
-    string source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    string subtotal_price?;
-    ReopenCloseOrder_order_subtotal_price_set subtotal_price_set?;
-    string tags?;
-    ReopenCloseOrder_order_tax_lines_1[] tax_lines?;
-    boolean taxes_included?;
-    boolean test?;
-    string token?;
-    string total_discounts?;
-    CancelFulfillment_fulfillment_price_set total_discounts_set?;
-    string total_line_items_price?;
-    ReopenCloseOrder_order_subtotal_price_set total_line_items_price_set?;
-    string total_price?;
-    ReopenCloseOrder_order_total_price_set total_price_set?;
-    string total_price_usd?;
-    CancelFulfillment_fulfillment_total_discount_set total_shipping_price_set?;
-    string total_tax?;
-    ReopenCloseOrder_order_price_set_2 total_tax_set?;
-    decimal total_weight?;
+    decimal position?;
+    decimal? product_id?;
+    string sort_value?;
     string updated_at?;
-    anydata? user_id?;
-};
-
-public type PaymentsResponse_checkout_payments record {
-    anydata? credit_card?;
-    decimal id?;
-    anydata? payment_processing_error_message?;
-    PaymentsResponse_checkout_transaction 'transaction?;
-    string unique_token?;
-};
-
-public type CancelFulfillmentOrder_fulfillment_order record {
-    RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
-    decimal assigned_location_id?;
-    CancelFulfillmentOrder_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    CancelFulfillmentOrder_fulfillment_order_line_items[] line_items?;
-    anydata[] merchant_requests?;
-    decimal order_id?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    anydata[] supported_actions?;
 };
 
 public type AcceptFulfillmentResponse record {
-    AcceptFulfillmentResponse_fulfillment_order fulfillment_order?;
+    AcceptFulfillmentResponseFulfillmentOrder fulfillment_order?;
 };
 
 public type OriginalFulfillmentOrder record {
-    OriginalFulfillmentOrder_submitted_fulfillment_order submitted_fulfillment_order?;
-    OriginalFulfillmentOrder_original_fulfillment_order original_fulfillment_order?;
-    OriginalFulfillmentOrder_unsubmitted_fulfillment_order? unsubmitted_fulfillment_order?;
-};
-
-public type CreateProductVariant_variant record {
-    string admin_graphql_api_id?;
-    anydata? barcode?;
-    anydata? compare_at_price?;
-    string created_at?;
-    string fulfillment_service?;
-    decimal grams?;
-    decimal id?;
-    decimal? image_id?;
-    decimal inventory_item_id?;
-    string inventory_management?;
-    string inventory_policy?;
-    decimal inventory_quantity?;
-    decimal old_inventory_quantity?;
-    string option1?;
-    anydata? option2?;
-    anydata? option3?;
-    decimal position?;
-    CreateProductResponse_product_presentment_prices[] presentment_prices?;
-    string price?;
-    decimal? product_id?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
-    string title?;
-    string updated_at?;
-    decimal weight?;
-    string weight_unit?;
+    OriginalFulfillmentOrderSubmittedFulfillmentOrder submitted_fulfillment_order?;
+    OriginalFulfillmentOrderOriginalFulfillmentOrder original_fulfillment_order?;
+    OriginalFulfillmentOrderUnsubmittedFulfillmentOrder? unsubmitted_fulfillment_order?;
 };
 
 public type AdminapiapiVersioncountriesJsonCountry record {
     string code?;
-};
-
-public type DisableGiftCard_gift_card record {
-    anydata? api_client_id?;
-    string balance?;
-    string created_at?;
-    string currency?;
-    anydata? customer_id?;
-    string disabled_at?;
-    anydata? expires_on?;
-    decimal id?;
-    string initial_value?;
-    string last_characters?;
-    anydata? line_item_id?;
-    anydata? note?;
-    anydata? order_id?;
-    anydata? template_suffix?;
-    string updated_at?;
-    anydata? user_id?;
 };
 
 public type AdminapiapiVersionproductsproductIdimagesimageIdJsonImage record {
@@ -3897,23 +3846,42 @@ public type AdminapiapiVersionproductsproductIdimagesimageIdJsonImage record {
     decimal id?;
 };
 
-public type CollectionList_custom_collections record {
+public type TransactionObjectTransaction record {
     string admin_graphql_api_id?;
-    string? body_html?;
-    string 'handle?;
+    string amount?;
+    anydata? authorization?;
+    string created_at?;
+    string currency?;
+    anydata? currency_exchange_adjustment?;
+    anydata? device_id?;
+    anydata? error_code?;
+    string gateway?;
     decimal id?;
-    SmartCollectionList_image image?;
-    string published_at?;
-    string published_scope?;
-    string sort_order?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
+    string kind?;
+    anydata? location_id?;
+    string message?;
+    decimal order_id?;
+    decimal parent_id?;
+    string processed_at?;
+    record {} receipt?;
+    string source_name?;
+    string status?;
+    boolean test?;
+    anydata? user_id?;
 };
 
 public type ApplicationChargesList record {
     @jsondata:Name {value: "application_charges"}
-    ApplicationChargesList_application_charges[] applicationCharges?;
+    ApplicationChargesListApplicationCharges[] applicationCharges?;
+};
+
+public type DiscountCodesDiscountCodes record {
+    string code?;
+    string created_at?;
+    decimal id?;
+    decimal price_rule_id?;
+    string updated_at?;
+    decimal usage_count?;
 };
 
 public type ApiVersionScriptTagsJsonBody record {
@@ -3921,35 +3889,8 @@ public type ApiVersionScriptTagsJsonBody record {
     AdminapiapiVersionredirectsJsonRedirect scriptTag?;
 };
 
-public type SingleFulfillmentOrder_fulfillment_order record {
-    RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
-    decimal assigned_location_id?;
-    SingleFulfillmentOrder_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    SingleFulfillmentOrder_fulfillment_order_line_items[] line_items?;
-    anydata[] merchant_requests?;
-    decimal order_id?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
-};
-
 public type StorefrontAccessToken record {
-    StorefrontAccessToken_storefront_access_token storefront_access_token?;
-};
-
-public type ProductListings_images record {
-    string created_at?;
-    decimal height?;
-    decimal id?;
-    decimal position?;
-    decimal? product_id?;
-    string src?;
-    string updated_at?;
-    anydata[] variant_ids?;
-    decimal width?;
+    StorefrontAccessTokenStorefrontAccessToken storefront_access_token?;
 };
 
 public type AdminapiapiVersionpagesJsonPage record {
@@ -3959,42 +3900,33 @@ public type AdminapiapiVersionpagesJsonPage record {
     string title?;
 };
 
-public type InventoryListResponse record {
-    @jsondata:Name {value: "inventory_levels"}
-    InventoryListResponse_inventory_levels[] inventoryLevels?;
+public type CreateProductResponseProduct record {
+    string admin_graphql_api_id?;
+    string body_html?;
+    string created_at?;
+    string 'handle?;
+    decimal id?;
+    record {}? image?;
+    anydata[] images?;
+    CreateProductResponseProductOptions[] options?;
+    string product_type?;
+    string? published_at?;
+    string published_scope?;
+    string tags?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+    CreateProductResponseProductVariants[] variants?;
+    string vendor?;
 };
 
-public type FulfillmentListForOrder_fulfillments record {
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    ReopenCloseOrder_order_line_items[] line_items?;
-    decimal location_id?;
-    string name?;
-    decimal order_id?;
-    ReopenCloseOrder_order_receipt receipt?;
-    string 'service?;
-    anydata? shipment_status?;
-    string status?;
-    string tracking_company?;
-    string tracking_number?;
-    string[] tracking_numbers?;
-    string tracking_url?;
-    string[] tracking_urls?;
-    string updated_at?;
+public type InventoryListResponse record {
+    @jsondata:Name {value: "inventory_levels"}
+    InventoryListResponseInventoryLevels[] inventoryLevels?;
 };
 
 public type UpdatePageResponse record {
-    UpdatePageResponse_page page?;
-};
-
-public type UpdateCountryTaxRate_country record {
-    string code?;
-    decimal id?;
-    string name?;
-    UpdateCountryTaxRate_country_provinces[] provinces?;
-    decimal tax?;
-    string tax_name?;
+    UpdatePageResponsePage page?;
 };
 
 public type CreateProduct record {
@@ -4002,12 +3934,21 @@ public type CreateProduct record {
 };
 
 public type CollectsList record {
-    CollectsList_collects[] collects?;
+    CollectsListCollects[] collects?;
+};
+
+public type UpdateScriptTagResponseScriptTag record {
+    string created_at?;
+    string display_scope?;
+    string event?;
+    decimal id?;
+    string src?;
+    string updated_at?;
 };
 
 public type GiftCardSearch record {
     @jsondata:Name {value: "gift_cards"}
-    GiftCardSearch_gift_cards[] giftCards?;
+    GiftCardSearchGiftCards[] giftCards?;
 };
 
 public type AdminapiapiVersiondraftOrdersJsonDraftOrderLineItems record {
@@ -4019,17 +3960,45 @@ public type AdminapiapiVersiondraftOrdersJsonDraftOrderLineItems record {
 };
 
 public type CreateDiscountCode record {
-    CreateDiscountCode_discount_code discount_code?;
+    CreateDiscountCodeDiscountCode discount_code?;
+};
+
+public type CreateCheckoutResponseCheckoutLineItems record {
+    anydata[] applied_discounts?;
+    anydata? compare_at_price?;
+    string fulfillment_service?;
+    boolean gift_card?;
+    decimal grams?;
+    string id?;
+    string image_url?;
+    string 'key?;
+    string line_price?;
+    string price?;
+    decimal? product_id?;
+    record {} properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean taxable?;
+    string title?;
+    decimal? variant_id?;
+    string? variant_title?;
+    string vendor?;
+};
+
+public type ReopenCloseOrderOrderProperties record {
+    string name?;
+    string value?;
 };
 
 public type Country record {
-    int id?;
+    record {}[] provinces?;
+    string code?;
+    int shippingZoneId?;
     string name?;
     decimal tax?;
-    string code?;
+    int id?;
     string taxName?;
-    int shippingZoneId?;
-    record {}[] provinces?;
 };
 
 public type AdminapiapiVersiongiftCardsJsonGiftCard record {
@@ -4046,53 +4015,16 @@ public type BlogsblogIdJsonBody record {
     AdminapiapiVersionblogsblogIdJsonBlog blog?;
 };
 
-public type SingleProduct_product_image record {
-    string admin_graphql_api_id?;
-    anydata? alt?;
-    string created_at?;
-    decimal height?;
-    decimal id?;
-    decimal position?;
-    decimal? product_id?;
-    string src?;
-    string updated_at?;
-    anydata[] variant_ids?;
-    decimal width?;
-};
-
 public type TransactionsListForPayout record {
-    TransactionsListForPayout_transactions[] transactions?;
+    TransactionsListForPayoutTransactions[] transactions?;
 };
 
-public type CompleteCheckout_checkout_shipping_address record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
-};
-
-public type RejectCancellationRequestResponse_fulfillment_order record {
-    decimal assigned_location_id?;
-    RejectCancellationRequestResponse_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    RejectCancellationRequestResponse_fulfillment_order_line_items[] line_items?;
-    decimal order_id?;
-    RejectCancellationRequestResponse_fulfillment_order_origin origin?;
-    anydata[] outgoing_requests?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
+public type CreateDraftOrderDraftOrderAppliedDiscount record {
+    string amount?;
+    string description?;
+    string title?;
+    string value?;
+    string value_type?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfPriceRules
@@ -4121,21 +4053,6 @@ public type RetrievesAListOfPriceRulesQueries record {
     string endsAtMax?;
 };
 
-public type TransitionFulfillmentOrder_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
 # Represents the Queries record for the operation: retrievesASingleTheme
 public type RetrievesASingleThemeQueries record {
     # Show only certain fields, specified by a comma-separated list of field names. 
@@ -4147,41 +4064,65 @@ public type AdminapiapiVersionblogsJsonBlog record {
     string title?;
 };
 
+public type CreateCarrierServiceCarrierService record {
+    boolean active?;
+    string admin_graphql_api_id?;
+    string callback_url?;
+    string carrier_service_type?;
+    string format?;
+    decimal id?;
+    string name?;
+    boolean service_discovery?;
+};
+
 public type ApiVersionStorefrontAccessTokensJsonBody record {
     @jsondata:Name {value: "storefront_access_token"}
     AdminapiapiVersionstorefrontAccessTokensJsonStorefrontAccessToken storefrontAccessToken?;
 };
 
-public type Article record {
-    Article_article article?;
+public type UsageChargeListUsageCharges record {
+    decimal balance_remaining?;
+    decimal balance_used?;
+    anydata? billing_on?;
+    string created_at?;
+    string currency?;
+    string description?;
+    decimal id?;
+    string price?;
+    decimal risk_level?;
 };
 
-public type ResourceFeedbackList_resource_feedback record {
-    string created_at?;
-    string feedback_generated_at?;
-    string[] messages?;
-    decimal resource_id?;
-    string resource_type?;
-    anydata? resource_updated_at?;
-    string state?;
+public type SmartCollectionListSmartCollections record {
+    string admin_graphql_api_id?;
+    string? body_html?;
+    boolean disjunctive?;
+    string 'handle?;
+    decimal id?;
+    UpdateCustomCollectionCustomCollectionImage image?;
+    string published_at?;
+    string published_scope?;
+    SmartCollectionResponseSmartCollectionRules[] rules?;
+    string sort_order?;
+    anydata? template_suffix?;
+    string title?;
     string updated_at?;
+};
+
+public type Article record {
+    ArticleArticle article?;
 };
 
 public type GiftCardsList record {
     @jsondata:Name {value: "gift_cards"}
-    GiftCardsList_gift_cards[] giftCards?;
-};
-
-public type SinglePaymentResponse_payment_next_action record {
-    anydata? redirect_url?;
+    GiftCardsListGiftCards[] giftCards?;
 };
 
 public type SinglePayout record {
-    SinglePayout_payout payout?;
+    PayoutsListPayouts payout?;
 };
 
 public type ReportResponse record {
-    ReportResponse_report report?;
+    ReportResponseReport report?;
 };
 
 public type ApiVersionMarketingEventsJsonBody record {
@@ -4189,54 +4130,7 @@ public type ApiVersionMarketingEventsJsonBody record {
     AdminapiapiVersionmarketingEventsJsonMarketingEvent marketingEvent?;
 };
 
-public type LocationList_locations record {
-    boolean active?;
-    string? address1?;
-    anydata? address2?;
-    string admin_graphql_api_id?;
-    string? city?;
-    string country?;
-    string country_code?;
-    string country_name?;
-    string created_at?;
-    decimal id?;
-    boolean legacy?;
-    string name?;
-    anydata? phone?;
-    string? province?;
-    string? province_code?;
-    string updated_at?;
-    string? zip?;
-};
-
-public type AdminapiapiVersioncarrierServicesJsonCarrierService record {
-    @jsondata:Name {value: "callback_url"}
-    string callbackUrl?;
-    string name?;
-    @jsondata:Name {value: "service_discovery"}
-    boolean serviceDiscovery?;
-};
-
-# Represents the Queries record for the operation: receiveASingleBlog
-public type ReceiveASingleBlogQueries record {
-    # comma-separated list of fields to include in the response 
-    string fields?;
-};
-
-public type CalculateRefund_refund_refund_line_items record {
-    string discounted_price?;
-    string discounted_total_price?;
-    decimal line_item_id?;
-    anydata? location_id?;
-    string price?;
-    decimal quantity?;
-    string restock_type?;
-    string subtotal?;
-    string total_cart_discount_amount?;
-    string total_tax?;
-};
-
-public type RejectFulfillmentResponse_fulfillment_order_destination record {
+public type MoveFulfillmentOrderResponseMovedFulfillmentOrderDestination record {
     string address1?;
     string address2?;
     string city?;
@@ -4251,9 +4145,130 @@ public type RejectFulfillmentResponse_fulfillment_order_destination record {
     string zip?;
 };
 
-public type ReopenCloseOrder_order_subtotal_price_set record {
-    ReopenCloseOrder_order_subtotal_price_set_presentment_money presentment_money?;
-    ReopenCloseOrder_order_subtotal_price_set_presentment_money shop_money?;
+public type AdminapiapiVersioncarrierServicesJsonCarrierService record {
+    @jsondata:Name {value: "callback_url"}
+    string callbackUrl?;
+    string name?;
+    @jsondata:Name {value: "service_discovery"}
+    boolean serviceDiscovery?;
+};
+
+public type SinglePaymentResponsePayment record {
+    SinglePaymentResponsePaymentCheckout checkout?;
+    anydata? credit_card?;
+    boolean fraudulent?;
+    decimal id?;
+    SinglePaymentResponsePaymentNextAction next_action?;
+    anydata? payment_processing_error_message?;
+    SinglePaymentResponsePaymentCheckoutTransaction 'transaction?;
+    string unique_token?;
+};
+
+# Represents the Queries record for the operation: receiveASingleBlog
+public type ReceiveASingleBlogQueries record {
+    # comma-separated list of fields to include in the response 
+    string fields?;
+};
+
+public type DiscountCodeResponseDiscountCodeCreation record {
+    decimal codes_count?;
+    anydata? completed_at?;
+    string created_at?;
+    decimal failed_count?;
+    decimal id?;
+    decimal imported_count?;
+    decimal price_rule_id?;
+    anydata? started_at?;
+    string status?;
+    string updated_at?;
+};
+
+public type PriceRulePriceRule record {
+    string admin_graphql_api_id?;
+    decimal? allocation_limit?;
+    string allocation_method?;
+    string created_at?;
+    string customer_selection?;
+    anydata? ends_at?;
+    decimal[] entitled_collection_ids?;
+    anydata[] entitled_country_ids?;
+    anydata[] entitled_product_ids?;
+    anydata[] entitled_variant_ids?;
+    decimal id?;
+    boolean once_per_customer?;
+    anydata[] prerequisite_collection_ids?;
+    anydata[] prerequisite_customer_ids?;
+    anydata[] prerequisite_product_ids?;
+    anydata? prerequisite_quantity_range?;
+    anydata[] prerequisite_saved_search_ids?;
+    anydata? prerequisite_shipping_price_range?;
+    record {}? prerequisite_subtotal_range?;
+    PriceRulePriceRulePrerequisiteToEntitlementQuantityRatio prerequisite_to_entitlement_quantity_ratio?;
+    anydata[] prerequisite_variant_ids?;
+    string starts_at?;
+    string target_selection?;
+    string target_type?;
+    string title?;
+    string updated_at?;
+    decimal? usage_limit?;
+    string value?;
+    string value_type?;
+};
+
+public type CustomerInviteCustomerInvite record {
+    # Email address of the recipient.
+    string to;
+    # Email address of the sender.
+    string 'from;
+    # Blind carbon copy recipients.
+    string[] bcc?;
+    # Subject of the invitation email.
+    string subject;
+    # Custom message included in the invitation email.
+    string custom_message;
+};
+
+public type PagesListResponsePages record {
+    string admin_graphql_api_id?;
+    string author?;
+    string? body_html?;
+    string created_at?;
+    string 'handle?;
+    decimal id?;
+    string published_at?;
+    decimal shop_id?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+public type CollectionListCustomCollections record {
+    string admin_graphql_api_id?;
+    string? body_html?;
+    string 'handle?;
+    decimal id?;
+    UpdateCustomCollectionCustomCollectionImage image?;
+    string published_at?;
+    string published_scope?;
+    string sort_order?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+public type CancellationResponseFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfAllArticlesFromABlog
@@ -4286,34 +4301,46 @@ public type RetrievesAListOfAllArticlesFromABlogQueries record {
     string fields?;
 };
 
-public type CreateCustomer_customer record {
-    boolean accepts_marketing?;
-    string accepts_marketing_updated_at?;
-    CreateCustomer_customer_addresses[] addresses?;
-    string admin_graphql_api_id?;
+public type ProductListingsProductListings record {
+    boolean available?;
+    string? body_html?;
     string created_at?;
-    string currency?;
-    CreateCustomer_customer_addresses default_address?;
-    string email?;
-    CreateCustomer_customer_email_marketing_consent email_marketing_consent?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    anydata? last_order_id?;
-    anydata? last_order_name?;
-    anydata? marketing_opt_in_level?;
-    anydata? multipass_identifier?;
-    anydata? note?;
-    decimal orders_count?;
-    string phone?;
-    CreateCustomer_customer_sms_marketing_consent sms_marketing_consent?;
-    string state?;
+    string 'handle?;
+    ProductListingsImages[] images?;
+    ProductListingsOptions[] options?;
+    decimal? product_id?;
+    string product_type?;
+    string published_at?;
     string tags?;
-    boolean tax_exempt?;
-    anydata[] tax_exemptions?;
-    string total_spent?;
+    string title?;
     string updated_at?;
-    boolean verified_email?;
+    ProductListingsVariants[] variants?;
+    string vendor?;
+};
+
+public type ProductListingAppResponseProductListingVariants record {
+    boolean available?;
+    string barcode?;
+    anydata? compare_at_price?;
+    string created_at?;
+    string formatted_price?;
+    string fulfillment_service?;
+    decimal grams?;
+    decimal id?;
+    anydata? image_id?;
+    string inventory_management?;
+    string inventory_policy?;
+    decimal inventory_quantity?;
+    ProductListingAppResponseProductListingOptionValues[] option_values?;
+    decimal position?;
+    string price?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean taxable?;
+    string title?;
+    string updated_at?;
+    decimal weight?;
+    string weight_unit?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfComments
@@ -4343,38 +4370,21 @@ public type AdminapiapiVersioncustomerscustomerIdJsonCustomerMetafields record {
     string 'key?;
 };
 
-public type ProductListingAppResponse_product_listing record {
-    boolean available?;
-    string body_html?;
-    string created_at?;
-    string 'handle?;
-    anydata[] images?;
-    ProductListingAppResponse_product_listing_options[] options?;
-    decimal? product_id?;
-    string product_type?;
-    string published_at?;
-    string tags?;
-    string title?;
-    string updated_at?;
-    ProductListingAppResponse_product_listing_variants[] variants?;
-    string vendor?;
-};
-
-public type UpdateCustomCollection_custom_collection record {
-    string admin_graphql_api_id?;
-    string body_html?;
-    string 'handle?;
+public type ReportListReports record {
+    string category?;
     decimal id?;
-    SmartCollectionList_image image?;
-    string? published_at?;
-    string published_scope?;
-    string sort_order?;
-    anydata? template_suffix?;
-    string title?;
+    string name?;
+    string shopify_ql?;
     string updated_at?;
 };
 
-public type CollectsList_collects record {
+public type CreateDraftOrderDraftOrderTaxLines record {
+    string price?;
+    decimal rate?;
+    string title?;
+};
+
+public type CollectsListCollects record {
     decimal collection_id?;
     anydata? created_at?;
     decimal id?;
@@ -4385,27 +4395,29 @@ public type CollectsList_collects record {
 };
 
 public type ModifyProductImage record {
-    ModifyProductImage_image image?;
+    ModifyProductImageImage image?;
 };
 
-public type OriginalFulfillmentOrder_submitted_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
+public type PaymentsResponseCheckoutPayments record {
+    anydata? credit_card?;
     decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
+    anydata? payment_processing_error_message?;
+    PaymentsResponseCheckoutTransaction 'transaction?;
+    string unique_token?;
+};
+
+public type ReopenCloseOrderOrderPriceSet1PresentmentMoney record {
+    string amount?;
+    string currency_code?;
 };
 
 public type SingleReportResponse record {
-    SingleReportResponse_report report?;
+    ReportListReports report?;
 };
 
 public type SmartCollectionList record {
     @jsondata:Name {value: "smart_collections"}
-    SmartCollectionList_smart_collections[] smartCollections?;
+    SmartCollectionListSmartCollections[] smartCollections?;
 };
 
 public type ApiVersionDraftOrdersJsonBody record {
@@ -4413,12 +4425,47 @@ public type ApiVersionDraftOrdersJsonBody record {
     AdminapiapiVersiondraftOrdersJsonDraftOrder draftOrder?;
 };
 
+public type CreateAuthorizationResponsePaymentCheckoutCreditCard record {
+    string brand?;
+    decimal customer_id?;
+    decimal expiry_month?;
+    decimal expiry_year?;
+    string first_digits?;
+    string first_name?;
+    string last_digits?;
+    string last_name?;
+};
+
 public type AdminapiapiVersionapplicationChargesJsonApplicationCharge record {
     string name?;
 };
 
+public type ScriptTagResponseScriptTag record {
+    string created_at?;
+    string display_scope?;
+    string event?;
+    decimal id?;
+    string src?;
+    string updated_at?;
+};
+
+public type CancelFulfillmentOrderReplacementFulfillmentOrder record {
+    FulfillmentOrdersAssignedLocation assigned_location?;
+    decimal assigned_location_id?;
+    CancelFulfillmentOrderReplacementFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    CancelFulfillmentOrderReplacementFulfillmentOrderLineItems[] line_items?;
+    anydata[] merchant_requests?;
+    decimal order_id?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
+};
+
 public type FulfillmentListForOrder record {
-    FulfillmentListForOrder_fulfillments[] fulfillments?;
+    SingleFulfillmentFulfillment[] fulfillments?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfDraftOrders
@@ -4438,19 +4485,26 @@ public type RetrievesAListOfDraftOrdersQueries record {
     string status?;
 };
 
-public type AcceptFulfillmentResponse_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
+public type DisputesDisputes record {
+    string amount?;
+    string currency?;
+    string evidence_due_by?;
+    string? evidence_sent_on?;
+    anydata? finalized_on?;
     decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
+    string initiated_at?;
+    string network_reason_code?;
+    decimal order_id?;
+    string reason?;
+    string status?;
+    string 'type?;
+};
+
+public type OrdersListOrders record {
+    string created_at?;
+    decimal id?;
+    string name?;
+    string total_price?;
 };
 
 public type AdminapiapiVersionmarketingEventsmarketingEventIdJsonMarketingEvent record {
@@ -4479,78 +4533,15 @@ public type AdminapiapiVersionmarketingEventsmarketingEventIdJsonMarketingEvent 
     string utmSource?;
 };
 
-public type CloseOrderResponse_order record {
-    string admin_graphql_api_id?;
-    anydata? app_id?;
-    AbandonedCheckouts_billing_address? billing_address?;
-    string browser_ip?;
-    boolean buyer_accepts_marketing?;
-    anydata? cancel_reason?;
-    anydata? cancelled_at?;
-    string cart_token?;
-    decimal checkout_id?;
-    string checkout_token?;
-    ReopenCloseOrder_order_client_details client_details?;
-    string closed_at?;
-    boolean confirmed?;
-    string contact_email?;
-    string created_at?;
-    string currency?;
-    ReopenCloseOrder_order_customer customer?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    ReopenCloseOrder_order_discount_applications[] discount_applications?;
-    ReopenCloseOrder_order_discount_codes[] discount_codes?;
-    string email?;
-    string financial_status?;
-    anydata? fulfillment_status?;
-    ReopenCloseOrder_order_fulfillments[] fulfillments?;
-    string gateway?;
+public type SingleFulfillmentOrderFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
     decimal id?;
-    string landing_site?;
-    string landing_site_ref?;
-    ReopenCloseOrder_order_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    anydata? note?;
-    AbandonedCheckouts_note_attributes[] note_attributes?;
-    decimal number?;
-    decimal order_number?;
-    string order_status_url?;
-    ReopenCloseOrder_order_payment_details payment_details?;
-    string[] payment_gateway_names?;
-    string phone?;
-    string presentment_currency?;
-    string processed_at?;
-    string processing_method?;
-    string reference?;
-    string referring_site?;
-    ReopenCloseOrder_order_refunds[] refunds?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    ReopenCloseOrder_order_shipping_lines[] shipping_lines?;
-    string source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    string subtotal_price?;
-    ReopenCloseOrder_order_subtotal_price_set subtotal_price_set?;
-    string tags?;
-    ReopenCloseOrder_order_tax_lines_1[] tax_lines?;
-    boolean taxes_included?;
-    boolean test?;
-    string token?;
-    string total_discounts?;
-    CancelFulfillment_fulfillment_price_set total_discounts_set?;
-    string total_line_items_price?;
-    ReopenCloseOrder_order_subtotal_price_set total_line_items_price_set?;
-    string total_price?;
-    ReopenCloseOrder_order_total_price_set total_price_set?;
-    string total_price_usd?;
-    CancelFulfillment_fulfillment_total_discount_set total_shipping_price_set?;
-    string total_tax?;
-    ReopenCloseOrder_order_price_set_2 total_tax_set?;
-    decimal total_weight?;
-    string updated_at?;
-    anydata? user_id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
 };
 
 public type FulfillmentOrderIdRescheduleJsonBody record {
@@ -4558,22 +4549,8 @@ public type FulfillmentOrderIdRescheduleJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfillmentOrder fulfillmentOrder?;
 };
 
-public type SingleProductImage_image record {
-    string admin_graphql_api_id?;
-    anydata? alt?;
-    string created_at?;
-    decimal height?;
-    decimal id?;
-    decimal position?;
-    decimal? product_id?;
-    string src?;
-    string updated_at?;
-    anydata[] variant_ids?;
-    decimal width?;
-};
-
 public type CreateThemeResponse record {
-    CreateThemeResponse_theme theme?;
+    CreateThemeResponseTheme theme?;
 };
 
 # Represents the Queries record for the operation: retrievesASingleCustomer
@@ -4594,34 +4571,31 @@ public type RetrievesAListOfApplicationChargesQueries record {
     string sinceId?;
 };
 
-public type ScriptTagResponse_script_tag record {
-    string created_at?;
-    string display_scope?;
-    string event?;
+public type MoveFulfillmentOrderResponseMovedFulfillmentOrder record {
+    MoveFulfillmentOrderResponseMovedFulfillmentOrderAssignedLocation assigned_location?;
+    decimal assigned_location_id?;
+    MoveFulfillmentOrderResponseMovedFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
     decimal id?;
-    string src?;
-    string updated_at?;
-};
-
-public type CreateDiscountCode_discount_code record {
-    string code?;
-    string created_at?;
-    decimal id?;
-    decimal price_rule_id?;
-    string updated_at?;
-    decimal usage_count?;
+    MoveFulfillmentOrderResponseMovedFulfillmentOrderLineItems[] line_items?;
+    anydata[] merchant_requests?;
+    decimal order_id?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
 };
 
 public type UrlList record {
-    UrlList_redirects[] redirects?;
+    UrlListRedirects[] redirects?;
 };
 
 public type Order record {
-    ReopenCloseOrder_order 'order?;
+    ReopenCloseOrderOrder 'order?;
 };
 
 public type CreateTransaction record {
-    TransactionObject_transaction 'transaction?;
+    TransactionObjectTransaction 'transaction?;
 };
 
 # Represents the Queries record for the operation: retrieveAListOfProductsBelongingToACollection
@@ -4630,43 +4604,12 @@ public type RetrieveAListOfProductsBelongingToACollectionQueries record {
     string 'limit?;
 };
 
-public type SingleCustomCollection_custom_collection record {
-    string admin_graphql_api_id?;
-    string? body_html?;
-    string 'handle?;
-    decimal id?;
-    SmartCollectionList_image image?;
-    decimal products_count?;
-    string published_at?;
-    string published_scope?;
-    string sort_order?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
 public type UpdateCustomer record {
     Customer customer?;
 };
 
 public type CreatSmartCollection record {
-    CreatSmartCollection_smart_collection smart_collection?;
-};
-
-public type FulfillmentOrdersList_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type UpdateOrderResponse_order_note_attributes record {
-    string name?;
-    string value?;
+    CreatSmartCollectionSmartCollection smart_collection?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfGiftCards
@@ -4681,14 +4624,28 @@ public type RetrievesAListOfGiftCardsQueries record {
     string status?;
 };
 
-public type CurrenciesList_currencies record {
-    string currency?;
-    boolean enabled?;
-    string rate_updated_at?;
+public type CreateCustomerCustomerAddresses record {
+    string address1?;
+    anydata? address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string country_name?;
+    decimal customer_id?;
+    boolean default?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
 };
 
 public type ApplicationChargeResponse record {
-    ApplicationChargeResponse_recurring_application_charge recurring_application_charge?;
+    ApplicationChargeResponseRecurringApplicationCharge recurring_application_charge?;
 };
 
 # The Order fulfillment object to be created.
@@ -4710,8 +4667,19 @@ public type CustomerIdAddressesJsonBody record {
     AdminapiapiVersioncustomerscustomerIdaddressesJsonAddress address?;
 };
 
+public type TransitionFulfillmentOrderFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
 public type CreateProductResponse record {
-    CreateProductResponse_product product?;
+    CreateProductResponseProduct product?;
 };
 
 public type Customers record {
@@ -4723,49 +4691,75 @@ public type AdminapiapiVersionordersorderIdrefundscalculateJsonRefundShipping re
     boolean fullRefund?;
 };
 
-public type GiftCardsList_gift_cards record {
-    anydata? api_client_id?;
-    string balance?;
+public type TransactionsListTransactions record {
+    string admin_graphql_api_id?;
+    string amount?;
+    string authorization?;
     string created_at?;
     string currency?;
-    anydata? customer_id?;
-    anydata? disabled_at?;
-    string? expires_on?;
+    anydata? currency_exchange_adjustment?;
+    anydata? device_id?;
+    anydata? error_code?;
+    string gateway?;
     decimal id?;
-    string initial_value?;
-    string last_characters?;
-    anydata? line_item_id?;
-    anydata? note?;
-    anydata? order_id?;
-    anydata? template_suffix?;
-    string updated_at?;
+    string kind?;
+    anydata? location_id?;
+    anydata? message?;
+    decimal order_id?;
+    decimal? parent_id?;
+    ReopenCloseOrderOrderPaymentDetails payment_details?;
+    string processed_at?;
+    ReopenCloseOrderOrderReceipt receipt?;
+    string source_name?;
+    string status?;
+    boolean test?;
     anydata? user_id?;
 };
 
 public type CreateShopFeedback record {
-    CreateShopFeedback_resource_feedback resource_feedback?;
+    CreateShopFeedbackResourceFeedback resource_feedback?;
 };
 
 public type ApplicationCharge record {
-    ApplicationCharge_application_charge application_charge?;
+    ApplicationChargeApplicationCharge application_charge?;
 };
 
 public type MarketingEvents record {
     @jsondata:Name {value: "marketing_events"}
-    MarketingEvent_marketing_event[] marketingEvents?;
+    MarketingEventMarketingEvent[] marketingEvents?;
 };
 
 # The Order object to be updated.
 public type UpdateOrder record {
-    ReopenCloseOrder_order 'order?;
+    ReopenCloseOrderOrder 'order?;
 };
 
 public type RejectFulfillmentResponse record {
-    RejectFulfillmentResponse_fulfillment_order fulfillment_order?;
+    RejectFulfillmentResponseFulfillmentOrder fulfillment_order?;
+};
+
+public type OriginalFulfillmentOrderSubmittedFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
+public type CreateCountryCountry record {
+    string code?;
+    decimal id?;
+    string name?;
+    anydata[] provinces?;
+    decimal tax?;
+    string tax_name?;
 };
 
 public type UpdateProduct record {
-    UpdateProduct_product product?;
+    UpdateProductProduct product?;
 };
 
 public type AdminapiapiVersioncustomCollectionscustomCollectionIdJsonCustomCollection record {
@@ -4778,58 +4772,75 @@ public type AdminapiapiVersionpriceRulespriceRuleIdbatchJsonDiscountCodes record
 };
 
 public type ProductToCollectionResponse record {
-    ProductToCollectionResponse_collect collect?;
+    ProductToCollectionResponseCollect collect?;
 };
 
 public type AddressesaddressIdJsonBody record {
     AdminapiapiVersioncustomerscustomerIdaddressesaddressIdJsonAddress address?;
 };
 
-public type DiscountCode_discount_code_creation record {
-    decimal codes_count?;
-    anydata? completed_at?;
-    string created_at?;
-    decimal failed_count?;
-    decimal id?;
-    decimal imported_count?;
-    decimal price_rule_id?;
-    anydata? started_at?;
-    string status?;
-    string updated_at?;
-};
-
-public type CreateRefund_refund_transactions record {
+public type SingleProductProductVariants record {
     string admin_graphql_api_id?;
-    string amount?;
-    anydata? authorization?;
+    string barcode?;
+    anydata? compare_at_price?;
     string created_at?;
-    string currency?;
-    anydata? device_id?;
-    anydata? error_code?;
-    string gateway?;
+    string fulfillment_service?;
+    decimal grams?;
     decimal id?;
-    string kind?;
-    anydata? location_id?;
-    string message?;
-    decimal order_id?;
-    decimal parent_id?;
-    string processed_at?;
-    record {} receipt?;
-    string source_name?;
-    string status?;
-    boolean test?;
-    anydata? user_id?;
+    decimal? image_id?;
+    decimal inventory_item_id?;
+    string inventory_management?;
+    string inventory_policy?;
+    decimal inventory_quantity?;
+    decimal old_inventory_quantity?;
+    string option1?;
+    anydata? option2?;
+    anydata? option3?;
+    decimal position?;
+    ProductVariantsPresentmentPrices[] presentment_prices?;
+    string price?;
+    decimal? product_id?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean taxable?;
+    string title?;
+    string updated_at?;
+    decimal weight?;
+    string weight_unit?;
 };
 
-public type TransitionFulfillmentOrder_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
+public type OriginalFulfillmentOrderUnsubmittedFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
     decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+public type PriceRulePriceRulePrerequisiteToEntitlementQuantityRatio record {
+    decimal? entitled_quantity?;
+    decimal? prerequisite_quantity?;
+};
+
+public type ProductImagesImages record {
+    string admin_graphql_api_id?;
+    anydata? alt?;
+    string created_at?;
+    decimal height?;
+    decimal id?;
+    decimal position?;
+    decimal? product_id?;
+    string src?;
+    string updated_at?;
+    anydata[] variant_ids?;
+    decimal width?;
 };
 
 # Represents the Queries record for the operation: receiveASingleWebhook
@@ -4846,101 +4857,22 @@ public type RetrievesASingleScriptTagQueries record {
 
 public type RecurringApplicationCharges record {
     @jsondata:Name {value: "recurring_application_charges"}
-    RecurringApplicationCharges_recurring_application_charges[] recurringApplicationCharges?;
+    RecurringApplicationChargesRecurringApplicationCharges[] recurringApplicationCharges?;
 };
 
-public type SingleCommentResponse_comment record {
-    decimal article_id?;
-    string author?;
-    decimal blog_id?;
-    string body?;
-    string body_html?;
-    string created_at?;
+public type RejectFulfillmentResponseFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
     string email?;
+    string first_name?;
     decimal id?;
-    string ip?;
-    anydata? published_at?;
-    string status?;
-    string updated_at?;
-    string user_agent?;
-};
-
-public type AbandonedCheckouts_note_attributes record {
-    string name?;
-    string value?;
-};
-
-public type ImageAsset_asset record {
-    string content_type?;
-    string created_at?;
-    string 'key?;
-    string? public_url?;
-    decimal size?;
-    decimal theme_id?;
-    string updated_at?;
-};
-
-public type CancelFulfillment_fulfillment_price_set record {
-    CancelFulfillment_fulfillment_price_set_presentment_money presentment_money?;
-    CancelFulfillment_fulfillment_price_set_presentment_money shop_money?;
-};
-
-public type CreateCollection_custom_collection record {
-    string admin_graphql_api_id?;
-    anydata? body_html?;
-    string 'handle?;
-    decimal id?;
-    CreateCollection_custom_collection_image image?;
-    string? published_at?;
-    string published_scope?;
-    string sort_order?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
-public type TransactionsList_transactions record {
-    string admin_graphql_api_id?;
-    string amount?;
-    string authorization?;
-    string created_at?;
-    string currency?;
-    anydata? currency_exchange_adjustment?;
-    anydata? device_id?;
-    anydata? error_code?;
-    string gateway?;
-    decimal id?;
-    string kind?;
-    anydata? location_id?;
-    anydata? message?;
-    decimal order_id?;
-    decimal? parent_id?;
-    ReopenCloseOrder_order_payment_details payment_details?;
-    string processed_at?;
-    ReopenCloseOrder_order_receipt receipt?;
-    string source_name?;
-    string status?;
-    boolean test?;
-    anydata? user_id?;
-};
-
-public type ProductsList_products record {
-    string admin_graphql_api_id?;
-    string? body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    SingleProduct_product_image image?;
-    SingleProduct_product_image[] images?;
-    ProductsList_options[] options?;
-    string product_type?;
-    string published_at?;
-    string published_scope?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-    string vendor?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
 };
 
 # Represents the Queries record for the operation: retrievesASingleApplicationCredit
@@ -4951,27 +4883,7 @@ public type RetrievesASingleApplicationCreditQueries record {
 
 public type InventoryLevels record {
     @jsondata:Name {value: "inventory_levels"}
-    InventoryLevels_inventory_levels[] inventoryLevels?;
-};
-
-public type CreateCustomer_customer_addresses record {
-    string address1?;
-    anydata? address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string country_name?;
-    decimal customer_id?;
-    boolean default?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
+    InventoryLevelsInventoryLevels[] inventoryLevels?;
 };
 
 # Proxy server configurations to be used with the HTTP client endpoint.
@@ -5002,56 +4914,20 @@ public type AdminapiapiVersionmarketingEventsmarketingEventIdengagementsJsonEnga
     decimal viewsCount?;
 };
 
-public type UpdateProduct_product record {
-    string admin_graphql_api_id?;
-    string body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    UpdateProduct_product_image? image?;
-    UpdateProduct_product_images[] images?;
-    UpdateProduct_product_options[] options?;
-    string product_type?;
-    string? published_at?;
-    string published_scope?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-    UpdateProduct_product_variants[] variants?;
-    string vendor?;
-};
-
 public type UpdateReportResponse record {
-    UpdateReportResponse_report report?;
+    UpdateReportResponseReport report?;
 };
 
-public type CreateDraftOrder_draft_order_line_items record {
-    string admin_graphql_api_id?;
-    CreateDraftOrder_draft_order_applied_discount? applied_discount?;
-    boolean custom?;
-    string fulfillment_service?;
-    boolean gift_card?;
-    decimal grams?;
-    string name?;
-    string price?;
-    anydata? product_id?;
-    anydata[] properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    anydata? sku?;
-    CreateDraftOrder_draft_order_tax_lines[] tax_lines?;
-    boolean taxable?;
-    string title?;
-    anydata? variant_id?;
-    anydata? variant_title?;
-    anydata? vendor?;
-};
-
-public type UrlList_redirects record {
+public type ProductListingsImages record {
+    string created_at?;
+    decimal height?;
     decimal id?;
-    string path?;
-    string target?;
+    decimal position?;
+    decimal? product_id?;
+    string src?;
+    string updated_at?;
+    anydata[] variant_ids?;
+    decimal width?;
 };
 
 public type CarrierServicescarrierServiceIdJsonBody record {
@@ -5059,18 +4935,51 @@ public type CarrierServicescarrierServiceIdJsonBody record {
     AdminapiapiVersioncarrierServicescarrierServiceIdJsonCarrierService carrierService?;
 };
 
+public type CalculateRefundRefundRefundLineItems record {
+    string discounted_price?;
+    string discounted_total_price?;
+    decimal line_item_id?;
+    anydata? location_id?;
+    string price?;
+    decimal quantity?;
+    string restock_type?;
+    string subtotal?;
+    string total_cart_discount_amount?;
+    string total_tax?;
+};
+
+public type ProductListingsVariants record {
+    boolean available?;
+    string barcode?;
+    anydata? compare_at_price?;
+    string created_at?;
+    string formatted_price?;
+    string fulfillment_service?;
+    decimal grams?;
+    decimal id?;
+    decimal? image_id?;
+    string inventory_management?;
+    string inventory_policy?;
+    decimal inventory_quantity?;
+    ProductListingsOptionValues[] option_values?;
+    decimal position?;
+    string price?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean taxable?;
+    string title?;
+    string updated_at?;
+    decimal weight?;
+    string weight_unit?;
+};
+
 public type FulfillmentOrderIdCancellationRequestJsonBody record {
     @jsondata:Name {value: "cancellation_request"}
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestJsonCancellationRequest cancellationRequest?;
 };
 
-public type ModifyProductVariant_variant_presentment_prices record {
-    anydata? compare_at_price?;
-    ModifyProductVariant_variant_price price?;
-};
-
 public type ArticleComments record {
-    ArticleComments_comments[] comments?;
+    ArticleCommentsComments[] comments?;
 };
 
 public type TokenPaymentsJsonBody record {
@@ -5078,18 +4987,26 @@ public type TokenPaymentsJsonBody record {
 };
 
 public type ReopenCloseOrder record {
-    ReopenCloseOrder_order 'order?;
+    ReopenCloseOrderOrder 'order?;
 };
 
-public type Customer_sms_marketing_consent record {
-    string state?;
-    string opt_in_level?;
-    string consent_updated_at?;
-    string consent_collected_from?;
+public type CancelFulfillmentOrderFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
 };
 
 public type ApplicationCredit record {
-    ApplicationCredits_application_credits application_credit?;
+    ApplicationCreditApplicationCredit application_credit?;
 };
 
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderAssignedLocation record {
@@ -5106,153 +5023,53 @@ public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfi
     decimal locationId?;
 };
 
-public type CreateMarketingEvent_marketing_event record {
-    string admin_graphql_api_id?;
-    anydata? breadcrumb_id?;
-    anydata? budget?;
-    anydata? budget_type?;
-    anydata? currency?;
-    anydata? description?;
-    anydata? ended_at?;
-    string event_type?;
-    decimal id?;
-    anydata? manage_url?;
-    anydata[] marketed_resources?;
-    decimal marketing_activity_id?;
-    string marketing_channel?;
-    boolean paid?;
-    anydata? preview_url?;
-    string referring_domain?;
-    anydata? remote_id?;
-    anydata? scheduled_to_end_at?;
-    string started_at?;
-    string utm_campaign?;
-    string utm_medium?;
-    string utm_source?;
-};
-
 public type Customer record {
-    int id?;
-    string? email?;
-    string created_at?;
-    string updated_at?;
-    string? first_name?;
-    string? last_name?;
-    int orders_count?;
-    string state?;
-    string total_spent?;
-    int? last_order_id?;
+    @jsondata:Name {value: "total_spent"}
+    string totalSpent?;
     string? note?;
-    boolean verified_email?;
-    string? multipass_identifier?;
-    boolean tax_exempt?;
-    string tags?;
-    string? last_order_name?;
-    string? currency?;
-    string? phone?;
     Address[] addresses?;
-    string[] tax_exemptions?;
-    Customer_email_marketing_consent? email_marketing_consent?;
-    Customer_sms_marketing_consent? sms_marketing_consent?;
-    string? admin_graphql_api_id?;
-    Address default_address?;
-};
-
-public type DeleteAssetResponse record {
-    string message?;
-};
-
-# The Product resource lets you update and create products in a merchant's store.
-public type Product record {
-    # An unsigned 64-bit integer that's used as a unique identifier for the product. Each id is unique across the Shopify system. No two products will have the same id, even if they're from different shops.
-    int id?;
-    # The date and time (ISO 8601 format) when the product was created.
-    string created_at?;
-    # A unique human-friendly string for the product. Automatically generated from the product's title. Used by the Liquid templating language to refer to objects.
-    string 'handle?;
-    # A description of the product. Supports HTML formatting.
-    string body_html?;
-    # A list of product image objects, each one representing an image associated with the product.
-    ProductImage[] images?;
-    # The custom product properties. For example, Size, Color, and Material. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.
-    ProductOption[] options?;
-    # A categorization for the product used for filtering and searching products.
-    string product_type?;
-    # The date and time (ISO 8601 format) when the product was published. Can be set to null to unpublish the product from the Online Store channel.
-    string published_at?;
-    # Whether the product is published to the Point of Sale channel.
-    string published_scope?;
-    # The status of the product.
-    string status?;
-    # A string of comma-separated tags that are used for filtering and search. A product can have up to 250 tags. Each tag can have up to 255 characters.
+    @jsondata:Name {value: "last_order_name"}
+    string? lastOrderName?;
+    @jsondata:Name {value: "last_order_id"}
+    int? lastOrderId?;
+    @jsondata:Name {value: "tax_exempt"}
+    boolean taxExempt?;
+    CustomerEmailMarketingConsent? email_marketing_consent?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
+    @jsondata:Name {value: "last_name"}
+    string? lastName?;
+    @jsondata:Name {value: "multipass_identifier"}
+    string? multipassIdentifier?;
+    @jsondata:Name {value: "verified_email"}
+    boolean verifiedEmail?;
     string tags?;
-    # The suffix of the Liquid template used for the product page. If this property is specified, then the product page uses a template called "product.suffix.liquid", where "suffix" is the value of this property. If this property is "" or null, then the product page uses the default template "product.liquid". (default is null)
-    string template_suffix?;
-    # The name of the product.
-    string title?;
-    # The date and time (ISO 8601 format) when the product was last modified. A product's updated_at value can change for different reasons. For example, if an order is placed for a product that has inventory tracking set up, then the inventory adjustment is counted as an update.
-    string updated_at?;
-    # An array of product variants, each representing a different version of the product. The position property is read-only. The position of variants is indicated by the order in which they are listed.
-    ProductVariant[] variants?;
-    # The name of the product's vendor.
-    string vendor?;
+    @jsondata:Name {value: "orders_count"}
+    int ordersCount?;
+    CustomerSmsMarketingConsent? sms_marketing_consent?;
+    @jsondata:Name {value: "default_address"}
+    Address defaultAddress?;
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt?;
+    string? phone?;
+    @jsondata:Name {value: "admin_graphql_api_id"}
+    string? adminGraphqlApiId?;
+    @jsondata:Name {value: "tax_exemptions"}
+    string[] taxExemptions?;
+    string? currency?;
+    int id?;
+    string state?;
+    @jsondata:Name {value: "first_name"}
+    string? firstName?;
+    string? email?;
 };
 
-public type TenderTransactions record {
-    @jsondata:Name {value: "tender_transactions"}
-    TenderTransactions_tender_transactions[] tenderTransactions?;
-};
-
-public type UsersList_users record {
-    boolean account_owner?;
-    string admin_graphql_api_id?;
-    anydata? bio?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    anydata? im?;
-    string last_name?;
-    string locale?;
-    string[] permissions?;
-    anydata? phone?;
-    decimal receive_announcements?;
-    anydata? screen_name?;
-    boolean tfa_enabled\??;
-    string url?;
-    string user_type?;
-};
-
-# Represents the Queries record for the operation: receiveACountOfAllProductImages
-public type ReceiveACountOfAllProductImagesQueries record {
-    @http:Query {name: "since_id"}
-    string sinceId?;
-};
-
-public type SingleLocation record {
-    SingleLocation_location location?;
-};
-
-public type ReopenCloseOrder_order_price_set_1_presentment_money record {
-    string amount?;
-    string currency_code?;
-};
-
-public type CappedAmountCharge record {
-    CappedAmountCharge_recurring_application_charge recurring_application_charge?;
-};
-
-# Represents the Queries record for the operation: receiveASingleDraftorder
-public type ReceiveASingleDraftorderQueries record {
-    # A comma-separated list of fields to include in the response 
-    string fields?;
-};
-
-public type ArticleComments_comments record {
+public type SingleCommentResponseComment record {
     decimal article_id?;
     string author?;
     decimal blog_id?;
     string body?;
-    string? body_html?;
+    string body_html?;
     string created_at?;
     string email?;
     decimal id?;
@@ -5263,13 +5080,147 @@ public type ArticleComments_comments record {
     string user_agent?;
 };
 
+public type DeleteAssetResponse record {
+    string message?;
+};
+
+# The Product resource lets you update and create products in a merchant's store.
+public type Product record {
+    @jsondata:Name {value: "body_html"}
+    string bodyHtml?;
+    # A list of product image objects, each one representing an image associated with the product.
+    ProductImage[] images?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
+    # A unique human-friendly string for the product. Automatically generated from the product's title. Used by the Liquid templating language to refer to objects.
+    string 'handle?;
+    # An array of product variants, each representing a different version of the product. The position property is read-only. The position of variants is indicated by the order in which they are listed.
+    ProductVariant[] variants?;
+    # The name of the product.
+    string title?;
+    # A string of comma-separated tags that are used for filtering and search. A product can have up to 250 tags. Each tag can have up to 255 characters.
+    string tags?;
+    @jsondata:Name {value: "published_scope"}
+    string publishedScope?;
+    @jsondata:Name {value: "product_type"}
+    string productType?;
+    @jsondata:Name {value: "template_suffix"}
+    string templateSuffix?;
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt?;
+    # The name of the product's vendor.
+    string vendor?;
+    # The custom product properties. For example, Size, Color, and Material. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.
+    ProductOption[] options?;
+    # An unsigned 64-bit integer that's used as a unique identifier for the product. Each id is unique across the Shopify system. No two products will have the same id, even if they're from different shops.
+    int id?;
+    @jsondata:Name {value: "published_at"}
+    string publishedAt?;
+    # The status of the product.
+    string status?;
+};
+
+public type TenderTransactions record {
+    @jsondata:Name {value: "tender_transactions"}
+    TenderTransactionsTenderTransactions[] tenderTransactions?;
+};
+
+# Represents the Queries record for the operation: receiveACountOfAllProductImages
+public type ReceiveACountOfAllProductImagesQueries record {
+    @http:Query {name: "since_id"}
+    string sinceId?;
+};
+
+public type SingleLocation record {
+    SingleLocationLocation location?;
+};
+
+public type CappedAmountCharge record {
+    CappedAmountChargeRecurringApplicationCharge recurring_application_charge?;
+};
+
+# Represents the Queries record for the operation: receiveASingleDraftorder
+public type ReceiveASingleDraftorderQueries record {
+    # A comma-separated list of fields to include in the response 
+    string fields?;
+};
+
+public type ReopenCloseOrderOrderPriceSet2PresentmentMoney record {
+    string amount?;
+    string currency_code?;
+};
+
+public type ReopenCloseOrderOrderDiscountCodes record {
+    string amount?;
+    string code?;
+    string 'type?;
+};
+
+public type SingleEventEvent record {
+    string[] arguments?;
+    string author?;
+    anydata? body?;
+    string created_at?;
+    string description?;
+    decimal id?;
+    string message?;
+    string path?;
+    decimal subject_id?;
+    string subject_type?;
+    string verb?;
+};
+
+public type ReopenCloseOrderOrderSubtotalPriceSetPresentmentMoney record {
+    string amount?;
+    string currency_code?;
+};
+
 public type ProductIds record {
     @jsondata:Name {value: "product_ids"}
     decimal[] productIds?;
 };
 
+public type SingleProvinceProvince record {
+    string code?;
+    decimal country_id?;
+    decimal id?;
+    string name?;
+    anydata? shipping_zone_id?;
+    decimal tax?;
+    string tax_name?;
+    decimal tax_percentage?;
+    string tax_type?;
+};
+
 public type UpdateFulfillmentService record {
-    UpdateFulfillmentService_fulfillment_service fulfillment_service?;
+    UpdateFulfillmentServiceFulfillmentService fulfillment_service?;
+};
+
+public type ReopenCloseOrderOrderCustomer record {
+    boolean accepts_marketing?;
+    string accepts_marketing_updated_at?;
+    string admin_graphql_api_id?;
+    string created_at?;
+    string currency?;
+    ReopenCloseOrderOrderCustomerDefaultAddress default_address?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    decimal last_order_id?;
+    string last_order_name?;
+    anydata? marketing_opt_in_level?;
+    anydata? multipass_identifier?;
+    anydata? note?;
+    decimal orders_count?;
+    anydata? phone?;
+    string state?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_exemptions?;
+    string total_spent?;
+    string updated_at?;
+    boolean verified_email?;
 };
 
 public type CommentscommentIdJsonBody record {
@@ -5277,17 +5228,42 @@ public type CommentscommentIdJsonBody record {
 };
 
 public type AssetsList record {
-    AssetsList_assets[] assets?;
-    AssetsList_asset asset?;
+    AssetsListAssets[] assets?;
+    AssetsListAsset asset?;
 };
 
 public type ApplicationCredits record {
     @jsondata:Name {value: "application_credits"}
-    ApplicationCredits_application_credits[] applicationCredits?;
+    ApplicationCreditApplicationCredit[] applicationCredits?;
+};
+
+public type ProductListingAppResponseProductListingOptionValues record {
+    string name?;
+    decimal option_id?;
+    string value?;
+};
+
+public type SinglePaymentResponsePaymentCheckoutPayments record {
+    anydata? credit_card?;
+    boolean fraudulent?;
+    decimal id?;
+    anydata? payment_processing_error_message?;
+    SinglePaymentResponsePaymentCheckoutTransaction 'transaction?;
+    string unique_token?;
 };
 
 public type Fulfillment record {
-    Fulfillment_fulfillment fulfillment?;
+    FulfillmentFulfillment fulfillment?;
+};
+
+public type ReopenCloseOrderOrderDiscountApplications record {
+    string allocation_method?;
+    string code?;
+    string target_selection?;
+    string target_type?;
+    string 'type?;
+    string value?;
+    string value_type?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfRefundsForAnOrder
@@ -5312,6 +5288,13 @@ public type RetrievesACountOfAllScriptTagsQueries record {
     string src?;
 };
 
+public type ReopenCloseOrderOrderTaxLines record {
+    string price?;
+    ReopenCloseOrderOrderPriceSet1 price_set?;
+    decimal rate?;
+    string title?;
+};
+
 # Represents the Queries record for the operation: retrievesAnApplicationCharge
 public type RetrievesAnApplicationChargeQueries record {
     # A comma-separated list of fields to include in the response.
@@ -5319,11 +5302,16 @@ public type RetrievesAnApplicationChargeQueries record {
 };
 
 public type CalculateRefund record {
-    CalculateRefund_refund refund?;
+    CalculateRefundRefund refund?;
 };
 
 public type Refunds record {
-    ReopenCloseOrder_order_refunds[] refunds?;
+    ReopenCloseOrderOrderRefunds[] refunds?;
+};
+
+public type ReopenCloseOrderOrderPriceSetPresentmentMoney record {
+    string amount?;
+    string currency_code?;
 };
 
 public type FulfillmentOrderIdCancelJsonBody record {
@@ -5339,56 +5327,27 @@ public type AdminapiapiVersioncollectsJsonCollect record {
 };
 
 public type SingleProvince record {
-    SingleProvince_province province?;
+    SingleProvinceProvince province?;
 };
 
-public type MoveFulfillmentOrderResponse_moved_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type OriginalFulfillmentOrder_original_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type MobilePlatformApplication_mobile_platform_application record {
-    anydata? app_clip_application_id?;
-    string application_id?;
-    string created_at?;
-    boolean enabled_app_clips?;
-    boolean enabled_shared_webcredentials?;
-    boolean enabled_universal_or_app_links?;
-    decimal id?;
-    string platform?;
-    string[] sha256_cert_fingerprints?;
-    string updated_at?;
+public type AbandonedCheckoutsTaxLines record {
+    string price?;
+    decimal rate?;
+    string title?;
 };
 
 public type CreateCountry record {
-    CreateCountry_country country?;
+    CreateCountryCountry country?;
 };
 
-public type RejectFulfillmentResponse_fulfillment_order record {
+public type RejectCancellationRequestResponseFulfillmentOrder record {
     decimal assigned_location_id?;
-    RejectFulfillmentResponse_fulfillment_order_destination destination?;
+    RejectCancellationRequestResponseFulfillmentOrderDestination destination?;
     string fulfillment_service_handle?;
     decimal id?;
-    RejectFulfillmentResponse_fulfillment_order_line_items[] line_items?;
+    RejectCancellationRequestResponseFulfillmentOrderLineItems[] line_items?;
     decimal order_id?;
-    RejectCancellationRequestResponse_fulfillment_order_origin origin?;
+    FulfillmentOrdersAssignedLocation origin?;
     anydata[] outgoing_requests?;
     string request_status?;
     decimal shop_id?;
@@ -5396,23 +5355,36 @@ public type RejectFulfillmentResponse_fulfillment_order record {
     string[] supported_actions?;
 };
 
-public type SingleDraftOrder_draft_order_applied_discount record {
-    string amount?;
-    string description?;
-    anydata? title?;
-    string value?;
-    string value_type?;
-};
-
-public type SingleDraftOrder_draft_order_shipping_line record {
-    boolean custom?;
-    string 'handle?;
-    string price?;
-    string title?;
+public type CreateAuthorizationResponsePaymentCheckoutPayments record {
+    record {}? credit_card?;
+    boolean fraudulent?;
+    decimal id?;
+    anydata? payment_processing_error_message?;
+    CreateAuthorizationResponsePaymentCheckoutTransaction? 'transaction?;
+    string unique_token?;
 };
 
 public type CreateCheckoutResponse record {
-    CreateCheckoutResponse_checkout checkout?;
+    CreateCheckoutResponseCheckout checkout?;
+};
+
+public type SingleUserUser record {
+    boolean account_owner?;
+    string admin_graphql_api_id?;
+    anydata? bio?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    anydata? im?;
+    string last_name?;
+    string locale?;
+    string[] permissions?;
+    anydata? phone?;
+    decimal receive_announcements?;
+    anydata? screen_name?;
+    boolean tfa_enabled\??;
+    string url?;
+    string user_type?;
 };
 
 public type FulfillmentOrderIdCloseJsonBody record {
@@ -5425,21 +5397,63 @@ public type PriceRuleIdDiscountCodesJsonBody record {
     AdminapiapiVersionpriceRulespriceRuleIddiscountCodesJsonDiscountCode discountCode?;
 };
 
+public type StorefrontAccessTokenStorefrontAccessToken record {
+    string access_scope?;
+    string access_token?;
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    string title?;
+};
+
 public type CustomCollectionscustomCollectionIdJsonBody record {
     @jsondata:Name {value: "custom_collection"}
     AdminapiapiVersioncustomCollectionscustomCollectionIdJsonCustomCollection customCollection?;
 };
 
-public type ApplicationCredits_application_credits record {
-    string amount?;
-    string currency?;
-    string description?;
+public type SinglePaymentResponsePaymentCheckoutCreditCard record {
+    string brand?;
+    anydata? customer_id?;
+    decimal expiry_month?;
+    decimal expiry_year?;
+    string first_digits?;
+    string first_name?;
+    string last_digits?;
+    string last_name?;
+};
+
+public type ProductVariantsVariants record {
+    string admin_graphql_api_id?;
+    string barcode?;
+    anydata? compare_at_price?;
+    string created_at?;
+    string fulfillment_service?;
+    decimal grams?;
     decimal id?;
-    anydata? test?;
+    decimal? image_id?;
+    decimal inventory_item_id?;
+    string inventory_management?;
+    string inventory_policy?;
+    decimal inventory_quantity?;
+    decimal old_inventory_quantity?;
+    string option1?;
+    anydata? option2?;
+    anydata? option3?;
+    decimal position?;
+    ProductVariantsPresentmentPrices[] presentment_prices?;
+    string price?;
+    decimal? product_id?;
+    boolean requires_shipping?;
+    string? sku?;
+    boolean taxable?;
+    string title?;
+    string updated_at?;
+    decimal weight?;
+    string weight_unit?;
 };
 
 public type CreateFulfillmentEvent record {
-    CreateFulfillmentEvent_fulfillment_event fulfillment_event?;
+    CreateFulfillmentEventFulfillmentEvent fulfillment_event?;
 };
 
 public type FulfillmentOrderIdOpenJsonBody record {
@@ -5447,107 +5461,24 @@ public type FulfillmentOrderIdOpenJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfillmentOrder fulfillmentOrder?;
 };
 
-public type ReopenCloseOrder_order_transactions record {
-    string admin_graphql_api_id?;
-    string amount?;
-    string authorization?;
-    string created_at?;
-    string currency?;
-    anydata? device_id?;
-    anydata? error_code?;
-    string gateway?;
+public type RejectFulfillmentResponseFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
     decimal id?;
-    string kind?;
-    anydata? location_id?;
-    anydata? message?;
-    decimal order_id?;
-    decimal parent_id?;
-    string processed_at?;
-    record {} receipt?;
-    string source_name?;
-    string status?;
-    boolean test?;
-    anydata? user_id?;
-};
-
-public type TransactionResponse_transaction record {
-    string admin_graphql_api_id?;
-    string amount?;
-    string authorization?;
-    string created_at?;
-    string currency?;
-    anydata? currency_exchange_adjustment?;
-    anydata? device_id?;
-    anydata? error_code?;
-    string gateway?;
-    decimal id?;
-    string kind?;
-    anydata? location_id?;
-    anydata? message?;
-    decimal order_id?;
-    anydata? parent_id?;
-    ReopenCloseOrder_order_payment_details payment_details?;
-    string processed_at?;
-    ReopenCloseOrder_order_receipt receipt?;
-    string source_name?;
-    string status?;
-    boolean test?;
-    anydata? user_id?;
-};
-
-public type OriginalFulfillmentOrder_submitted_fulfillment_order record {
-    decimal assigned_location_id?;
-    OriginalFulfillmentOrder_submitted_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    OriginalFulfillmentOrder_submitted_fulfillment_order_line_items[] line_items?;
-    decimal order_id?;
-    RejectCancellationRequestResponse_fulfillment_order_origin origin?;
-    OriginalFulfillmentOrder_submitted_fulfillment_order_outgoing_requests[] outgoing_requests?;
-    string request_status?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
     decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
-};
-
-public type UpdateProvinceResponse_province record {
-    string code?;
-    decimal country_id?;
-    decimal id?;
-    string name?;
-    anydata? shipping_zone_id?;
-    decimal tax?;
-    string tax_name?;
-    decimal tax_percentage?;
-    string tax_type?;
+    decimal? variant_id?;
 };
 
 public type CreateOrderRisk record {
-    CreateOrderRisk_risk risk?;
+    CreateOrderRiskRisk risk?;
 };
 
-public type CreatSmartCollection_smart_collection_rules record {
-    string column?;
-    string condition?;
-    string relation?;
-};
-
-public type SingleDiscountCode_discount_code record {
-    string code?;
-    string created_at?;
-    decimal id?;
-    decimal price_rule_id?;
-    string updated_at?;
-    decimal usage_count?;
-};
-
-public type CreateCountry_country record {
-    string code?;
-    decimal id?;
-    string name?;
-    anydata[] provinces?;
-    decimal tax?;
-    string tax_name?;
+public type AccountCurrentBalanceBalance record {
+    string amount?;
+    string currency?;
 };
 
 public type GiftCardsgiftCardIdJsonBody record {
@@ -5555,59 +5486,29 @@ public type GiftCardsgiftCardIdJsonBody record {
     AdminapiapiVersiongiftCardsgiftCardIdJsonGiftCard giftCard?;
 };
 
+public type SingleCollectionCollection record {
+    string admin_graphql_api_id?;
+    string body_html?;
+    string collection_type?;
+    string 'handle?;
+    decimal id?;
+    SingleCollectionCollectionImage image?;
+    decimal products_count?;
+    string published_at?;
+    string published_scope?;
+    string sort_order?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
 public type CancellationRequestRejectJsonBody record {
     @jsondata:Name {value: "cancellation_request"}
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestrejectJsonCancellationRequest cancellationRequest?;
 };
 
-public type InventoryListResponse_inventory_levels record {
-    string admin_graphql_api_id?;
-    decimal available?;
-    decimal inventory_item_id?;
-    decimal location_id?;
-    string updated_at?;
-};
-
-public type CheckoutResponse_checkout_shipping_rate record {
-    string id?;
-    string price?;
-    string title?;
-};
-
-public type ModifyDraftOrder_draft_order_applied_discount record {
-    string amount?;
-    string description?;
-    string? title?;
-    string value?;
-    string value_type?;
-};
-
 public type UpdateInventoryItem record {
-    UpdateInventoryItem_inventory_item inventory_item?;
-};
-
-public type AcceptFulfillmentResponse_fulfillment_order record {
-    decimal assigned_location_id?;
-    AcceptFulfillmentResponse_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    AcceptFulfillmentResponse_fulfillment_order_line_items[] line_items?;
-    decimal order_id?;
-    RejectCancellationRequestResponse_fulfillment_order_origin origin?;
-    anydata[] outgoing_requests?;
-    string request_status?;
-    decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
-};
-
-public type AbandonedCheckouts_shipping_lines record {
-    anydata[] applied_discounts?;
-    string code?;
-    string id?;
-    string price?;
-    string 'source?;
-    string title?;
+    UpdateInventoryItemInventoryItem inventory_item?;
 };
 
 public type AccountActivationUrl record {
@@ -5615,52 +5516,145 @@ public type AccountActivationUrl record {
     string accountActivationUrl?;
 };
 
-public type AssetsList_assets record {
-    string content_type?;
-    string created_at?;
-    string 'key?;
-    string? public_url?;
-    decimal size?;
-    decimal theme_id?;
-    string updated_at?;
-};
-
-public type LocationsList_locations_for_move record {
-    LocationsList_location location?;
-    string message?;
-    boolean movable?;
+public type ReopenCloseOrderOrderReceipt record {
+    string authorization?;
+    boolean testcase?;
 };
 
 public type Disputes record {
-    Disputes_disputes[] disputes?;
+    DisputesDisputes[] disputes?;
 };
 
-public type CreatSmartCollection_smart_collection_image record {
-    string alt?;
+public type SinglePaymentResponsePaymentCheckoutShippingRate record {
+    string id?;
+    string price?;
+    string title?;
+};
+
+public type UpdateGiftCardGiftCard record {
+    anydata? api_client_id?;
+    string balance?;
     string created_at?;
-    decimal height?;
-    string src?;
-    decimal width?;
+    string currency?;
+    anydata? customer_id?;
+    anydata? disabled_at?;
+    string? expires_on?;
+    decimal id?;
+    string initial_value?;
+    string last_characters?;
+    anydata? line_item_id?;
+    string? note?;
+    anydata? order_id?;
+    anydata? template_suffix?;
+    string updated_at?;
+    anydata? user_id?;
 };
 
-public type CreateThemeResponse_theme record {
+public type CollectionListingCollectionListingImage record {
+    string created_at?;
+    string src?;
+};
+
+public type CreateMarketingEventMarketingEvent record {
+    string admin_graphql_api_id?;
+    anydata? breadcrumb_id?;
+    anydata? budget?;
+    anydata? budget_type?;
+    anydata? currency?;
+    anydata? description?;
+    anydata? ended_at?;
+    string event_type?;
+    decimal id?;
+    anydata? manage_url?;
+    anydata[] marketed_resources?;
+    decimal marketing_activity_id?;
+    string marketing_channel?;
+    boolean paid?;
+    anydata? preview_url?;
+    string referring_domain?;
+    anydata? remote_id?;
+    anydata? scheduled_to_end_at?;
+    string started_at?;
+    string utm_campaign?;
+    string utm_medium?;
+    string utm_source?;
+};
+
+public type ConnectInventoryItemInventoryLevel record {
+    string admin_graphql_api_id?;
+    decimal available?;
+    decimal inventory_item_id?;
+    decimal location_id?;
+    string updated_at?;
+};
+
+public type CancelFulfillmentFulfillment record {
     string admin_graphql_api_id?;
     string created_at?;
     decimal id?;
+    CancelFulfillmentFulfillmentLineItems[] line_items?;
+    decimal location_id?;
     string name?;
-    boolean previewable?;
-    boolean processing?;
-    string role?;
-    anydata? theme_store_id?;
+    decimal order_id?;
+    record {} receipt?;
+    string 'service?;
+    anydata? shipment_status?;
+    string status?;
+    string tracking_company?;
+    string tracking_number?;
+    string[] tracking_numbers?;
+    string tracking_url?;
+    string[] tracking_urls?;
     string updated_at?;
 };
 
 public type RedirectResponse record {
-    RedirectResponse_redirect redirect?;
+    RedirectResponseRedirect redirect?;
 };
 
 public type SingleCollection record {
-    SingleCollection_collection collection?;
+    SingleCollectionCollection collection?;
+};
+
+public type AbandonedCheckoutsCustomer record {
+    boolean accepts_marketing?;
+    string accepts_marketing_updated_at?;
+    string admin_graphql_api_id?;
+    string created_at?;
+    string currency?;
+    ReopenCloseOrderOrderCustomerDefaultAddress default_address?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    decimal last_order_id?;
+    string last_order_name?;
+    anydata? marketing_opt_in_level?;
+    anydata? multipass_identifier?;
+    anydata? note?;
+    decimal orders_count?;
+    anydata? phone?;
+    string state?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_exemptions?;
+    string total_spent?;
+    string updated_at?;
+    boolean verified_email?;
+};
+
+public type UpdateProductProductImage record {
+    string admin_graphql_api_id?;
+    anydata? alt?;
+    string created_at?;
+    decimal height?;
+    decimal id?;
+    decimal position?;
+    decimal? product_id?;
+    string src?;
+    string updated_at?;
+    anydata[] variant_ids?;
+    decimal width?;
 };
 
 public type AdminapiapiVersionthemesthemeIdJsonTheme record {
@@ -5668,16 +5662,23 @@ public type AdminapiapiVersionthemesthemeIdJsonTheme record {
     decimal id?;
 };
 
-public type RedirectResponse_redirect record {
-    decimal id?;
-    string path?;
-    string target?;
-};
-
 # Represents the Queries record for the operation: receiveAListOfAllShippingzones
 public type ReceiveAListOfAllShippingzonesQueries record {
     # Show only specific fields by providing a comma-separated list of field names.
     string fields?;
+};
+
+public type OrderRisksRisks record {
+    boolean cause_cancel?;
+    decimal? checkout_id?;
+    boolean display?;
+    decimal id?;
+    string merchant_message?;
+    string message?;
+    decimal order_id?;
+    string recommendation?;
+    string score?;
+    string 'source?;
 };
 
 public type AdminapiapiVersionpriceRulesJsonPriceRule record {
@@ -5697,13 +5698,6 @@ public type AdminapiapiVersionpriceRulesJsonPriceRule record {
     string value?;
 };
 
-public type SinglePaymentResponse_payment_checkout_tax_lines record {
-    decimal compare_at?;
-    string price?;
-    decimal rate?;
-    string title?;
-};
-
 public type AdminapiapiVersionscriptTagsscriptTagIdJsonScriptTag record {
     string src?;
     decimal id?;
@@ -5715,53 +5709,32 @@ public type AdminapiapiVersionsmartCollectionssmartCollectionIdJsonSmartCollecti
 };
 
 public type CustomerAddress record {
-    CustomerAddress_customer_address customer_address?;
+    CustomerAddressCustomerAddress customer_address?;
 };
 
-public type CreateAuthorizationResponse_payment_checkout_transaction record {
+public type TransactionsListForPayoutTransactions record {
     string amount?;
-    anydata? amount_in?;
-    anydata? amount_out?;
-    anydata? amount_rounding?;
-    string authorization?;
-    string created_at?;
     string currency?;
-    anydata? device_id?;
-    anydata? error_code?;
-    string gateway?;
+    string fee?;
     decimal id?;
-    string kind?;
-    anydata? location_id?;
-    anydata? message?;
-    anydata? parent_id?;
-    ReopenCloseOrder_order_receipt receipt?;
-    string status?;
+    string net?;
+    decimal payout_id?;
+    string payout_status?;
+    string processed_at?;
+    decimal? source_id?;
+    decimal? source_order_id?;
+    decimal? source_order_transaction_id?;
+    string? source_type?;
     boolean test?;
-    anydata? transaction_group_id?;
-    anydata? user_id?;
-};
-
-public type UpdateReportResponse_report record {
-    string category?;
-    decimal id?;
-    string name?;
-    string shopify_ql?;
-    string updated_at?;
+    string 'type?;
 };
 
 public type UpdateCommentResponse record {
-    UpdateCommentResponse_comment comment?;
+    UpdateCommentResponseComment comment?;
 };
 
 public type Articles record {
-    Articles_articles[] articles?;
-};
-
-public type ReopenCloseOrder_order_tax_lines_1 record {
-    string price?;
-    ReopenCloseOrder_order_price_set_2 price_set?;
-    decimal rate?;
-    string title?;
+    ArticlesArticles[] articles?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfDiscountCodesForAShop
@@ -5774,29 +5747,38 @@ public type RetrievesACountOfDiscountCodesForAShopQueries record {
     string timesUsed?;
 };
 
-public type CancelFulfillment_fulfillment_total_discount_set_presentment_money record {
-    string amount?;
-    string currency_code?;
+public type FulfillmentOrderFulfillmentOrder record {
+    decimal assigned_location_id?;
+    FulfillmentOrderFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    FulfillmentOrderFulfillmentOrderLineItems[] line_items?;
+    decimal order_id?;
+    FulfillmentOrdersAssignedLocation origin?;
+    anydata[] outgoing_requests?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
 };
 
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestrejectJsonFulfillmentRequest record {
     string message?;
 };
 
-public type CreateBlogResponse record {
-    CreateBlogResponse_blog blog?;
+public type CreateShopFeedbackResourceFeedback record {
+    string created_at?;
+    string feedback_generated_at?;
+    anydata[] messages?;
+    decimal resource_id?;
+    string resource_type?;
+    anydata? resource_updated_at?;
+    string state?;
+    string updated_at?;
 };
 
-public type ThemesList_themes record {
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    string name?;
-    boolean previewable?;
-    boolean processing?;
-    string role?;
-    decimal? theme_store_id?;
-    string updated_at?;
+public type CreateBlogResponse record {
+    CreateBlogResponseBlog blog?;
 };
 
 public type FulfillmentOrderIdMoveJsonBody record {
@@ -5805,16 +5787,94 @@ public type FulfillmentOrderIdMoveJsonBody record {
 };
 
 public type PublishThemeResponse record {
-    PublishThemeResponse_theme theme?;
+    PublishThemeResponseTheme theme?;
+};
+
+public type DisableGiftCardGiftCard record {
+    anydata? api_client_id?;
+    string balance?;
+    string created_at?;
+    string currency?;
+    anydata? customer_id?;
+    string disabled_at?;
+    anydata? expires_on?;
+    decimal id?;
+    string initial_value?;
+    string last_characters?;
+    anydata? line_item_id?;
+    anydata? note?;
+    anydata? order_id?;
+    anydata? template_suffix?;
+    string updated_at?;
+    anydata? user_id?;
 };
 
 public type PagesListResponse record {
-    PagesListResponse_pages[] pages?;
+    PagesListResponsePages[] pages?;
 };
 
-public type ProductVariants_variants record {
+# The custom product properties. For example, Size, Color, and Material. Each product can have up to 3 options and each option value can be up to 255 characters.
+public type ProductOption record {
+    @jsondata:Name {value: "product_id"}
+    int productId?;
+    # Product option values
+    string[] values?;
+    # Product option name
+    string name?;
+    # Product option ID
+    int id?;
+    # Product option position
+    int position?;
+};
+
+public type AcceptFulfillmentResponseFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+public type FulfillmentOrdersListDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+public type CancelFulfillmentOrderReplacementFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+public type CreateProductVariantVariant record {
     string admin_graphql_api_id?;
-    string barcode?;
+    anydata? barcode?;
     anydata? compare_at_price?;
     string created_at?;
     string fulfillment_service?;
@@ -5830,7 +5890,7 @@ public type ProductVariants_variants record {
     anydata? option2?;
     anydata? option3?;
     decimal position?;
-    ModifyProductVariant_variant_presentment_prices[] presentment_prices?;
+    CreateProductResponseProductPresentmentPrices[] presentment_prices?;
     string price?;
     decimal? product_id?;
     boolean requires_shipping?;
@@ -5842,58 +5902,29 @@ public type ProductVariants_variants record {
     string weight_unit?;
 };
 
-public type CompleteCheckoutResponse_checkout_line_items record {
-    anydata[] applied_discounts?;
-    anydata? compare_at_price?;
-    string fulfillment_service?;
-    boolean gift_card?;
-    decimal grams?;
-    decimal id?;
-    string image_url?;
-    decimal 'key?;
-    string line_price?;
-    string price?;
-    decimal? product_id?;
-    record {} properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
-    string title?;
-    decimal? variant_id?;
-    string? variant_title?;
-    string vendor?;
-};
-
-# The custom product properties. For example, Size, Color, and Material. Each product can have up to 3 options and each option value can be up to 255 characters.
-public type ProductOption record {
-    # Product option ID
-    int id?;
-    # Product option name
-    string name?;
-    # Product option position
-    int position?;
-    # Product option product ID
-    int product_id?;
-    # Product option values
-    string[] values?;
-};
-
 public type CustomerDefaultAddress record {
-    CustomerDefaultAddress_customer_address customer_address?;
+    CustomerDefaultAddressCustomerAddress customer_address?;
 };
 
 public type DisputeFileUpload record {
-    int id;
-    int shop_id;
-    int file_size;
-    string file_type;
-    string original_filename;
+    @jsondata:Name {value: "shop_id"}
+    int shopId;
+    @jsondata:Name {value: "original_filename"}
+    string originalFilename;
     string filename;
-    string created_at;
-    string updated_at;
-    int dispute_evidence_id;
-    string dispute_evidence_type;
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt;
+    @jsondata:Name {value: "file_type"}
+    string fileType;
+    @jsondata:Name {value: "created_at"}
+    string createdAt;
+    @jsondata:Name {value: "dispute_evidence_id"}
+    int disputeEvidenceId;
+    @jsondata:Name {value: "dispute_evidence_type"}
+    string disputeEvidenceType;
+    int id;
+    @jsondata:Name {value: "file_size"}
+    int fileSize;
     string url;
 };
 
@@ -5902,40 +5933,34 @@ public type InventoryItemsinventoryItemIdJsonBody record {
     AdminapiapiVersioninventoryItemsinventoryItemIdJsonInventoryItem inventoryItem?;
 };
 
-public type CancelFulfillment_fulfillment_total_discount_set record {
-    CancelFulfillment_fulfillment_total_discount_set_presentment_money presentment_money?;
-    CancelFulfillment_fulfillment_total_discount_set_presentment_money shop_money?;
-};
-
-public type ReopenCloseOrder_order_subtotal_price_set_presentment_money record {
-    string amount?;
-    string currency_code?;
-};
-
-public type FulfillmentOrders_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
+public type ApplicationChargeResponseRecurringApplicationCharge record {
+    anydata? activated_on?;
+    decimal api_client_id?;
+    decimal balance_remaining?;
+    decimal balance_used?;
+    anydata? billing_on?;
+    anydata? cancelled_on?;
+    string capped_amount?;
+    string confirmation_url?;
+    string created_at?;
+    string currency?;
+    string decorated_return_url?;
     decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type CreateFulfillmentService_fulfillment_service record {
-    string callback_url?;
-    anydata? email?;
-    boolean fulfillment_orders_opt_in?;
-    string 'handle?;
-    decimal id?;
-    boolean include_pending_stock?;
-    boolean inventory_management?;
-    decimal location_id?;
     string name?;
-    anydata? provider_id?;
-    string service_name?;
-    boolean tracking_support?;
+    string price?;
+    string return_url?;
+    decimal risk_level?;
+    string status?;
+    boolean? test?;
+    decimal trial_days?;
+    anydata? trial_ends_on?;
+    string updated_at?;
+};
+
+public type AvailableShippingRatesCheckout record {
+    string subtotal_price?;
+    string total_price?;
+    string total_tax?;
 };
 
 public type FulfillmentRequestAcceptJsonBody record {
@@ -5944,30 +5969,7 @@ public type FulfillmentRequestAcceptJsonBody record {
 };
 
 public type SingleRedirect record {
-    SingleRedirect_redirect redirect?;
-};
-
-public type CreateCheckoutResponse_checkout_line_items record {
-    anydata[] applied_discounts?;
-    anydata? compare_at_price?;
-    string fulfillment_service?;
-    boolean gift_card?;
-    decimal grams?;
-    string id?;
-    string image_url?;
-    string 'key?;
-    string line_price?;
-    string price?;
-    decimal? product_id?;
-    record {} properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
-    string title?;
-    decimal? variant_id?;
-    string? variant_title?;
-    string vendor?;
+    SingleRedirectRedirect redirect?;
 };
 
 public type MetafieldResponse record {
@@ -5993,6 +5995,16 @@ public type FulfillmentOrderIdFulfillmentRequestJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestJsonFulfillmentRequest fulfillmentRequest?;
 };
 
+public type CalculateRefundRefundTransactions record {
+    string amount?;
+    string currency?;
+    string gateway?;
+    string kind?;
+    string maximum_refundable?;
+    decimal order_id?;
+    decimal parent_id?;
+};
+
 public type CollectionListingscollectionListingIdJsonBody record {
     @jsondata:Name {value: "collection_listing"}
     AdminapiapiVersioncollectionListingscollectionListingIdJsonCollectionListing collectionListing?;
@@ -6006,43 +6018,34 @@ public type AdminapiapiVersionblogsJsonBlogMetafields record {
     string 'key?;
 };
 
-public type CalculateRefund_refund record {
-    string currency?;
-    CalculateRefund_refund_refund_line_items[] refund_line_items?;
-    CalculateRefund_refund_shipping shipping?;
-    CalculateRefund_refund_transactions[] transactions?;
-};
-
 public type AccountInvite record {
-    AccountInvite_customer_invite customer_invite?;
+    AccountInviteCustomerInvite customer_invite?;
 };
 
 public type Address record {
-    int id?;
-    int customer_id?;
-    string? first_name?;
-    string? last_name?;
-    string? company?;
-    string? address1?;
+    string? zip?;
+    string? country?;
     string? address2?;
     string? city?;
+    string? address1?;
+    @jsondata:Name {value: "last_name"}
+    string? lastName?;
+    @jsondata:Name {value: "province_code"}
+    string? provinceCode?;
+    @jsondata:Name {value: "country_code"}
+    string? countryCode?;
+    boolean default?;
     string? province?;
-    string? country?;
-    string? zip?;
     string? phone?;
     string? name?;
-    string? province_code?;
-    string? country_code?;
-    string? country_name?;
-    boolean default?;
-};
-
-public type CreateDraftOrder_draft_order_applied_discount record {
-    string amount?;
-    string description?;
-    string title?;
-    string value?;
-    string value_type?;
+    @jsondata:Name {value: "country_name"}
+    string? countryName?;
+    string? company?;
+    int id?;
+    @jsondata:Name {value: "customer_id"}
+    int customerId?;
+    @jsondata:Name {value: "first_name"}
+    string? firstName?;
 };
 
 public type AdminapiapiVersionblogsblogIdarticlesarticleIdJsonArticle record {
@@ -6050,73 +6053,105 @@ public type AdminapiapiVersionblogsblogIdarticlesarticleIdJsonArticle record {
     decimal id?;
 };
 
+public type CountryResponseCountryProvinces record {
+    string code?;
+    decimal country_id?;
+    decimal id?;
+    string name?;
+    anydata? shipping_zone_id?;
+    decimal tax?;
+    string? tax_name?;
+    decimal tax_percentage?;
+    string? tax_type?;
+};
+
 public type TransitionFulfillmentOrder record {
-    TransitionFulfillmentOrder_fulfillment_order fulfillment_order?;
+    TransitionFulfillmentOrderFulfillmentOrder fulfillment_order?;
+};
+
+public type CancellationResponseFulfillmentOrder record {
+    decimal assigned_location_id?;
+    CancellationResponseFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    CancellationResponseFulfillmentOrderLineItems[] line_items?;
+    decimal order_id?;
+    FulfillmentOrdersAssignedLocation origin?;
+    anydata[] outgoing_requests?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
 };
 
 public type AdminapiapiVersioncheckoutsJsonCheckout record {
     string email?;
 };
 
-public type SingleEvent_event record {
-    string[] arguments?;
-    string author?;
-    anydata? body?;
-    string created_at?;
-    string description?;
-    decimal id?;
-    string message?;
-    string path?;
-    decimal subject_id?;
-    string subject_type?;
-    string verb?;
+public type ReopenCloseOrderOrderPriceSet2 record {
+    ReopenCloseOrderOrderPriceSet2PresentmentMoney presentment_money?;
+    ReopenCloseOrderOrderPriceSet2PresentmentMoney shop_money?;
 };
 
-public type SinglePageResponse_page record {
-    string admin_graphql_api_id?;
-    string author?;
-    string body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    string published_at?;
-    decimal shop_id?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
+public type ReopenCloseOrderOrderPriceSet1 record {
+    ReopenCloseOrderOrderPriceSet1PresentmentMoney presentment_money?;
+    ReopenCloseOrderOrderPriceSet1PresentmentMoney shop_money?;
 };
 
 public type SingleBlog record {
-    SingleBlog_blog blog?;
+    SingleBlogBlog blog?;
+};
+
+public type PaymentsResponsePayments record {
+    PaymentsResponseCheckout checkout?;
+    anydata? credit_card?;
+    decimal id?;
+    anydata? payment_processing_error_message?;
+    PaymentsResponseCheckoutTransaction 'transaction?;
+    string unique_token?;
+};
+
+public type ReopenCloseOrderOrderClientDetails record {
+    anydata? accept_language?;
+    anydata? browser_height?;
+    string browser_ip?;
+    anydata? browser_width?;
+    anydata? session_hash?;
+    anydata? user_agent?;
 };
 
 public type CancelFulfillment record {
-    CancelFulfillment_fulfillment fulfillment?;
+    CancelFulfillmentFulfillment fulfillment?;
 };
 
-public type TenderTransactions_tender_transactions record {
-    string amount?;
-    string currency?;
-    decimal id?;
-    decimal order_id?;
-    TenderTransactions_payment_details payment_details?;
-    string payment_method?;
-    string processed_at?;
-    string remote_reference?;
-    boolean test?;
-    anydata? user_id?;
-};
-
-public type SingleUsageCharge_usage_charge record {
-    decimal balance_remaining?;
-    decimal balance_used?;
-    anydata? billing_on?;
+public type DraftOrdersDraftOrders record {
+    string admin_graphql_api_id?;
+    record {}? applied_discount?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
+    string? completed_at?;
     string created_at?;
     string currency?;
-    string description?;
+    DraftOrdersCustomer? customer?;
+    string email?;
     decimal id?;
-    string price?;
-    decimal risk_level?;
+    string? invoice_sent_at?;
+    string invoice_url?;
+    DraftOrdersLineItems[] line_items?;
+    string name?;
+    string? note?;
+    anydata[] note_attributes?;
+    decimal? order_id?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    record {}? shipping_line?;
+    string status?;
+    string subtotal_price?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_lines?;
+    boolean taxes_included?;
+    string total_price?;
+    string total_tax?;
+    string updated_at?;
 };
 
 # Represents the Queries record for the operation: retrievesTheShopSConfiguration
@@ -6125,24 +6160,22 @@ public type RetrievesTheShopSConfigurationQueries record {
     string fields?;
 };
 
-public type CustomerInvite record {
-    CustomerInvite_customer_invite customer_invite;
+public type ModifyProductImageImage record {
+    string admin_graphql_api_id?;
+    string? alt?;
+    string created_at?;
+    decimal height?;
+    decimal id?;
+    decimal position?;
+    decimal? product_id?;
+    string src?;
+    string updated_at?;
+    anydata[] variant_ids?;
+    decimal width?;
 };
 
-public type ApplicationChargesList_application_charges record {
-    decimal api_client_id?;
-    string? charge_type?;
-    string created_at?;
-    string currency?;
-    string decorated_return_url?;
-    anydata? external_id?;
-    decimal id?;
-    string name?;
-    string price?;
-    string return_url?;
-    string status?;
-    anydata? test?;
-    string updated_at?;
+public type CustomerInvite record {
+    CustomerInviteCustomerInvite customer_invite;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfTenderTransactions
@@ -6165,8 +6198,38 @@ public type ReportsreportIdJsonBody record {
     AdminapiapiVersionreportsreportIdJsonReport report?;
 };
 
+public type AssetsListAssets record {
+    string content_type?;
+    string created_at?;
+    string 'key?;
+    string? public_url?;
+    decimal size?;
+    decimal theme_id?;
+    string updated_at?;
+};
+
 public type SingleFulfillmentService record {
-    SingleFulfillmentService_fulfillment_service fulfillment_service?;
+    SingleFulfillmentServiceFulfillmentService fulfillment_service?;
+};
+
+public type GiftCardGiftCard record {
+    decimal api_client_id?;
+    string balance?;
+    string code?;
+    string created_at?;
+    string currency?;
+    anydata? customer_id?;
+    anydata? disabled_at?;
+    anydata? expires_on?;
+    decimal id?;
+    string initial_value?;
+    string last_characters?;
+    anydata? line_item_id?;
+    string? note?;
+    anydata? order_id?;
+    string? template_suffix?;
+    string updated_at?;
+    anydata? user_id?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfGiftCards
@@ -6175,20 +6238,35 @@ public type RetrievesACountOfGiftCardsQueries record {
     string status?;
 };
 
+public type TransitionFulfillmentOrderFulfillmentOrder record {
+    FulfillmentOrdersAssignedLocation assigned_location?;
+    decimal assigned_location_id?;
+    TransitionFulfillmentOrderFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    TransitionFulfillmentOrderFulfillmentOrderLineItems[] line_items?;
+    anydata[] merchant_requests?;
+    decimal order_id?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
+};
+
 public type UpdateMarketingEvent record {
-    UpdateMarketingEvent_marketing_event marketing_event?;
+    UpdateMarketingEventMarketingEvent marketing_event?;
 };
 
 public type SingleCommentResponse record {
-    SingleCommentResponse_comment comment?;
+    SingleCommentResponseComment comment?;
 };
 
 public type SinglePaymentResponse record {
-    SinglePaymentResponse_payment payment?;
+    SinglePaymentResponsePayment payment?;
 };
 
 public type UpdateOrderRisk record {
-    UpdateOrderRisk_risk risk?;
+    UpdateOrderRiskRisk risk?;
 };
 
 public type MobilePlatformApplicationsmobilePlatformApplicationIdJsonBody record {
@@ -6197,21 +6275,7 @@ public type MobilePlatformApplicationsmobilePlatformApplicationIdJsonBody record
 };
 
 public type UpdatePriceRule record {
-    UpdatePriceRule_price_rule price_rule?;
-};
-
-public type ReopenCloseOrder_order_refunds record {
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    string? note?;
-    anydata[] order_adjustments?;
-    decimal order_id?;
-    string processed_at?;
-    ReopenCloseOrder_order_refund_line_items[] refund_line_items?;
-    boolean restock?;
-    ReopenCloseOrder_order_transactions[] transactions?;
-    decimal user_id?;
+    UpdatePriceRulePriceRule price_rule?;
 };
 
 public type RefundsCalculateJsonBody record {
@@ -6219,23 +6283,13 @@ public type RefundsCalculateJsonBody record {
 };
 
 public type CompleteCheckout record {
-    CompleteCheckout_checkout checkout?;
+    CompleteCheckoutCheckout checkout?;
 };
 
-public type UpdateSmartCollection_smart_collection record {
-    string admin_graphql_api_id?;
-    string body_html?;
-    boolean disjunctive?;
-    string 'handle?;
+public type ProductsResponseProducts record {
     decimal id?;
-    SmartCollectionList_image image?;
-    string? published_at?;
-    string published_scope?;
-    SmartCollectionList_rules[] rules?;
-    string sort_order?;
-    anydata? template_suffix?;
+    ProductsResponseImages[] images?;
     string title?;
-    string updated_at?;
 };
 
 public type FulfillmentOrderIdHoldJsonBody record {
@@ -6243,70 +6297,36 @@ public type FulfillmentOrderIdHoldJsonBody record {
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfillmentOrder fulfillmentOrder?;
 };
 
-public type PostalCodeResult_customer_address record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string country_name?;
-    decimal customer_id?;
-    boolean default?;
-    anydata? first_name?;
-    decimal id?;
-    anydata? last_name?;
-    string name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
+public type ShopPoliciesListPolicies record {
+    string body?;
+    string created_at?;
+    string 'handle?;
+    string title?;
+    string updated_at?;
+    string url?;
+};
+
+public type UpdateCustomCollectionCustomCollectionImage record {
+    string alt?;
+    string created_at?;
+    decimal height?;
+    string src?;
+    decimal width?;
 };
 
 public type TransactionResponse record {
-    TransactionResponse_transaction 'transaction?;
+    TransactionResponseTransaction 'transaction?;
 };
 
 public type ArticleAuthors record {
     string[] authors?;
 };
 
-public type DiscountCodeResponse_discount_code_creation record {
-    decimal codes_count?;
-    anydata? completed_at?;
-    string created_at?;
-    decimal failed_count?;
-    decimal id?;
-    decimal imported_count?;
-    decimal price_rule_id?;
-    anydata? started_at?;
-    string status?;
-    string updated_at?;
-};
-
-public type AvailableInventory_inventory_level record {
-    string admin_graphql_api_id?;
-    decimal available?;
-    decimal inventory_item_id?;
-    decimal location_id?;
-    string updated_at?;
-};
-
-public type ProductListings_product_listings record {
-    boolean available?;
-    string? body_html?;
-    string created_at?;
-    string 'handle?;
-    ProductListings_images[] images?;
-    UpdateProduct_product_options[] options?;
-    decimal? product_id?;
-    string product_type?;
-    string published_at?;
-    string tags?;
-    string title?;
-    string updated_at?;
-    ProductListings_variants[] variants?;
-    string vendor?;
+public type CalculateRefundRefund record {
+    string currency?;
+    CalculateRefundRefundRefundLineItems[] refund_line_items?;
+    CalculateRefundRefundShipping shipping?;
+    CalculateRefundRefundTransactions[] transactions?;
 };
 
 # Represents the Queries record for the operation: retrievesASpecificRefund
@@ -6317,74 +6337,82 @@ public type RetrievesASpecificRefundQueries record {
     string inShopCurrency?;
 };
 
-public type OriginalFulfillmentOrder_submitted_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
-};
-
-public type SingleCharge_recurring_application_charge record {
-    anydata? activated_on?;
-    decimal api_client_id?;
-    string billing_on?;
-    anydata? cancelled_on?;
-    string confirmation_url?;
+public type SingleThemeTheme record {
+    string admin_graphql_api_id?;
     string created_at?;
-    string currency?;
-    string decorated_return_url?;
     decimal id?;
     string name?;
-    string price?;
-    string return_url?;
-    string status?;
-    anydata? test?;
-    decimal trial_days?;
-    anydata? trial_ends_on?;
+    boolean previewable?;
+    boolean processing?;
+    string role?;
+    anydata? theme_store_id?;
     string updated_at?;
+};
+
+public type CreateCollectionCustomCollectionImage record {
+    string alt?;
+    string created_at?;
+    decimal height?;
+    string src?;
+    decimal width?;
 };
 
 public type DiscountCodes record {
     @jsondata:Name {value: "discount_codes"}
-    SingleDiscountCode_discount_code[] discountCodes?;
+    DiscountCodesDiscountCodes[] discountCodes?;
 };
 
-public type CustomerInvite_customer_invite record {
-    # Email address of the recipient.
-    string to;
-    # Email address of the sender.
-    string 'from;
-    # Blind carbon copy recipients.
-    string[] bcc?;
-    # Subject of the invitation email.
-    string subject;
-    # Custom message included in the invitation email.
-    string custom_message;
+public type MobilePlatformApplicationMobilePlatformApplication record {
+    anydata? app_clip_application_id?;
+    string application_id?;
+    string created_at?;
+    boolean enabled_app_clips?;
+    boolean enabled_shared_webcredentials?;
+    boolean enabled_universal_or_app_links?;
+    decimal id?;
+    string platform?;
+    string[] sha256_cert_fingerprints?;
+    string updated_at?;
+};
+
+public type ProductsListOptions record {
+    decimal id?;
+    string name?;
+    decimal position?;
+    decimal? product_id?;
+};
+
+public type CreateRefundRefundLineItem record {
+    string admin_graphql_api_id?;
+    anydata[] discount_allocations?;
+    decimal fulfillable_quantity?;
+    string fulfillment_service?;
+    anydata? fulfillment_status?;
+    boolean gift_card?;
+    decimal grams?;
+    decimal id?;
+    string name?;
+    string price?;
+    ReopenCloseOrderOrderPriceSet price_set?;
+    boolean product_exists?;
+    decimal? product_id?;
+    anydata[] properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    ReopenCloseOrderOrderTaxLines[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    string total_discount?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discount_set?;
+    decimal? variant_id?;
+    string variant_inventory_management?;
+    string? variant_title?;
+    anydata? vendor?;
 };
 
 public type ProvincesprovinceIdJsonBody record {
     AdminapiapiVersioncountriescountryIdprovincesprovinceIdJsonProvince province?;
-};
-
-public type CreateOrderRisk_risk record {
-    boolean cause_cancel?;
-    decimal checkout_id?;
-    boolean display?;
-    decimal id?;
-    string merchant_message?;
-    string message?;
-    decimal order_id?;
-    string recommendation?;
-    string score?;
-    string 'source?;
 };
 
 # Represents the Queries record for the operation: receiveASingleProductImage
@@ -6398,10 +6426,29 @@ public type UpdateProductVariant record {
 };
 
 public type SingleCustomerAddress record {
-    AbandonedCheckouts_customer_default_address customer_address?;
+    ReopenCloseOrderOrderCustomerDefaultAddress customer_address?;
 };
 
-public type UpdateBlogResponse_blog record {
+public type AdminapiapiVersionordersorderIdrefundscalculateJsonRefundRefundLineItems record {
+    @jsondata:Name {value: "line_item_id"}
+    decimal lineItemId?;
+    decimal quantity?;
+    @jsondata:Name {value: "restock_type"}
+    string restockType?;
+};
+
+public type AdminapiapiVersionordersorderIdfulfillmentsfulfillmentIdeventsJsonEvent record {
+    string status?;
+};
+
+public type AdminapiapiVersionproductsproductIdimagesJsonImage record {
+    AdminapiapiVersionblogsJsonBlogMetafields[] metafields?;
+    string filename?;
+    string attachment?;
+    decimal position?;
+};
+
+public type BlogsBlogs record {
     string admin_graphql_api_id?;
     string commentable?;
     string created_at?;
@@ -6415,12 +6462,113 @@ public type UpdateBlogResponse_blog record {
     string updated_at?;
 };
 
-public type CompleteCheckout_checkout record {
-    anydata? applied_discount?;
-    CompleteCheckout_checkout_billing_address? billing_address?;
+public type SingleGiftCard record {
+    SingleGiftCardGiftCard gift_card?;
+};
+
+public type PageResponsePage record {
+    string admin_graphql_api_id?;
+    string author?;
+    string body_html?;
+    string created_at?;
+    string 'handle?;
+    decimal id?;
+    string? published_at?;
+    decimal shop_id?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+public type CompleteDraftOrderDraftOrder record {
+    string admin_graphql_api_id?;
+    CompleteDraftOrderDraftOrderAppliedDiscount? applied_discount?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
     string completed_at?;
     string created_at?;
-    anydata? credit_card?;
+    string currency?;
+    AbandonedCheckoutsCustomer customer?;
+    string email?;
+    decimal id?;
+    anydata? invoice_sent_at?;
+    string invoice_url?;
+    ModifyDraftOrderDraftOrderLineItems[] line_items?;
+    string name?;
+    string? note?;
+    anydata[] note_attributes?;
+    decimal order_id?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    ModifyDraftOrderDraftOrderShippingLine? shipping_line?;
+    string status?;
+    string subtotal_price?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_lines?;
+    boolean taxes_included?;
+    string total_price?;
+    string total_tax?;
+    string updated_at?;
+};
+
+# Represents the Queries record for the operation: retrievesASingleRedirect
+public type RetrievesASingleRedirectQueries record {
+    # Show only certain fields, specified by a comma-separated list of field names. 
+    string fields?;
+};
+
+public type AdminapiapiVersioncheckoutstokenpaymentsJsonPayment record {
+    @jsondata:Name {value: "unique_token"}
+    string uniqueToken?;
+    string amount?;
+    @jsondata:Name {value: "session_id"}
+    string sessionId?;
+    @jsondata:Name {value: "request_details"}
+    AdminapiapiVersioncheckoutstokenpaymentsJsonPaymentRequestDetails requestDetails?;
+};
+
+public type SubscribeOrderCreation record {
+    SubscribeOrderCreationWebhook webhook?;
+};
+
+public type FulfillmentEventsFulfillmentEvents record {
+    anydata? address1?;
+    string admin_graphql_api_id?;
+    anydata? city?;
+    anydata? country?;
+    string created_at?;
+    anydata? estimated_delivery_at?;
+    decimal fulfillment_id?;
+    string happened_at?;
+    decimal id?;
+    anydata? latitude?;
+    anydata? longitude?;
+    anydata? message?;
+    decimal order_id?;
+    anydata? province?;
+    decimal shop_id?;
+    string status?;
+    string updated_at?;
+    anydata? zip?;
+};
+
+public type CollectionListingCollectionListing record {
+    string body_html?;
+    decimal collection_id?;
+    anydata? default_product_image?;
+    string 'handle?;
+    CollectionListingCollectionListingImage image?;
+    string published_at?;
+    string sort_order?;
+    string title?;
+    string updated_at?;
+};
+
+public type CreateAuthorizationResponsePaymentCheckout record {
+    anydata? applied_discount?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? billing_address?;
+    anydata? completed_at?;
+    string created_at?;
+    CreateAuthorizationResponsePaymentCheckoutCreditCard credit_card?;
     string currency?;
     decimal customer_id?;
     anydata? customer_locale?;
@@ -6429,17 +6577,17 @@ public type CompleteCheckout_checkout record {
     string email?;
     anydata[] gift_cards?;
     anydata? legal_notice_url?;
-    CompleteCheckout_checkout_line_items[] line_items?;
+    SinglePaymentResponsePaymentCheckoutLineItems[] line_items?;
     anydata? location_id?;
     string name?;
     string? note?;
-    CompleteCheckout_checkout_note_attributes note_attributes?;
-    CompleteCheckout_checkout_order 'order?;
-    decimal order_id?;
-    string order_status_url?;
+    SinglePaymentResponsePaymentCheckoutNoteAttributes note_attributes?;
+    anydata? 'order?;
+    anydata? order_id?;
+    anydata? order_status_url?;
     string payment_due?;
     string payment_url?;
-    anydata[] payments?;
+    CreateAuthorizationResponsePaymentCheckoutPayments[] payments?;
     anydata? phone?;
     string presentment_currency?;
     anydata? privacy_policy_url?;
@@ -6447,10 +6595,10 @@ public type CompleteCheckout_checkout record {
     boolean requires_shipping?;
     anydata? reservation_time?;
     decimal reservation_time_left?;
-    CompleteCheckout_checkout_shipping_address shipping_address?;
-    CompleteCheckout_checkout_shipping_line? shipping_line?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? shipping_address?;
+    SinglePaymentResponsePaymentCheckoutShippingLine? shipping_line?;
     anydata? shipping_policy_url?;
-    CompleteCheckout_checkout_shipping_rate shipping_rate?;
+    SinglePaymentResponsePaymentCheckoutShippingRate shipping_rate?;
     anydata? shopify_payments_account_id?;
     anydata? source_identifier?;
     string source_name?;
@@ -6473,145 +6621,48 @@ public type CompleteCheckout_checkout record {
     string web_url?;
 };
 
-public type AdminapiapiVersionordersorderIdrefundscalculateJsonRefundRefundLineItems record {
-    @jsondata:Name {value: "line_item_id"}
-    decimal lineItemId?;
-    decimal quantity?;
-    @jsondata:Name {value: "restock_type"}
-    string restockType?;
-};
-
-public type AdminapiapiVersionordersorderIdfulfillmentsfulfillmentIdeventsJsonEvent record {
-    string status?;
-};
-
-public type AdminapiapiVersionproductsproductIdimagesJsonImage record {
-    AdminapiapiVersionblogsJsonBlogMetafields[] metafields?;
-    string filename?;
-    string attachment?;
-    decimal position?;
-};
-
-public type SingleGiftCard record {
-    SingleGiftCard_gift_card gift_card?;
-};
-
-# Represents the Queries record for the operation: retrievesASingleRedirect
-public type RetrievesASingleRedirectQueries record {
-    # Show only certain fields, specified by a comma-separated list of field names. 
-    string fields?;
-};
-
-public type AdminapiapiVersioncheckoutstokenpaymentsJsonPayment record {
-    @jsondata:Name {value: "unique_token"}
-    string uniqueToken?;
-    string amount?;
-    @jsondata:Name {value: "session_id"}
-    string sessionId?;
-    @jsondata:Name {value: "request_details"}
-    AdminapiapiVersioncheckoutstokenpaymentsJsonPaymentRequestDetails requestDetails?;
-};
-
-public type SubscribeOrderCreation record {
-    SubscribeOrderCreation_webhook webhook?;
-};
-
-public type CountriesList_provinces record {
-    string code?;
-    decimal country_id?;
-    decimal id?;
+public type MoveFulfillmentOrderResponseMovedFulfillmentOrderAssignedLocation record {
+    string address1?;
+    anydata? address2?;
+    string city?;
+    string country_code?;
+    decimal location_id?;
     string name?;
-    decimal? shipping_zone_id?;
-    decimal tax?;
-    anydata? tax_name?;
-    decimal tax_percentage?;
-    anydata? tax_type?;
-};
-
-public type CancelFulfillment_fulfillment_line_items record {
-    string admin_graphql_api_id?;
-    anydata[] discount_allocations?;
-    decimal fulfillable_quantity?;
-    string fulfillment_service?;
-    anydata? fulfillment_status?;
-    boolean gift_card?;
-    decimal grams?;
-    decimal id?;
-    string name?;
-    string price?;
-    CancelFulfillment_fulfillment_price_set price_set?;
-    boolean product_exists?;
-    decimal? product_id?;
-    anydata[] properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    anydata[] tax_lines?;
-    boolean taxable?;
-    string title?;
-    string total_discount?;
-    CancelFulfillment_fulfillment_total_discount_set total_discount_set?;
-    decimal? variant_id?;
-    anydata? variant_inventory_management?;
-    string? variant_title?;
-    anydata? vendor?;
-};
-
-public type ReopenCloseOrder_order_properties record {
-    string name?;
-    string value?;
+    anydata? phone?;
+    string province?;
+    string zip?;
 };
 
 public type FulfillmentEventResponse record {
-    FulfillmentEventResponse_fulfillment_event fulfillment_event?;
+    FulfillmentEventResponseFulfillmentEvent fulfillment_event?;
 };
 
 public type CheckoutstokenJsonBody record {
     AdminapiapiVersioncheckoutstokenJsonCheckout checkout?;
 };
 
-public type ReopenCloseOrder_order_discount_applications record {
-    string allocation_method?;
-    string code?;
-    string target_selection?;
-    string target_type?;
-    string 'type?;
-    string value?;
-    string value_type?;
-};
-
-public type UpdateProduct_product_options record {
+public type SingleFulfillmentFulfillment record {
+    string admin_graphql_api_id?;
+    string created_at?;
     decimal id?;
+    ReopenCloseOrderOrderLineItems[] line_items?;
+    decimal location_id?;
     string name?;
-    decimal position?;
-    decimal? product_id?;
-    string[] values?;
-};
-
-public type OriginalFulfillmentOrder_unsubmitted_fulfillment_order record {
-    decimal assigned_location_id?;
-    OriginalFulfillmentOrder_unsubmitted_fulfillment_order_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    OriginalFulfillmentOrder_unsubmitted_fulfillment_order_line_items[] line_items?;
     decimal order_id?;
-    RejectCancellationRequestResponse_fulfillment_order_origin origin?;
-    anydata[] outgoing_requests?;
-    string request_status?;
-    decimal shop_id?;
+    ReopenCloseOrderOrderReceipt receipt?;
+    string 'service?;
+    anydata? shipment_status?;
     string status?;
-    string[] supported_actions?;
-};
-
-public type OriginalFulfillmentOrder_submitted_fulfillment_order_outgoing_requests record {
-    string kind?;
-    string message?;
-    OriginalFulfillmentOrder_submitted_fulfillment_order_request_options request_options?;
-    string sent_at?;
+    string tracking_company?;
+    string tracking_number?;
+    string[] tracking_numbers?;
+    string tracking_url?;
+    string[] tracking_urls?;
+    string updated_at?;
 };
 
 public type OrdersList record {
-    OrdersList_orders[] orders?;
+    OrdersListOrders[] orders?;
 };
 
 # Represents the Queries record for the operation: retrievesASpecificCollectByItsId
@@ -6620,20 +6671,74 @@ public type RetrievesASpecificCollectByItsIdQueries record {
     string fields?;
 };
 
-public type UsageChargeResponse record {
-    UsageChargeResponse_usage_charge usage_charge?;
+public type ApplicationCreditApplicationCredit record {
+    string amount?;
+    string currency?;
+    string description?;
+    decimal id?;
+    anydata? test?;
 };
 
-public type UpdateCountryTaxRate_country_provinces record {
-    string code?;
-    decimal country_id?;
-    decimal id?;
+public type UsageChargeResponse record {
+    UsageChargeResponseUsageCharge usage_charge?;
+};
+
+public type CheckoutResponseCheckout record {
+    anydata? applied_discount?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? billing_address?;
+    anydata? completed_at?;
+    string created_at?;
+    record {}? credit_card?;
+    string currency?;
+    decimal customer_id?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    anydata? discount_code?;
+    string email?;
+    anydata[] gift_cards?;
+    anydata? legal_notice_url?;
+    SinglePaymentResponsePaymentCheckoutLineItems[] line_items?;
+    anydata? location_id?;
     string name?;
-    anydata? shipping_zone_id?;
-    decimal tax?;
-    string tax_name?;
-    decimal tax_percentage?;
-    string? tax_type?;
+    string? note?;
+    SinglePaymentResponsePaymentCheckoutNoteAttributes note_attributes?;
+    anydata? 'order?;
+    anydata? order_id?;
+    anydata? order_status_url?;
+    string payment_due?;
+    string payment_url?;
+    anydata[] payments?;
+    anydata? phone?;
+    string presentment_currency?;
+    anydata? privacy_policy_url?;
+    anydata? refund_policy_url?;
+    boolean requires_shipping?;
+    anydata? reservation_time?;
+    decimal reservation_time_left?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? shipping_address?;
+    CheckoutResponseCheckoutShippingLine? shipping_line?;
+    anydata? shipping_policy_url?;
+    CheckoutResponseCheckoutShippingRate shipping_rate?;
+    anydata? shopify_payments_account_id?;
+    anydata? source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    anydata? subscription_policy_url?;
+    string subtotal_price?;
+    boolean tax_exempt?;
+    SinglePaymentResponsePaymentCheckoutTaxLines[] tax_lines?;
+    anydata[] tax_manipulations?;
+    boolean taxes_included?;
+    anydata? terms_of_sale_url?;
+    anydata? terms_of_service_url?;
+    string token?;
+    string total_line_items_price?;
+    string total_price?;
+    string total_tax?;
+    string total_tip_received?;
+    string updated_at?;
+    anydata? user_id?;
+    string web_url?;
 };
 
 # Represents the Queries record for the operation: retrieveAListOfAllBlogs
@@ -6652,15 +6757,8 @@ public type RetrieveAListOfAllBlogsQueries record {
 public type Price record {
     # The variant's price or compare-at price in the presentment currency.
     string amount?;
-    # The three-letter code (ISO 4217 format) for one of the shop's enabled presentment currencies.
-    string currency_code?;
-};
-
-public type OrdersList_orders record {
-    string created_at?;
-    decimal id?;
-    string name?;
-    string total_price?;
+    @jsondata:Name {value: "currency_code"}
+    string currencyCode?;
 };
 
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfillmentOrderLineItems record {
@@ -6680,37 +6778,44 @@ public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancelJsonFulfi
     decimal id?;
 };
 
+public type CreateBlogResponseBlog record {
+    string admin_graphql_api_id?;
+    string commentable?;
+    string created_at?;
+    anydata? feedburner?;
+    anydata? feedburner_location?;
+    string 'handle?;
+    decimal id?;
+    string tags?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
 # Represents the Queries record for the operation: retrievesASingleEvent
 public type RetrievesASingleEventQueries record {
     # Show only certain fields, specified by a comma-separated list of field names. 
     string fields?;
 };
 
-public type OrderResponse_order_customer record {
-    boolean accepts_marketing?;
-    string accepts_marketing_updated_at?;
-    string admin_graphql_api_id?;
+public type UpdateDiscountCodeDiscountCode record {
+    string code?;
     string created_at?;
-    string currency?;
-    OrderResponse_order_customer_default_address default_address?;
-    string email?;
-    string? first_name?;
     decimal id?;
-    string? last_name?;
-    decimal last_order_id?;
-    string last_order_name?;
-    anydata? marketing_opt_in_level?;
-    anydata? multipass_identifier?;
-    anydata? note?;
-    decimal orders_count?;
-    anydata? phone?;
-    string state?;
-    string tags?;
-    boolean tax_exempt?;
-    anydata[] tax_exemptions?;
-    string total_spent?;
+    decimal price_rule_id?;
     string updated_at?;
-    boolean verified_email?;
+    decimal usage_count?;
+};
+
+public type CreateAuthorizationResponsePayment record {
+    CreateAuthorizationResponsePaymentCheckout checkout?;
+    CreateAuthorizationResponsePaymentCheckoutCreditCard credit_card?;
+    boolean fraudulent?;
+    decimal id?;
+    SinglePaymentResponsePaymentNextAction next_action?;
+    anydata? payment_processing_error_message?;
+    anydata? 'transaction?;
+    string unique_token?;
 };
 
 public type FulfillmentOrdersSetFulfillmentOrdersDeadlineJsonBody record {
@@ -6724,8 +6829,48 @@ public type AdminapiapiVersioncheckoutstokenJsonCheckout record {
     string token?;
 };
 
+public type ReopenCloseOrderOrderFulfillments record {
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    ReopenCloseOrderOrderLineItems[] line_items?;
+    decimal location_id?;
+    string name?;
+    decimal order_id?;
+    ReopenCloseOrderOrderReceipt receipt?;
+    string 'service?;
+    anydata? shipment_status?;
+    string status?;
+    string tracking_company?;
+    string tracking_number?;
+    string[] tracking_numbers?;
+    string tracking_url?;
+    string[] tracking_urls?;
+    string updated_at?;
+};
+
 public type ThemesthemeIdJsonBody record {
     AdminapiapiVersionthemesthemeIdJsonTheme theme?;
+};
+
+public type OrderResponseOrderCustomerDefaultAddress record {
+    string address1?;
+    string? address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string country_name?;
+    decimal customer_id?;
+    boolean default?;
+    string? first_name?;
+    decimal id?;
+    string? last_name?;
+    string name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
 };
 
 public type DisputeIdDisputeEvidencesJsonBody record {
@@ -6762,12 +6907,21 @@ public type ShopRetrieveAListOfMetafieldsFromTheResourceSEndpointQueries record 
 };
 
 public type CheckoutResponse record {
-    CheckoutResponse_checkout checkout?;
+    CheckoutResponseCheckout checkout?;
+};
+
+public type SingleScriptTagScriptTag record {
+    string created_at?;
+    string display_scope?;
+    string event?;
+    decimal id?;
+    string src?;
+    string updated_at?;
 };
 
 public type ProductListings record {
     @jsondata:Name {value: "product_listings"}
-    ProductListings_product_listings[] productListings?;
+    ProductListingsProductListings[] productListings?;
 };
 
 public type DiscountCodesdiscountCodeIdJsonBody record {
@@ -6775,168 +6929,7 @@ public type DiscountCodesdiscountCodeIdJsonBody record {
     AdminapiapiVersionpriceRulespriceRuleIddiscountCodesdiscountCodeIdJsonDiscountCode discountCode?;
 };
 
-public type SingleTheme record {
-    SingleTheme_theme theme?;
-};
-
-public type RejectCancellationRequestResponse record {
-    RejectCancellationRequestResponse_fulfillment_order fulfillment_order?;
-};
-
-public type SingleReportResponse_report record {
-    string category?;
-    decimal id?;
-    string name?;
-    string shopify_ql?;
-    string updated_at?;
-};
-
-public type InventoryLevel_inventory_level record {
-    string admin_graphql_api_id?;
-    decimal available?;
-    decimal inventory_item_id?;
-    decimal location_id?;
-    string updated_at?;
-};
-
-public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestJsonFulfillmentRequest record {
-    string message?;
-};
-
-public type MarketingEventIdEngagementsJsonBody record {
-    AdminapiapiVersionmarketingEventsmarketingEventIdengagementsJsonEngagements[] engagements?;
-};
-
-# Represents the Queries record for the operation: retrievesFulfillmentsAssociatedWithAnOrder
-public type RetrievesFulfillmentsAssociatedWithAnOrderQueries record {
-    @http:Query {name: "created_at_min"}
-    string createdAtMin?;
-    @http:Query {name: "created_at_max"}
-    string createdAtMax?;
-    @http:Query {name: "updated_at_max"}
-    string updatedAtMax?;
-    @http:Query {name: "updated_at_min"}
-    string updatedAtMin?;
-    # Limit the amount of results.(default: 50)(maximum: 250) 
-    string 'limit?;
-    # A comma-separated list of fields to include in the response. 
-    string fields?;
-    @http:Query {name: "since_id"}
-    string sinceId?;
-};
-
-public type SingleWebhook record {
-    SubscriptionsList_webhooks webhook?;
-};
-
-public type SingleDiscountCode record {
-    SingleDiscountCode_discount_code discount_code?;
-};
-
-public type FulfillmentList_fulfillments record {
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    FulfillmentList_line_items[] line_items?;
-    decimal location_id?;
-    string name?;
-    decimal order_id?;
-    record {} receipt?;
-    string 'service?;
-    anydata? shipment_status?;
-    string status?;
-    string tracking_company?;
-    string tracking_number?;
-    string[] tracking_numbers?;
-    string tracking_url?;
-    string[] tracking_urls?;
-    string updated_at?;
-};
-
-public type Metafield record {
-    int id;
-    string namespace;
-    string 'key;
-    string value;
-    string? description?;
-    int owner_id;
-    string created_at;
-    string updated_at;
-    string owner_resource;
-    string 'type;
-    string admin_graphql_api_id;
-};
-
-public type OrderResponse_order_customer_default_address record {
-    string address1?;
-    string? address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string country_name?;
-    decimal customer_id?;
-    boolean default?;
-    string? first_name?;
-    decimal id?;
-    string? last_name?;
-    string name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
-};
-
-public type CreateAuthorizationResponse_payment record {
-    CreateAuthorizationResponse_payment_checkout checkout?;
-    CreateAuthorizationResponse_payment_checkout_credit_card credit_card?;
-    boolean fraudulent?;
-    decimal id?;
-    SinglePaymentResponse_payment_next_action next_action?;
-    anydata? payment_processing_error_message?;
-    anydata? 'transaction?;
-    string unique_token?;
-};
-
-public type AdminapiapiVersionpriceRulespriceRuleIddiscountCodesdiscountCodeIdJsonDiscountCode record {
-    @jsondata:Name {value: "usage_count"}
-    decimal usageCount?;
-    string code?;
-    @jsondata:Name {value: "updated_at"}
-    string updatedAt?;
-    @jsondata:Name {value: "created_at"}
-    string createdAt?;
-    decimal id?;
-};
-
-public type SinglePaymentResponse_payment record {
-    SinglePaymentResponse_payment_checkout checkout?;
-    anydata? credit_card?;
-    boolean fraudulent?;
-    decimal id?;
-    SinglePaymentResponse_payment_next_action next_action?;
-    anydata? payment_processing_error_message?;
-    SinglePaymentResponse_payment_checkout_transaction 'transaction?;
-    string unique_token?;
-};
-
-public type ThemeIdAssetsJsonBody record {
-    AdminapiapiVersionthemesthemeIdassetsJsonAsset asset?;
-};
-
-public type ReportList record {
-    SingleReportResponse_report[] reports?;
-};
-
-public type CreateCollection_custom_collection_image record {
-    string alt?;
-    string created_at?;
-    decimal height?;
-    string src?;
-    decimal width?;
-};
-
-public type SingleDraftOrder_draft_order_line_items record {
+public type ModifyDraftOrderDraftOrderLineItems record {
     string admin_graphql_api_id?;
     anydata? applied_discount?;
     boolean custom?;
@@ -6958,16 +6951,302 @@ public type SingleDraftOrder_draft_order_line_items record {
     anydata? vendor?;
 };
 
+public type SingleTheme record {
+    SingleThemeTheme theme?;
+};
+
+public type RejectCancellationRequestResponse record {
+    RejectCancellationRequestResponseFulfillmentOrder fulfillment_order?;
+};
+
+public type ReopenCloseOrderOrderTotalDiscountsSet record {
+    ReopenCloseOrderOrderTotalDiscountsSetPresentmentMoney presentment_money?;
+    ReopenCloseOrderOrderTotalDiscountsSetPresentmentMoney shop_money?;
+};
+
+public type CollectionListingResponseImage record {
+    string created_at?;
+    string src?;
+};
+
+public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdfulfillmentRequestJsonFulfillmentRequest record {
+    string message?;
+};
+
+public type MarketingEventIdEngagementsJsonBody record {
+    AdminapiapiVersionmarketingEventsmarketingEventIdengagementsJsonEngagements[] engagements?;
+};
+
+public type ApplicationChargeApplicationCharge record {
+    decimal api_client_id?;
+    anydata? charge_type?;
+    string confirmation_url?;
+    string created_at?;
+    string currency?;
+    string decorated_return_url?;
+    decimal id?;
+    string name?;
+    string price?;
+    string return_url?;
+    string status?;
+    boolean? test?;
+    string updated_at?;
+};
+
+# Represents the Queries record for the operation: retrievesFulfillmentsAssociatedWithAnOrder
+public type RetrievesFulfillmentsAssociatedWithAnOrderQueries record {
+    @http:Query {name: "created_at_min"}
+    string createdAtMin?;
+    @http:Query {name: "created_at_max"}
+    string createdAtMax?;
+    @http:Query {name: "updated_at_max"}
+    string updatedAtMax?;
+    @http:Query {name: "updated_at_min"}
+    string updatedAtMin?;
+    # Limit the amount of results.(default: 50)(maximum: 250) 
+    string 'limit?;
+    # A comma-separated list of fields to include in the response. 
+    string fields?;
+    @http:Query {name: "since_id"}
+    string sinceId?;
+};
+
+public type MarketingEventMarketingEvent record {
+    string admin_graphql_api_id?;
+    anydata? breadcrumb_id?;
+    string budget?;
+    string budget_type?;
+    string currency?;
+    anydata? description?;
+    anydata? ended_at?;
+    string event_type?;
+    decimal id?;
+    anydata? manage_url?;
+    anydata[] marketed_resources?;
+    anydata? marketing_activity_id?;
+    string marketing_channel?;
+    boolean paid?;
+    anydata? preview_url?;
+    string referring_domain?;
+    string remote_id?;
+    anydata? scheduled_to_end_at?;
+    string started_at?;
+    string utm_campaign?;
+    string utm_medium?;
+    string utm_source?;
+};
+
+public type SinglePageResponsePage record {
+    string admin_graphql_api_id?;
+    string author?;
+    string body_html?;
+    string created_at?;
+    string 'handle?;
+    decimal id?;
+    string published_at?;
+    decimal shop_id?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+};
+
+public type SingleProductProduct record {
+    string admin_graphql_api_id?;
+    string body_html?;
+    string created_at?;
+    string 'handle?;
+    decimal id?;
+    ProductsResponseImages image?;
+    ProductsResponseImages[] images?;
+    ProductListingsOptions[] options?;
+    string product_type?;
+    string published_at?;
+    string published_scope?;
+    string tags?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+    SingleProductProductVariants[] variants?;
+    string vendor?;
+};
+
+public type GiftCardsListGiftCards record {
+    anydata? api_client_id?;
+    string balance?;
+    string created_at?;
+    string currency?;
+    anydata? customer_id?;
+    anydata? disabled_at?;
+    string? expires_on?;
+    decimal id?;
+    string initial_value?;
+    string last_characters?;
+    anydata? line_item_id?;
+    anydata? note?;
+    anydata? order_id?;
+    anydata? template_suffix?;
+    string updated_at?;
+    anydata? user_id?;
+};
+
+public type ArticleArticle record {
+    string admin_graphql_api_id?;
+    string author?;
+    decimal blog_id?;
+    string body_html?;
+    string created_at?;
+    string 'handle?;
+    decimal id?;
+    ArticleArticleImage image?;
+    string? published_at?;
+    anydata? summary_html?;
+    string tags?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
+    anydata? user_id?;
+};
+
+public type SingleWebhook record {
+    SingleWebhookWebhook webhook?;
+};
+
+public type SingleDiscountCode record {
+    DiscountCodesDiscountCodes discount_code?;
+};
+
+public type ReopenCloseOrderOrderShippingLines record {
+    anydata? carrier_identifier?;
+    string code?;
+    anydata? delivery_category?;
+    anydata[] discount_allocations?;
+    string discounted_price?;
+    ReopenCloseOrderOrderTotalDiscountSet discounted_price_set?;
+    decimal id?;
+    anydata? phone?;
+    string price?;
+    ReopenCloseOrderOrderTotalDiscountSet price_set?;
+    anydata? requested_fulfillment_service_id?;
+    string 'source?;
+    anydata[] tax_lines?;
+    string title?;
+};
+
+public type Metafield record {
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt;
+    @jsondata:Name {value: "owner_id"}
+    int ownerId;
+    @jsondata:Name {value: "admin_graphql_api_id"}
+    string adminGraphqlApiId;
+    string namespace;
+    string? description?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt;
+    int id;
+    string 'type;
+    string value;
+    @jsondata:Name {value: "owner_resource"}
+    string ownerResource;
+    string 'key;
+};
+
+public type CancelFulfillmentOrderFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
+public type DiscountCodeDiscountCodeCreation record {
+    decimal codes_count?;
+    anydata? completed_at?;
+    string created_at?;
+    decimal failed_count?;
+    decimal id?;
+    decimal imported_count?;
+    decimal price_rule_id?;
+    anydata? started_at?;
+    string status?;
+    string updated_at?;
+};
+
+# The variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies.
+public type PresentmentPrice record {
+    @jsondata:Name {value: "compare_at_price"}
+    Price compareAtPrice?;
+    Price price?;
+};
+
+public type AdminapiapiVersionpriceRulespriceRuleIddiscountCodesdiscountCodeIdJsonDiscountCode record {
+    @jsondata:Name {value: "usage_count"}
+    decimal usageCount?;
+    string code?;
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
+    decimal id?;
+};
+
+public type OriginalFulfillmentOrderOriginalFulfillmentOrder record {
+    decimal assigned_location_id?;
+    OriginalFulfillmentOrderOriginalFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    OriginalFulfillmentOrderOriginalFulfillmentOrderLineItems[] line_items?;
+    decimal order_id?;
+    FulfillmentOrdersAssignedLocation origin?;
+    anydata[] outgoing_requests?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    anydata[] supported_actions?;
+};
+
+public type ThemeIdAssetsJsonBody record {
+    AdminapiapiVersionthemesthemeIdassetsJsonAsset asset?;
+};
+
+public type ReportList record {
+    ReportListReports[] reports?;
+};
+
 public type SingleFulfillment record {
-    FulfillmentListForOrder_fulfillments fulfillment?;
+    SingleFulfillmentFulfillment fulfillment?;
 };
 
 public type SinglePageResponse record {
-    SinglePageResponse_page page?;
+    SinglePageResponsePage page?;
 };
 
 public type UpdateRedirect record {
-    UpdateRedirect_redirect redirect?;
+    UpdateRedirectRedirect redirect?;
+};
+
+public type EngagementsEngagements record {
+    string? ad_spend?;
+    decimal clicks_count?;
+    anydata? comments_count?;
+    anydata? complaints_count?;
+    anydata? currency_code?;
+    anydata? fails_count?;
+    decimal? favorites_count?;
+    anydata? fetched_at?;
+    anydata? impressions_count?;
+    boolean is_cumulative?;
+    string occurred_on?;
+    anydata? sends_count?;
+    anydata? shares_count?;
+    anydata? unique_clicks_count?;
+    anydata? unique_views_count?;
+    anydata? unsubscribes_count?;
+    anydata? utc_offset?;
+    decimal views_count?;
 };
 
 public type AdminapiapiVersionblogsblogIdJsonBlog record {
@@ -6980,38 +7259,8 @@ public type ProvincesCount record {
 };
 
 public type DisputeEvidenceResponse record {
-    DisputeEvidence dispute_evidence?;
-};
-
-public type LocationsList_location record {
-    decimal id?;
-    string name?;
-};
-
-public type UpdateCheckoutResponse_checkout_shipping_address record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string country_code?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string province_code?;
-    string zip?;
-};
-
-public type AvailableShippingRates_shipping_rates record {
-    AvailableShippingRates_checkout checkout?;
-    anydata? delivery_range?;
-    string 'handle?;
-    string id?;
-    boolean phone_required?;
-    string price?;
-    string title?;
+    @jsondata:Name {value: "dispute_evidence"}
+    DisputeEvidence disputeEvidence?;
 };
 
 public type AdminapiapiVersioncustomerscustomerIdaddressesaddressIdJsonAddress record {
@@ -7025,117 +7274,65 @@ public type AdminapiapiVersioncountriescountryIdJsonCountry record {
 };
 
 public type CreateCollection record {
-    CreateCollection_custom_collection custom_collection?;
+    CreateCollectionCustomCollection custom_collection?;
 };
 
-public type CreateProductResponse_product record {
-    string admin_graphql_api_id?;
-    string body_html?;
+public type ShippingRateResponseCheckout record {
+    anydata? applied_discount?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? billing_address?;
+    anydata? completed_at?;
     string created_at?;
-    string 'handle?;
-    decimal id?;
-    record {}? image?;
-    anydata[] images?;
-    CreateProductResponse_product_options[] options?;
-    string product_type?;
-    string? published_at?;
-    string published_scope?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-    CreateProductResponse_product_variants[] variants?;
-    string vendor?;
-};
-
-public type Blogs_blogs record {
-    string admin_graphql_api_id?;
-    string commentable?;
-    string created_at?;
-    anydata? feedburner?;
-    anydata? feedburner_location?;
-    string 'handle?;
-    decimal id?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
-public type UpdateProduct_product_variants record {
-    string admin_graphql_api_id?;
-    string barcode?;
-    anydata? compare_at_price?;
-    string created_at?;
-    string fulfillment_service?;
-    decimal grams?;
-    decimal id?;
-    decimal? image_id?;
-    decimal inventory_item_id?;
-    string inventory_management?;
-    string inventory_policy?;
-    decimal inventory_quantity?;
-    decimal old_inventory_quantity?;
-    string option1?;
-    anydata? option2?;
-    anydata? option3?;
-    decimal position?;
-    ModifyProductVariant_variant_presentment_prices[] presentment_prices?;
-    string price?;
-    decimal? product_id?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
-    string title?;
-    string updated_at?;
-    decimal weight?;
-    string weight_unit?;
-};
-
-public type PagesListResponse_pages record {
-    string admin_graphql_api_id?;
-    string author?;
-    string? body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    string published_at?;
-    decimal shop_id?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
-public type ReopenCloseOrder_order_shipping_lines record {
-    anydata? carrier_identifier?;
-    string code?;
-    anydata? delivery_category?;
-    anydata[] discount_allocations?;
-    string discounted_price?;
-    CancelFulfillment_fulfillment_total_discount_set discounted_price_set?;
-    decimal id?;
-    anydata? phone?;
-    string price?;
-    CancelFulfillment_fulfillment_total_discount_set price_set?;
-    anydata? requested_fulfillment_service_id?;
-    string 'source?;
-    anydata[] tax_lines?;
-    string title?;
-};
-
-public type OriginalFulfillmentOrder_original_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
+    anydata? credit_card?;
+    string currency?;
+    decimal customer_id?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    anydata? discount_code?;
     string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
+    anydata[] gift_cards?;
+    anydata? legal_notice_url?;
+    SinglePaymentResponsePaymentCheckoutLineItems[] line_items?;
+    anydata? location_id?;
+    string name?;
+    string? note?;
+    SinglePaymentResponsePaymentCheckoutNoteAttributes note_attributes?;
+    anydata? 'order?;
+    anydata? order_id?;
+    anydata? order_status_url?;
+    string payment_due?;
+    string payment_url?;
+    anydata[] payments?;
+    anydata? phone?;
+    string presentment_currency?;
+    anydata? privacy_policy_url?;
+    anydata? refund_policy_url?;
+    boolean requires_shipping?;
+    anydata? reservation_time?;
+    decimal reservation_time_left?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? shipping_address?;
+    SinglePaymentResponsePaymentCheckoutShippingLine? shipping_line?;
+    anydata? shipping_policy_url?;
+    SinglePaymentResponsePaymentCheckoutShippingRate shipping_rate?;
+    anydata? shopify_payments_account_id?;
+    anydata? source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    anydata? subscription_policy_url?;
+    string subtotal_price?;
+    boolean tax_exempt?;
+    anydata[] tax_lines?;
+    anydata[] tax_manipulations?;
+    boolean taxes_included?;
+    anydata? terms_of_sale_url?;
+    anydata? terms_of_service_url?;
+    string token?;
+    string total_line_items_price?;
+    string total_price?;
+    string total_tax?;
+    string total_tip_received?;
+    string updated_at?;
+    anydata? user_id?;
+    string web_url?;
 };
 
 # Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
@@ -7175,33 +7372,33 @@ public type ConnectionConfig record {|
     boolean laxDataBinding = true;
 |};
 
-public type Customer_email_marketing_consent record {
-    string state?;
-    string opt_in_level?;
-    string consent_updated_at?;
+public type UpdateProvinceResponseProvince record {
+    string code?;
+    decimal country_id?;
+    decimal id?;
+    string name?;
+    anydata? shipping_zone_id?;
+    decimal tax?;
+    string tax_name?;
+    decimal tax_percentage?;
+    string tax_type?;
+};
+
+public type ProductVariantsPresentmentPrices record {
+    anydata? compare_at_price?;
+    ReopenCloseOrderOrderPriceSetPresentmentMoney price?;
 };
 
 public type UpdateWebhook record {
-    CreateWebhook_webhook webhook?;
+    UpdateWebhookWebhook webhook?;
 };
 
 public type SingleCarrierService record {
-    SingleCarrierService_carrier_service carrier_service?;
+    SingleCarrierServiceCarrierService carrier_service?;
 };
 
 public type OwnerResourceMetafieldsJsonBody record {
     AdminapiapiVersionownerIdownerResourcemetafieldsJsonMetafield metafield?;
-};
-
-public type AcceptFulfillmentResponse_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfPages
@@ -7232,16 +7429,8 @@ public type RetrievesAListOfPagesQueries record {
     string fields?;
 };
 
-public type SingleCollection_collection_image record {
-    string alt?;
-    string created_at?;
-    decimal height?;
-    string src?;
-    decimal width?;
-};
-
 public type MarketingEvent record {
-    MarketingEvent_marketing_event marketing_event?;
+    MarketingEventMarketingEvent marketing_event?;
 };
 
 public type DraftOrdersdraftOrderIdJsonBody record {
@@ -7249,115 +7438,79 @@ public type DraftOrdersdraftOrderIdJsonBody record {
     AdminapiapiVersiondraftOrdersdraftOrderIdJsonDraftOrder draftOrder?;
 };
 
-public type RejectCancellationRequestResponse_fulfillment_order_origin record {
-    anydata? address1?;
-    anydata? address2?;
-    anydata? city?;
-    string country_code?;
-    decimal location_id?;
-    string name?;
-    anydata? phone?;
-    anydata? province?;
-    anydata? zip?;
-};
-
-public type DraftOrders_customer record {
-    boolean accepts_marketing?;
-    string accepts_marketing_updated_at?;
-    string admin_graphql_api_id?;
-    string created_at?;
-    string currency?;
-    AbandonedCheckouts_customer_default_address default_address?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    decimal last_order_id?;
-    string last_order_name?;
-    anydata? marketing_opt_in_level?;
-    anydata? multipass_identifier?;
-    anydata? note?;
-    decimal orders_count?;
-    anydata? phone?;
-    string state?;
-    string tags?;
-    boolean tax_exempt?;
-    anydata[] tax_exemptions?;
-    string total_spent?;
-    string updated_at?;
-    boolean verified_email?;
-};
-
 # The Refund object.
 public type RefundObject record {
     Refund refund?;
 };
 
+public type CompleteDraftOrderDraftOrderAppliedDiscount record {
+    string amount?;
+    string description?;
+    anydata? title?;
+    string value?;
+    string value_type?;
+};
+
 public type ProductsResponse record {
-    ProductsResponse_products[] products?;
+    ProductsResponseProducts[] products?;
 };
 
 public type CancellationResponse record {
-    CancellationResponse_fulfillment_order fulfillment_order?;
+    CancellationResponseFulfillmentOrder fulfillment_order?;
 };
 
-public type CompleteCheckout_checkout_line_items record {
-    anydata[] applied_discounts?;
-    anydata? compare_at_price?;
-    string fulfillment_service?;
-    boolean gift_card?;
-    decimal grams?;
-    string id?;
-    string image_url?;
-    string 'key?;
-    string line_price?;
-    string price?;
+public type InvoiceResponseDraftOrderInvoice record {
+    string[] bcc?;
+    string custom_message?;
+    string 'from?;
+    string subject?;
+    string to?;
+};
+
+public type ProductListingAppResponseProductListing record {
+    boolean available?;
+    string body_html?;
+    string created_at?;
+    string 'handle?;
+    anydata[] images?;
+    ProductListingAppResponseProductListingOptions[] options?;
     decimal? product_id?;
-    record {} properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
+    string product_type?;
+    string published_at?;
+    string tags?;
     string title?;
-    decimal? variant_id?;
-    string? variant_title?;
+    string updated_at?;
+    ProductListingAppResponseProductListingVariants[] variants?;
     string vendor?;
 };
 
-public type CountriesList_countries record {
-    string code?;
-    decimal id?;
-    string name?;
-    CountriesList_provinces[] provinces?;
-    decimal tax?;
-    string tax_name?;
-};
-
-public type SingleOrderRisk_risk record {
-    boolean cause_cancel?;
-    anydata? checkout_id?;
-    boolean display?;
-    decimal id?;
-    string merchant_message?;
-    string message?;
-    decimal order_id?;
-    string recommendation?;
-    string score?;
-    string 'source?;
-};
-
-public type CollectionListingResponse_image record {
-    string created_at?;
-    string src?;
-};
-
 public type CompleteCheckoutResponse record {
-    CompleteCheckoutResponse_checkout checkout?;
+    CompleteCheckoutResponseCheckout checkout?;
 };
 
 public type AdminapiapiVersiondraftOrdersdraftOrderIdJsonDraftOrder record {
     string? note?;
     decimal id?;
+};
+
+public type SingleChargeRecurringApplicationCharge record {
+    anydata? activated_on?;
+    decimal api_client_id?;
+    string billing_on?;
+    anydata? cancelled_on?;
+    string confirmation_url?;
+    string created_at?;
+    string currency?;
+    string decorated_return_url?;
+    decimal id?;
+    string name?;
+    string price?;
+    string return_url?;
+    string status?;
+    anydata? test?;
+    decimal trial_days?;
+    anydata? trial_ends_on?;
+    string updated_at?;
 };
 
 # Represents the Queries record for the operation: searchesForCustomersThatMatchASuppliedQuery
@@ -7377,22 +7530,28 @@ public type ProductIdAppResponse record {
     decimal[] productIds?;
 };
 
-public type TenderTransactions_payment_details record {
-    string credit_card_company?;
-    string credit_card_number?;
-};
-
-public type UpdateDiscountCode_discount_code record {
-    string code?;
+public type LocationListLocations record {
+    boolean active?;
+    string? address1?;
+    anydata? address2?;
+    string admin_graphql_api_id?;
+    string? city?;
+    string country?;
+    string country_code?;
+    string country_name?;
     string created_at?;
     decimal id?;
-    decimal price_rule_id?;
+    boolean legacy?;
+    string name?;
+    anydata? phone?;
+    string? province?;
+    string? province_code?;
     string updated_at?;
-    decimal usage_count?;
+    string? zip?;
 };
 
 public type ArticleComment record {
-    ArticleComment_comment comment?;
+    ArticleCommentComment comment?;
 };
 
 public type AdminapiapiVersionfulfillmentServicesJsonFulfillmentService record {
@@ -7408,23 +7567,25 @@ public type AdminapiapiVersionfulfillmentServicesJsonFulfillmentService record {
     boolean trackingSupport?;
 };
 
-public type CreateShopFeedback_resource_feedback record {
-    string created_at?;
-    string feedback_generated_at?;
-    anydata[] messages?;
-    decimal resource_id?;
-    string resource_type?;
-    anydata? resource_updated_at?;
-    string state?;
-    string updated_at?;
+public type UpdateOrderRiskRisk record {
+    boolean cause_cancel?;
+    anydata? checkout_id?;
+    boolean display?;
+    decimal id?;
+    string merchant_message?;
+    string message?;
+    decimal order_id?;
+    string recommendation?;
+    string score?;
+    string 'source?;
 };
 
 public type ModifyProductVariant record {
-    ModifyProductVariant_variant variant?;
+    ModifyProductVariantVariant variant?;
 };
 
 public type UpdateCountryTaxRate record {
-    UpdateCountryTaxRate_country country?;
+    UpdateCountryTaxRateCountry country?;
 };
 
 public type GiftCardIdDisableJsonBody record {
@@ -7432,17 +7593,78 @@ public type GiftCardIdDisableJsonBody record {
     AdminapiapiVersiongiftCardsgiftCardIddisableJsonGiftCard giftCard?;
 };
 
-public type MobilePlatformApplicationResponse_mobile_platform_application record {
-    anydata? app_clip_application_id?;
-    string application_id?;
+public type SingleOrderResponseOrder record {
+    string admin_graphql_api_id?;
+    anydata? app_id?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
+    string browser_ip?;
+    boolean buyer_accepts_marketing?;
+    anydata? cancel_reason?;
+    anydata? cancelled_at?;
+    string cart_token?;
+    decimal checkout_id?;
+    string checkout_token?;
+    ReopenCloseOrderOrderClientDetails client_details?;
+    anydata? closed_at?;
+    boolean confirmed?;
+    string contact_email?;
     string created_at?;
-    boolean enabled_app_clips?;
-    boolean enabled_shared_webcredentials?;
-    boolean enabled_universal_or_app_links?;
+    string currency?;
+    ReopenCloseOrderOrderCustomer customer?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    ReopenCloseOrderOrderDiscountApplications[] discount_applications?;
+    ReopenCloseOrderOrderDiscountCodes[] discount_codes?;
+    string email?;
+    string financial_status?;
+    anydata? fulfillment_status?;
+    ReopenCloseOrderOrderFulfillments[] fulfillments?;
+    string gateway?;
     decimal id?;
-    string platform?;
-    anydata[] sha256_cert_fingerprints?;
+    string landing_site?;
+    string landing_site_ref?;
+    ReopenCloseOrderOrderLineItems[] line_items?;
+    anydata? location_id?;
+    string name?;
+    anydata? note?;
+    ReopenCloseOrderOrderNoteAttributes[] note_attributes?;
+    decimal number?;
+    decimal order_number?;
+    string order_status_url?;
+    ReopenCloseOrderOrderPaymentDetails payment_details?;
+    string[] payment_gateway_names?;
+    string phone?;
+    string presentment_currency?;
+    string processed_at?;
+    string processing_method?;
+    string reference?;
+    string referring_site?;
+    ReopenCloseOrderOrderRefunds[] refunds?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    ReopenCloseOrderOrderShippingLines[] shipping_lines?;
+    string source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    string subtotal_price?;
+    ReopenCloseOrderOrderSubtotalPriceSet subtotal_price_set?;
+    string tags?;
+    ReopenCloseOrderOrderTaxLines1[] tax_lines?;
+    boolean taxes_included?;
+    boolean test?;
+    string token?;
+    string total_discounts?;
+    ReopenCloseOrderOrderTotalDiscountsSet total_discounts_set?;
+    string total_line_items_price?;
+    ReopenCloseOrderOrderSubtotalPriceSet total_line_items_price_set?;
+    string total_price?;
+    ReopenCloseOrderOrderTotalPriceSet total_price_set?;
+    string total_price_usd?;
+    ReopenCloseOrderOrderTotalDiscountSet total_shipping_price_set?;
+    string total_tax?;
+    ReopenCloseOrderOrderPriceSet2 total_tax_set?;
+    decimal total_weight?;
     string updated_at?;
+    anydata? user_id?;
 };
 
 # Represents the Queries record for the operation: retrievesASingleCommentByItsId
@@ -7451,102 +7673,56 @@ public type RetrievesASingleCommentByItsIdQueries record {
     string fields?;
 };
 
-public type AbandonedCheckouts_customer record {
-    boolean accepts_marketing?;
-    string accepts_marketing_updated_at?;
-    string admin_graphql_api_id?;
-    string created_at?;
-    string currency?;
-    AbandonedCheckouts_customer_default_address default_address?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    decimal last_order_id?;
-    string last_order_name?;
-    anydata? marketing_opt_in_level?;
-    anydata? multipass_identifier?;
-    anydata? note?;
-    decimal orders_count?;
-    anydata? phone?;
-    string state?;
-    string tags?;
-    boolean tax_exempt?;
-    anydata[] tax_exemptions?;
-    string total_spent?;
-    string updated_at?;
-    boolean verified_email?;
+public type OrderResponse record {
+    OrderResponseOrder 'order?;
 };
 
-public type CreateFulfillmentOrder_fulfillment_line_items record {
+public type CreateProductResponseProductVariants record {
     string admin_graphql_api_id?;
-    anydata[] discount_allocations?;
-    decimal fulfillable_quantity?;
+    anydata? barcode?;
+    anydata? compare_at_price?;
+    string created_at?;
     string fulfillment_service?;
-    string fulfillment_status?;
-    boolean gift_card?;
     decimal grams?;
     decimal id?;
-    string name?;
+    anydata? image_id?;
+    decimal inventory_item_id?;
+    anydata? inventory_management?;
+    string inventory_policy?;
+    decimal inventory_quantity?;
+    decimal old_inventory_quantity?;
+    string option1?;
+    string option2?;
+    anydata? option3?;
+    decimal position?;
+    CreateProductResponseProductPresentmentPrices[] presentment_prices?;
     string price?;
-    CancelFulfillment_fulfillment_price_set price_set?;
-    boolean product_exists?;
     decimal? product_id?;
-    anydata[] properties?;
-    decimal quantity?;
     boolean requires_shipping?;
     string? sku?;
-    anydata[] tax_lines?;
     boolean taxable?;
     string title?;
-    string total_discount?;
-    CancelFulfillment_fulfillment_total_discount_set total_discount_set?;
-    decimal? variant_id?;
-    anydata? variant_inventory_management?;
-    string? variant_title?;
-    anydata? vendor?;
-};
-
-public type OrderResponse record {
-    OrderResponse_order 'order?;
+    string updated_at?;
+    decimal weight?;
+    string weight_unit?;
 };
 
 public type ApiVersionRedirectsJsonBody record {
     AdminapiapiVersionredirectsJsonRedirect redirect?;
 };
 
-public type UpdateProduct_product_image record {
-    string admin_graphql_api_id?;
-    anydata? alt?;
-    string created_at?;
-    decimal height?;
+public type ArticlesarticleIdJsonBody record {
+    AdminapiapiVersionblogsblogIdarticlesarticleIdJsonArticle article?;
+};
+
+public type CollectResponseCollect record {
+    decimal collection_id?;
+    anydata? created_at?;
     decimal id?;
     decimal position?;
     decimal? product_id?;
-    string src?;
-    string updated_at?;
-    anydata[] variant_ids?;
-    decimal width?;
-};
-
-public type SingleCollection_collection record {
-    string admin_graphql_api_id?;
-    string body_html?;
-    string collection_type?;
-    string 'handle?;
-    decimal id?;
-    SingleCollection_collection_image image?;
-    decimal products_count?;
-    string published_at?;
-    string published_scope?;
-    string sort_order?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
-public type ArticlesarticleIdJsonBody record {
-    AdminapiapiVersionblogsblogIdarticlesarticleIdJsonArticle article?;
+    string sort_value?;
+    anydata? updated_at?;
 };
 
 public type AdminapiapiVersionmobilePlatformApplicationsmobilePlatformApplicationIdJsonMobilePlatformApplication record {
@@ -7570,6 +7746,14 @@ public type AdminapiapiVersionmobilePlatformApplicationsmobilePlatformApplicatio
     string platform?;
 };
 
+public type AccountInviteCustomerInvite record {
+    string[] bcc?;
+    string custom_message?;
+    string 'from?;
+    string subject?;
+    string to?;
+};
+
 # Represents the Queries record for the operation: retrievesAListOfAllMarketingEvents
 public type RetrievesAListOfAllMarketingEventsQueries record {
     # The number of marketing events to skip. 
@@ -7584,34 +7768,34 @@ public type UpdatesTheCappedAmountOfARecurringApplicationChargeQueries record {
     string recurringApplicationChargeCappedAmount?;
 };
 
-public type CreateProductResponse_product_variants record {
-    string admin_graphql_api_id?;
-    anydata? barcode?;
-    anydata? compare_at_price?;
-    string created_at?;
-    string fulfillment_service?;
-    decimal grams?;
+public type MoveFulfillmentOrderResponseOriginalFulfillmentOrder record {
+    FulfillmentOrdersAssignedLocation assigned_location?;
+    decimal assigned_location_id?;
+    MoveFulfillmentOrderResponseOriginalFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
     decimal id?;
-    anydata? image_id?;
-    decimal inventory_item_id?;
-    anydata? inventory_management?;
-    string inventory_policy?;
-    decimal inventory_quantity?;
-    decimal old_inventory_quantity?;
-    string option1?;
-    string option2?;
-    anydata? option3?;
-    decimal position?;
-    CreateProductResponse_product_presentment_prices[] presentment_prices?;
-    string price?;
-    decimal? product_id?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
-    string title?;
-    string updated_at?;
-    decimal weight?;
-    string weight_unit?;
+    MoveFulfillmentOrderResponseOriginalFulfillmentOrderLineItems[] line_items?;
+    anydata[] merchant_requests?;
+    decimal order_id?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    anydata[] supported_actions?;
+};
+
+public type MoveFulfillmentOrderResponseOriginalFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
 };
 
 # Represents the Queries record for the operation: retrievesAPageCount
@@ -7634,71 +7818,31 @@ public type RetrievesAPageCountQueries record {
     string title?;
 };
 
-public type Article_article record {
-    string admin_graphql_api_id?;
-    string author?;
-    decimal blog_id?;
-    string body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    Article_article_image image?;
-    string? published_at?;
-    anydata? summary_html?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-    anydata? user_id?;
-};
-
 # Represents the Queries record for the operation: retrievesASingleCustomCollection
 public type RetrievesASingleCustomCollectionQueries record {
     # Show only certain fields, specified by a comma-separated list of field names. 
     string fields?;
 };
 
-public type ProductListingAppResponse_product_listing_options record {
-    decimal id?;
-    string name?;
-    decimal position?;
-    decimal? product_id?;
-    string[] values?;
+public type ReopenCloseOrderOrderSubtotalPriceSet record {
+    ReopenCloseOrderOrderSubtotalPriceSetPresentmentMoney presentment_money?;
+    ReopenCloseOrderOrderSubtotalPriceSetPresentmentMoney shop_money?;
 };
 
 # The Order object to be created.
 public type CreateOrder record {
-    ReopenCloseOrder_order 'order?;
-};
-
-public type RecurringApplicationCharges_recurring_application_charges record {
-    anydata? activated_on?;
-    decimal api_client_id?;
-    string billing_on?;
-    anydata? cancelled_on?;
-    string created_at?;
-    string currency?;
-    string decorated_return_url?;
-    decimal id?;
-    string name?;
-    string price?;
-    string return_url?;
-    string status?;
-    anydata? test?;
-    decimal trial_days?;
-    anydata? trial_ends_on?;
-    string updated_at?;
+    ReopenCloseOrderOrder 'order?;
 };
 
 public type MoveFulfillmentOrderResponse record {
-    MoveFulfillmentOrderResponse_original_fulfillment_order original_fulfillment_order?;
+    MoveFulfillmentOrderResponseOriginalFulfillmentOrder original_fulfillment_order?;
     @jsondata:Name {value: "remaining_fulfillment_order"}
     anydata? remainingFulfillmentOrder?;
-    MoveFulfillmentOrderResponse_moved_fulfillment_order moved_fulfillment_order?;
+    MoveFulfillmentOrderResponseMovedFulfillmentOrder moved_fulfillment_order?;
 };
 
 public type InventoryLevel record {
-    InventoryLevel_inventory_level inventory_level?;
+    InventoryLevelInventoryLevel inventory_level?;
 };
 
 public type PriceRulespriceRuleIdJsonBody record {
@@ -7706,41 +7850,100 @@ public type PriceRulespriceRuleIdJsonBody record {
     AdminapiapiVersionpriceRulespriceRuleIdJsonPriceRule priceRule?;
 };
 
-public type Disputes_disputes record {
-    string amount?;
-    string currency?;
-    string evidence_due_by?;
-    string? evidence_sent_on?;
-    anydata? finalized_on?;
-    decimal id?;
-    string initiated_at?;
-    string network_reason_code?;
-    decimal order_id?;
-    string reason?;
-    string status?;
-    string 'type?;
-};
-
 public type CarrierServiceList record {
     @jsondata:Name {value: "carrier_services"}
-    CarrierServiceList_carrier_services[] carrierServices?;
+    CarrierServiceListCarrierServices[] carrierServices?;
 };
 
 public type ConnectInventoryItem record {
-    ConnectInventoryItem_inventory_level inventory_level?;
+    ConnectInventoryItemInventoryLevel inventory_level?;
 };
 
 public type ScriptTagsList record {
     @jsondata:Name {value: "script_tags"}
-    SingleScriptTag_script_tag[] scriptTags?;
+    SingleScriptTagScriptTag[] scriptTags?;
 };
 
 public type ApiVersionCheckoutsJsonBody record {
     AdminapiapiVersioncheckoutsJsonCheckout checkout?;
 };
 
+public type CloseOrderResponseOrder record {
+    string admin_graphql_api_id?;
+    anydata? app_id?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
+    string browser_ip?;
+    boolean buyer_accepts_marketing?;
+    anydata? cancel_reason?;
+    anydata? cancelled_at?;
+    string cart_token?;
+    decimal checkout_id?;
+    string checkout_token?;
+    ReopenCloseOrderOrderClientDetails client_details?;
+    string closed_at?;
+    boolean confirmed?;
+    string contact_email?;
+    string created_at?;
+    string currency?;
+    ReopenCloseOrderOrderCustomer customer?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    ReopenCloseOrderOrderDiscountApplications[] discount_applications?;
+    ReopenCloseOrderOrderDiscountCodes[] discount_codes?;
+    string email?;
+    string financial_status?;
+    anydata? fulfillment_status?;
+    ReopenCloseOrderOrderFulfillments[] fulfillments?;
+    string gateway?;
+    decimal id?;
+    string landing_site?;
+    string landing_site_ref?;
+    ReopenCloseOrderOrderLineItems[] line_items?;
+    anydata? location_id?;
+    string name?;
+    anydata? note?;
+    ReopenCloseOrderOrderNoteAttributes[] note_attributes?;
+    decimal number?;
+    decimal order_number?;
+    string order_status_url?;
+    ReopenCloseOrderOrderPaymentDetails payment_details?;
+    string[] payment_gateway_names?;
+    string phone?;
+    string presentment_currency?;
+    string processed_at?;
+    string processing_method?;
+    string reference?;
+    string referring_site?;
+    ReopenCloseOrderOrderRefunds[] refunds?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    ReopenCloseOrderOrderShippingLines[] shipping_lines?;
+    string source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    string subtotal_price?;
+    ReopenCloseOrderOrderSubtotalPriceSet subtotal_price_set?;
+    string tags?;
+    ReopenCloseOrderOrderTaxLines1[] tax_lines?;
+    boolean taxes_included?;
+    boolean test?;
+    string token?;
+    string total_discounts?;
+    ReopenCloseOrderOrderTotalDiscountsSet total_discounts_set?;
+    string total_line_items_price?;
+    ReopenCloseOrderOrderSubtotalPriceSet total_line_items_price_set?;
+    string total_price?;
+    ReopenCloseOrderOrderTotalPriceSet total_price_set?;
+    string total_price_usd?;
+    ReopenCloseOrderOrderTotalDiscountSet total_shipping_price_set?;
+    string total_tax?;
+    ReopenCloseOrderOrderPriceSet2 total_tax_set?;
+    decimal total_weight?;
+    string updated_at?;
+    anydata? user_id?;
+};
+
 public type FulfillmentOrder record {
-    FulfillmentOrder_fulfillment_order fulfillment_order?;
+    FulfillmentOrderFulfillmentOrder fulfillment_order?;
 };
 
 # Represents the Queries record for the operation: retrievesAnOrderCount
@@ -7761,13 +7964,87 @@ public type RetrievesAnOrderCountQueries record {
     string status?;
 };
 
-public type SinglePayout_payout record {
+public type CountriesListCountries record {
+    string code?;
+    decimal id?;
+    string name?;
+    CountriesListProvinces[] provinces?;
+    decimal tax?;
+    string tax_name?;
+};
+
+public type SingleRedirectRedirect record {
+    decimal id?;
+    string path?;
+    string target?;
+};
+
+public type OriginalFulfillmentOrderOriginalFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+public type UpdateMarketingEventMarketingEvent record {
+    string admin_graphql_api_id?;
+    anydata? breadcrumb_id?;
+    string budget?;
+    string budget_type?;
+    string currency?;
+    anydata? description?;
+    string ended_at?;
+    string event_type?;
+    decimal id?;
+    anydata? manage_url?;
+    anydata[] marketed_resources?;
+    anydata? marketing_activity_id?;
+    string marketing_channel?;
+    boolean paid?;
+    anydata? preview_url?;
+    string referring_domain?;
+    string remote_id?;
+    string scheduled_to_end_at?;
+    string started_at?;
+    string utm_campaign?;
+    string utm_medium?;
+    string utm_source?;
+};
+
+public type ReopenCloseOrderOrderNoteAttributes record {
+    string name?;
+    string value?;
+};
+
+public type SingleDisputeDispute record {
     string amount?;
     string currency?;
-    string date?;
+    string evidence_due_by?;
+    anydata? evidence_sent_on?;
+    anydata? finalized_on?;
     decimal id?;
+    string initiated_at?;
+    string network_reason_code?;
+    decimal order_id?;
+    string reason?;
     string status?;
-    SinglePayout_payout_summary summary?;
+    string 'type?;
+};
+
+public type ReopenCloseOrderOrderPaymentDetails record {
+    anydata? avs_result_code?;
+    anydata? credit_card_bin?;
+    string credit_card_company?;
+    string credit_card_number?;
+    anydata? cvv_result_code?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfCustomers
@@ -7792,27 +8069,29 @@ public type RetrievesAListOfCustomersQueries record {
 
 public type CollectionList record {
     @jsondata:Name {value: "custom_collections"}
-    CollectionList_custom_collections[] customCollections?;
+    CollectionListCustomCollections[] customCollections?;
 };
 
-public type OriginalFulfillmentOrder_submitted_fulfillment_order_request_options record {
-    boolean notify_customer?;
-};
-
-public type CollectionListingResponse_collection_listings record {
-    string? body_html?;
-    decimal collection_id?;
-    record {}? default_product_image?;
+public type SingleArticleArticle record {
+    string admin_graphql_api_id?;
+    string author?;
+    decimal blog_id?;
+    string body_html?;
+    string created_at?;
     string 'handle?;
-    CollectionListingResponse_image? image?;
+    decimal id?;
+    SingleArticleArticleImage image?;
     string published_at?;
-    string sort_order?;
+    anydata? summary_html?;
+    string tags?;
+    anydata? template_suffix?;
     string title?;
     string updated_at?;
+    decimal user_id?;
 };
 
 public type CreateMarketingEvent record {
-    CreateMarketingEvent_marketing_event marketing_event?;
+    CreateMarketingEventMarketingEvent marketing_event?;
 };
 
 public type ApiVersionPagesJsonBody record {
@@ -7834,15 +8113,15 @@ public type RetrievesAListOfProvincesForACountryQueries record {
 };
 
 public type InventoryItem record {
-    InventoryItem_inventory_item inventory_item?;
+    InventoryItemInventoryItem inventory_item?;
 };
 
 public type SingleProduct record {
-    SingleProduct_product product?;
+    SingleProductProduct product?;
 };
 
 public type UpdateDiscountCode record {
-    UpdateDiscountCode_discount_code discount_code?;
+    UpdateDiscountCodeDiscountCode discount_code?;
 };
 
 public type SmartCollectionssmartCollectionIdJsonBody record {
@@ -7850,72 +8129,105 @@ public type SmartCollectionssmartCollectionIdJsonBody record {
     AdminapiapiVersionsmartCollectionssmartCollectionIdJsonSmartCollection smartCollection?;
 };
 
-public type AbandonedCheckouts_line_items record {
-    anydata[] applied_discounts?;
+public type CreateProductResponseProductPresentmentPrices record {
     anydata? compare_at_price?;
-    anydata? country_code_of_origin?;
-    anydata[] country_hs_codes?;
-    anydata? destination_location_id?;
+    ReopenCloseOrderOrderTotalDiscountSetPresentmentMoney price?;
+};
+
+public type OrderResponseOrderCustomer record {
+    boolean accepts_marketing?;
+    string accepts_marketing_updated_at?;
+    string admin_graphql_api_id?;
+    string created_at?;
+    string currency?;
+    OrderResponseOrderCustomerDefaultAddress default_address?;
+    string email?;
+    string? first_name?;
+    decimal id?;
+    string? last_name?;
+    decimal last_order_id?;
+    string last_order_name?;
+    anydata? marketing_opt_in_level?;
+    anydata? multipass_identifier?;
+    anydata? note?;
+    decimal orders_count?;
+    anydata? phone?;
+    string state?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_exemptions?;
+    string total_spent?;
+    string updated_at?;
+    boolean verified_email?;
+};
+
+public type FulfillmentListLineItems record {
+    string admin_graphql_api_id?;
+    anydata[] discount_allocations?;
+    decimal fulfillable_quantity?;
     string fulfillment_service?;
+    string fulfillment_status?;
     boolean gift_card?;
     decimal grams?;
-    anydata? harmonized_system_code?;
-    decimal 'key?;
-    string line_price?;
-    anydata? origin_location_id?;
+    decimal id?;
+    string name?;
     string price?;
+    ReopenCloseOrderOrderTotalDiscountsSet price_set?;
+    boolean product_exists?;
     decimal? product_id?;
-    anydata? properties?;
-    anydata? province_code_of_origin?;
+    anydata[] properties?;
     decimal quantity?;
     boolean requires_shipping?;
     string? sku?;
     anydata[] tax_lines?;
     boolean taxable?;
     string title?;
-    anydata? unit_price_measurement?;
-    anydata? user_id?;
+    string total_discount?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discount_set?;
     decimal? variant_id?;
-    anydata? variant_price?;
+    anydata? variant_inventory_management?;
     string? variant_title?;
-    string vendor?;
+    anydata? vendor?;
 };
 
-public type CreateProductResponse_product_options record {
-    decimal id?;
-    string name?;
-    decimal position?;
-    decimal? product_id?;
-    string[] values?;
-};
-
-public type ApplicationChargeResponse_recurring_application_charge record {
-    anydata? activated_on?;
-    decimal api_client_id?;
-    decimal balance_remaining?;
-    decimal balance_used?;
-    anydata? billing_on?;
-    anydata? cancelled_on?;
-    string capped_amount?;
-    string confirmation_url?;
+public type SingleWebhookWebhook record {
+    string address?;
+    string api_version?;
     string created_at?;
-    string currency?;
-    string decorated_return_url?;
+    anydata[] fields?;
+    string format?;
     decimal id?;
-    string name?;
-    string price?;
-    string return_url?;
-    decimal risk_level?;
-    string status?;
-    boolean? test?;
-    decimal trial_days?;
-    anydata? trial_ends_on?;
+    anydata[] metafield_namespaces?;
+    anydata[] private_metafield_namespaces?;
+    string topic?;
     string updated_at?;
 };
 
-public type ShippingRateResponse_checkout record {
+public type UpdateCarrierServiceCarrierService record {
+    boolean active?;
+    string admin_graphql_api_id?;
+    string callback_url?;
+    string carrier_service_type?;
+    string format?;
+    decimal id?;
+    string name?;
+    boolean service_discovery?;
+};
+
+public type MoveFulfillmentOrderResponseOriginalFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
+    decimal id?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
+    decimal shop_id?;
+    decimal? variant_id?;
+};
+
+public type UpdateCheckoutResponseCheckout record {
     anydata? applied_discount?;
-    CompleteCheckout_checkout_billing_address? billing_address?;
+    SinglePaymentResponsePaymentCheckoutBillingAddress? billing_address?;
     anydata? completed_at?;
     string created_at?;
     anydata? credit_card?;
@@ -7927,11 +8239,11 @@ public type ShippingRateResponse_checkout record {
     string email?;
     anydata[] gift_cards?;
     anydata? legal_notice_url?;
-    CompleteCheckout_checkout_line_items[] line_items?;
+    SinglePaymentResponsePaymentCheckoutLineItems[] line_items?;
     anydata? location_id?;
     string name?;
     string? note?;
-    CompleteCheckout_checkout_note_attributes note_attributes?;
+    SinglePaymentResponsePaymentCheckoutNoteAttributes note_attributes?;
     anydata? 'order?;
     anydata? order_id?;
     anydata? order_status_url?;
@@ -7945,10 +8257,10 @@ public type ShippingRateResponse_checkout record {
     boolean requires_shipping?;
     anydata? reservation_time?;
     decimal reservation_time_left?;
-    CompleteCheckout_checkout_billing_address? shipping_address?;
-    CompleteCheckout_checkout_shipping_line? shipping_line?;
+    UpdateCheckoutResponseCheckoutShippingAddress? shipping_address?;
+    anydata? shipping_line?;
     anydata? shipping_policy_url?;
-    CompleteCheckout_checkout_shipping_rate shipping_rate?;
+    anydata? shipping_rate?;
     anydata? shopify_payments_account_id?;
     anydata? source_identifier?;
     string source_name?;
@@ -7971,81 +8283,119 @@ public type ShippingRateResponse_checkout record {
     string web_url?;
 };
 
-public type InventoryLevels_inventory_levels record {
-    string admin_graphql_api_id?;
-    decimal available?;
-    decimal inventory_item_id?;
-    decimal location_id?;
-    string updated_at?;
-};
-
-public type CreateAuthorizationResponse_payment_checkout_payments record {
-    record {}? credit_card?;
-    boolean fraudulent?;
+public type ArticleCommentsComments record {
+    decimal article_id?;
+    string author?;
+    decimal blog_id?;
+    string body?;
+    string? body_html?;
+    string created_at?;
+    string email?;
     decimal id?;
-    anydata? payment_processing_error_message?;
-    CreateAuthorizationResponse_payment_checkout_transaction? 'transaction?;
-    string unique_token?;
+    string ip?;
+    anydata? published_at?;
+    string status?;
+    string updated_at?;
+    string user_agent?;
 };
 
 # A variant can be added to a Product resource to represent one version of a product with several options. The Product resource will have a variant for every possible combination of its options. Each product can have a maximum of three options and a maximum of 100 variants.
 public type ProductVariant record {
-    # The barcode, UPC, or ISBN number for the product.
-    string barcode?;
-    # The original price of the item before an adjustment or a sale.
-    string compare_at_price?;
-    # The date and time (ISO 8601 format) when the product variant was created.
-    string created_at?;
-    # The fulfillment service associated with the product variant. Valid values are manual or the handle of a fulfillment service.
-    string fulfillment_service?;
-    # The weight of the product variant in grams.
-    int grams?;
-    # The unique numeric identifier for the product variant.
-    int id?;
-    # The unique numeric identifier for a product's image. The image must be associated to the same product as the variant.
-    int image_id?;
-    # The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
-    int inventory_item_id?;
-    # The fulfillment service that tracks the number of items in stock for the product variant.
-    string inventory_management?;
-    # Whether customers are allowed to place an order for the product variant when it's out of stock.
-    string inventory_policy?;
-    # An aggregate of inventory across all locations. To adjust inventory at a specific location, use the InventoryLevel resource.
-    int inventory_quantity?;
-    # This property is deprecated. Use the InventoryLevel resource instead.
-    int old_inventory_quantity?;
-    # This property is deprecated. Use the InventoryLevel resource instead.
-    int inventory_quantity_adjustment?;
-    Option option?;
-    PresentmentPrices presentment_prices?;
-    # The order of the product variant in the list of product variants. The first position in the list is 1. The position of variants is indicated by the order in which they are listed.
-    int position?;
-    # The price of the product variant.
-    string price?;
-    # The unique numeric identifier for the product.
-    int product_id?;
-    # This property is deprecated. Use the `requires_shipping` property on the InventoryItem resource instead.
-    boolean requires_shipping?;
-    # A unique identifier for the product variant in the shop. Required in order to connect to a FulfillmentService.
-    string sku?;
-    # Whether a tax is charged when the product variant is sold.
-    boolean taxable?;
-    # This parameter applies only to the stores that have the Avalara AvaTax app installed. Specifies the Avalara tax code for the product variant.
-    string tax_code?;
+    @jsondata:Name {value: "presentment_prices"}
+    PresentmentPrices presentmentPrices?;
+    @jsondata:Name {value: "inventory_management"}
+    string inventoryManagement?;
+    @jsondata:Name {value: "old_inventory_quantity"}
+    int oldInventoryQuantity?;
+    @jsondata:Name {value: "requires_shipping"}
+    boolean requiresShipping?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
     # The title of the product variant. The title field is a concatenation of the option1, option2, and option3 fields. You can only update title indirectly using the option fields.
     string title?;
-    # The date and time when the product variant was last modified. Gets returned in ISO 8601 formatting.
-    string updated_at?;
+    @jsondata:Name {value: "inventory_quantity_adjustment"}
+    int inventoryQuantityAdjustment?;
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt?;
+    @jsondata:Name {value: "inventory_item_id"}
+    int inventoryItemId?;
+    # The price of the product variant.
+    string price?;
+    @jsondata:Name {value: "product_id"}
+    int productId?;
+    # The unique numeric identifier for the product variant.
+    int id?;
+    # The weight of the product variant in grams.
+    int grams?;
+    # A unique identifier for the product variant in the shop. Required in order to connect to a FulfillmentService.
+    string sku?;
+    # The barcode, UPC, or ISBN number for the product.
+    string barcode?;
+    @jsondata:Name {value: "inventory_quantity"}
+    int inventoryQuantity?;
+    @jsondata:Name {value: "compare_at_price"}
+    string compareAtPrice?;
+    @jsondata:Name {value: "fulfillment_service"}
+    string fulfillmentService?;
+    # Whether a tax is charged when the product variant is sold.
+    boolean taxable?;
     # The weight of the product variant in the unit system specified with weight_unit.
     int weight?;
-    # The unit of measurement that applies to the product variant's weight. If you don't specify a value for weight_unit, then the shop's default unit of measurement is applied. Valid values are g, kg, oz, and lb.
-    string weight_unit?;
+    @jsondata:Name {value: "inventory_policy"}
+    string inventoryPolicy?;
+    @jsondata:Name {value: "tax_code"}
+    string taxCode?;
+    @jsondata:Name {value: "weight_unit"}
+    string weightUnit?;
+    # The order of the product variant in the list of product variants. The first position in the list is 1. The position of variants is indicated by the order in which they are listed.
+    int position?;
+    @jsondata:Name {value: "image_id"}
+    int imageId?;
+    Option option?;
+};
+
+public type ReopenCloseOrderOrderTransactions record {
+    string admin_graphql_api_id?;
+    string amount?;
+    string authorization?;
+    string created_at?;
+    string currency?;
+    anydata? device_id?;
+    anydata? error_code?;
+    string gateway?;
+    decimal id?;
+    string kind?;
+    anydata? location_id?;
+    anydata? message?;
+    decimal order_id?;
+    decimal parent_id?;
+    string processed_at?;
+    record {} receipt?;
+    string source_name?;
+    string status?;
+    boolean test?;
+    anydata? user_id?;
 };
 
 # Represents the Queries record for the operation: retrieveCollectionListingsThatArePublishedToYourApp
 public type RetrieveCollectionListingsThatArePublishedToYourAppQueries record {
     # Amount of results(default: 50)(maximum: 1000) 
     string 'limit?;
+};
+
+public type SingleFulfillmentOrderFulfillmentOrder record {
+    FulfillmentOrdersAssignedLocation assigned_location?;
+    decimal assigned_location_id?;
+    SingleFulfillmentOrderFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    SingleFulfillmentOrderFulfillmentOrderLineItems[] line_items?;
+    anydata[] merchant_requests?;
+    decimal order_id?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
 };
 
 # Represents the Queries record for the operation: retrieveProductIdsThatArePublishedToYourApp
@@ -8055,18 +8405,92 @@ public type RetrieveProductIdsThatArePublishedToYourAppQueries record {
 };
 
 public type PaymentsResponse record {
-    PaymentsResponse_payments[] payments?;
+    PaymentsResponsePayments[] payments?;
 };
 
-public type SinglePaymentResponse_payment_checkout_credit_card record {
-    string brand?;
-    anydata? customer_id?;
-    decimal expiry_month?;
-    decimal expiry_year?;
-    string first_digits?;
+public type CreateFulfillmentOrderFulfillmentLineItems record {
+    string admin_graphql_api_id?;
+    anydata[] discount_allocations?;
+    decimal fulfillable_quantity?;
+    string fulfillment_service?;
+    string fulfillment_status?;
+    boolean gift_card?;
+    decimal grams?;
+    decimal id?;
+    string name?;
+    string price?;
+    ReopenCloseOrderOrderTotalDiscountsSet price_set?;
+    boolean product_exists?;
+    decimal? product_id?;
+    anydata[] properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    anydata[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    string total_discount?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discount_set?;
+    decimal? variant_id?;
+    anydata? variant_inventory_management?;
+    string? variant_title?;
+    anydata? vendor?;
+};
+
+public type CompleteCheckoutCheckoutShippingAddress record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
     string first_name?;
-    string last_digits?;
+    decimal id?;
     string last_name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
+};
+
+public type CustomerAddressCustomerAddress record {
+    string address1?;
+    string address2?;
+    string city?;
+    string company?;
+    string country?;
+    string country_code?;
+    string country_name?;
+    decimal customer_id?;
+    boolean default?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    string name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
+};
+
+public type CheckoutResponseCheckoutShippingRate record {
+    string id?;
+    string price?;
+    string title?;
+};
+
+public type CreateRefundRefund record {
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    string? note?;
+    anydata[] order_adjustments?;
+    decimal order_id?;
+    string processed_at?;
+    CreateRefundRefundRefundLineItems[] refund_line_items?;
+    boolean restock?;
+    CreateRefundRefundTransactions[] transactions?;
+    anydata? user_id?;
 };
 
 public type AdminapiapiVersionpriceRulespriceRuleIddiscountCodesJsonDiscountCode record {
@@ -8079,111 +8503,124 @@ public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfill
 };
 
 public type SingleFulfillmentOrder record {
-    SingleFulfillmentOrder_fulfillment_order fulfillment_order?;
+    SingleFulfillmentOrderFulfillmentOrder fulfillment_order?;
 };
 
 public type UpdateSmartCollection record {
-    UpdateSmartCollection_smart_collection smart_collection?;
+    UpdateSmartCollectionSmartCollection smart_collection?;
+};
+
+public type UpdatePriceRulePriceRule record {
+    string admin_graphql_api_id?;
+    anydata? allocation_limit?;
+    string allocation_method?;
+    string created_at?;
+    string customer_selection?;
+    string? ends_at?;
+    anydata[] entitled_collection_ids?;
+    anydata[] entitled_country_ids?;
+    anydata[] entitled_product_ids?;
+    anydata[] entitled_variant_ids?;
+    decimal id?;
+    boolean once_per_customer?;
+    anydata[] prerequisite_collection_ids?;
+    anydata[] prerequisite_customer_ids?;
+    anydata[] prerequisite_product_ids?;
+    anydata? prerequisite_quantity_range?;
+    anydata[] prerequisite_saved_search_ids?;
+    anydata? prerequisite_shipping_price_range?;
+    anydata? prerequisite_subtotal_range?;
+    UpdatePriceRulePriceRulePrerequisiteToEntitlementQuantityRatio prerequisite_to_entitlement_quantity_ratio?;
+    anydata[] prerequisite_variant_ids?;
+    string starts_at?;
+    string target_selection?;
+    string target_type?;
+    string title?;
+    string updated_at?;
+    anydata? usage_limit?;
+    string value?;
+    string value_type?;
 };
 
 public type AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdcancellationRequestacceptJsonCancellationRequest record {
     string message?;
 };
 
-public type UpdateOrderRisk_risk record {
-    boolean cause_cancel?;
-    anydata? checkout_id?;
-    boolean display?;
+public type RejectCancellationRequestResponseFulfillmentOrderLineItems record {
+    decimal fulfillable_quantity?;
+    decimal fulfillment_order_id?;
     decimal id?;
-    string merchant_message?;
-    string message?;
-    decimal order_id?;
-    string recommendation?;
-    string score?;
-    string 'source?;
-};
-
-public type FulfillmentOrders_fulfillment_orders record {
-    RejectCancellationRequestResponse_fulfillment_order_origin assigned_location?;
-    decimal assigned_location_id?;
-    FulfillmentOrders_destination destination?;
-    string fulfillment_service_handle?;
-    decimal id?;
-    FulfillmentOrders_line_items[] line_items?;
-    decimal order_id?;
-    anydata[] outgoing_requests?;
-    string request_status?;
+    decimal inventory_item_id?;
+    decimal line_item_id?;
+    decimal quantity?;
     decimal shop_id?;
-    string status?;
-    string[] supported_actions?;
+    decimal? variant_id?;
 };
 
-public type SinglePaymentResponse_payment_checkout_transaction record {
-    string amount?;
-    anydata? amount_in?;
-    anydata? amount_out?;
-    anydata? amount_rounding?;
-    anydata? authorization?;
-    string created_at?;
+public type CurrenciesListCurrencies record {
     string currency?;
-    anydata? device_id?;
-    anydata? error_code?;
-    string gateway?;
+    boolean enabled?;
+    string rate_updated_at?;
+};
+
+public type ProductVariantResponseVariant record {
+    string admin_graphql_api_id?;
+    string barcode?;
+    anydata? compare_at_price?;
+    string created_at?;
+    string fulfillment_service?;
+    decimal grams?;
     decimal id?;
-    string kind?;
-    anydata? location_id?;
-    anydata? message?;
-    anydata? parent_id?;
-    record {} receipt?;
-    string status?;
-    boolean test?;
-    anydata? transaction_group_id?;
-    anydata? user_id?;
+    decimal image_id?;
+    decimal inventory_item_id?;
+    string inventory_management?;
+    string inventory_policy?;
+    decimal inventory_quantity?;
+    decimal old_inventory_quantity?;
+    string option1?;
+    anydata? option2?;
+    anydata? option3?;
+    decimal position?;
+    ProductVariantsPresentmentPrices[] presentment_prices?;
+    string price?;
+    decimal? product_id?;
+    boolean requires_shipping?;
+    string? sku?;
+    string tax_code?;
+    boolean taxable?;
+    string title?;
+    string updated_at?;
+    decimal weight?;
+    string weight_unit?;
 };
 
-public type ApplicationChargeResult_application_charge record {
-    decimal api_client_id?;
-    anydata? charge_type?;
-    string created_at?;
-    string currency?;
-    string decorated_return_url?;
+public type FulfillmentFulfillmentLineItems record {
+    string admin_graphql_api_id?;
+    anydata[] discount_allocations?;
+    decimal fulfillable_quantity?;
+    string fulfillment_service?;
+    string fulfillment_status?;
+    boolean gift_card?;
+    decimal grams?;
     decimal id?;
     string name?;
     string price?;
-    string return_url?;
-    string status?;
-    anydata? test?;
-    string updated_at?;
-};
-
-public type CreateDraftOrder_draft_order record {
-    string admin_graphql_api_id?;
-    record {}? applied_discount?;
-    record {}? billing_address?;
-    anydata? completed_at?;
-    string created_at?;
-    string currency?;
-    record {}? customer?;
-    string? email?;
-    decimal id?;
-    anydata? invoice_sent_at?;
-    string invoice_url?;
-    CreateDraftOrder_draft_order_line_items[] line_items?;
-    string name?;
-    anydata? note?;
-    anydata[] note_attributes?;
-    anydata? order_id?;
-    record {}? shipping_address?;
-    anydata? shipping_line?;
-    string status?;
-    string subtotal_price?;
-    string tags?;
-    boolean tax_exempt?;
-    CreateDraftOrder_draft_order_tax_lines[] tax_lines?;
-    boolean taxes_included?;
-    string total_price?;
-    string total_tax?;
-    string updated_at?;
+    ReopenCloseOrderOrderTotalDiscountsSet price_set?;
+    boolean product_exists?;
+    decimal? product_id?;
+    anydata[] properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    anydata[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    string total_discount?;
+    ReopenCloseOrderOrderTotalDiscountSet total_discount_set?;
+    decimal? variant_id?;
+    anydata? variant_inventory_management?;
+    string? variant_title?;
+    anydata? vendor?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfProducts
@@ -8212,34 +8649,34 @@ public type RetrievesACountOfProductsQueries record {
 
 # The order risk for an order.
 public type OrderRisk record {
-    # Whether this order risk is severe enough to force the cancellation of the order. If true, then this order risk is included in the Order canceled message that's shown on the details page of the canceled order.
-    boolean cause_cancel?;
-    # The ID of the checkout that the order risk belongs to.
-    int checkout_id?;
-    # Whether the order risk is displayed on the order details page in the Shopify admin. If false, then this order risk is ignored when Shopify determines your app's overall risk level for the order.
-    boolean display?;
-    # A unique numeric identifier for the order risk.
-    int id?;
-    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
-    string merchant_message?;
-    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
-    string message?;
-    # The ID of the order that the order risk belongs to.
-    int order_id?;
-    # The recommended action given to the merchant. Valid values are, `cancel` - There is a high level of risk that this order is fraudulent. The merchant should cancel the order. `investigate` - There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. `accept` - There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
-    "cancel"|"investigate"|"accept" recommendation?;
     # A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent.
     string score?;
+    @jsondata:Name {value: "checkout_id"}
+    int checkoutId?;
+    # Whether the order risk is displayed on the order details page in the Shopify admin. If false, then this order risk is ignored when Shopify determines your app's overall risk level for the order.
+    boolean display?;
+    # The recommended action given to the merchant. Valid values are, `cancel` - There is a high level of risk that this order is fraudulent. The merchant should cancel the order. `investigate` - There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. `accept` - There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
+    "cancel"|"investigate"|"accept" recommendation?;
+    @jsondata:Name {value: "cause_cancel"}
+    boolean causeCancel?;
+    @jsondata:Name {value: "merchant_message"}
+    string merchantMessage?;
+    # A unique numeric identifier for the order risk.
+    int id?;
     # The source of the order risk.
     string 'source?;
+    # The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set to true.
+    string message?;
+    @jsondata:Name {value: "order_id"}
+    int orderId?;
 };
 
 public type AccountCurrentBalance record {
-    AccountCurrentBalance_balance[] balance?;
+    AccountCurrentBalanceBalance[] balance?;
 };
 
 public type ProductsList record {
-    ProductsList_products[] products?;
+    ProductsListProducts[] products?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfAllArticlesFromABlog
@@ -8261,50 +8698,39 @@ public type RetrievesACountOfAllArticlesFromABlogQueries record {
 };
 
 public type SingleProductImage record {
-    SingleProductImage_image image?;
+    ProductImagesImages image?;
 };
 
-public type AbandonedCheckouts_tax_lines record {
-    string price?;
-    decimal rate?;
-    string title?;
-};
-
-public type SingleLocation_location record {
-    boolean active?;
-    anydata? address1?;
-    anydata? address2?;
-    string admin_graphql_api_id?;
-    anydata? city?;
-    string country?;
-    string country_code?;
-    string country_name?;
+public type SubscribeOrderCreationWebhook record {
+    string address?;
+    string api_version?;
     string created_at?;
+    anydata[] fields?;
+    string format?;
     decimal id?;
-    boolean legacy?;
-    string name?;
-    anydata? phone?;
-    anydata? province?;
-    anydata? province_code?;
+    anydata[] metafield_namespaces?;
+    anydata[] private_metafield_namespaces?;
+    string topic?;
     string updated_at?;
-    anydata? zip?;
 };
 
-public type OrderResponse_order_billing_address record {
+public type UpdateOrderResponseOrderNoteAttributes record {
+    string name?;
+    string value?;
+};
+
+public type RejectCancellationRequestResponseFulfillmentOrderDestination record {
     string address1?;
-    anydata? address2?;
+    string address2?;
     string city?;
     anydata? company?;
     string country?;
-    string country_code?;
+    string email?;
     string first_name?;
+    decimal id?;
     string last_name?;
-    anydata? latitude?;
-    anydata? longitude?;
-    string name?;
     string phone?;
     string province?;
-    string province_code?;
     string zip?;
 };
 
@@ -8326,66 +8752,20 @@ public type RetrievesACountOfSmartCollectionsQueries record {
     string title?;
 };
 
-public type ModifyProductImage_image record {
-    string admin_graphql_api_id?;
-    string? alt?;
-    string created_at?;
-    decimal height?;
-    decimal id?;
-    decimal position?;
-    decimal? product_id?;
-    string src?;
-    string updated_at?;
-    anydata[] variant_ids?;
-    decimal width?;
-};
-
 public type SingleArticle record {
-    SingleArticle_article article?;
-};
-
-public type CancelFulfillmentOrder_replacement_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
+    SingleArticleArticle article?;
 };
 
 public type Blogs record {
-    Blogs_blogs[] blogs?;
+    BlogsBlogs[] blogs?;
 };
 
 public type UpdateCarrierService record {
-    UpdateCarrierService_carrier_service carrier_service?;
+    UpdateCarrierServiceCarrierService carrier_service?;
 };
 
 public type TagsList record {
     string[] tags?;
-};
-
-public type FulfillmentOrder_fulfillment_order_line_items record {
-    decimal fulfillable_quantity?;
-    decimal fulfillment_order_id?;
-    decimal id?;
-    decimal inventory_item_id?;
-    decimal line_item_id?;
-    decimal quantity?;
-    decimal shop_id?;
-    decimal? variant_id?;
-};
-
-public type DiscountCodeList_discount_codes record {
-    string code?;
-    record {} errors?;
-    anydata? id?;
 };
 
 # Represents the Queries record for the operation: shopRetrieveASpecificMetafield
@@ -8394,33 +8774,81 @@ public type ShopRetrieveASpecificMetafieldQueries record {
     string fields?;
 };
 
-public type ReopenCloseOrder_order_line_items record {
-    string admin_graphql_api_id?;
-    anydata[] discount_allocations?;
-    decimal fulfillable_quantity?;
-    string fulfillment_service?;
-    anydata? fulfillment_status?;
-    boolean gift_card?;
-    decimal grams?;
+public type AbandonedCheckoutsCheckouts record {
+    string abandoned_checkout_url?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
+    boolean buyer_accepts_marketing?;
+    string cart_token?;
+    anydata? closed_at?;
+    string? completed_at?;
+    string created_at?;
+    string currency?;
+    AbandonedCheckoutsCustomer customer?;
+    anydata? customer_locale?;
+    anydata? device_id?;
+    anydata[] discount_codes?;
+    string email?;
+    string? gateway?;
     decimal id?;
+    anydata? landing_site?;
+    AbandonedCheckoutsLineItems[] line_items?;
+    anydata? location_id?;
     string name?;
-    string price?;
-    ReopenCloseOrder_order_price_set price_set?;
-    boolean product_exists?;
-    decimal? product_id?;
-    ReopenCloseOrder_order_properties[] properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    ReopenCloseOrder_order_tax_lines[] tax_lines?;
-    boolean taxable?;
-    string title?;
-    string total_discount?;
-    CancelFulfillment_fulfillment_total_discount_set total_discount_set?;
-    decimal? variant_id?;
-    string variant_inventory_management?;
-    string? variant_title?;
-    anydata? vendor?;
+    anydata? note?;
+    ReopenCloseOrderOrderNoteAttributes[] note_attributes?;
+    anydata? phone?;
+    string presentment_currency?;
+    anydata? referring_site?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    AbandonedCheckoutsShippingLines[] shipping_lines?;
+    anydata? 'source?;
+    anydata? source_identifier?;
+    string source_name?;
+    anydata? source_url?;
+    string subtotal_price?;
+    AbandonedCheckoutsTaxLines[] tax_lines?;
+    boolean taxes_included?;
+    string token?;
+    string total_discounts?;
+    string total_line_items_price?;
+    string total_price?;
+    string total_tax?;
+    decimal total_weight?;
+    string updated_at?;
+    anydata? user_id?;
+};
+
+public type DraftOrdersCustomer record {
+    boolean accepts_marketing?;
+    string accepts_marketing_updated_at?;
+    string admin_graphql_api_id?;
+    string created_at?;
+    string currency?;
+    ReopenCloseOrderOrderCustomerDefaultAddress default_address?;
+    string email?;
+    string first_name?;
+    decimal id?;
+    string last_name?;
+    decimal last_order_id?;
+    string last_order_name?;
+    anydata? marketing_opt_in_level?;
+    anydata? multipass_identifier?;
+    anydata? note?;
+    decimal orders_count?;
+    anydata? phone?;
+    string state?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_exemptions?;
+    string total_spent?;
+    string updated_at?;
+    boolean verified_email?;
+};
+
+public type CalculateRefundRefundShipping record {
+    string amount?;
+    string maximum_refundable?;
+    string tax?;
 };
 
 public type AdminapiapiVersionshopifyPaymentsdisputesdisputeIddisputeFileUploadsJsonDisputeFileUpload record {
@@ -8437,94 +8865,11 @@ public type AdminapiapiVersionsmartCollectionsJsonSmartCollectionRules record {
     string relation?;
 };
 
-public type PublishThemeResponse_theme record {
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    string name?;
-    boolean previewable?;
-    boolean processing?;
-    string role?;
-    anydata? theme_store_id?;
-    string updated_at?;
-};
-
-public type AssetsList_asset record {
-    string attachment?;
-    string content_type?;
-    string created_at?;
-    string 'key?;
-    string? public_url?;
-    decimal size?;
-    decimal theme_id?;
-    string updated_at?;
-    string value?;
-};
-
-public type ReportResponse_report record {
-    string category?;
-    decimal id?;
-    string name?;
-    string shopify_ql?;
-    string updated_at?;
-};
-
-public type CompleteCheckoutResponse_checkout record {
-    anydata? applied_discount?;
-    CompleteCheckout_checkout_billing_address? billing_address?;
-    anydata? completed_at?;
-    string created_at?;
-    anydata? credit_card?;
-    string currency?;
-    decimal customer_id?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    anydata? discount_code?;
-    string email?;
-    anydata[] gift_cards?;
-    anydata? legal_notice_url?;
-    CompleteCheckoutResponse_checkout_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    string? note?;
-    CompleteCheckout_checkout_note_attributes note_attributes?;
-    anydata? 'order?;
-    anydata? order_id?;
-    anydata? order_status_url?;
-    string payment_due?;
-    string payment_url?;
-    anydata[] payments?;
-    anydata? phone?;
-    string presentment_currency?;
-    anydata? privacy_policy_url?;
-    anydata? refund_policy_url?;
-    boolean requires_shipping?;
-    anydata? reservation_time?;
-    decimal reservation_time_left?;
-    CompleteCheckout_checkout_billing_address? shipping_address?;
-    anydata? shipping_line?;
-    anydata? shipping_policy_url?;
-    anydata? shipping_rate?;
-    anydata? shopify_payments_account_id?;
-    anydata? source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    anydata? subscription_policy_url?;
-    string subtotal_price?;
-    boolean tax_exempt?;
-    anydata[] tax_lines?;
-    anydata[] tax_manipulations?;
-    boolean taxes_included?;
-    anydata? terms_of_sale_url?;
-    anydata? terms_of_service_url?;
-    string token?;
-    string total_line_items_price?;
-    string total_price?;
-    string total_tax?;
-    string total_tip_received?;
-    string updated_at?;
-    anydata? user_id?;
-    string web_url?;
+public type SinglePaymentResponsePaymentCheckoutTaxLines record {
+    decimal compare_at?;
+    string price?;
+    decimal rate?;
+    string title?;
 };
 
 public type PriceRuleIdBatchJsonBody record {
@@ -8533,7 +8878,7 @@ public type PriceRuleIdBatchJsonBody record {
 };
 
 public type ShippingRateResponse record {
-    ShippingRateResponse_checkout checkout?;
+    ShippingRateResponseCheckout checkout?;
 };
 
 # Provides API key configurations needed when communicating with a remote HTTP endpoint.
@@ -8542,58 +8887,12 @@ public type ApiKeysConfig record {|
 |};
 
 public type ThemesList record {
-    ThemesList_themes[] themes?;
-};
-
-public type InventoryItem_inventory_item record {
-    string admin_graphql_api_id?;
-    string cost?;
-    anydata? country_code_of_origin?;
-    anydata[] country_harmonized_system_codes?;
-    string created_at?;
-    anydata? harmonized_system_code?;
-    decimal id?;
-    anydata? province_code_of_origin?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean tracked?;
-    string updated_at?;
-};
-
-public type SinglePriceRule_price_rule_prerequisite_to_entitlement_quantity_ratio record {
-    anydata? entitled_quantity?;
-    anydata? prerequisite_quantity?;
+    ThemesListThemes[] themes?;
 };
 
 # The order risk object for an order.
 public type OrderRiskObject record {
     OrderRisk risk?;
-};
-
-public type CompleteCheckout_checkout_note_attributes record {
-    string colour?;
-    string custom\ engraving?;
-};
-
-public type CreateFulfillmentEvent_fulfillment_event record {
-    anydata? address1?;
-    string admin_graphql_api_id?;
-    anydata? city?;
-    anydata? country?;
-    string created_at?;
-    anydata? estimated_delivery_at?;
-    decimal fulfillment_id?;
-    string happened_at?;
-    decimal id?;
-    anydata? latitude?;
-    anydata? longitude?;
-    anydata? message?;
-    decimal order_id?;
-    anydata? province?;
-    decimal shop_id?;
-    string status?;
-    string updated_at?;
-    anydata? zip?;
 };
 
 # Represents the Queries record for the operation: retrieveProductIdsThatArePublishedToACollectionId
@@ -8602,247 +8901,132 @@ public type RetrieveProductIdsThatArePublishedToACollectionIdQueries record {
     string 'limit?;
 };
 
-public type DisputeEvidence record {
-    int id?;
-    int payments_dispute_id?;
-    string? access_activity_log?;
-    Address billing_address?;
-    string? cancellation_policy_disclosure?;
-    string? cancellation_rebuttal?;
-    string customer_email_address?;
-    string customer_first_name?;
-    string customer_last_name?;
-    string product_description?;
-    string? refund_policy_disclosure?;
-    string? refund_refusal_explanation?;
-    Address shipping_address?;
-    string uncategorized_text?;
-    string created_at?;
-    string updated_at?;
-    string submitted_by_merchant_on?;
-    Fulfillment[] fulfillments?;
-    DisputeEvidenceFiles dispute_evidence_files?;
-};
-
-public type CreateProductImage record {
-    CreateProductImage_image image?;
-};
-
-public type CompleteDraftOrder_draft_order record {
-    string admin_graphql_api_id?;
-    SingleDraftOrder_draft_order_applied_discount? applied_discount?;
-    AbandonedCheckouts_billing_address? billing_address?;
-    string completed_at?;
-    string created_at?;
-    string currency?;
-    AbandonedCheckouts_customer customer?;
-    string email?;
+public type PostalCodeResultCustomerAddress record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string country_name?;
+    decimal customer_id?;
+    boolean default?;
+    anydata? first_name?;
     decimal id?;
-    anydata? invoice_sent_at?;
-    string invoice_url?;
-    SingleDraftOrder_draft_order_line_items[] line_items?;
+    anydata? last_name?;
     string name?;
-    string? note?;
-    anydata[] note_attributes?;
-    decimal order_id?;
-    AbandonedCheckouts_billing_address? shipping_address?;
-    SingleDraftOrder_draft_order_shipping_line? shipping_line?;
-    string status?;
-    string subtotal_price?;
-    string tags?;
-    boolean tax_exempt?;
-    anydata[] tax_lines?;
-    boolean taxes_included?;
-    string total_price?;
-    string total_tax?;
-    string updated_at?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
 };
 
-public type CollectResponse_collect record {
-    decimal collection_id?;
-    anydata? created_at?;
-    decimal id?;
-    decimal position?;
-    decimal? product_id?;
-    string sort_value?;
-    anydata? updated_at?;
-};
-
-public type InvoiceResponse_draft_order_invoice record {
-    string[] bcc?;
-    string custom_message?;
-    string 'from?;
-    string subject?;
-    string to?;
-};
-
-public type PagespageIdJsonBody record {
-    AdminapiapiVersionpagespageIdJsonPage page?;
-};
-
-# Represents the Queries record for the operation: receiveACountOfAllWebhooks
-public type ReceiveACountOfAllWebhooksQueries record {
-    # Retrieve webhook subscriptions that send the POST request to this URI. 
-    string address?;
-    # Show webhook subscriptions with a given topic. For a list of valid values, refer to the [`topic` property](#topic-property-).> 
-    string topic?;
-};
-
-public type AdminapiapiVersionredirectsredirectIdJsonRedirect record {
-    string path?;
-    decimal id?;
-    string target?;
-};
-
-public type AdminapiapiVersionstorefrontAccessTokensJsonStorefrontAccessToken record {
-    string title?;
-};
-
-public type AccountInvite_customer_invite record {
-    string[] bcc?;
-    string custom_message?;
-    string 'from?;
-    string subject?;
-    string to?;
-};
-
-public type CountryResponse_country_provinces record {
-    string code?;
-    decimal country_id?;
-    decimal id?;
-    string name?;
-    anydata? shipping_zone_id?;
-    decimal tax?;
-    string? tax_name?;
-    decimal tax_percentage?;
-    string? tax_type?;
-};
-
-public type SingleBlog_blog record {
-    string admin_graphql_api_id?;
-    string commentable?;
-    string created_at?;
-    anydata? feedburner?;
-    anydata? feedburner_location?;
-    string 'handle?;
-    decimal id?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
-};
-
-public type TransactionObject_transaction record {
-    string admin_graphql_api_id?;
+public type CreateAuthorizationResponsePaymentCheckoutTransaction record {
     string amount?;
-    anydata? authorization?;
+    anydata? amount_in?;
+    anydata? amount_out?;
+    anydata? amount_rounding?;
+    string authorization?;
     string created_at?;
     string currency?;
-    anydata? currency_exchange_adjustment?;
     anydata? device_id?;
     anydata? error_code?;
     string gateway?;
     decimal id?;
     string kind?;
     anydata? location_id?;
-    string message?;
-    decimal order_id?;
-    decimal parent_id?;
-    string processed_at?;
-    record {} receipt?;
-    string source_name?;
+    anydata? message?;
+    anydata? parent_id?;
+    ReopenCloseOrderOrderReceipt receipt?;
     string status?;
+    boolean test?;
+    anydata? transaction_group_id?;
+    anydata? user_id?;
+};
+
+public type DisputeEvidence record {
+    @jsondata:Name {value: "refund_refusal_explanation"}
+    string? refundRefusalExplanation?;
+    @jsondata:Name {value: "customer_first_name"}
+    string customerFirstName?;
+    @jsondata:Name {value: "created_at"}
+    string createdAt?;
+    @jsondata:Name {value: "dispute_evidence_files"}
+    DisputeEvidenceFiles disputeEvidenceFiles?;
+    @jsondata:Name {value: "billing_address"}
+    Address billingAddress?;
+    @jsondata:Name {value: "refund_policy_disclosure"}
+    string? refundPolicyDisclosure?;
+    @jsondata:Name {value: "access_activity_log"}
+    string? accessActivityLog?;
+    @jsondata:Name {value: "uncategorized_text"}
+    string uncategorizedText?;
+    Fulfillment[] fulfillments?;
+    @jsondata:Name {value: "payments_dispute_id"}
+    int paymentsDisputeId?;
+    @jsondata:Name {value: "customer_last_name"}
+    string customerLastName?;
+    @jsondata:Name {value: "updated_at"}
+    string updatedAt?;
+    @jsondata:Name {value: "cancellation_policy_disclosure"}
+    string? cancellationPolicyDisclosure?;
+    @jsondata:Name {value: "cancellation_rebuttal"}
+    string? cancellationRebuttal?;
+    @jsondata:Name {value: "submitted_by_merchant_on"}
+    string submittedByMerchantOn?;
+    int id?;
+    @jsondata:Name {value: "shipping_address"}
+    Address shippingAddress?;
+    @jsondata:Name {value: "product_description"}
+    string productDescription?;
+    @jsondata:Name {value: "customer_email_address"}
+    string customerEmailAddress?;
+};
+
+public type CreateDraftOrderDraftOrderLineItems record {
+    string admin_graphql_api_id?;
+    CreateDraftOrderDraftOrderAppliedDiscount? applied_discount?;
+    boolean custom?;
+    string fulfillment_service?;
+    boolean gift_card?;
+    decimal grams?;
+    string name?;
+    string price?;
+    anydata? product_id?;
+    anydata[] properties?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    anydata? sku?;
+    CreateDraftOrderDraftOrderTaxLines[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    anydata? variant_id?;
+    anydata? variant_title?;
+    anydata? vendor?;
+};
+
+public type CreateProductImage record {
+    CreateProductImageImage image?;
+};
+
+public type TenderTransactionsTenderTransactions record {
+    string amount?;
+    string currency?;
+    decimal id?;
+    decimal order_id?;
+    TenderTransactionsPaymentDetails payment_details?;
+    string payment_method?;
+    string processed_at?;
+    string remote_reference?;
     boolean test?;
     anydata? user_id?;
 };
 
-public type SingleProvince_province record {
-    string code?;
-    decimal country_id?;
-    decimal id?;
-    string name?;
-    anydata? shipping_zone_id?;
-    decimal tax?;
-    string tax_name?;
-    decimal tax_percentage?;
-    string tax_type?;
+public type PagespageIdJsonBody record {
+    AdminapiapiVersionpagespageIdJsonPage page?;
 };
 
-public type DraftOrders record {
-    @jsondata:Name {value: "draft_orders"}
-    DraftOrders_draft_orders[]? draftOrders?;
-};
-
-public type PaymentsResponse_payments record {
-    PaymentsResponse_checkout checkout?;
-    anydata? credit_card?;
-    decimal id?;
-    anydata? payment_processing_error_message?;
-    PaymentsResponse_checkout_transaction 'transaction?;
-    string unique_token?;
-};
-
-public type ApiVersionCustomCollectionsJsonBody record {
-    @jsondata:Name {value: "custom_collection"}
-    AdminapiapiVersioncustomCollectionsJsonCustomCollection customCollection?;
-};
-
-public type PriceRule record {
-    PriceRule_price_rule price_rule?;
-};
-
-public type ProductListingAppResponse_product_listing_option_values record {
-    string name?;
-    decimal option_id?;
-    string value?;
-};
-
-public type CreateDraftOrder_draft_order_tax_lines record {
-    string price?;
-    decimal rate?;
-    string title?;
-};
-
-public type StorefrontAccessTokens_storefront_access_tokens record {
-    string access_scope?;
-    string access_token?;
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    string title?;
-};
-
-public type MarketingEvent_marketing_event record {
-    string admin_graphql_api_id?;
-    anydata? breadcrumb_id?;
-    string budget?;
-    string budget_type?;
-    string currency?;
-    anydata? description?;
-    anydata? ended_at?;
-    string event_type?;
-    decimal id?;
-    anydata? manage_url?;
-    anydata[] marketed_resources?;
-    anydata? marketing_activity_id?;
-    string marketing_channel?;
-    boolean paid?;
-    anydata? preview_url?;
-    string referring_domain?;
-    string remote_id?;
-    anydata? scheduled_to_end_at?;
-    string started_at?;
-    string utm_campaign?;
-    string utm_medium?;
-    string utm_source?;
-};
-
-public type AdminapiapiVersioncollectionListingscollectionListingIdJsonCollectionListing record {
-    @jsondata:Name {value: "collection_id"}
-    decimal collectionId?;
-};
-
-public type SubscribeOrderCreation_webhook record {
+public type UpdateWebhookWebhook record {
     string address?;
     string api_version?;
     string created_at?;
@@ -8855,101 +9039,149 @@ public type SubscribeOrderCreation_webhook record {
     string updated_at?;
 };
 
-public type DraftOrders_line_items record {
-    string admin_graphql_api_id?;
-    anydata? applied_discount?;
-    boolean custom?;
-    string fulfillment_service?;
-    boolean gift_card?;
-    decimal grams?;
-    string name?;
-    string price?;
-    decimal? product_id?;
-    anydata[] properties?;
+# Represents the Queries record for the operation: receiveACountOfAllWebhooks
+public type ReceiveACountOfAllWebhooksQueries record {
+    # Retrieve webhook subscriptions that send the POST request to this URI. 
+    string address?;
+    # Show webhook subscriptions with a given topic. For a list of valid values, refer to the [`topic` property](#topic-property-).> 
+    string topic?;
+};
+
+public type CreateRefundRefundRefundLineItems record {
+    decimal id?;
+    CreateRefundRefundLineItem line_item?;
+    decimal line_item_id?;
+    decimal location_id?;
     decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    anydata[] tax_lines?;
-    boolean taxable?;
+    string restock_type?;
+    decimal subtotal?;
+    ReopenCloseOrderOrderPriceSet subtotal_set?;
+    decimal total_tax?;
+    ReopenCloseOrderOrderPriceSet1 total_tax_set?;
+};
+
+public type AdminapiapiVersionredirectsredirectIdJsonRedirect record {
+    string path?;
+    decimal id?;
+    string target?;
+};
+
+public type AdminapiapiVersionstorefrontAccessTokensJsonStorefrontAccessToken record {
     string title?;
-    decimal? variant_id?;
-    string? variant_title?;
-    anydata? vendor?;
+};
+
+public type CustomerSmsMarketingConsent record {
+    string state?;
+    string opt_in_level?;
+    string consent_updated_at?;
+    string consent_collected_from?;
+};
+
+public type AcceptFulfillmentResponseFulfillmentOrder record {
+    decimal assigned_location_id?;
+    AcceptFulfillmentResponseFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    AcceptFulfillmentResponseFulfillmentOrderLineItems[] line_items?;
+    decimal order_id?;
+    FulfillmentOrdersAssignedLocation origin?;
+    anydata[] outgoing_requests?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
+};
+
+public type OrderResponseOrderBillingAddress record {
+    string address1?;
+    anydata? address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string country_code?;
+    string first_name?;
+    string last_name?;
+    anydata? latitude?;
+    anydata? longitude?;
+    string name?;
+    string phone?;
+    string province?;
+    string province_code?;
+    string zip?;
+};
+
+public type DraftOrders record {
+    @jsondata:Name {value: "draft_orders"}
+    DraftOrdersDraftOrders[]? draftOrders?;
+};
+
+public type ApiVersionCustomCollectionsJsonBody record {
+    @jsondata:Name {value: "custom_collection"}
+    AdminapiapiVersioncustomCollectionsJsonCustomCollection customCollection?;
+};
+
+public type PriceRule record {
+    PriceRulePriceRule price_rule?;
+};
+
+public type SingleCollectionCollectionImage record {
+    string alt?;
+    string created_at?;
+    decimal height?;
+    string src?;
+    decimal width?;
+};
+
+public type AdminapiapiVersioncollectionListingscollectionListingIdJsonCollectionListing record {
+    @jsondata:Name {value: "collection_id"}
+    decimal collectionId?;
+};
+
+public type SingleFulfillmentServiceFulfillmentService record {
+    string callback_url?;
+    anydata? email?;
+    boolean fulfillment_orders_opt_in?;
+    string 'handle?;
+    decimal id?;
+    boolean include_pending_stock?;
+    boolean inventory_management?;
+    decimal location_id?;
+    string name?;
+    anydata? provider_id?;
+    string service_name?;
+    boolean tracking_support?;
 };
 
 public type CreateFulfillmentService record {
-    CreateFulfillmentService_fulfillment_service fulfillment_service?;
+    CreateFulfillmentServiceFulfillmentService fulfillment_service?;
 };
 
 public type UpdateScriptTagResponse record {
-    UpdateScriptTagResponse_script_tag script_tag?;
+    UpdateScriptTagResponseScriptTag script_tag?;
+};
+
+public type ReopenCloseOrderOrderTotalPriceSetPresentmentMoney record {
+    string amount?;
+    string currency_code?;
 };
 
 public type AccessScopes record {
     @jsondata:Name {value: "access_scopes"}
-    AccessScopes_access_scopes[] accessScopes?;
-};
-
-public type FulfillmentList_line_items record {
-    string admin_graphql_api_id?;
-    anydata[] discount_allocations?;
-    decimal fulfillable_quantity?;
-    string fulfillment_service?;
-    string fulfillment_status?;
-    boolean gift_card?;
-    decimal grams?;
-    decimal id?;
-    string name?;
-    string price?;
-    CancelFulfillment_fulfillment_price_set price_set?;
-    boolean product_exists?;
-    decimal? product_id?;
-    anydata[] properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    anydata[] tax_lines?;
-    boolean taxable?;
-    string title?;
-    string total_discount?;
-    CancelFulfillment_fulfillment_total_discount_set total_discount_set?;
-    decimal? variant_id?;
-    anydata? variant_inventory_management?;
-    string? variant_title?;
-    anydata? vendor?;
-};
-
-public type ReopenCloseOrder_order_price_set record {
-    ModifyProductVariant_variant_price presentment_money?;
-    ModifyProductVariant_variant_price shop_money?;
+    AccessScopesAccessScopes[] accessScopes?;
 };
 
 public type SingleOrderResponse record {
-    SingleOrderResponse_order 'order?;
-};
-
-public type CreateBlogResponse_blog record {
-    string admin_graphql_api_id?;
-    string commentable?;
-    string created_at?;
-    anydata? feedburner?;
-    anydata? feedburner_location?;
-    string 'handle?;
-    decimal id?;
-    string tags?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
+    SingleOrderResponseOrder 'order?;
 };
 
 public type DeliveryZone record {
-    int id?;
-    string name?;
     string profileId?;
-    string locationGroupId?;
-    string adminGraphqlApiId?;
-    Country[] countries?;
+    string name?;
     PriceBasedShippingRate[] priceBasedShippingRates?;
+    int id?;
+    Country[] countries?;
+    string adminGraphqlApiId?;
+    string locationGroupId?;
 };
 
 # Represents the Queries record for the operation: retrievesACountOfEvents
@@ -8966,74 +9198,79 @@ public type ReceiveASingleProductVariantQueries record {
     string fields?;
 };
 
-public type ProductVariantResponse_variant record {
-    string admin_graphql_api_id?;
-    string barcode?;
-    anydata? compare_at_price?;
-    string created_at?;
-    string fulfillment_service?;
-    decimal grams?;
+public type OriginalFulfillmentOrderSubmittedFulfillmentOrderDestination record {
+    string address1?;
+    string address2?;
+    string city?;
+    anydata? company?;
+    string country?;
+    string email?;
+    string first_name?;
     decimal id?;
-    decimal image_id?;
-    decimal inventory_item_id?;
-    string inventory_management?;
-    string inventory_policy?;
-    decimal inventory_quantity?;
-    decimal old_inventory_quantity?;
-    string option1?;
-    anydata? option2?;
-    anydata? option3?;
-    decimal position?;
-    ModifyProductVariant_variant_presentment_prices[] presentment_prices?;
-    string price?;
-    decimal? product_id?;
-    boolean requires_shipping?;
-    string? sku?;
-    string tax_code?;
-    boolean taxable?;
+    string last_name?;
+    string phone?;
+    string province?;
+    string zip?;
+};
+
+public type FulfillmentOrdersAssignedLocation record {
+    anydata? address1?;
+    anydata? address2?;
+    anydata? city?;
+    string country_code?;
+    decimal location_id?;
+    string name?;
+    anydata? phone?;
+    anydata? province?;
+    anydata? zip?;
+};
+
+public type UpdateBlogResponseBlog record {
+    string admin_graphql_api_id?;
+    string commentable?;
+    string created_at?;
+    anydata? feedburner?;
+    anydata? feedburner_location?;
+    string 'handle?;
+    decimal id?;
+    string tags?;
+    anydata? template_suffix?;
     string title?;
     string updated_at?;
-    decimal weight?;
-    string weight_unit?;
 };
 
-public type CreateRefund_refund_line_item record {
-    string admin_graphql_api_id?;
-    anydata[] discount_allocations?;
-    decimal fulfillable_quantity?;
-    string fulfillment_service?;
-    anydata? fulfillment_status?;
-    boolean gift_card?;
-    decimal grams?;
+public type CancelFulfillmentOrderFulfillmentOrder record {
+    FulfillmentOrdersAssignedLocation assigned_location?;
+    decimal assigned_location_id?;
+    CancelFulfillmentOrderFulfillmentOrderDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    CancelFulfillmentOrderFulfillmentOrderLineItems[] line_items?;
+    anydata[] merchant_requests?;
+    decimal order_id?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    anydata[] supported_actions?;
+};
+
+public type UpdateReportResponseReport record {
+    string category?;
     decimal id?;
     string name?;
-    string price?;
-    ReopenCloseOrder_order_price_set price_set?;
-    boolean product_exists?;
-    decimal? product_id?;
-    anydata[] properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    ReopenCloseOrder_order_tax_lines[] tax_lines?;
-    boolean taxable?;
-    string title?;
-    string total_discount?;
-    CancelFulfillment_fulfillment_total_discount_set total_discount_set?;
-    decimal? variant_id?;
-    string variant_inventory_management?;
-    string? variant_title?;
-    anydata? vendor?;
-};
-
-public type PriceRule_price_rule_prerequisite_to_entitlement_quantity_ratio record {
-    decimal? entitled_quantity?;
-    decimal? prerequisite_quantity?;
+    string shopify_ql?;
+    string updated_at?;
 };
 
 public type FulfillmentOrderIdReleaseHoldJsonBody record {
     @jsondata:Name {value: "fulfillment_order"}
     AdminapiapiVersionfulfillmentOrdersfulfillmentOrderIdholdJsonFulfillmentOrder fulfillmentOrder?;
+};
+
+public type SinglePaymentResponsePaymentCheckoutShippingLine record {
+    string 'handle?;
+    string price?;
+    string title?;
 };
 
 public type RemoveCommentResponse record {
@@ -9066,135 +9303,83 @@ public type AdminapiapiVersiongiftCardsgiftCardIdJsonGiftCard record {
 
 public type StorefrontAccessTokens record {
     @jsondata:Name {value: "storefront_access_tokens"}
-    StorefrontAccessTokens_storefront_access_tokens[] storefrontAccessTokens?;
+    StorefrontAccessTokensStorefrontAccessTokens[] storefrontAccessTokens?;
 };
 
-public type Fulfillment_fulfillment_line_items record {
-    string admin_graphql_api_id?;
-    anydata[] discount_allocations?;
-    decimal fulfillable_quantity?;
-    string fulfillment_service?;
-    string fulfillment_status?;
-    boolean gift_card?;
-    decimal grams?;
-    decimal id?;
-    string name?;
-    string price?;
-    CancelFulfillment_fulfillment_price_set price_set?;
-    boolean product_exists?;
-    decimal? product_id?;
-    anydata[] properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    anydata[] tax_lines?;
-    boolean taxable?;
+public type CollectionListingResponseCollectionListings record {
+    string? body_html?;
+    decimal collection_id?;
+    record {}? default_product_image?;
+    string 'handle?;
+    CollectionListingResponseImage? image?;
+    string published_at?;
+    string sort_order?;
     string title?;
-    string total_discount?;
-    CancelFulfillment_fulfillment_total_discount_set total_discount_set?;
-    decimal? variant_id?;
-    anydata? variant_inventory_management?;
-    string? variant_title?;
-    anydata? vendor?;
+    string updated_at?;
 };
 
 public type PriceRules record {
     @jsondata:Name {value: "price_rules"}
-    SinglePriceRule_price_rule[] priceRules?;
+    SinglePriceRulePriceRule[] priceRules?;
 };
 
-public type PaymentsResponse_checkout record {
-    anydata? applied_discount?;
-    CompleteCheckout_checkout_billing_address? billing_address?;
-    anydata? completed_at?;
+public type CreateDiscountCodeDiscountCode record {
+    string code?;
     string created_at?;
-    SinglePaymentResponse_payment_checkout_credit_card credit_card?;
-    string currency?;
-    decimal customer_id?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    anydata? discount_code?;
-    string email?;
-    anydata[] gift_cards?;
-    anydata? legal_notice_url?;
-    CompleteCheckout_checkout_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    string? note?;
-    CompleteCheckout_checkout_note_attributes note_attributes?;
-    anydata? 'order?;
-    anydata? order_id?;
-    anydata? order_status_url?;
-    string payment_due?;
-    string payment_url?;
-    PaymentsResponse_checkout_payments[] payments?;
-    anydata? phone?;
-    string presentment_currency?;
-    anydata? privacy_policy_url?;
-    anydata? refund_policy_url?;
-    boolean requires_shipping?;
-    anydata? reservation_time?;
-    decimal reservation_time_left?;
-    CompleteCheckout_checkout_billing_address? shipping_address?;
-    CompleteCheckout_checkout_shipping_line? shipping_line?;
-    anydata? shipping_policy_url?;
-    CompleteCheckout_checkout_shipping_rate shipping_rate?;
-    anydata? shopify_payments_account_id?;
-    anydata? source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    anydata? subscription_policy_url?;
-    string subtotal_price?;
-    boolean tax_exempt?;
-    SinglePaymentResponse_payment_checkout_tax_lines[] tax_lines?;
-    anydata[] tax_manipulations?;
-    boolean taxes_included?;
-    anydata? terms_of_sale_url?;
-    anydata? terms_of_service_url?;
-    string token?;
-    string total_line_items_price?;
-    string total_price?;
-    string total_tax?;
-    string total_tip_received?;
-    string updated_at?;
-    anydata? user_id?;
-    string web_url?;
-};
-
-public type UpdateCommentResponse_comment record {
-    decimal article_id?;
-    string author?;
-    decimal blog_id?;
-    string body?;
-    string body_html?;
-    string created_at?;
-    string email?;
     decimal id?;
-    string ip?;
-    string published_at?;
+    decimal price_rule_id?;
+    string updated_at?;
+    decimal usage_count?;
+};
+
+public type CreateFulfillmentEventFulfillmentEvent record {
+    anydata? address1?;
+    string admin_graphql_api_id?;
+    anydata? city?;
+    anydata? country?;
+    string created_at?;
+    anydata? estimated_delivery_at?;
+    decimal fulfillment_id?;
+    string happened_at?;
+    decimal id?;
+    anydata? latitude?;
+    anydata? longitude?;
+    anydata? message?;
+    decimal order_id?;
+    anydata? province?;
+    decimal shop_id?;
     string status?;
     string updated_at?;
-    string user_agent?;
+    anydata? zip?;
 };
 
 public type UpdateProvinceResponse record {
-    UpdateProvinceResponse_province province?;
+    UpdateProvinceResponseProvince province?;
+};
+
+public type FulfillmentFulfillment record {
+    string admin_graphql_api_id?;
+    string created_at?;
+    decimal id?;
+    FulfillmentFulfillmentLineItems[] line_items?;
+    decimal location_id?;
+    string name?;
+    decimal order_id?;
+    record {} receipt?;
+    string 'service?;
+    anydata? shipment_status?;
+    string status?;
+    string tracking_company?;
+    string tracking_number?;
+    string[] tracking_numbers?;
+    string tracking_url?;
+    string[] tracking_urls?;
+    string updated_at?;
 };
 
 public type FulfillmentServicesfulfillmentServiceIdJsonBody record {
     @jsondata:Name {value: "fulfillment_service"}
     AdminapiapiVersionfulfillmentServicesfulfillmentServiceIdJsonFulfillmentService fulfillmentService?;
-};
-
-public type UpdateCarrierService_carrier_service record {
-    boolean active?;
-    string admin_graphql_api_id?;
-    string callback_url?;
-    string carrier_service_type?;
-    string format?;
-    decimal id?;
-    string name?;
-    boolean service_discovery?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfEvents
@@ -9216,22 +9401,7 @@ public type RetrievesAListOfEventsQueries record {
 };
 
 public type SingleDraftOrder record {
-    SingleDraftOrder_draft_order draft_order?;
-};
-
-public type FulfillmentOrder_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
-    decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
+    SingleDraftOrderDraftOrder draft_order?;
 };
 
 # Represents the Queries record for the operation: retrievesASingleReport
@@ -9251,17 +9421,20 @@ public type ReceiveAListOfAllFulfillmentservicesQueries record {
 };
 
 public type CreateWebhook record {
-    CreateWebhook_webhook webhook?;
+    UpdateWebhookWebhook webhook?;
 };
 
-public type ProductsResponse_products record {
-    decimal id?;
-    SingleProduct_product_image[] images?;
+public type AbandonedCheckoutsShippingLines record {
+    anydata[] applied_discounts?;
+    string code?;
+    string id?;
+    string price?;
+    string 'source?;
     string title?;
 };
 
 public type SingleOrderRisk record {
-    SingleOrderRisk_risk risk?;
+    SingleOrderRiskRisk risk?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfAbandonedCheckouts
@@ -9280,6 +9453,37 @@ public type RetrievesAListOfAbandonedCheckoutsQueries record {
     string sinceId?;
     # Show only checkouts with a given status.(default: open) 
     string status?;
+};
+
+public type AbandonedCheckoutsLineItems record {
+    anydata[] applied_discounts?;
+    anydata? compare_at_price?;
+    anydata? country_code_of_origin?;
+    anydata[] country_hs_codes?;
+    anydata? destination_location_id?;
+    string fulfillment_service?;
+    boolean gift_card?;
+    decimal grams?;
+    anydata? harmonized_system_code?;
+    decimal 'key?;
+    string line_price?;
+    anydata? origin_location_id?;
+    string price?;
+    decimal? product_id?;
+    anydata? properties?;
+    anydata? province_code_of_origin?;
+    decimal quantity?;
+    boolean requires_shipping?;
+    string? sku?;
+    anydata[] tax_lines?;
+    boolean taxable?;
+    string title?;
+    anydata? unit_price_measurement?;
+    anydata? user_id?;
+    decimal? variant_id?;
+    anydata? variant_price?;
+    string? variant_title?;
+    string vendor?;
 };
 
 public type AdminapiapiVersioncheckoutstokenJsonCheckoutShippingAddress record {
@@ -9303,7 +9507,7 @@ public type ApiVersionFulfillmentServicesJsonBody record {
 };
 
 public type Engagements record {
-    Engagements_engagements[] engagements?;
+    EngagementsEngagements[] engagements?;
 };
 
 # Represents the Queries record for the operation: retrieveAListOfMetafieldsFromTheResourceSEndpoint
@@ -9330,33 +9534,16 @@ public type RetrieveAListOfMetafieldsFromTheResourceSEndpointQueries record {
     string 'key?;
 };
 
-public type OrderResponse_order_line_items record {
-    string admin_graphql_api_id?;
-    anydata[] discount_allocations?;
-    decimal fulfillable_quantity?;
-    string fulfillment_service?;
-    anydata? fulfillment_status?;
-    boolean gift_card?;
-    decimal grams?;
+public type CountriesListProvinces record {
+    string code?;
+    decimal country_id?;
     decimal id?;
     string name?;
-    string price?;
-    ReopenCloseOrder_order_price_set price_set?;
-    boolean product_exists?;
-    decimal? product_id?;
-    anydata[] properties?;
-    decimal quantity?;
-    boolean requires_shipping?;
-    string? sku?;
-    anydata[] tax_lines?;
-    boolean taxable?;
-    string title?;
-    string total_discount?;
-    CancelFulfillment_fulfillment_total_discount_set total_discount_set?;
-    decimal? variant_id?;
-    string variant_inventory_management?;
-    string? variant_title?;
-    string vendor?;
+    decimal? shipping_zone_id?;
+    decimal tax?;
+    anydata? tax_name?;
+    decimal tax_percentage?;
+    anydata? tax_type?;
 };
 
 public type AdminapiapiVersiondraftOrdersJsonDraftOrderAppliedDiscount record {
@@ -9369,7 +9556,37 @@ public type AdminapiapiVersiondraftOrdersJsonDraftOrderAppliedDiscount record {
 };
 
 public type SingleCustomCollection record {
-    SingleCustomCollection_custom_collection custom_collection?;
+    SingleCustomCollectionCustomCollection custom_collection?;
+};
+
+public type ModifyDraftOrderDraftOrder record {
+    string admin_graphql_api_id?;
+    ModifyDraftOrderDraftOrderAppliedDiscount? applied_discount?;
+    ReopenCloseOrderOrderBillingAddress? billing_address?;
+    anydata? completed_at?;
+    string created_at?;
+    string currency?;
+    AbandonedCheckoutsCustomer customer?;
+    string email?;
+    decimal id?;
+    anydata? invoice_sent_at?;
+    string invoice_url?;
+    ModifyDraftOrderDraftOrderLineItems[] line_items?;
+    string name?;
+    string? note?;
+    anydata[] note_attributes?;
+    anydata? order_id?;
+    ReopenCloseOrderOrderBillingAddress? shipping_address?;
+    ModifyDraftOrderDraftOrderShippingLine? shipping_line?;
+    string status?;
+    string subtotal_price?;
+    string tags?;
+    boolean tax_exempt?;
+    anydata[] tax_lines?;
+    boolean taxes_included?;
+    string total_price?;
+    string total_tax?;
+    string updated_at?;
 };
 
 # Represents the Queries record for the operation: retrievesAListOfComments
@@ -9403,52 +9620,30 @@ public type AdminapiapiVersiondraftOrdersJsonDraftOrder record {
     AdminapiapiVersiondraftOrdersJsonDraftOrderLineItems[] lineItems?;
 };
 
-public type CancellationResponse_fulfillment_order_destination record {
-    string address1?;
-    string address2?;
-    string city?;
-    anydata? company?;
-    string country?;
-    string email?;
-    string first_name?;
+public type UpdatePageResponsePage record {
+    string admin_graphql_api_id?;
+    string author?;
+    string body_html?;
+    string created_at?;
+    string 'handle?;
     decimal id?;
-    string last_name?;
-    string phone?;
-    string province?;
-    string zip?;
+    string? published_at?;
+    decimal shop_id?;
+    anydata? template_suffix?;
+    string title?;
+    string updated_at?;
 };
 
 public type AddressList record {
-    AbandonedCheckouts_customer_default_address[] addresses?;
+    ReopenCloseOrderOrderCustomerDefaultAddress[] addresses?;
 };
 
 public type OrderRisks record {
-    OrderRisks_risks[] risks?;
+    OrderRisksRisks[] risks?;
 };
 
 public type ProvincesList record {
-    CountryResponse_country_provinces[] provinces?;
-};
-
-public type FulfillmentEvents_fulfillment_events record {
-    anydata? address1?;
-    string admin_graphql_api_id?;
-    anydata? city?;
-    anydata? country?;
-    string created_at?;
-    anydata? estimated_delivery_at?;
-    decimal fulfillment_id?;
-    string happened_at?;
-    decimal id?;
-    anydata? latitude?;
-    anydata? longitude?;
-    anydata? message?;
-    decimal order_id?;
-    anydata? province?;
-    decimal shop_id?;
-    string status?;
-    string updated_at?;
-    anydata? zip?;
+    CountryResponseCountryProvinces[] provinces?;
 };
 
 public type RestoreRemoveComment record {
@@ -9476,83 +9671,46 @@ public type RestoreRemoveComment record {
 
 public type AvailableShippingRates record {
     @jsondata:Name {value: "shipping_rates"}
-    AvailableShippingRates_shipping_rates[] shippingRates?;
+    AvailableShippingRatesShippingRates[] shippingRates?;
+};
+
+public type FulfillmentOrdersFulfillmentOrders record {
+    FulfillmentOrdersAssignedLocation assigned_location?;
+    decimal assigned_location_id?;
+    FulfillmentOrdersDestination destination?;
+    string fulfillment_service_handle?;
+    decimal id?;
+    FulfillmentOrdersLineItems[] line_items?;
+    decimal order_id?;
+    anydata[] outgoing_requests?;
+    string request_status?;
+    decimal shop_id?;
+    string status?;
+    string[] supported_actions?;
 };
 
 public type SubscriptionsList record {
-    SubscriptionsList_webhooks[] webhooks?;
-};
-
-public type CancelFulfillment_fulfillment record {
-    string admin_graphql_api_id?;
-    string created_at?;
-    decimal id?;
-    CancelFulfillment_fulfillment_line_items[] line_items?;
-    decimal location_id?;
-    string name?;
-    decimal order_id?;
-    record {} receipt?;
-    string 'service?;
-    anydata? shipment_status?;
-    string status?;
-    string tracking_company?;
-    string tracking_number?;
-    string[] tracking_numbers?;
-    string tracking_url?;
-    string[] tracking_urls?;
-    string updated_at?;
-};
-
-public type UpdatePageResponse_page record {
-    string admin_graphql_api_id?;
-    string author?;
-    string body_html?;
-    string created_at?;
-    string 'handle?;
-    decimal id?;
-    string? published_at?;
-    decimal shop_id?;
-    anydata? template_suffix?;
-    string title?;
-    string updated_at?;
+    SingleWebhookWebhook[] webhooks?;
 };
 
 public type CreateProductVariant record {
-    CreateProductVariant_variant variant?;
+    CreateProductVariantVariant variant?;
 };
 
-public type ModifyProductVariant_variant record {
-    string admin_graphql_api_id?;
-    string barcode?;
-    anydata? compare_at_price?;
-    string created_at?;
-    string fulfillment_service?;
-    decimal grams?;
+public type UpdateCountryTaxRateCountryProvinces record {
+    string code?;
+    decimal country_id?;
     decimal id?;
-    decimal image_id?;
-    decimal inventory_item_id?;
-    string inventory_management?;
-    string inventory_policy?;
-    decimal inventory_quantity?;
-    decimal old_inventory_quantity?;
-    string option1?;
-    anydata? option2?;
-    anydata? option3?;
-    decimal position?;
-    ModifyProductVariant_variant_presentment_prices[] presentment_prices?;
-    string price?;
-    decimal? product_id?;
-    boolean requires_shipping?;
-    string? sku?;
-    boolean taxable?;
-    string title?;
-    string updated_at?;
-    decimal weight?;
-    string weight_unit?;
+    string name?;
+    anydata? shipping_zone_id?;
+    decimal tax?;
+    string tax_name?;
+    decimal tax_percentage?;
+    string? tax_type?;
 };
 
 public type MobilePlatformApplication record {
-    MobilePlatformApplication_mobile_platform_application mobile_platform_application?;
+    MobilePlatformApplicationMobilePlatformApplication mobile_platform_application?;
 };
 
 public type ApiVersionResourceFeedbackJsonBody record {
@@ -9561,7 +9719,7 @@ public type ApiVersionResourceFeedbackJsonBody record {
 };
 
 public type UpdateCheckoutResponse record {
-    UpdateCheckoutResponse_checkout checkout?;
+    UpdateCheckoutResponseCheckout checkout?;
 };
 
 public type EventsList record {
@@ -9578,112 +9736,15 @@ public type RetrievesAListOfTransactionsQueries record {
     string inShopCurrency?;
 };
 
-public type AvailableShippingRates_checkout record {
-    string subtotal_price?;
-    string total_price?;
-    string total_tax?;
-};
-
-public type OrderResponse_order record {
-    string admin_graphql_api_id?;
-    decimal app_id?;
-    OrderResponse_order_billing_address? billing_address?;
-    anydata? browser_ip?;
-    boolean buyer_accepts_marketing?;
-    anydata? cancel_reason?;
-    anydata? cancelled_at?;
-    anydata? cart_token?;
-    anydata? checkout_id?;
-    anydata? checkout_token?;
-    anydata? closed_at?;
-    boolean confirmed?;
-    string? contact_email?;
-    string created_at?;
-    string currency?;
-    OrderResponse_order_customer customer?;
-    anydata? customer_locale?;
-    anydata? device_id?;
-    anydata[] discount_applications?;
-    anydata[] discount_codes?;
-    string email?;
-    string financial_status?;
-    string? fulfillment_status?;
-    anydata[] fulfillments?;
-    string gateway?;
-    decimal id?;
-    anydata? landing_site?;
-    anydata? landing_site_ref?;
-    OrderResponse_order_line_items[] line_items?;
-    anydata? location_id?;
-    string name?;
-    anydata? note?;
-    anydata[] note_attributes?;
-    decimal number?;
-    decimal order_number?;
-    string order_status_url?;
-    string[] payment_gateway_names?;
-    anydata? phone?;
-    string presentment_currency?;
-    string processed_at?;
-    string processing_method?;
-    anydata? reference?;
-    anydata? referring_site?;
-    anydata[] refunds?;
-    OrderResponse_order_shipping_address? shipping_address?;
-    anydata[] shipping_lines?;
-    anydata? source_identifier?;
-    string source_name?;
-    anydata? source_url?;
-    string subtotal_price?;
-    ReopenCloseOrder_order_price_set subtotal_price_set?;
-    string tags?;
-    anydata[] tax_lines?;
-    boolean taxes_included?;
-    boolean test?;
-    string token?;
-    string total_discounts?;
-    CancelFulfillment_fulfillment_total_discount_set total_discounts_set?;
-    string total_line_items_price?;
-    ReopenCloseOrder_order_price_set total_line_items_price_set?;
-    string total_price?;
-    ReopenCloseOrder_order_price_set total_price_set?;
-    string total_price_usd?;
-    CancelFulfillment_fulfillment_total_discount_set total_shipping_price_set?;
-    string total_tax?;
-    CancelFulfillment_fulfillment_total_discount_set total_tax_set?;
-    decimal total_weight?;
-    string updated_at?;
-    anydata? user_id?;
-};
-
 public type UsageChargeList record {
     @jsondata:Name {value: "usage_charges"}
-    UsageChargeList_usage_charges[] usageCharges?;
+    UsageChargeListUsageCharges[] usageCharges?;
 };
 
-public type AccessScopes_access_scopes record {
-    string 'handle?;
-};
-
-public type PaymentsResponse_checkout_transaction record {
+public type ModifyDraftOrderDraftOrderAppliedDiscount record {
     string amount?;
-    anydata? amount_in?;
-    anydata? amount_out?;
-    anydata? amount_rounding?;
-    string authorization?;
-    string created_at?;
-    string currency?;
-    anydata? error_code?;
-    string gateway?;
-    decimal id?;
-    string kind?;
-    anydata? message?;
-    anydata? parent_id?;
-    string status?;
-    boolean test?;
-};
-
-public type ReopenCloseOrder_order_total_price_set record {
-    ReopenCloseOrder_order_total_price_set_presentment_money presentment_money?;
-    ReopenCloseOrder_order_total_price_set_presentment_money shop_money?;
+    string description?;
+    string? title?;
+    string value?;
+    string value_type?;
 };

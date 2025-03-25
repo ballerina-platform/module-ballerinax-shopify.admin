@@ -223,6 +223,7 @@ public isolated client class Client {
 
     # Cancels a recurring application charge
     #
+    # + recurringApplicationChargeId - The ID of the recurring application charge.
     # + headers - Headers to be sent with the request 
     # + return - Cancel the current recurring charge for a shop / Cancel the current recurring charge for a shop 
     remote isolated function cancelsARecurringApplicationCharge(string recurringApplicationChargeId, string payload, map<string|string[]> headers = {}) returns string|error {
@@ -252,6 +253,7 @@ public isolated client class Client {
 
     # Complete a draft order
     #
+    # + draftOrderId - The ID of the draft order
     # + headers - Headers to be sent with the request 
     # + return - Complete a draft order, marking it as paid / Complete a draft order, marking it as pending / Complete a draft order, marking it as paid / Complete a draft order, marking it as pending 
     remote isolated function completeADraftOrder(string draftOrderId, string payload, map<string|string[]> headers = {}) returns CompleteDraftOrder|error {
@@ -308,6 +310,7 @@ public isolated client class Client {
 
     # Create a collection listing to publish a collection to your app
     #
+    # + collectionListingId - The ID of the product collection
     # + headers - Headers to be sent with the request 
     # + return - Create a collection listing to publish a collection to your app / Create a collection listing to publish a collection to your app 
     remote isolated function createACollectionListingToPublishACollectionToYourApp(string collectionListingId, CollectionListingscollectionListingIdJsonBody payload, map<string|string[]> headers = {}) returns CollectionListing|error {
@@ -607,6 +610,7 @@ public isolated client class Client {
 
     # Creates a discount code
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Create a discount code / Create a discount code 
     remote isolated function createsADiscountCode(string priceRuleId, PriceRuleIdDiscountCodesJsonBody payload, map<string|string[]> headers = {}) returns CreateDiscountCode|error {
@@ -622,6 +626,7 @@ public isolated client class Client {
 
     # Creates a discount code creation job
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Create a discount code creation job / Create a discount code creation job 
     remote isolated function createsADiscountCodeCreationJob(string priceRuleId, PriceRuleIdBatchJsonBody payload, map<string|string[]> headers = {}) returns DiscountCode|error {
@@ -892,6 +897,7 @@ public isolated client class Client {
 
     # Creates a usage charge
     #
+    # + recurringApplicationChargeId - The ID of the recurring application charge.
     # + headers - Headers to be sent with the request 
     # + return - Create a new usage charge / Create a new usage charge 
     remote isolated function createsAUsageCharge(string recurringApplicationChargeId, RecurringApplicationChargeIdUsageChargesJsonBody payload, map<string|string[]> headers = {}) returns UsageChargeResponse|error {
@@ -997,6 +1003,7 @@ public isolated client class Client {
 
     # Delete a collection listing to unpublish a collection from your app
     #
+    # + collectionListingId - The ID of the product collection
     # + headers - Headers to be sent with the request 
     # + return - Delete a collection listing to unpublish a collection from your app / Delete a collection listing to unpublish a collection from your app 
     remote isolated function deleteACollectionListingToUnpublishACollectionFromYourApp(string collectionListingId, string payload, map<string|string[]> headers = {}) returns string|error {
@@ -1091,6 +1098,7 @@ public isolated client class Client {
 
     # Deletes a discount code
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Delete a discount code / Delete a discount code 
     remote isolated function deletesADiscountCode(string priceRuleId, string discountCodeId, string payload, map<string|string[]> headers = {}) returns string|error {
@@ -1458,6 +1466,7 @@ public isolated client class Client {
 
     # Modify an existing DraftOrder
     #
+    # + draftOrderId - The ID of the draft order
     # + headers - Headers to be sent with the request 
     # + return - <span id="set-discount-on-a-draft-order-{{ current_version }}">Set a discount on a draft order</span> / Add a note to a draft order / <span id="set-discount-on-a-draft-order-{{ current_version }}">Set a discount on a draft order</span> / Add a note to a draft order 
     remote isolated function modifyAnExistingDraftorder(string draftOrderId, DraftOrdersdraftOrderIdJsonBody payload, map<string|string[]> headers = {}) returns ModifyDraftOrder|error {
@@ -1757,6 +1766,7 @@ public isolated client class Client {
 
     # Receive a single DraftOrder
     #
+    # + draftOrderId - The ID of the draft order
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Get a representation of a single draft order / Get a representation of a single draft order 
@@ -1910,6 +1920,7 @@ public isolated client class Client {
 
     # Remove an existing DraftOrder
     #
+    # + draftOrderId - The ID of the draft order
     # + headers - Headers to be sent with the request 
     # + return - Permanently delete a draft order / Permanently delete a draft order 
     remote isolated function removeAnExistingDraftorder(string draftOrderId, string payload, map<string|string[]> headers = {}) returns record {}|error {
@@ -1938,6 +1949,7 @@ public isolated client class Client {
 
     # Remove an existing PriceRule
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Delete a price rule / Delete a price rule 
     remote isolated function removeAnExistingPriceRule(string priceRuleId, string payload, map<string|string[]> headers = {}) returns string|error {
@@ -2158,6 +2170,7 @@ public isolated client class Client {
 
     # Retrieve a specific collection listing that is published to your app
     #
+    # + collectionListingId - The ID of the product collection
     # + headers - Headers to be sent with the request 
     # + return - Retrieve a specific collection listing that is published to your app / Retrieve a specific collection listing that is published to your app 
     remote isolated function retrieveASpecificCollectionListingThatIsPublishedToYourApp(string collectionListingId, map<string|string[]> headers = {}) returns CollectionListing|error {
@@ -2208,6 +2221,7 @@ public isolated client class Client {
 
     # Retrieve product_ids that are published to a collection_id
     #
+    # + collectionListingId - The ID of the product collection
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Retrieve <code>product_ids</code> that are published to a <code>collection_id</code> / Retrieve <code>product_ids</code> that are published to a <code>collection_id</code> 
@@ -2521,6 +2535,7 @@ public isolated client class Client {
 
     # Retrieves a discount code creation job
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Retrieve a discount code creation job / Retrieve a discount code creation job 
     remote isolated function retrievesADiscountCodeCreationJob(string priceRuleId, string batchId, map<string|string[]> headers = {}) returns DiscountCodeResponse|error {
@@ -2761,6 +2776,7 @@ public isolated client class Client {
 
     # Retrieves a list of discount codes
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Retrieve a list of all discount codes / Retrieve a list of all discount codes 
     remote isolated function retrievesAListOfDiscountCodes(string priceRuleId, map<string|string[]> headers = {}) returns DiscountCodes|error {
@@ -2773,6 +2789,7 @@ public isolated client class Client {
 
     # Retrieves a list of discount codes for a discount code creation job
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Retrieve a list of discount codes for a discount code creation job / Retrieve a list of discount codes for a discount code creation job 
     remote isolated function retrievesAListOfDiscountCodesForADiscountCodeCreationJob(string priceRuleId, string batchId, map<string|string[]> headers = {}) returns DiscountCodeList|error {
@@ -3141,6 +3158,7 @@ public isolated client class Client {
 
     # Retrieves a list of usage charges
     #
+    # + recurringApplicationChargeId - The ID of the recurring application charge.
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Retrieve all usage charges / Retrieve all usage charges 
@@ -3219,6 +3237,7 @@ public isolated client class Client {
 
     # Retrieves a single charge
     #
+    # + recurringApplicationChargeId - The ID of the recurring application charge.
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Retrieves a single charge / Retrieves a single charge 
@@ -3284,6 +3303,7 @@ public isolated client class Client {
 
     # Retrieves a single discount code
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Retrieve a single discount code / Retrieve a single discount code 
     remote isolated function retrievesASingleDiscountCode(string priceRuleId, string discountCodeId, map<string|string[]> headers = {}) returns SingleDiscountCode|error {
@@ -3395,6 +3415,7 @@ public isolated client class Client {
 
     # Retrieves a single price rule
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Retrieve a single price rule by its ID / Retrieve a single price rule by its ID 
     remote isolated function retrievesASinglePriceRule(string priceRuleId, map<string|string[]> headers = {}) returns SinglePriceRule|error {
@@ -3851,6 +3872,7 @@ public isolated client class Client {
 
     # Send an invoice
     #
+    # + draftOrderId - The ID of the draft order
     # + headers - Headers to be sent with the request 
     # + return - Send a customized invoice / Send the default invoice / Send a customized invoice / Send the default invoice 
     remote isolated function sendAnInvoice(string draftOrderId, DraftOrderIdSendInvoiceJsonBody payload, map<string|string[]> headers = {}) returns InvoiceResponse|error {
@@ -4181,6 +4203,7 @@ public isolated client class Client {
 
     # Updates an existing a price rule
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Update the title of a price rule / Update the title of a price rule 
     remote isolated function updatesAnExistingAPriceRule(string priceRuleId, PriceRulespriceRuleIdJsonBody payload, map<string|string[]> headers = {}) returns UpdatePriceRule|error {
@@ -4241,6 +4264,7 @@ public isolated client class Client {
 
     # Updates an existing discount code
     #
+    # + priceRuleId - The ID of the price rule
     # + headers - Headers to be sent with the request 
     # + return - Update the code for a discount / Update the code for a discount 
     remote isolated function updatesAnExistingDiscountCode(string priceRuleId, string discountCodeId, DiscountCodesdiscountCodeIdJsonBody payload, map<string|string[]> headers = {}) returns UpdateDiscountCode|error {
@@ -4361,6 +4385,7 @@ public isolated client class Client {
 
     # Updates the capped amount of a recurring application charge
     #
+    # + recurringApplicationChargeId - The ID of the recurring application charge.
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Increase the capped amount for a shop / Increase the capped amount for a shop 
