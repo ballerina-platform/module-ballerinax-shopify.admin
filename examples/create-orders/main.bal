@@ -23,7 +23,7 @@ configurable string serviceUrl = ?;
 public function main() returns error? {
     shopify:Client shopify = check new (
         {
-            x\-shopify\-access\-token: accessToken
+            accessToken
         },
         serviceUrl,
         {
