@@ -38,49 +38,49 @@ service /shopify on new http:Listener(8080) {
             customers: [
                 {
                     id: 8821698462001,
-                    created_at: "2025-02-05T13:14:38+05:30",
-                    updated_at: "2025-02-05T13:14:38+05:30",
-                    orders_count: 0,
+                    createdAt: "2025-02-05T13:14:38+05:30",
+                    updatedAt: "2025-02-05T13:14:38+05:30",
+                    ordersCount: 0,
                     state: "disabled",
-                    total_spent: "0.00",
-                    last_order_id: null,
+                    totalSpent: "0.00",
+                    lastOrderId: null,
                     note: null,
-                    verified_email: true,
-                    multipass_identifier: null,
-                    tax_exempt: false,
+                    verifiedEmail: true,
+                    multipassIdentifier: null,
+                    taxExempt: false,
                     tags: "newsletter",
-                    last_order_name: null,
+                    lastOrderName: null,
                     currency: "LKR",
                     addresses: [
                         {
                             id: 10628167827761,
-                            customer_id: 8821698462001,
+                            customerId: 8821698462001,
                             company: null,
                             province: null,
                             country: "Sri Lanka",
-                            province_code: null,
-                            country_code: "LK",
-                            country_name: "Sri Lanka",
+                            provinceCode: null,
+                            countryCode: "LK",
+                            countryName: "Sri Lanka",
                             default: true
                         }
                     ],
-                    tax_exemptions: [],
+                    taxExemptions: [],
                     email_marketing_consent: {
                         state: "subscribed",
                         opt_in_level: "single_opt_in",
                         consent_updated_at: "2025-02-05T13:14:38+05:30"
                     },
                     sms_marketing_consent: null,
-                    admin_graphql_api_id: "gid://shopify/Customer/8821698462001",
-                    default_address: {
+                    adminGraphqlApiId: "gid://shopify/Customer/8821698462001",
+                    defaultAddress: {
                         id: 10628167827761,
-                        customer_id: 8821698462001,
+                        customerId: 8821698462001,
                         company: null,
                         province: null,
                         country: "Sri Lanka",
-                        province_code: null,
-                        country_code: "LK",
-                        country_name: "Sri Lanka",
+                        provinceCode: null,
+                        countryCode: "LK",
+                        countryName: "Sri Lanka",
                         default: true
                     }
                 }
@@ -222,7 +222,7 @@ service /shopify on new http:Listener(8080) {
 
     resource function get admin/api/'2025\-01/shipping_zones\.json() returns ShippingZonesList {
         ShippingZonesList shippingZones = {
-            shipping_zones: [{
+            shippingZones: [{
                 id: 548275650865,
                 name: "Domestic",
                 countries: [
