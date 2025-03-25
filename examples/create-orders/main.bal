@@ -17,20 +17,20 @@
 import ballerina/io;
 import ballerinax/shopify;
 
-configurable string apiVersion = ?;
 configurable string accessToken = ?;
 configurable string serviceUrl = ?;
 
 public function main() returns error? {
     shopify:Client shopify = check new (
-        accessToken,
-        apiVersion,
+        {
+            x\-shopify\-access\-token: accessToken
+        },
+        serviceUrl,
         {
             followRedirects: {
                 enabled: true
             }
-        },
-        serviceUrl
+        }
     );
 
     shopify:CustomerResponse response = check shopify->createsACustomer({
