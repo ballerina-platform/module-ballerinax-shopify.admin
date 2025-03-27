@@ -112,15 +112,17 @@ configurable string apiVersion = ?;
 configurable string accessToken = ?;
 configurable string serviceUrl = ?;
 
-shopify:Client shopify = check new (config = {
-    followRedirects: {
-        enabled: true
+shopify:Client shopify = check new (
+    {
+        accessToken
     },
-    apiVersion,
-    auth: {
-        token: accessToken
+    serviceUrl,
+    {
+        followRedirects: {
+            enabled: true
+        }
     }
-}, serviceUrl);
+);
 ```
 
 ### Step 3: Invoke the connector operation
@@ -131,8 +133,8 @@ You can now utilize the operations available within the connector.
 public function main() returns error? {
    shopify:CreateCustomer payload = {
       customer: {
-         first_name: "Steve",
-         last_name: "Lastnameson",
+         firstName: "Steve",
+         lastName: "Lastnameson",
          email: "steve.lastnameson@example.com"
       }
    };
