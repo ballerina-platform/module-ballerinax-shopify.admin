@@ -337,6 +337,7 @@ dependencies = [
 	{org = "ballerinai", name = "observe"}
 ]
 modules = [
-	{org = "ballerinax", packageName = "shopify", moduleName = "shopify"}
+	{org = "ballerinax", packageName = "shopify", moduleName = "shopify"},
+	{org = "ballerinax", packageName = "shopify", moduleName = "shopify.oas"}
 ]
 
