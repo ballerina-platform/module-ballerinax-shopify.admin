@@ -44,7 +44,7 @@ public function main() returns error? {
     shopify:OrderResponse newOrder = check shopify->createAnOrder({
         'order: {
             customer: {
-                id: <decimal> response.customer?.id
+                id: check (response.customer?.id).ensureType(decimal)
             },
             name: "new order",
             order_number: 0,
