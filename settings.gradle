@@ -30,8 +30,10 @@ plugins {
 rootProject.name = 'module-ballerinax-shopify'
 
 include ':shopify-ballerina'
+include ':shopify-examples'
 
 project(':shopify-ballerina').projectDir = file("ballerina")
+project(':shopify-examples').projectDir = file("examples")
 
 gradleEnterprise {
     buildScan {

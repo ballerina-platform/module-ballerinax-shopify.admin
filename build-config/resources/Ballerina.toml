@@ -1,16 +1,16 @@
 [package]
-distribution = "2201.10.0"
+distribution = "2201.11.0"
 org = "ballerinax"
 name = "shopify"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = [] # TODO: Add keywords
-# icon = "icon.png" # TODO: Add icon
+keywords = ["shopify", "e-commerce"]
+icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-shopify"
 
 [build-options]
 observabilityIncluded = true
 
-[platform.java17]
+[platform.java21]
 graalvmCompatible = true
