@@ -2,7 +2,7 @@
 
 [Shopify](https://www.shopify.com) is a leading e-commerce platform that enables users to create, manage, and grow their online stores, offering secure transactions, inventory management, and seamless integrations.
 
-The Ballerina Shopify connector allows developers to interact with the [Shopify Admin REST APIs](https://shopify.dev/docs/api/admin-rest). It provides an easy-to-use interface for managing products, orders, customers, and other essential e-commerce functionalities. The module supports Shopify API versions up to the `2025-01` release.
+The Ballerina Shopify admin connector allows developers to interact with the [Shopify Admin REST APIs](https://shopify.dev/docs/api/admin-rest). It provides an easy-to-use interface for managing products, orders, customers, and other essential e-commerce functionalities. The module supports Shopify API versions up to the `2025-01` release.
 
 ## Setup guide
 
@@ -91,19 +91,19 @@ To use the Shopify connector in your Ballerina project, modify the `.bal` file a
 Import the `ballerinax/shopify.admin` module into your Ballerina project.
 
 ```ballerina
-import ballerinax/shopify.admin;
+import ballerinax/shopify.admin as shopadmin;
 ```
 
 ### Step 2: Instantiate a new connector
 
-Create a `admin:Client` instance with necessary configurations.
+Create a `shopadmin:Client` instance with necessary configurations.
 
 ```ballerina
 configurable string apiVersion = ?;
 configurable string accessToken = ?;
 configurable string serviceUrl = ?;
 
-admin:Client shopify = check new (config = {
+shopadmin:Client shopify = check new (config = {
     followRedirects: {
         enabled: true
     },
@@ -120,14 +120,14 @@ You can now utilize the operations available within the connector.
 
 ```ballerina
 public function main() returns error? {
-   admin:CreateCustomer payload = {
+   shopadmin:CreateCustomer payload = {
       customer: {
          first_name: "Steve",
          last_name: "Lastnameson",
          email: "steve.lastnameson@example.com"
       }
    };
-   admin:CustomerResponse result = check shopify->createsACustomer(payload);
+   shopadmin:CustomerResponse result = check shopify->createsACustomer(payload);
 }
 ```
 
