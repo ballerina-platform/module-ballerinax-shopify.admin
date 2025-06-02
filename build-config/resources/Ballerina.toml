@@ -5,7 +5,7 @@ name = "shopify.admin"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["shopify", "e-commerce"]
+keywords = ["shopify", "e-commerce", "admin"]
 icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-shopify.admin"
 
