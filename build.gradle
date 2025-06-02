@@ -58,8 +58,8 @@ allprojects {
 def moduleVersion = project.version.replace("-SNAPSHOT", "")
 
 task build {
-    dependsOn(':shopify-ballerina:build')
-    dependsOn(':shopify-examples:build')
+    dependsOn(':shopify.admin-ballerina:build')
+    dependsOn(':shopify.admin-examples:build')
 }
 
 release {
