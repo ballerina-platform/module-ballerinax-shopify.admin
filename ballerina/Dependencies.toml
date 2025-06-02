@@ -73,7 +73,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "http"
-version = "2.13.5"
+version = "2.13.6"
 dependencies = [
 	{org = "ballerina", name = "auth"},
 	{org = "ballerina", name = "cache"},
@@ -326,7 +326,7 @@ modules = [
 
 [[package]]
 org = "ballerinax"
-name = "shopify"
+name = "shopify.admin"
 version = "1.0.0"
 dependencies = [
 	{org = "ballerina", name = "data.jsondata"},
@@ -337,6 +337,6 @@ dependencies = [
 	{org = "ballerinai", name = "observe"}
 ]
 modules = [
-	{org = "ballerinax", packageName = "shopify", moduleName = "shopify"}
+	{org = "ballerinax", packageName = "shopify.admin", moduleName = "shopify.admin"}
 ]
 
