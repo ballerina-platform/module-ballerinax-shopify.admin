@@ -46,7 +46,7 @@ task testExamples {
 
 task buildExamples {
     gradle.taskGraph.whenReady { graph ->
-        if (graph.hasTask(":shopify-examples:test")) {
+        if (graph.hasTask(":shopify.admin-examples:test")) {
             buildExamples.enabled = false
         } else {
             testExamples.enabled = false
@@ -70,8 +70,8 @@ task buildExamples {
     }
 }
 
-buildExamples.dependsOn ":shopify-ballerina:build"
-testExamples.dependsOn ":shopify-ballerina:build"
+buildExamples.dependsOn ":shopify.admin-ballerina:build"
+testExamples.dependsOn ":shopify.admin-ballerina:build"
 
 // TODO: Enable the examples build once https://github.com/ballerina-platform/ballerina-library/issues/6135 is fixed
 // test.dependsOn testExamples

@@ -1,12 +1,12 @@
 # Examples
 
-The `ballerinax/shopify` connector provides practical examples illustrating usage in various scenarios.
+The `ballerinax/shopify.admin` connector provides practical examples illustrating usage in various scenarios.
 
-1. [Create new order](https://github.com/ballerina-platform/module-ballerinax-shopify/tree/main/examples/create-orders) : This is a guide to use the Shopify connector to connect to a Shopify store, register a customer, and place an order.
+1. [Create new order](https://github.com/ballerina-platform/module-ballerinax-shopify.admin/tree/main/examples/create-orders) : This is a guide to use the Shopify connector to connect to a Shopify store, register a customer, and place an order.
 
 ## Prerequisites
 
-1. Generate Shopify credentials to authenticate the connector as described in the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-shopify/blob/main/README.md#setup-guide).
+1. Generate Shopify credentials to authenticate the connector as described in the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-shopify.admin/blob/main/README.md#setup-guide).
 
 2. For each example, create a `Config.toml` file the related configuration. Here's an example of how your `Config.toml` file should look:
 

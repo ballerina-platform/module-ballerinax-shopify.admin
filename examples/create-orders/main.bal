@@ -15,13 +15,13 @@
 // under the License.
 
 import ballerina/io;
-import ballerinax/shopify;
+import ballerinax/shopify.admin as shopadmin;
 
 configurable string accessToken = ?;
 configurable string serviceUrl = ?;
 
 public function main() returns error? {
-    shopify:Client shopify = check new (
+    shopadmin:Client shopify = check new (
         {
             accessToken
         },
@@ -33,7 +33,7 @@ public function main() returns error? {
         }
     );
 
-    shopify:CustomerResponse response = check shopify->createsACustomer({
+    shopadmin:CustomerResponse response = check shopify->createsACustomer({
         customer: {
             first_name: "Steve",
             last_name: "Lastnameson",
@@ -41,7 +41,7 @@ public function main() returns error? {
         }
     });
 
-    shopify:OrderResponse newOrder = check shopify->createAnOrder({
+    shopadmin:OrderResponse newOrder = check shopify->createAnOrder({
         'order: {
             customer: {
                 id: check (response.customer?.id).ensureType(decimal)
