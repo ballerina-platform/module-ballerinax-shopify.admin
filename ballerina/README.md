@@ -1,8 +1,15 @@
 ## Overview
 
-[Shopify](https://www.shopify.com) is a leading e-commerce platform that enables users to create, manage, and grow their online stores, offering secure transactions, inventory management, and seamless integrations.
+[Shopify](https://www.shopify.com) is an e-commerce platform that enables users to create, manage, and grow their online stores, offering secure transactions, inventory management, and seamless integrations.
 
-The Ballerina Shopify admin connector allows developers to interact with the [Shopify Admin REST APIs](https://shopify.dev/docs/api/admin-rest). It provides an easy-to-use interface for managing products, orders, customers, and other essential e-commerce functionalities. The module supports Shopify API versions up to the `2025-01` release.
+The Shopify Admin connector allows developers to interact with the [Shopify Admin REST APIs](https://shopify.dev/docs/api/admin-rest). It provides an interface for managing products, orders, customers, and other essential e-commerce functionalities.
+
+### Key Features
+
+- Manage products, collections, and inventory
+- Process orders and handle customer information
+- Support for Shopify Admin REST API versions
+- Secure transactions and integration with online stores
 
 ## Setup guide
 
