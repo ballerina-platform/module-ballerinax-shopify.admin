@@ -55,7 +55,7 @@ In the Shopify partner dashboard, you can either connect to an existing organiza
 
 4. Complete the store setup by following the instructions. You can customize store settings as needed.
 
-   ![Setup store](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/setup-shopify.admin-store.png)  
+   ![Setup store](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/setup-shopify-store.png)  
 
 ### 4. Create a new app
 
