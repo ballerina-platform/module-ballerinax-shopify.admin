@@ -23,32 +23,31 @@ configurable string serviceUrl = ?;
 public function main() returns error? {
     shopadmin:Client shopify = check new (
         {
-            accessToken
+            xShopifyAccessToken: accessToken
         },
-        serviceUrl,
-        {
-            followRedirects: {
-                enabled: true
-            }
-        }
+        serviceUrl
     );
 
-    shopadmin:CustomerResponse response = check shopify->createsACustomer({
+    shopadmin:CustomerResponse response = check shopify->createACustomer({
         customer: {
-            first_name: "Steve",
-            last_name: "Lastnameson",
-            email: "steve.lastnameson@example.com"
+            firstName: "John",
+            lastName: "Doe",
+            email: "john.doe@example.com"
         }
     });
 
     shopadmin:OrderResponse newOrder = check shopify->createAnOrder({
         'order: {
             customer: {
-                id: check (response.customer?.id).ensureType(decimal)
+                id: response.customer?.id
             },
-            name: "new order",
-            order_number: 0,
-            confirmed: true
+            lineItems: [
+                {
+                    title: "Custom Item",
+                    price: "10.00",
+                    quantity: 1
+                }
+            ]
         }
     });
 
