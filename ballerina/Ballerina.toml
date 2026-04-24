@@ -2,7 +2,7 @@
 distribution = "2201.11.0"
 org = "ballerinax"
 name = "shopify.admin"
-version = "1.0.0"
+version = "3.0.0"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
 keywords = ["Shopify", "E-Commerce", "Admin", "Vendor/Shopify", "Area/E-Commerce", "Type/Connector"]
