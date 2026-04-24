@@ -11,9 +11,8 @@ The `ballerinax/shopify.admin` connector provides practical examples illustratin
 2. For each example, create a `Config.toml` file the related configuration. Here's an example of how your `Config.toml` file should look:
 
     ```toml
-    apiVersion = <API_VERSION>
-    accessToken = <ACCESS_TOKEN>
-    serviceUrl = <SERVICE_URL>
+    xShopifyAccessToken = "<ACCESS_TOKEN>"
+    serviceUrl = "<SERVICE_URL>"
     ```
 
 ## Running an example
