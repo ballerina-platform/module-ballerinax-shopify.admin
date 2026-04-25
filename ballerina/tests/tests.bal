@@ -16,6 +16,7 @@
 
 import ballerina/os;
 import ballerina/test;
+import ballerina/time;
 
 configurable boolean isTestOnLiveServer = os:getEnv("IS_TEST_ON_LIVE_SERVER") == "true";
 configurable string accessToken = "mock-access-token";
@@ -60,11 +61,13 @@ function testGetCustomerLists() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testCreateCustomer() returns error? {
+    time:Utc utc = time:utcNow();
+    string uniqueEmail = string `sungjinwoo${utc[0]}@sololeveling.com`;
     CreateCustomer payload = {
         customer: {
             firstName: "Sung",
             lastName: "Jin-woo",
-            email: "sungjinwoo1298439@sololeveling.com"
+            email: uniqueEmail
         }
     };
     CustomerResponse result = check shopify->createACustomer(payload);
@@ -95,7 +98,11 @@ function testGetEventLists() returns error? {
 function testGiftCardList() returns error? {
     GiftCardsList giftCardList = check shopify->retrieveAListOfGiftCards();
     GiftCardsListGiftCards[]? giftCards = giftCardList.giftCards;
-    test:assertTrue(giftCards is () || giftCards.length() >= 0);
+    if giftCards !is () {
+        test:assertTrue(giftCards.length() > 0);
+    } else {
+        test:assertFail("No gift cards were found.");
+    }
 }
 
 @test:Config {
@@ -116,7 +123,7 @@ function testGetListOfLocations() returns error? {
 }
 function testGetCountOfLocations() returns error? {
     StoreLocationCount countOfLocations = check shopify->retrieveACountOfLocations();
-    test:assertTrue((countOfLocations.count ?: 0) >= 0);
+    test:assertTrue(countOfLocations.count >= 0);
 }
 
 @test:Config {
@@ -124,7 +131,7 @@ function testGetCountOfLocations() returns error? {
 }
 function testGetACountOfProducts() returns error? {
     ObjectCount productCount = check shopify->retrieveACountOfProducts();
-    test:assertTrue((productCount.count ?: 0) >= 0);
+    test:assertTrue(productCount.count >= 0);
 }
 
 @test:Config {
@@ -133,7 +140,7 @@ function testGetACountOfProducts() returns error? {
 function testGetListOfDraftOrders() returns error? {
     DraftOrders draftOrders = check shopify->retrieveAListOfDraftOrders();
     DraftOrdersDraftOrders[]? orders = draftOrders?.draftOrders;
-    test:assertTrue(orders is () || orders.length() >= 0);
+    test:assertTrue(orders !is ());
 }
 
 @test:Config {
@@ -145,7 +152,10 @@ function testGetDraftOrder() returns error? {
     if orders is () || orders.length() == 0 {
         return;
     }
-    int firstOrderId = orders[0].id ?: 0;
+    int? firstOrderId = orders[0].id;
+    if firstOrderId is () {
+        test:assertFail("First draft order is missing an id.");
+    }
     SingleDraftOrder draftOrder = check shopify->receiveASingleDraftOrder(firstOrderId.toString());
     test:assertEquals(draftOrder.draftOrder?.id, firstOrderId);
 }
@@ -155,7 +165,7 @@ function testGetDraftOrder() returns error? {
 }
 function testGetCountOfAllDraftOrders() returns error? {
     StoreLocationCount draftOrderCount = check shopify->receiveACountOfAllDraftOrders();
-    test:assertTrue((draftOrderCount.count ?: 0) >= 0);
+    test:assertTrue(draftOrderCount.count >= 0);
 }
 
 @test:Config {
@@ -176,7 +186,7 @@ function testGetCountriesList() returns error? {
 }
 function testGetCountOfCountries() returns error? {
     CountriesCount countryCount = check shopify->retrieveACountOfCountries();
-    test:assertTrue((countryCount.count ?: 0) >= 0);
+    test:assertTrue(countryCount.count >= 0);
 }
 
 @test:Config {
@@ -198,7 +208,7 @@ function testGetListOfAllShippingZones() returns error? {
 function testGetListOfPriceRules() returns error? {
     PriceRules priceRules = check shopify->retrieveAListOfPriceRules();
     SinglePriceRulePriceRule[]? priceRulesResult = priceRules.priceRules;
-    test:assertTrue(priceRulesResult is () || priceRulesResult.length() >= 0);
+    test:assertTrue(priceRulesResult !is ());
 }
 
 @test:Config {
@@ -206,7 +216,7 @@ function testGetListOfPriceRules() returns error? {
 }
 function testGetCountOfEvents() returns error? {
     EventsCount eventCount = check shopify->retrieveACountOfEvents();
-    test:assertTrue((eventCount.count ?: 0) >= 0);
+    test:assertTrue(eventCount.count >= 0);
 }
 
 @test:Config {
@@ -232,7 +242,7 @@ function testCreateAGiftCard() returns error? {
 }
 function testGetCountOfGiftCards() returns error? {
     EventsCount count = check shopify->retrieveACountOfGiftCards();
-    test:assertTrue((count?.count ?: 0) >= 0);
+    test:assertTrue(count?.count >= 0);
 }
 
 @test:Config {
@@ -241,7 +251,7 @@ function testGetCountOfGiftCards() returns error? {
 function testGetListOfComments() returns error? {
     ArticleComments comments = check shopify->retrieveAListOfComments();
     ArticleCommentsComments[]? commentsResult = comments.comments;
-    test:assertTrue(commentsResult is () || commentsResult.length() >= 0);
+    test:assertTrue(commentsResult !is ());
 }
 
 @test:Config {
@@ -250,7 +260,7 @@ function testGetListOfComments() returns error? {
 function testGetListOfSmartCollections() returns error? {
     SmartCollectionList smartCollections = check shopify->retrieveAListOfSmartCollections();
     SmartCollectionListSmartCollections[]? smartCollectionsResult = smartCollections.smartCollections;
-    test:assertTrue(smartCollectionsResult is () || smartCollectionsResult.length() >= 0);
+    test:assertTrue(smartCollectionsResult !is ());
 }
 
 @test:Config {

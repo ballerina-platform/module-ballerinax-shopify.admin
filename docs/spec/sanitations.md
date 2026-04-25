@@ -123,7 +123,7 @@ These changes are done in order to improve the overall usability, and as workaro
 5. Bind the latest API version into each request
 
     Each API request includes the API version as a path parameter. However, since the package is currently generated based on version `2026-01`, using other versions may result in unsupported methods.
-    To ensure compatibility, all API version placeholders in requests are now replaced with `2026-01`, guaranteeing that the client methods as expected with the intended API version.
+    To ensure compatibility, all API version placeholders in requests are now replaced with `2026-01`, guaranteeing that the client methods work as expected with the intended API version.
 
 ## OpenAPI cli command
 
