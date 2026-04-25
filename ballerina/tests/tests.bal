@@ -272,7 +272,10 @@ function testGetCountOfAllProductImages() returns error? {
     if productList is () || productList.length() == 0 {
         return;
     }
-    int firstProductId = productList[0].id ?: 0;
+    int? firstProductId = productList[0].id;
+    if firstProductId is () {
+        test:assertFail("First product is missing an id.");
+    }
     BlogsCount productImageCount = check shopify->receiveACountOfAllProductImages(firstProductId.toString());
     test:assertTrue((productImageCount.count ?: 0) >= 0);
 }
