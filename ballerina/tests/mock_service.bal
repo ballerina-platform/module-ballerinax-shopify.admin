@@ -29,11 +29,11 @@ service /shopify on new http:Listener(8080) {
         return payload;
     }
 
-    resource function post admin/api/'2025\-01/customers\.json(@http:Payload json payload) returns CustomerResponse|error {
+    resource function post admin/api/'2026\-01/customers\.json(@http:Payload json payload) returns CustomerResponse|error {
         return check payload.cloneWithType(CustomerResponse);
     }
 
-    resource function get admin/api/'2025\-01/customers\.json() returns Customers {
+    resource function get admin/api/'2026\-01/customers\.json() returns Customers {
         Customers customers = {
             customers: [
                 {
@@ -65,12 +65,12 @@ service /shopify on new http:Listener(8080) {
                         }
                     ],
                     taxExemptions: [],
-                    email_marketing_consent: {
+                    emailMarketingConsent: {
                         state: "subscribed",
-                        opt_in_level: "single_opt_in",
-                        consent_updated_at: "2025-02-05T13:14:38+05:30"
+                        optInLevel: "single_opt_in",
+                        consentUpdatedAt: "2025-02-05T13:14:38+05:30"
                     },
-                    sms_marketing_consent: null,
+                    smsMarketingConsent: null,
                     adminGraphqlApiId: "gid://shopify/Customer/8821698462001",
                     defaultAddress: {
                         id: 10628167827761,
@@ -89,7 +89,7 @@ service /shopify on new http:Listener(8080) {
         return customers;
     }
 
-    resource function get admin/api/'2025\-01/events\.json() returns EventsList {
+    resource function get admin/api/'2026\-01/events\.json() returns EventsList {
         EventsList events = {
             events: [
                 {
@@ -106,33 +106,33 @@ service /shopify on new http:Listener(8080) {
         return events;
     }
 
-    resource function get admin/api/'2025\-01/gift_cards\.json() returns GiftCardsList {
+    resource function get admin/api/'2026\-01/gift_cards\.json() returns GiftCardsList {
         GiftCardsList giftCards = {
             giftCards: [
                 {
                     id: 648138555697,
                     balance: "10.00",
-                    created_at: "2025-02-05T14:45:14+05:30",
-                    updated_at: "2025-02-05T14:45:14+05:30",
+                    createdAt: "2025-02-05T14:45:14+05:30",
+                    updatedAt: "2025-02-05T14:45:14+05:30",
                     currency: "LKR",
-                    initial_value: "10.00",
-                    disabled_at: null,
-                    line_item_id: null,
-                    api_client_id: 1830279,
-                    user_id: 116900266289,
-                    customer_id: null,
+                    initialValue: "10.00",
+                    disabledAt: null,
+                    lineItemId: null,
+                    apiClientId: 1830279,
+                    userId: 116900266289,
+                    customerId: null,
                     note: "Test",
-                    expires_on: null,
-                    template_suffix: null,
-                    last_characters: "tfp7",
-                    order_id: null
+                    expiresOn: null,
+                    templateSuffix: null,
+                    lastCharacters: "tfp7",
+                    orderId: null
                 }
             ]
         };
         return giftCards;
     }
 
-    resource function get admin/api/'2025\-01/locations\.json() returns LocationList {
+    resource function get admin/api/'2026\-01/locations\.json() returns LocationList {
         LocationList locations = {
             locations: [
                 {
@@ -145,50 +145,61 @@ service /shopify on new http:Listener(8080) {
                     province: "ON",
                     country: "CA",
                     phone: "555-1212",
-                    country_code: "CA",
-                    province_code: "ON",
+                    countryCode: "CA",
+                    provinceCode: "ON",
                     active: true,
                     legacy: false,
-                    admin_graphql_api_id: "gid://shopify/Location/487838322"
+                    adminGraphqlApiId: "gid://shopify/Location/487838322"
                 }
             ]
         };
         return locations;
     }
 
-    resource function get admin/api/'2025\-01/locations/count\.json() returns StoreLocationCount {
+    resource function get admin/api/'2026\-01/locations/count\.json() returns StoreLocationCount {
         StoreLocationCount count = {
-            count: 1.0
+            count: 1
         };
         return count;
     }
 
-    resource function get admin/api/'2025\-01/products/count\.json() returns ObjectCount {
+    resource function get admin/api/'2026\-01/products\.json() returns ProductsResponse {
+        ProductsResponse products = {
+            products: [{
+                id: 12345,
+                title: "Test Product"
+            }]
+        };
+        return products;
+    }
+
+    resource function get admin/api/'2026\-01/products/count\.json() returns ObjectCount {
         ObjectCount count = {
-            count: 1.0
+            count: 1
         };
         return count;
     }
 
-    resource function get admin/api/'2025\-01/draft_orders\.json() returns DraftOrders {
+    resource function get admin/api/'2026\-01/draft_orders\.json() returns DraftOrders {
         DraftOrders orders = {
             draftOrders: [{
-                email: "" 
+                id: 12345,
+                email: ""
             }]
         };
         return orders;
     }
 
-    resource function get admin/api/'2025\-01/draft_orders/count\.json() returns StoreLocationCount {
+    resource function get admin/api/'2026\-01/draft_orders/count\.json() returns StoreLocationCount {
         StoreLocationCount count = {
-            count: 1.0
+            count: 1
         };
         return count;
     }
 
-    resource function get admin/api/'2025\-01/draft_orders/[string draftOrderId]() returns SingleDraftOrder|error {
+    resource function get admin/api/'2026\-01/draft_orders/[string draftOrderId]() returns SingleDraftOrder|error {
         SingleDraftOrder draftOrder = {
-            draft_order: {
+            draftOrder: {
                 id: 12345,
                 name: "Draft #1",
                 email: ""
@@ -197,7 +208,7 @@ service /shopify on new http:Listener(8080) {
         return draftOrder;
     }
 
-    resource function get admin/api/'2025\-01/countries\.json() returns CountriesList {
+    resource function get admin/api/'2026\-01/countries\.json() returns CountriesList {
         CountriesList countries = {
             countries: [
                 {
@@ -205,7 +216,7 @@ service /shopify on new http:Listener(8080) {
                     name: "Sri Lanka",
                     tax: 0.0,
                     code: "LK",
-                    tax_name: "VAT",
+                    taxName: "VAT",
                     provinces: []
                 }
             ]
@@ -213,14 +224,14 @@ service /shopify on new http:Listener(8080) {
         return countries;
     }
 
-    resource function get admin/api/'2025\-01/countries/count\.json() returns EventsCount {
+    resource function get admin/api/'2026\-01/countries/count\.json() returns EventsCount {
         EventsCount count = {
             count: 1
         };
         return count;
     }
 
-    resource function get admin/api/'2025\-01/shipping_zones\.json() returns ShippingZonesList {
+    resource function get admin/api/'2026\-01/shipping_zones\.json() returns ShippingZonesList {
         ShippingZonesList shippingZones = {
             shippingZones: [{
                 id: 548275650865,
@@ -239,58 +250,58 @@ service /shopify on new http:Listener(8080) {
         return shippingZones;
     }
 
-    resource function get admin/api/'2025\-01/price_rules\.json() returns PriceRules {
+    resource function get admin/api/'2026\-01/price_rules\.json() returns PriceRules {
         PriceRules priceRules = {
             priceRules: [
                 {
                     id: 123456789,
                     title: "10% off",
-                    target_type: "line_item",
-                    target_selection: "all",
-                    allocation_method: "across",
-                    value_type: "percentage",
+                    targetType: "line_item",
+                    targetSelection: "all",
+                    allocationMethod: "across",
+                    valueType: "percentage",
                     value: "-10.0",
-                    once_per_customer: false,
-                    usage_limit: 1,
-                    customer_selection: "all",
-                    starts_at: "2025-02-05T14:45:14+05:30",
-                    ends_at: null,
-                    created_at: "2025-02-05T14:45:14+05:30",
-                    updated_at: "2025-02-05T14:45:14+05:30",
-                    admin_graphql_api_id: "gid://shopify/PriceRule/123456789"
+                    oncePerCustomer: false,
+                    usageLimit: 1,
+                    customerSelection: "all",
+                    startsAt: "2025-02-05T14:45:14+05:30",
+                    endsAt: null,
+                    createdAt: "2025-02-05T14:45:14+05:30",
+                    updatedAt: "2025-02-05T14:45:14+05:30",
+                    adminGraphqlApiId: "gid://shopify/PriceRule/123456789"
                 }
             ]
         };
         return priceRules;
     }
 
-    resource function get admin/api/'2025\-01/events/count\.json() returns EventsCount {
+    resource function get admin/api/'2026\-01/events/count\.json() returns EventsCount {
         EventsCount count = {
-            count: 1.0
+            count: 1
         };
         return count;
     }
 
-    resource function post admin/api/'2025\-01/gift_cards\.json(@http:Payload json payload) returns GiftCard|error {
+    resource function post admin/api/'2026\-01/gift_cards\.json(@http:Payload json payload) returns GiftCard|error {
         return {
-            gift_card: {
-                initial_value: "100.0"
+            giftCard: {
+                initialValue: "100.00"
             }
         };
     }
 
-    resource function get admin/api/'2025\-01/gift_cards/count\.json() returns EventsCount {
+    resource function get admin/api/'2026\-01/gift_cards/count\.json() returns EventsCount {
         EventsCount count = {
-            count: 1.0
+            count: 1
         };
         return count;
     }
 
-    resource function get admin/api/'2025\-01/comments\.json() returns ArticleComments {
+    resource function get admin/api/'2026\-01/comments\.json() returns ArticleComments {
         ArticleComments comments = {
             comments: [
                 {
-                    article_id: 123456789,
+                    articleId: 123456789,
                     body: "This is a comment"
                 }
             ]
@@ -298,7 +309,7 @@ service /shopify on new http:Listener(8080) {
         return comments;
     }
 
-    resource function get admin/api/'2025\-01/smart_collections\.json() returns SmartCollectionList {
+    resource function get admin/api/'2026\-01/smart_collections\.json() returns SmartCollectionList {
         SmartCollectionList smartCollections = {
             smartCollections: [
                 {
@@ -312,17 +323,17 @@ service /shopify on new http:Listener(8080) {
                         }
                     ],
                     disjunctive: false,
-                    sort_order: "manual",
-                    admin_graphql_api_id: "gid://shopify/SmartCollection/123456789"
+                    sortOrder: "manual",
+                    adminGraphqlApiId: "gid://shopify/SmartCollection/123456789"
                 }
             ]
         };
         return smartCollections;
     }
 
-    resource function get admin/api/'2025\-01/products/[string productId]/images/count\.json() returns BlogsCount {
+    resource function get admin/api/'2026\-01/products/[string productId]/images/count\.json() returns BlogsCount {
         BlogsCount count = {
-            count: 1.0
+            count: 1
         };
         return count;
     }

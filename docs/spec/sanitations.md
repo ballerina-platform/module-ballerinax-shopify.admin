@@ -122,8 +122,8 @@ These changes are done in order to improve the overall usability, and as workaro
 
 5. Bind the latest API version into each request
 
-    Each API request includes the API version as a path parameter. However, since the package is currently generated based on version `2025-01`, using other versions may result in unsupported methods.
-    To ensure compatibility, all API version placeholders in requests are now replaced with `2025-01`, guaranteeing that the client methods as expected with the intended API version.
+    Each API request includes the API version as a path parameter. However, since the package is currently generated based on version `2026-01`, using other versions may result in unsupported methods.
+    To ensure compatibility, all API version placeholders in requests are now replaced with `2026-01`, guaranteeing that the client methods work as expected with the intended API version.
 
 ## OpenAPI cli command
 
@@ -133,4 +133,4 @@ The following command was used to generate the Ballerina client from the OpenAPI
 bal openapi -i docs/spec/openapi.yaml --mode client --license docs/license.txt -o ballerina
 ```
 
-Note: The license year is hardcoded to 2025, change if necessary.
+Note: The license year is hardcoded to 2026, change if necessary.

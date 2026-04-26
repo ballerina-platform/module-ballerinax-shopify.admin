@@ -1,15 +1,9 @@
+
 ## Overview
 
-[Shopify](https://www.shopify.com) is an e-commerce platform that enables users to create, manage, and grow their online stores, offering secure transactions, inventory management, and seamless integrations.
+[Shopify](https://www.shopify.com) is a leading e-commerce platform that enables users to create, manage, and grow their online stores, offering secure transactions, inventory management, and seamless integrations.
 
-The Shopify Admin connector allows developers to interact with the [Shopify Admin REST APIs](https://shopify.dev/docs/api/admin-rest). It provides an interface for managing products, orders, customers, and other essential e-commerce functionalities.
-
-### Key Features
-
-- Manage products, collections, and inventory
-- Process orders and handle customer information
-- Support for Shopify Admin REST API versions
-- Secure transactions and integration with online stores
+The Ballerina Shopify admin connector allows developers to interact with the [Shopify Admin REST APIs](https://shopify.dev/docs/api/admin-rest). It provides an easy-to-use interface for managing products, orders, customers, and other essential e-commerce functionalities. The module supports Shopify API versions up to the `2026-01` release.
 
 ## Setup guide
 
@@ -31,45 +25,45 @@ Follow these steps to generate an access token for Shopify Admin APIs using the 
 
 In the Shopify partner dashboard, you can either connect to an existing organization or create a new one. If you don’t already have an organization, follow these steps to create one.
 
-* Follow the on-screen instructions and provide the necessary details.
+1. Follow the on-screen instructions and provide the necessary details.
 
    ![Main focus](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/main-focus-as-shopify-partner.png)
 
-* Provide business contact details and finalize the setup.
+2. Provide business contact details and finalize the setup.
 
    ![Business contact info](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/business-contact-information.png)  
 
 ### 3. Create a development store
 
-1. In the [Shopify partner dashboard](https://partners.shopify.com/), select **Create a new store**.
+1. In the [Shopify partner dashboard](https://partners.shopify.com/), select **Stores** section from the left navigation panel.
 
-   ![Create store](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/build-new-store.png)
+   ![Stores](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/home-page.png)
 
-2. Enter store details and assign a unique store name.
+2. Then you will be redirected to Developer Dashboard. Select **Create store** to proceed.
 
-   ![Store details](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/create-development-store.png)  
+   ![Create Store](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/create-store.png)  
 
-3. Select the appropriate account type for your development needs.
+3. Complete the store setup by following the instructions. You can customize store settings as needed.
 
-   ![Choose account type](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/choose-account.png)  
-
-4. Complete the store setup by following the instructions. You can customize store settings as needed.
-
-   ![Setup store](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/setup-shopify.admin-store.png)  
+   ![Store Configurations](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/create-store-configs.png)
 
 ### 4. Create a new app
 
 To start developing on your store, you need to create an app.
 
-1. Under **App and sales channels** in settings, select **Develop apps**.
+1. In the home page of the new store, select **Settings** at the bottom.
 
-   ![Apps & sales](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/apps-and-sales-channel.png)
+   ![Settings](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/settings.png)
 
-2. Select **Allow custom app development**.
+2. Then proceed to the Apps section, and select **Develop apps**.
+
+   ![Develop Apps](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/apps-section.png)
+
+3. Select **Allow custom app development**.
 
    ![Develop apps](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/develop-apps.png)  
 
-3. Click **Create an app**, enter an app name, and confirm.
+4. Click **Create an app**, enter an app name, and confirm.
 
    ![Create app](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-shopify.admin/refs/heads/main/docs/resources/create-app.png)  
 
@@ -106,19 +100,15 @@ import ballerinax/shopify.admin as shopadmin;
 Create a `shopadmin:Client` instance with necessary configurations.
 
 ```ballerina
-configurable string apiVersion = ?;
-configurable string accessToken = ?;
+configurable string xShopifyAccessToken = ?;
 configurable string serviceUrl = ?;
 
-shopadmin:Client shopify = check new (config = {
-    followRedirects: {
-        enabled: true
-    },
-    apiVersion,
-    auth: {
-        token: accessToken
-    }
-}, serviceUrl);
+shopadmin:Client shopify = check new (
+   {
+      xShopifyAccessToken
+   },
+   serviceUrl
+);
 ```
 
 ### Step 3: Invoke the connector operation
@@ -127,14 +117,13 @@ You can now utilize the operations available within the connector.
 
 ```ballerina
 public function main() returns error? {
-   shopadmin:CreateCustomer payload = {
+   shopadmin:CustomerResponse result = check shopify->createACustomer({
       customer: {
-         first_name: "Steve",
-         last_name: "Lastnameson",
-         email: "steve.lastnameson@example.com"
+         firstName: "John",
+         lastName: "Doe",
+         email: "john.doe@example.com"
       }
-   };
-   shopadmin:CustomerResponse result = check shopify->createsACustomer(payload);
+   });
 }
 ```
 
