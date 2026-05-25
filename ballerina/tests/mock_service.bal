@@ -337,4 +337,15 @@ service /shopify on new http:Listener(8080) {
         };
         return count;
     }
+
+    // Mock OAuth token endpoint
+    // Accepts form-encoded body 
+    resource function post admin/oauth/access_token(
+            @http:Payload string payload) returns json {
+        return {
+            access_token: "mock-access-token-12345",
+            scope: "read_products",
+            expires_in: 86400
+        };
+    }
 }
