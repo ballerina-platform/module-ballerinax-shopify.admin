@@ -16,6 +16,8 @@
 
 import ballerina/http;
 
+int tokenRequestCount = 0;
+
 service /shopify on new http:Listener(8080) {
 
     resource function get admin/oauth/access_scopes\.json() returns AccessScopes {
@@ -336,5 +338,24 @@ service /shopify on new http:Listener(8080) {
             count: 1
         };
         return count;
+    }
+    // Mock OAuth token endpoint
+    resource function post admin/oauth/access_token(
+            @http:Payload string payload) returns json {
+        lock {
+            tokenRequestCount += 1;
+        }
+        return {
+            access_token: "mock-access-token-12345",
+            scope: "read_products",
+            expires_in: 86400
+        };
+    }
+
+    // Endpoint to check how many times token was fetched (for cache testing)
+    resource function get admin/oauth/token_request_count() returns json {
+        lock {
+            return {count: tokenRequestCount};
+        }
     }
 }
