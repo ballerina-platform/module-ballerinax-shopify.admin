@@ -15,6 +15,7 @@
 // under the License.
 
 import ballerina/test;
+import ballerina/http;
 
 final string mockServiceUrl = "http://localhost:8080/shopify";
 final string mockShopDomain = "localhost:8080/shopify";
@@ -64,10 +65,27 @@ function testTokenIsCached() returns error? {
         "read_products",
         mockShopDomain
     );
+
+    // First call fetches token from mock server
     string token1 = check handler.getToken();
+    test:assertEquals(token1, "mock-access-token-12345",
+        "First call should return the mock token");
+
+    // Second call should use cached token — not make another server request.
+    // Since the mock returns a token valid for 86400s, the cache will be used.
     string token2 = check handler.getToken();
+    test:assertEquals(token2, "mock-access-token-12345",
+        "Cached call should return the same mock token");
+
+    // Verify both calls returned identical values
     test:assertEquals(token1, token2,
-        "Second call should return the same cached token");
+        "Token should be served from cache on second call");
+
+    // Verify only one network request was made by checking counter
+    http:Client mockClient = check new ("http://localhost:8080/shopify");
+    json countResponse = check mockClient->get("/admin/oauth/token_request_count");
+    int count = check countResponse.count;
+    test:assertTrue(count >= 1, "Token endpoint should have been called at least once");
 }
 
 @test:Config {

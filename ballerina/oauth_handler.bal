@@ -17,6 +17,7 @@
 import ballerina/http;
 import ballerina/log;
 import ballerina/time;
+import ballerina/url;
 
 // Holds a cached access token along with metadata needed to determine expiry.
 type TokenCache record {|
@@ -75,10 +76,14 @@ isolated class ShopifyOAuthHandler {
                 {timeout: 30}
             );
 
-            string requestBody = "client_id=" + cId
-                + "&client_secret=" + cSecret
+            string encodedClientId = check url:encode(cId, "UTF-8");
+            string encodedClientSecret = check url:encode(cSecret, "UTF-8");
+            string encodedScope = check url:encode(cScope, "UTF-8");
+
+            string requestBody = "client_id=" + encodedClientId
+                + "&client_secret=" + encodedClientSecret
                 + "&grant_type=client_credentials"
-                + "&scope=" + cScope;
+                + "&scope=" + encodedScope;
 
             http:Response response = check tokenClient->post(
                 "/admin/oauth/access_token",
