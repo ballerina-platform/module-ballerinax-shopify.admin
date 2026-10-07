@@ -57,9 +57,16 @@ allprojects {
 
 def moduleVersion = project.version.replace("-SNAPSHOT", "")
 
-task build {
+if (!tasks.names.contains('build')) {
+    tasks.register('build') {
     dependsOn(':shopify.admin-ballerina:build')
     dependsOn(':shopify.admin-examples:build')
+    }
+} else {
+    tasks.named('build') {
+    dependsOn(':shopify.admin-ballerina:build')
+    dependsOn(':shopify.admin-examples:build')
+    }
 }
 
 release {
